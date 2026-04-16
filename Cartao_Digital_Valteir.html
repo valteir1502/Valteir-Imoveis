@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Valteir Imóveis — Cartão de Visita Digital</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --gold:#C9A84C; --bronze:#7A5C2E;
+  --offblack:#1A1A1A; --bg:#F9F9F8;
+  --white:#FFFFFF;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: var(--bg);
+  font-family: 'Lato', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+.card {
+  width: 100%;
+  max-width: 400px;
+  background: var(--offblack);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+  text-align: center;
+  position: relative;
+}
+.card-header {
+  padding: 40px 20px;
+  background: linear-gradient(135deg, #222, #000);
+  border-bottom: 2px solid var(--gold);
+}
+.logo img {
+  max-width: 180px;
+  margin-bottom: 20px;
+}
+.profile-info h1 {
+  font-family: 'Playfair Display', serif;
+  color: var(--white);
+  font-size: 1.8rem;
+  margin-bottom: 5px;
+}
+.profile-info p {
+  color: var(--gold);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 700;
+}
+.creci {
+  font-size: 0.65rem;
+  color: rgba(255,255,255,0.4);
+  margin-top: 5px;
+}
+.actions {
+  padding: 30px 20px;
+}
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  color: var(--white);
+  text-decoration: none;
+  padding: 16px;
+  border-radius: 12px;
+  margin-bottom: 12px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+}
+.btn:hover {
+  background: rgba(201,168,76,0.1);
+  border-color: var(--gold);
+  transform: translateY(-2px);
+}
+.btn-primary {
+  background: var(--gold);
+  border: none;
+  color: var(--offblack);
+}
+.btn-primary:hover {
+  background: var(--bronze);
+  color: white;
+}
+.footer {
+  padding: 20px;
+  font-size: 0.7rem;
+  color: rgba(255,255,255,0.3);
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+.socials {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 10px;
+}
+.social-link {
+  color: var(--gold);
+  text-decoration: none;
+  font-size: 0.8rem;
+}
+</style>
+</head>
+<body>
+
+<div class="card">
+  <div class="card-header">
+    <div class="logo">
+      <img src="file:///c:/Users/User/Desktop/Negocios%20Imobili%C3%A1rios/Valteir%20PROJETOS/Desing%20System/Logotipo%20Valteir%20Oliveira%202.jpg" alt="Valteir Imóveis">
+    </div>
+    <div class="profile-info">
+      <h1>Valteir de Oliveira</h1>
+      <p>Assessoria Imobiliária de Alto Padrão</p>
+      <div class="creci">CRECI 214072-F</div>
+    </div>
+  </div>
+
+  <div class="actions">
+    <a href="https://wa.me/5517991726078?text=Olá%20Valteir,%20salvei%20seu%20contato." class="btn btn-primary">
+      💬 WhatsApp Direto
+    </a>
+    <a href="tel:5517991726078" class="btn">
+      📞 Ligar Agora
+    </a>
+    <a href="http://www.valteir.com.br" class="btn">
+      🌐 Visitar Website
+    </a>
+    <a href="https://maps.app.goo.gl/uX3hS3pXRXp9X1T9A" target="_blank" class="btn">
+      📍 Localização do Escritório
+    </a>
+    <a href="mailto:valteiroliver@gmail.com" class="btn">
+      ✉️ Enviar E-mail
+    </a>
+  </div>
+
+  <div class="footer">
+    © 2026 VALTEIR DE OLIVEIRA IMOVEIS<br>
+    CNPJ: 50.185.716/0001-89
+    <div class="socials">
+      <a href="#" class="social-link">Instagram</a>
+      <a href="#" class="social-link">Facebook</a>
+      <a href="#" class="social-link">LinkedIn</a>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

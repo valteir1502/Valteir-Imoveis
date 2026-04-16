@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Proposta Comercial — Valteir Imóveis</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --gold:#C9A84C; --gold-light:#E5C973; --bronze:#7A5C2E;
+  --offblack:#1A1A1A; --muted:#888; --border:#E0E0E0;
+  --bg:#F9F9F8; --white:#FFFFFF; --surface:#F0EFEA;
+  --gold-10:rgba(201,168,76,0.10);
+  --font-d:'Playfair Display',Georgia,serif;
+  --font-b:'Lato',Arial,sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{-webkit-font-smoothing:antialiased;}
+body{background:var(--bg);font-family:var(--font-b);display:flex;flex-direction:column;align-items:center;padding:60px 20px;color:var(--offblack);}
+.page{width:100%;max-width:820px;background:var(--white);border:1px solid var(--border);border-radius:8px;overflow:hidden;box-shadow:0 0 40px rgba(201,168,76,0.10);}
+.page::before{content:'';display:block;height:5px;background:linear-gradient(90deg,var(--gold),var(--gold-light),var(--bronze));}
+
+/* cover */
+.cover{background:var(--offblack);padding:72px 64px;position:relative;overflow:hidden;}
+.cover::after{content:'';position:absolute;right:-5%;top:0;width:45%;height:100%;background:linear-gradient(90deg,transparent,rgba(201,168,76,0.08));pointer-events:none;}
+.cover-logo img{max-width:180px;margin-bottom:40px;display:block;}
+.cover-label{font-size:0.68rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--gold);font-weight:700;margin-bottom:16px;}
+.cover-title{font-family:var(--font-d);font-weight:700;font-size:clamp(2rem,4vw,3rem);color:white;line-height:1.1;margin-bottom:16px;}
+.cover-title em{color:var(--gold);font-weight:400;}
+.cover-sub{font-size:1rem;color:rgba(255,255,255,0.5);margin-bottom:48px;max-width:400px;line-height:1.6;}
+.cover-meta{display:flex;gap:40px;flex-wrap:wrap;}
+.cover-meta-item .cm-label{font-size:0.65rem;text-transform:uppercase;letter-spacing:0.15em;color:rgba(255,255,255,0.4);margin-bottom:4px;}
+.cover-meta-item .cm-val{font-size:0.95rem;color:white;font-weight:700;}
+
+/* sections */
+.body-wrap{padding:56px 64px;}
+.section{margin-bottom:48px;}
+.sec-label{font-size:0.68rem;text-transform:uppercase;letter-spacing:0.15em;color:var(--gold);font-weight:700;margin-bottom:8px;}
+.sec-title{font-family:var(--font-d);font-weight:700;font-size:1.6rem;color:var(--offblack);margin-bottom:20px;padding-bottom:10px;border-bottom:1px solid var(--gold);display:inline-block;}
+.divider{border:none;border-top:1px solid var(--border);margin:48px 0;}
+
+/* imovel highlight */
+.imovel-hero{background:var(--surface);border:1px solid var(--border);border-radius:4px;overflow:hidden;margin-bottom:32px;}
+.imovel-img{height:280px;display:flex;align-items:center;justify-content:center;background:var(--border);color:var(--muted);font-family:var(--font-d);font-style:italic;font-size:1.1rem;}
+.imovel-info{padding:32px;display:grid;grid-template-columns:1fr auto;}
+.imovel-name{font-family:var(--font-d);font-weight:700;font-size:1.4rem;color:var(--offblack);margin-bottom:6px;}
+.imovel-addr{font-size:0.88rem;color:var(--muted);}
+.imovel-price-block{text-align:right;}
+.imovel-price-label{font-size:0.65rem;text-transform:uppercase;letter-spacing:0.15em;color:var(--muted);}
+.imovel-price{font-family:var(--font-d);font-weight:700;font-size:1.8rem;color:var(--gold);}
+
+/* specs */
+.specs{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin:24px 0;}
+.spec{background:var(--bg);border:1px solid var(--border);border-top:3px solid var(--gold-10);padding:16px;text-align:center;border-radius:4px;}
+.spec-n{font-family:var(--font-d);font-weight:700;font-size:1.4rem;color:var(--bronze);}
+.spec-l{font-size:0.65rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);margin-top:4px;}
+
+/* tabela */
+.table{width:100%;border-collapse:collapse;margin-bottom:32px;font-size:0.92rem;}
+.table thead tr{background:var(--offblack);}
+.table thead th{padding:14px 20px;text-align:left;font-size:0.65rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--gold);font-weight:700;}
+.table tbody tr{border-bottom:1px solid var(--border);}
+.table tbody tr:nth-child(even){background:var(--bg);}
+.table td{padding:14px 20px;color:var(--offblack);}
+.table td:last-child{font-weight:700;}
+.table tfoot tr{background:var(--gold-10);}
+.table tfoot td{padding:16px 20px;font-weight:700;border-top:2px solid var(--gold);}
+.table .highlight-val{color:var(--gold);font-family:var(--font-d);font-size:1.1rem;}
+
+/* cond pag */
+.payment-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-bottom:32px;}
+.payment-card{background:var(--bg);border:1px solid var(--border);padding:24px;border-radius:4px;}
+.payment-card.featured{border-color:var(--gold);border-top:3px solid var(--gold);}
+.pay-label{font-size:0.65rem;text-transform:uppercase;letter-spacing:0.15em;color:var(--gold);font-weight:700;margin-bottom:8px;}
+.pay-title{font-family:var(--font-d);font-weight:700;font-size:1.1rem;color:var(--offblack);margin-bottom:8px;}
+.pay-value{font-size:1.4rem;font-weight:700;color:var(--bronze);}
+.pay-obs{font-size:0.78rem;color:var(--muted);margin-top:8px;line-height:1.5;}
+
+/* sobre */
+.about-block{display:grid;grid-template-columns:64px 1fr;gap:24px;align-items:start;padding:32px;background:var(--bg);border:1px solid var(--border);border-radius:4px;}
+.about-av{width:64px;height:64px;border-radius:50%;background:var(--gold-10);border:2px solid var(--gold);display:flex;align-items:center;justify-content:center;font-family:var(--font-d);font-weight:700;font-size:1.5rem;color:var(--bronze);}
+.about-name{font-family:var(--font-d);font-weight:700;font-size:1.1rem;color:var(--offblack);margin-bottom:4px;}
+.about-creci{font-size:0.68rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--gold);font-weight:700;margin-bottom:12px;}
+.about-text{font-size:0.9rem;line-height:1.7;color:var(--offblack);}
+
+/* cta */
+.cta-block{background:var(--offblack);border-radius:4px;padding:40px;display:flex;align-items:center;justify-content:space-between;margin-bottom:48px;gap:24px;}
+.cta-text{color:white;font-family:var(--font-d);font-size:1.4rem;line-height:1.2;}
+.cta-text em{color:var(--gold);font-weight:400;}
+.cta-actions{display:flex;flex-direction:column;gap:10px;min-width:200px;}
+.btn{display:block;text-align:center;font-family:var(--font-b);font-weight:700;font-size:0.68rem;text-transform:uppercase;letter-spacing:0.15em;padding:14px 24px;border-radius:4px;text-decoration:none;border:none;cursor:pointer;transition:all 0.2s;}
+.btn-primary{background:var(--gold);color:white;}
+.btn-primary:hover{background:var(--bronze);}
+.btn-secondary{background:transparent;color:white;border:1px solid rgba(255,255,255,0.2);}
+.btn-secondary:hover{border-color:var(--gold);color:var(--gold);}
+
+/* footer */
+.footer{display:flex;justify-content:space-between;align-items:center;padding:24px 64px;border-top:1px solid var(--border);background:var(--surface);font-size:0.72rem;color:var(--muted);}
+.footer-logo{font-family:var(--font-d);font-weight:700;color:var(--bronze);font-size:1rem;}
+.footer-right{text-align:right;line-height:1.8;}
+.footer-right a{color:var(--gold);text-decoration:none;}
+
+@media print{
+  body{background:white;padding:0;}
+  .page{box-shadow:none;border:none;border-radius:0;}
+  .page::before,.cover,.cta-block{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- CAPA -->
+  <div class="cover">
+    <div class="cover-logo">
+      <img src="file:///c:/Users/User/Desktop/Negocios%20Imobili%C3%A1rios/Valteir%20PROJETOS/Desing%20System/Logotipo%20Valteir%20Oliveira%202.jpg" alt="Valteir Imóveis">
+    </div>
+    <div class="cover-label">Proposta Comercial Exclusiva</div>
+    <h1 class="cover-title">Oportunidade de <em>Alto Padrão</em><br>Selecionada para Você</h1>
+    <p class="cover-sub">Apresentação consultiva de imóvel residencial selecionado especialmente para atender ao seu perfil e necessidades.</p>
+    <div class="cover-meta">
+      <div class="cover-meta-item"><div class="cm-label">Preparado para</div><div class="cm-val">[Nome do Cliente]</div></div>
+      <div class="cover-meta-item"><div class="cm-label">Data</div><div class="cm-val">15 de Abril de 2026</div></div>
+      <div class="cover-meta-item"><div class="cm-label">Consultor</div><div class="cm-val">Valteir de Oliveira</div></div>
+    </div>
+  </div>
+
+  <div class="body-wrap">
+
+    <!-- IMÓVEL -->
+    <div class="section">
+      <div class="sec-label">01 · O Imóvel</div>
+      <div class="sec-title">Apresentação do Imóvel</div>
+
+      <div class="imovel-hero">
+        <div class="imovel-img">Fotografia principal do imóvel</div>
+        <div class="imovel-info">
+          <div>
+            <div class="imovel-name">[Nome do Imóvel / Empreendimento]</div>
+            <div class="imovel-addr">📍 [Endereço Completo] — [Cidade], SP</div>
+          </div>
+          <div class="imovel-price-block">
+            <div class="imovel-price-label">Valor de Venda</div>
+            <div class="imovel-price">R$ [VALOR]</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="specs">
+        <div class="spec"><div class="spec-n">[000]</div><div class="spec-l">m² Total</div></div>
+        <div class="spec"><div class="spec-n">[0]</div><div class="spec-l">Suítes</div></div>
+        <div class="spec"><div class="spec-n">[0]</div><div class="spec-l">Vagas</div></div>
+        <div class="spec"><div class="spec-n">[0]</div><div class="spec-l">Banheiros</div></div>
+      </div>
+
+      <p style="font-size:1rem;line-height:1.8;color:var(--offblack);">[Insira a descrição detalhada do imóvel: localização, acabamentos, construtora, diferenciais do condomínio, área de lazer, segurança e qualquer detalhe que justifique e valorize o imóvel para este cliente específico.]</p>
+    </div>
+
+    <hr class="divider">
+
+    <!-- VALORES -->
+    <div class="section">
+      <div class="sec-label">02 · Valores</div>
+      <div class="sec-title">Composição Financeira</div>
+
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Item</th>
+            <th>Descrição</th>
+            <th>Valor</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Valor do Imóvel</td><td>Conforme matrícula</td><td>R$ [Valor]</td></tr>
+          <tr><td>ITBI</td><td>~3% sobre valor venal</td><td>R$ [Valor]</td></tr>
+          <tr><td>Escritura / Registro</td><td>Cartório competente</td><td>R$ [Valor]</td></tr>
+          <tr><td>Honorários</td><td>Inclusos no preço</td><td>—</td></tr>
+          <tr><td>IPTU/mês</td><td>Estimativa mensal</td><td>R$ [Valor]</td></tr>
+          <tr><td>Condomínio/mês</td><td>Taxa condominial</td><td>R$ [Valor]</td></tr>
+        </tbody>
+        <tfoot>
+          <tr><td colspan="2"><strong>INVESTIMENTO TOTAL (Aquisição)</strong></td><td class="highlight-val">R$ [TOTAL]</td></tr>
+        </tfoot>
+      </table>
+    </div>
+
+    <hr class="divider">
+
+    <!-- CONDIÇÕES DE PAGAMENTO -->
+    <div class="section">
+      <div class="sec-label">03 · Pagamento</div>
+      <div class="sec-title">Condições</div>
+
+      <div class="payment-grid">
+        <div class="payment-card featured">
+          <div class="pay-label">✦ Recomendado</div>
+          <div class="pay-title">Pagamento à Vista</div>
+          <div class="pay-value">R$ [Valor]</div>
+          <div class="pay-obs">Maior poder de negociação. Possibilidade de desconto adicional mediante análise.</div>
+        </div>
+        <div class="payment-card">
+          <div class="pay-label">Financiamento</div>
+          <div class="pay-title">Banco Conveniado</div>
+          <div class="pay-value">Consultar</div>
+          <div class="pay-obs">Análise de crédito bancário sujeita ao perfil do comprador. Aceita FGTS conforme regulamentação.</div>
+        </div>
+        <div class="payment-card">
+          <div class="pay-label">Entrada + Financiamento</div>
+          <div class="pay-title">Entrada de [X]%</div>
+          <div class="pay-value">R$ [Valor]</div>
+          <div class="pay-obs">Saldo financiado em até [X] meses. Condições sujeitas à aprovação creditícia.</div>
+        </div>
+        <div class="payment-card">
+          <div class="pay-label">Permuta</div>
+          <div class="pay-title">Aceita Imóvel</div>
+          <div class="pay-value">A negociar</div>
+          <div class="pay-obs">Avaliação do imóvel a permutar mediante laudo técnico. Consulte disponibilidade.</div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- SOBRE O CONSULTOR -->
+    <div class="section">
+      <div class="sec-label">04 · Seu Consultor</div>
+      <div class="sec-title">Valteir de Oliveira</div>
+      <div class="about-block">
+        <div class="about-av">V</div>
+        <div>
+          <div class="about-name">Valteir de Oliveira</div>
+          <div class="about-creci">CRECI 214072-F · Pessoa Física</div>
+          <p class="about-text">Corretor e assessor imobiliário atuante desde 2019, especializado em imóveis residenciais de alto padrão em condomínios fechados. Meu diferencial é a consultoria estratégica: entendo o seu perfil antes de apresentar qualquer imóvel, garantindo assertividade e economia do seu tempo.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="cta-block">
+      <div class="cta-text">Pronto para o próximo passo?<br><em>Vamos agendar sua visita.</em></div>
+      <div class="cta-actions">
+        <a class="btn btn-primary" href="https://wa.me/5517991726078">Falar no WhatsApp</a>
+        <a class="btn btn-secondary" href="http://www.valteir.com.br">Ver Portfólio Online</a>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer">
+    <div class="footer-logo">Valteir Imóveis · Assessoria Imobiliária</div>
+    <div class="footer-right">
+      CNPJ: 50.185.716/0001-89 · CRECI: 214072-F<br>
+      <a href="http://www.valteir.com.br">www.valteir.com.br</a> · (17) 99172-6078
+    </div>
+  </div>
+</div>
+</body>
+</html>

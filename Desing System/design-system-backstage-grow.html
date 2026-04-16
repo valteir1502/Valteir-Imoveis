@@ -1,0 +1,1672 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Design System — Backstage Grow</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+
+/* ================================================================
+   CSS CUSTOM PROPERTIES — DESIGN TOKENS
+   ================================================================ */
+:root {
+  /* — BRAND COLORS — */
+  --brand-territory:    #0A0A0A;
+  --brand-surface-01:   #111111;
+  --brand-surface-02:   #1A1A1A;
+  --brand-green:        #299A50;
+  --brand-green-deep:   #1B6B38;
+  --brand-green-light:  #3DB86A;
+  --brand-green-neon:   #39FF14;
+  --brand-offwhite:     #F5F5F5;
+  --brand-muted:        #9E9E9E;
+  --brand-muted-deep:   #616161;
+
+  /* — OPACITY VARIANTS — */
+  --brand-green-10:      rgba(41,154,80,0.10);
+  --brand-green-20:      rgba(41,154,80,0.20);
+  --brand-green-40:      rgba(41,154,80,0.40);
+  --brand-offwhite-80:  rgba(245,245,245,0.80);
+  --brand-offwhite-60:  rgba(245,245,245,0.60);
+  --brand-offwhite-10:  rgba(245,245,245,0.10);
+  --brand-territory-90: rgba(10,10,10,0.92);
+  --brand-territory-70: rgba(10,10,10,0.70);
+
+  /* — TYPOGRAPHY — */
+  --font-display: 'Montserrat', 'Arial Black', 'Helvetica Neue', sans-serif;
+  --font-body:    'Inter', 'Helvetica Neue', Arial, sans-serif;
+
+  /* — FONT SIZES (Desktop) — */
+  --font-h1:       clamp(3rem, 5vw, 4.5rem);
+  --font-h2:       clamp(2rem, 3.5vw, 3rem);
+  --font-h3:       clamp(1.5rem, 2.5vw, 2rem);
+  --font-body-lg:  1.125rem;
+  --font-body-md:  1rem;
+  --font-body-sm:  0.875rem;
+  --font-caption:  0.75rem;
+  --font-button:   0.875rem;
+  --font-label:    0.75rem;
+
+  /* — FONT SIZES (Mobile) — */
+  --font-h1-mobile:   2.25rem;
+  --font-h2-mobile:   1.75rem;
+  --font-h3-mobile:   1.375rem;
+
+  /* — LINE HEIGHTS — */
+  --lh-display: 1.05;
+  --lh-body:    1.65;
+  --lh-tight:   1.2;
+
+  /* — LETTER SPACING — */
+  --ls-display:  -0.02em;
+  --ls-label:    0.12em;
+  --ls-body:     0.01em;
+
+  /* — SPACING SCALE — */
+  --space-2:   2px;
+  --space-4:   4px;
+  --space-8:   8px;
+  --space-12:  12px;
+  --space-16:  16px;
+  --space-24:  24px;
+  --space-32:  32px;
+  --space-48:  48px;
+  --space-64:  64px;
+  --space-96:  96px;
+  --space-128: 128px;
+
+  /* — BORDER RADIUS — */
+  --radius-none: 0px;
+  --radius-sm:   4px;
+  --radius-md:   8px;
+  --radius-lg:   16px;
+  --radius-xl:   24px;
+
+  /* — SHADOWS — */
+  --shadow-subtle: 0 1px 3px rgba(0,0,0,0.5);
+  --shadow-medium: 0 4px 16px rgba(0,0,0,0.6);
+  --shadow-high:   0 8px 32px rgba(0,0,0,0.7), 0 2px 8px rgba(0,0,0,0.4);
+  --shadow-green:  0 0 24px rgba(0,200,83,0.20);
+  --shadow-glow:   0 0 40px rgba(0,200,83,0.15), 0 0 80px rgba(0,200,83,0.05);
+
+  /* — BORDERS — */
+  --border-thin:   1px solid var(--brand-muted-deep);
+  --border-green:  1px solid var(--brand-green);
+  --border-subtle: 1px solid rgba(97,97,97,0.3);
+
+  /* — GRID — */
+  --grid-max-width: 1200px;
+  --grid-columns:   12;
+  --grid-gutter:    24px;
+
+  /* — TRANSITIONS — */
+  --ease-default: cubic-bezier(0.25, 0.1, 0.25, 1);
+  --duration-fast: 150ms;
+  --duration-base: 250ms;
+  --duration-slow: 400ms;
+}
+
+/* ================================================================
+   RESET & BASE
+   ================================================================ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background: var(--brand-territory);
+  color: var(--brand-offwhite);
+  font-family: var(--font-body);
+  font-size: var(--font-body-md);
+  line-height: var(--lh-body);
+  letter-spacing: var(--ls-body);
+}
+
+/* Noise texture overlay */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ================================================================
+   LAYOUT
+   ================================================================ */
+.ds-container {
+  max-width: var(--grid-max-width);
+  margin: 0 auto;
+  padding: 0 var(--space-32);
+  position: relative;
+  z-index: 1;
+}
+
+/* ================================================================
+   NAVIGATION
+   ================================================================ */
+.ds-nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  background: var(--brand-territory-90);
+  backdrop-filter: blur(16px);
+  border-bottom: var(--border-subtle);
+  padding: var(--space-16) var(--space-32);
+}
+
+.ds-nav-inner {
+  max-width: var(--grid-max-width);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.ds-nav-logo {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: var(--font-body-sm);
+  text-transform: uppercase;
+  letter-spacing: var(--ls-label);
+  color: var(--brand-offwhite);
+}
+
+.ds-nav-logo span { color: var(--brand-green); }
+
+.ds-nav-links {
+  display: flex;
+  gap: var(--space-24);
+  list-style: none;
+}
+
+.ds-nav-links a {
+  color: var(--brand-muted);
+  text-decoration: none;
+  font-size: var(--font-caption);
+  text-transform: uppercase;
+  letter-spacing: var(--ls-label);
+  font-weight: 500;
+  transition: color var(--duration-fast) var(--ease-default);
+}
+
+.ds-nav-links a:hover { color: var(--brand-green); }
+
+/* ================================================================
+   SECTION STYLES
+   ================================================================ */
+.ds-section {
+  padding: var(--space-96) 0;
+  border-bottom: var(--border-subtle);
+}
+
+.ds-section:last-child { border-bottom: none; }
+
+.ds-section-label {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: var(--font-label);
+  text-transform: uppercase;
+  letter-spacing: var(--ls-label);
+  color: var(--brand-green);
+  margin-bottom: var(--space-12);
+}
+
+.ds-section-title {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: var(--font-h2);
+  line-height: var(--lh-display);
+  letter-spacing: var(--ls-display);
+  color: var(--brand-offwhite);
+  text-transform: uppercase;
+  margin-bottom: var(--space-16);
+}
+
+.ds-section-title .green { color: var(--brand-green); }
+
+.ds-section-desc {
+  color: var(--brand-muted);
+  font-size: var(--font-body-lg);
+  line-height: var(--lh-body);
+  max-width: 720px;
+  margin-bottom: var(--space-48);
+}
+
+.ds-divider {
+  border: none;
+  border-top: var(--border-subtle);
+  margin: var(--space-64) 0;
+}
+
+.ds-sub-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.25rem;
+  color: var(--brand-offwhite);
+  margin-bottom: var(--space-16);
+  padding-bottom: var(--space-8);
+  border-bottom: var(--border-green);
+  display: inline-block;
+}
+
+.ds-prose {
+  color: var(--brand-offwhite-80);
+  font-size: var(--font-body-md);
+  line-height: var(--lh-body);
+  max-width: 780px;
+  margin-bottom: var(--space-32);
+}
+
+.ds-prose strong { color: var(--brand-offwhite); font-weight: 700; }
+.ds-prose em { color: var(--brand-green-light); font-style: normal; }
+
+/* ================================================================
+   HERO
+   ================================================================ */
+.ds-hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: var(--space-128) 0 var(--space-96);
+  position: relative;
+}
+
+.ds-hero::after {
+  content: '';
+  position: absolute;
+  top: 20%;
+  right: -10%;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, var(--brand-green-10), transparent 70%);
+  pointer-events: none;
+}
+
+.ds-hero-label {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: var(--font-label);
+  text-transform: uppercase;
+  letter-spacing: var(--ls-label);
+  color: var(--brand-green);
+  margin-bottom: var(--space-24);
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+}
+
+.ds-hero-label::before {
+  content: '';
+  width: 24px;
+  height: 2px;
+  background: var(--brand-green);
+}
+
+.ds-hero-title {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  line-height: 1.0;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  color: var(--brand-offwhite);
+  margin-bottom: var(--space-32);
+}
+
+.ds-hero-title .green { color: var(--brand-green); }
+
+.ds-hero-sub {
+  font-family: var(--font-body);
+  font-size: var(--font-body-lg);
+  color: var(--brand-muted);
+  max-width: 600px;
+  line-height: var(--lh-body);
+  margin-bottom: var(--space-48);
+}
+
+.ds-hero-line {
+  width: 64px;
+  height: 3px;
+  background: var(--brand-green);
+  border-radius: 2px;
+}
+
+/* ================================================================
+   COLOR SWATCHES
+   ================================================================ */
+.ds-color-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: var(--space-16);
+  margin-bottom: var(--space-48);
+}
+
+.ds-color-card {
+  background: var(--brand-surface-01);
+  border: var(--border-subtle);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  transition: border-color var(--duration-base) var(--ease-default);
+}
+
+.ds-color-card:hover { border-color: var(--brand-muted); }
+
+.ds-color-swatch {
+  height: 100px;
+  width: 100%;
+}
+
+.ds-color-info {
+  padding: var(--space-16);
+}
+
+.ds-color-name {
+  font-weight: 700;
+  font-size: var(--font-body-sm);
+  color: var(--brand-offwhite);
+  margin-bottom: var(--space-4);
+}
+
+.ds-color-var {
+  font-family: 'Courier New', monospace;
+  font-size: 0.7rem;
+  color: var(--brand-green-light);
+  margin-bottom: var(--space-8);
+}
+
+.ds-color-hex {
+  font-family: 'Courier New', monospace;
+  font-size: var(--font-caption);
+  color: var(--brand-muted);
+}
+
+.ds-color-role {
+  font-size: var(--font-caption);
+  color: var(--brand-muted);
+  margin-top: var(--space-8);
+  line-height: 1.4;
+}
+
+/* ================================================================
+   CODE BLOCKS
+   ================================================================ */
+.ds-code-block {
+  background: var(--brand-surface-01);
+  border: var(--border-subtle);
+  border-radius: var(--radius-sm);
+  padding: var(--space-24);
+  margin-bottom: var(--space-32);
+  overflow-x: auto;
+  font-family: 'Courier New', monospace;
+  font-size: 0.8rem;
+  line-height: 1.7;
+  color: var(--brand-offwhite-80);
+}
+
+.ds-code-block .comment { color: var(--brand-muted-deep); }
+.ds-code-block .prop { color: var(--brand-green-light); }
+.ds-code-block .value { color: var(--brand-offwhite); }
+
+/* ================================================================
+   TYPOGRAPHY SPECIMENS
+   ================================================================ */
+.ds-type-specimen {
+  background: var(--brand-surface-01);
+  border: var(--border-subtle);
+  border-radius: var(--radius-sm);
+  padding: var(--space-32);
+  margin-bottom: var(--space-16);
+}
+
+.ds-type-label {
+  font-size: var(--font-caption);
+  text-transform: uppercase;
+  letter-spacing: var(--ls-label);
+  color: var(--brand-green);
+  margin-bottom: var(--space-12);
+  font-weight: 600;
+}
+
+.ds-type-meta {
+  font-family: 'Courier New', monospace;
+  font-size: 0.7rem;
+  color: var(--brand-muted);
+  margin-top: var(--space-12);
+}
+
+/* ================================================================
+   SPACING SCALE VISUAL
+   ================================================================ */
+.ds-space-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-16);
+  margin-bottom: var(--space-12);
+}
+
+.ds-space-bar {
+  height: 8px;
+  background: var(--brand-green-20);
+  border-left: 2px solid var(--brand-green);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+}
+
+.ds-space-label {
+  font-family: 'Courier New', monospace;
+  font-size: 0.75rem;
+  color: var(--brand-muted);
+  white-space: nowrap;
+  min-width: 120px;
+}
+
+.ds-space-use {
+  font-size: var(--font-caption);
+  color: var(--brand-muted-deep);
+}
+
+/* ================================================================
+   GRID DEMO
+   ================================================================ */
+.ds-grid-demo {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--space-8);
+  margin-bottom: var(--space-32);
+}
+
+.ds-grid-col {
+  background: var(--brand-green-10);
+  border: 1px solid var(--brand-green-20);
+  height: 48px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Courier New', monospace;
+  font-size: 0.65rem;
+  color: var(--brand-green);
+}
+
+/* ================================================================
+   COMPONENT PREVIEWS
+   ================================================================ */
+.ds-component-preview {
+  background: var(--brand-surface-01);
+  border: var(--border-subtle);
+  border-radius: var(--radius-sm);
+  padding: var(--space-48);
+  margin-bottom: var(--space-16);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-16);
+  align-items: center;
+}
+
+.ds-component-preview.column {
+  flex-direction: column;
+  align-items: stretch;
+}
+
+/* Buttons */
+.ds-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: var(--font-button);
+  text-transform: uppercase;
+  letter-spacing: var(--ls-label);
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  transition: all var(--duration-base) var(--ease-default);
+  padding: var(--space-16) var(--space-32);
+  border-radius: var(--radius-md);
+}
+
+.ds-btn-primary {
+  background: var(--brand-green);
+  color: var(--brand-territory);
+}
+.ds-btn-primary:hover {
+  background: var(--brand-green-light);
+  box-shadow: var(--shadow-green);
+}
+.ds-btn-primary:active { background: var(--brand-green-deep); color: var(--brand-offwhite); }
+.ds-btn-primary.disabled {
+  background: var(--brand-muted-deep);
+  color: var(--brand-muted);
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.ds-btn-secondary {
+  background: var(--brand-surface-02);
+  color: var(--brand-offwhite);
+  border: var(--border-thin);
+}
+.ds-btn-secondary:hover {
+  border-color: var(--brand-green);
+  color: var(--brand-green);
+}
+.ds-btn-secondary:active { background: var(--brand-surface-01); }
+
+.ds-btn-ghost {
+  background: transparent;
+  color: var(--brand-green);
+  border: var(--border-green);
+}
+.ds-btn-ghost:hover {
+  background: var(--brand-green-10);
+}
+.ds-btn-ghost:active { background: var(--brand-green-20); }
+
+/* Cards */
+.ds-card {
+  background: var(--brand-surface-01);
+  border: var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: var(--space-32);
+  transition: border-color var(--duration-base) var(--ease-default);
+}
+
+.ds-card:hover { border-color: var(--brand-muted); }
+
+.ds-card-icon {
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--brand-green);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--space-16);
+  color: var(--brand-green);
+  font-size: 1.2rem;
+}
+
+.ds-card-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--font-body-md);
+  color: var(--brand-offwhite);
+  margin-bottom: var(--space-8);
+}
+
+.ds-card-text {
+  font-size: var(--font-body-sm);
+  color: var(--brand-muted);
+  line-height: var(--lh-body);
+}
+
+.ds-card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: var(--space-16);
+  margin-bottom: var(--space-32);
+}
+
+/* Testimonial Card */
+.ds-testimonial {
+  background: var(--brand-surface-02);
+  border: var(--border-subtle);
+  border-left: 3px solid var(--brand-green);
+  border-radius: var(--radius-md);
+  padding: var(--space-32);
+}
+
+.ds-testimonial-quote {
+  font-size: var(--font-body-md);
+  color: var(--brand-offwhite-80);
+  line-height: var(--lh-body);
+  margin-bottom: var(--space-16);
+  font-style: italic;
+}
+
+.ds-testimonial-author {
+  font-size: var(--font-body-sm);
+  color: var(--brand-green);
+  font-weight: 600;
+}
+
+.ds-testimonial-role {
+  font-size: var(--font-caption);
+  color: var(--brand-muted-deep);
+}
+
+/* Form Elements */
+.ds-form-group {
+  margin-bottom: var(--space-24);
+  max-width: 480px;
+}
+
+.ds-form-label {
+  display: block;
+  font-size: var(--font-caption);
+  text-transform: uppercase;
+  letter-spacing: var(--ls-label);
+  color: var(--brand-muted);
+  font-weight: 600;
+  margin-bottom: var(--space-8);
+}
+
+.ds-input {
+  width: 100%;
+  background: var(--brand-surface-02);
+  border: var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: var(--space-12) var(--space-16);
+  color: var(--brand-offwhite);
+  font-family: var(--font-body);
+  font-size: var(--font-body-sm);
+  transition: border-color var(--duration-fast) var(--ease-default);
+  outline: none;
+}
+
+.ds-input::placeholder { color: var(--brand-muted-deep); }
+.ds-input:focus { border-color: var(--brand-green); }
+.ds-input.error { border-color: #E53E3E; }
+
+.ds-form-error {
+  font-size: var(--font-caption);
+  color: #FC8181;
+  margin-top: var(--space-4);
+}
+
+/* Header Preview */
+.ds-header-preview {
+  background: var(--brand-territory);
+  border: var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: var(--space-16) var(--space-24);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-32);
+}
+
+.ds-header-logo {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: var(--font-body-sm);
+  text-transform: uppercase;
+  letter-spacing: var(--ls-label);
+  color: var(--brand-offwhite);
+}
+
+.ds-header-logo span { color: var(--brand-green); }
+
+.ds-header-links {
+  display: flex;
+  align-items: center;
+  gap: var(--space-24);
+}
+
+.ds-header-link {
+  color: var(--brand-muted);
+  text-decoration: none;
+  font-size: var(--font-caption);
+  text-transform: uppercase;
+  letter-spacing: var(--ls-label);
+  font-weight: 500;
+  transition: color var(--duration-fast) var(--ease-default);
+}
+
+.ds-header-link:hover { color: var(--brand-offwhite); }
+
+.ds-header-cta {
+  background: var(--brand-green);
+  color: var(--brand-territory);
+  padding: var(--space-8) var(--space-16);
+  border-radius: var(--radius-md);
+  font-size: var(--font-caption);
+  text-transform: uppercase;
+  letter-spacing: var(--ls-label);
+  font-weight: 700;
+  text-decoration: none;
+  transition: background var(--duration-base) var(--ease-default);
+}
+
+.ds-header-cta:hover { background: var(--brand-green-light); }
+
+/* Hero Section Component */
+.ds-hero-component {
+  background: var(--brand-territory);
+  border: var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: var(--space-96) var(--space-48);
+  text-align: left;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: var(--space-32);
+}
+
+.ds-hero-component::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -20%;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, var(--brand-green-10), transparent 60%);
+  pointer-events: none;
+}
+
+.ds-hero-component h1 {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(2rem, 4vw, 3rem);
+  text-transform: uppercase;
+  letter-spacing: var(--ls-display);
+  line-height: var(--lh-display);
+  color: var(--brand-offwhite);
+  margin-bottom: var(--space-16);
+  position: relative;
+  z-index: 1;
+}
+
+.ds-hero-component h1 .green { color: var(--brand-green); }
+
+.ds-hero-component p {
+  color: var(--brand-muted);
+  font-size: var(--font-body-md);
+  max-width: 520px;
+  line-height: var(--lh-body);
+  margin-bottom: var(--space-32);
+  position: relative;
+  z-index: 1;
+}
+
+/* FAQ Accordion */
+.ds-faq-item {
+  border-bottom: var(--border-subtle);
+}
+
+.ds-faq-question {
+  width: 100%;
+  background: transparent;
+  border: none;
+  text-align: left;
+  padding: var(--space-24) 0;
+  color: var(--brand-offwhite);
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: var(--font-body-md);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: color var(--duration-fast) var(--ease-default);
+}
+
+.ds-faq-question:hover { color: var(--brand-green); }
+
+.ds-faq-toggle {
+  font-size: 1.25rem;
+  color: var(--brand-green);
+  transition: transform var(--duration-base) var(--ease-default);
+}
+
+.ds-faq-answer {
+  color: var(--brand-muted);
+  font-size: var(--font-body-sm);
+  line-height: var(--lh-body);
+  padding-bottom: var(--space-24);
+  max-width: 640px;
+  display: none;
+}
+
+.ds-faq-item.open .ds-faq-answer { display: block; }
+.ds-faq-item.open .ds-faq-toggle { transform: rotate(45deg); }
+
+/* Social Proof Block */
+.ds-social-proof {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-48);
+  align-items: center;
+  padding: var(--space-48);
+  background: var(--brand-surface-01);
+  border: var(--border-subtle);
+  border-radius: var(--radius-md);
+  margin-bottom: var(--space-32);
+}
+
+.ds-proof-stat { text-align: center; }
+
+.ds-proof-number {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: var(--font-h2);
+  color: var(--brand-green);
+  letter-spacing: var(--ls-display);
+}
+
+.ds-proof-label {
+  font-size: var(--font-caption);
+  text-transform: uppercase;
+  letter-spacing: var(--ls-label);
+  color: var(--brand-muted);
+  margin-top: var(--space-4);
+}
+
+/* Social Media Mockups */
+.ds-social-grid {
+  display: flex;
+  gap: var(--space-32);
+  margin-bottom: var(--space-48);
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.ds-social-frame {
+  width: 280px;
+  background: var(--brand-surface-01);
+  border: var(--border-subtle);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.ds-social-header {
+  padding: var(--space-12) var(--space-16);
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+  border-bottom: var(--border-subtle);
+}
+
+.ds-social-avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--brand-green-20);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.6rem;
+  font-weight: 700;
+  color: var(--brand-green);
+}
+
+.ds-social-name {
+  font-size: var(--font-caption);
+  font-weight: 700;
+  color: var(--brand-offwhite);
+}
+
+.ds-social-body {
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-24);
+  text-align: center;
+}
+
+.ds-social-body h3 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.25rem;
+  text-transform: uppercase;
+  color: var(--brand-offwhite);
+  line-height: var(--lh-tight);
+}
+
+.ds-social-body .green { color: var(--brand-green); }
+
+/* ================================================================
+   FOOTER
+   ================================================================ */
+.ds-footer {
+  padding: var(--space-48) 0;
+  text-align: center;
+  border-top: var(--border-subtle);
+}
+
+.ds-footer-text {
+  font-size: var(--font-caption);
+  color: var(--brand-muted-deep);
+  text-transform: uppercase;
+  letter-spacing: var(--ls-label);
+}
+
+.ds-footer-text span { color: var(--brand-green); }
+
+/* ================================================================
+   RESPONSIVE
+   ================================================================ */
+@media (max-width: 768px) {
+  .ds-nav-links { display: none; }
+  .ds-hero-title { font-size: var(--font-h1-mobile); }
+  .ds-section-title { font-size: var(--font-h2-mobile); }
+  .ds-color-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
+  .ds-card-grid { grid-template-columns: 1fr; }
+  .ds-grid-demo { grid-template-columns: repeat(6, 1fr); }
+  .ds-social-grid { flex-direction: column; align-items: center; }
+  .ds-header-links { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="ds-nav">
+  <div class="ds-nav-inner">
+    <div class="ds-nav-logo"><svg xmlns="http://www.w3.org/2000/svg" width="160" height="38" viewBox="0 0 282 67" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M95.9237 1.47292C95.927 1.56398 96.7952 2.69018 97.8528 3.97601C98.9105 5.26184 101.115 7.97879 102.752 10.0136C104.389 12.0486 106.941 15.207 108.423 17.0323C110.679 19.8123 111.073 20.4058 110.848 20.6898C110.458 21.1817 104.55 28.0256 99.9156 33.3536C97.7166 35.8816 95.9175 38.0238 95.9175 38.1142C95.9175 38.2044 97.7666 38.2935 100.027 38.3118L104.136 38.3451L104.822 37.6175C105.2 37.2173 107.389 34.7129 109.688 32.0519C117.198 23.3598 118.727 21.6185 118.791 21.6822C118.826 21.7168 118.246 23.0253 117.504 24.5898C116.761 26.1541 115.458 28.9225 114.609 30.7414C113.759 32.5604 112.625 34.921 112.09 35.9875C111.554 37.0537 111.175 38.0212 111.247 38.1371C111.318 38.2531 112.46 38.3479 113.784 38.3479C116.039 38.3479 116.211 38.3166 116.509 37.8518C116.684 37.5791 118.535 33.7567 120.624 29.3579C122.713 24.9591 124.456 21.394 124.497 21.4355C124.538 21.4767 123.841 25.2246 122.947 29.7638C122.053 34.3032 121.366 38.0915 121.42 38.1826C121.566 38.4264 124.311 38.3839 124.465 38.1354C124.693 37.7654 127.884 21.2963 127.883 20.4892C127.883 20.0648 127.339 16.7906 126.676 13.2134C126.012 9.63613 125.251 5.494 124.984 4.00842L124.5 1.30756H122.886C121.999 1.30756 121.272 1.39333 121.272 1.49806C121.272 1.60256 121.376 2.22277 121.502 2.87604C122.639 8.74253 124.572 19.4677 124.505 19.5347C124.433 19.6073 121.446 13.0158 117.645 4.39426C117.03 2.99973 116.448 1.73485 116.351 1.58316C116.147 1.26324 111.13 1.18078 111.13 1.49739C111.13 1.60168 112.849 5.54559 114.95 10.2614C117.051 14.9772 118.836 19.034 118.917 19.2765C119.121 19.884 118.58 19.2432 112.397 11.5598C109.47 7.92191 106.395 4.12704 105.564 3.12651L104.053 1.30756H99.9853C97.7481 1.30756 95.9204 1.38186 95.9237 1.47292Z" fill="#299A50"/><path d="M12.5959 0.549904C16.7762 0.549904 20.5164 3.02516 22.2216 6.8204C23.8647 10.6543 23.1624 15.0879 20.3325 18.1666C24.9305 20.1024 27.5545 25.0396 26.567 29.9222C25.5769 34.8176 21.2865 38.3929 16.2812 38.3929H0V0.549904H12.5959ZM59.9725 38.3929H55.5173L52.6571 31.0222H37.586L34.7258 38.3929H30.2703L45.1765 0L59.9725 38.3929ZM131.792 0.549904V38.3929H127.612V0.549904H131.792ZM185.383 4.78528H175.922V38.3929H171.687V4.78528H162.281V0.549904H185.383V4.78528ZM216.347 38.3929H211.891L209.031 31.0222H193.96L191.1 38.3929H186.644L201.55 0L216.347 38.3929ZM281.678 4.78528H263.362V17.3812H279.038V21.5617H263.362V34.1576H281.678V38.3929H259.182V0.549904H281.678V4.78528ZM66.9014 6.2705C74.1619 -1.10006 85.9329 -1.37516 93.4135 5.72038L90.5531 8.74571C84.7226 3.2453 75.5369 3.46516 69.9265 9.18559C64.3161 14.906 64.3712 24.0917 69.9816 29.8122C75.592 35.4776 84.7776 35.6426 90.5531 30.1422L93.4684 33.1673C85.9878 40.2629 74.217 40.098 67.0114 32.7275C59.7509 25.4119 59.6959 13.6411 66.9014 6.2705ZM224.456 6.2705C231.717 -1.10006 243.488 -1.37516 250.968 5.72038L248.108 8.74571C242.333 3.35531 233.312 3.46513 227.701 8.96554C222.036 14.521 221.816 23.5416 227.151 29.3721C232.432 35.2025 241.453 35.8077 247.503 30.6923V21.5617H238.042V17.3812H251.683V32.5623L251.023 33.1673C243.543 40.2629 231.772 40.0979 224.511 32.7275C217.306 25.4119 217.251 13.6411 224.456 6.2705ZM149.515 0.605024C153.31 0.605059 156.83 2.75017 158.48 6.21538L154.74 8.08557C153.75 6.05044 151.715 4.78544 149.515 4.8404H147.699C144.894 4.84043 142.529 6.82044 142.034 9.57057C141.484 12.3208 143.079 15.071 145.664 16.0611L153.035 18.8113C156.885 20.2964 159.47 23.9817 159.525 28.162V28.3821C159.47 33.8824 155.015 38.3378 149.515 38.3378H147.473C142.729 38.2826 138.666 34.7979 137.854 30.0873L141.979 29.3721C142.474 32.1223 144.894 34.1575 147.699 34.1576H149.515C152.705 34.1575 155.29 31.5723 155.29 28.3821V28.162C155.29 25.7419 153.805 23.5967 151.55 22.7166L144.179 19.9664C139.669 18.2613 137.029 13.5859 137.854 8.85552C138.734 4.07022 142.859 0.605049 147.699 0.605024H149.515ZM4.18026 34.1576H16.2812C19.7464 34.1576 22.5517 31.3523 22.5517 27.8871C22.5517 24.4218 19.7464 21.5617 16.2812 21.5617H4.18026V34.1576ZM39.2361 26.8419H51.0618L45.1765 11.6059L39.2361 26.8419ZM195.61 26.8419H207.436L201.55 11.6059L195.61 26.8419ZM4.18026 17.3812H12.5959C16.0612 17.3812 18.8664 14.521 18.8664 11.0558C18.8664 7.59052 16.0612 4.78528 12.5959 4.78528H4.18026V17.3812Z" fill="white"/><path d="M48.0615 55.1847C49.3635 53.8015 50.9782 53.1099 52.9056 53.1099C55.1394 53.1099 56.869 53.7631 58.0944 55.0695L57.4626 55.7803C56.9903 55.2552 56.3457 54.8197 55.5287 54.4739C54.7246 54.1281 53.8502 53.9552 52.9056 53.9552C51.2335 53.9552 49.823 54.57 48.6742 55.7995C47.5381 57.0163 46.9701 58.4956 46.9701 60.2374C46.9701 61.9921 47.519 63.4202 48.6167 64.5217C49.7145 65.6103 51.0803 66.1547 52.7141 66.1547C54.1821 66.1547 55.4394 65.6296 56.4861 64.5793C57.5455 63.5163 58.1199 62.165 58.2093 60.5256H53.1162V59.7379H60.6409V60.5256H59.09C59.0007 62.4468 58.3497 64.0094 57.1371 65.2133C55.9244 66.4044 54.4501 67 52.7141 67C50.825 67 49.2486 66.3724 47.9849 65.1172C46.7212 63.8621 46.0894 62.2355 46.0894 60.2374C46.0894 58.2522 46.7467 56.568 48.0615 55.1847Z" fill="white"/><path d="M104.075 67V53.1099H109.97C111.302 53.1099 112.397 53.4737 113.254 54.2012C114.111 54.9156 114.539 55.8548 114.539 57.0189C114.539 58.0508 114.197 58.9305 113.511 59.6581C112.825 60.3724 111.935 60.8156 110.84 60.9876L114.658 67H113.649L109.891 61.0471L104.985 61.0669V67H104.075ZM109.851 60.293C110.946 60.293 111.843 60.002 112.542 59.42C113.254 58.8247 113.61 58.0508 113.61 57.0983C113.61 56.1591 113.26 55.405 112.561 54.8362C111.862 54.2674 110.959 53.983 109.851 53.983H104.985V60.293H109.851Z" fill="white"/><path d="M160.028 54.8801C161.319 53.5529 162.949 52.8894 164.917 52.8894C166.899 52.8894 168.535 53.5529 169.826 54.8801C171.117 56.2072 171.762 57.8987 171.762 59.9544C171.762 62.0102 171.117 63.7017 169.826 65.0288C168.535 66.3429 166.899 67 164.917 67C162.949 67 161.319 66.3429 160.028 65.0288C158.738 63.7017 158.092 62.0102 158.092 59.9544C158.092 57.8987 158.738 56.2072 160.028 54.8801ZM160.674 64.3847C161.782 65.5557 163.196 66.1412 164.917 66.1412C166.638 66.1412 168.059 65.5623 169.181 64.4043C170.302 63.2333 170.862 61.75 170.862 59.9544C170.862 58.1459 170.302 56.6626 169.181 55.5046C168.059 54.3336 166.638 53.7481 164.917 53.7481C163.209 53.7481 161.795 54.3336 160.674 55.5046C159.552 56.6626 158.992 58.1459 158.992 59.9544C158.992 61.75 159.552 63.2267 160.674 64.3847Z" fill="white"/><path d="M215.196 53.1007H216.159L220.03 64.3012H220.148L224.529 52.8894H224.805L229.186 64.3012H229.324L233.195 53.1007H234.157L229.402 66.7795H229.147L224.746 55.4253H224.608L220.187 66.7795H219.951L215.196 53.1007Z" fill="white"/></svg></div>
+    <ul class="ds-nav-links">
+      <li><a href="#logo">Logo</a></li>
+      <li><a href="#cores">Cores</a></li>
+      <li><a href="#tipografia">Tipografia</a></li>
+      <li><a href="#espacamento">Espaçamento</a></li>
+      <li><a href="#grid">Grid</a></li>
+      <li><a href="#componentes">Componentes</a></li>
+      <li><a href="#social">Social</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="ds-container">
+
+  <!-- ============================================================
+       HERO
+       ============================================================ -->
+  <section class="ds-hero">
+    <div class="ds-hero-label">Design System v1.0</div>
+    <h1 class="ds-hero-title">
+      BACKSTAGE<br><span class="green">GROW</span><br>DESIGN SYSTEM
+    </h1>
+    <p class="ds-hero-sub">
+      Documento de referência visual da marca Backstage Grow. Aqui estão todos os tokens de design, padrões de componentes, regras tipográficas e paletas de cores que garantem consistência em todos os pontos de contato da marca.
+    </p>
+    <div class="ds-hero-line"></div>
+  </section>
+
+  <!-- ============================================================
+       00 — LOGOTIPO
+       ============================================================ -->
+  <section class="ds-section" id="logo">
+    <div class="ds-section-label">00 · Marca</div>
+    <h2 class="ds-section-title">Logotipo <span class="green">Backstage Grow</span></h2>
+    <p class="ds-section-desc">
+      O logotipo da Backstage Grow é formado por um lettering proprietário com o ícone dinâmico em verde e o subtítulo "GROW" integrado. Deve ser sempre aplicado em sua forma original, sem distorções.
+    </p>
+
+    <div class="ds-sub-title">Versão Principal — Fundo Escuro</div>
+    <div class="ds-component-preview" style="justify-content: center; padding: 64px 48px; background: var(--brand-territory); border: var(--border-subtle);">
+      <svg xmlns="http://www.w3.org/2000/svg" width="380" height="90" viewBox="0 0 282 67" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M95.9237 1.47292C95.927 1.56398 96.7952 2.69018 97.8528 3.97601C98.9105 5.26184 101.115 7.97879 102.752 10.0136C104.389 12.0486 106.941 15.207 108.423 17.0323C110.679 19.8123 111.073 20.4058 110.848 20.6898C110.458 21.1817 104.55 28.0256 99.9156 33.3536C97.7166 35.8816 95.9175 38.0238 95.9175 38.1142C95.9175 38.2044 97.7666 38.2935 100.027 38.3118L104.136 38.3451L104.822 37.6175C105.2 37.2173 107.389 34.7129 109.688 32.0519C117.198 23.3598 118.727 21.6185 118.791 21.6822C118.826 21.7168 118.246 23.0253 117.504 24.5898C116.761 26.1541 115.458 28.9225 114.609 30.7414C113.759 32.5604 112.625 34.921 112.09 35.9875C111.554 37.0537 111.175 38.0212 111.247 38.1371C111.318 38.2531 112.46 38.3479 113.784 38.3479C116.039 38.3479 116.211 38.3166 116.509 37.8518C116.684 37.5791 118.535 33.7567 120.624 29.3579C122.713 24.9591 124.456 21.394 124.497 21.4355C124.538 21.4767 123.841 25.2246 122.947 29.7638C122.053 34.3032 121.366 38.0915 121.42 38.1826C121.566 38.4264 124.311 38.3839 124.465 38.1354C124.693 37.7654 127.884 21.2963 127.883 20.4892C127.883 20.0648 127.339 16.7906 126.676 13.2134C126.012 9.63613 125.251 5.494 124.984 4.00842L124.5 1.30756H122.886C121.999 1.30756 121.272 1.39333 121.272 1.49806C121.272 1.60256 121.376 2.22277 121.502 2.87604C122.639 8.74253 124.572 19.4677 124.505 19.5347C124.433 19.6073 121.446 13.0158 117.645 4.39426C117.03 2.99973 116.448 1.73485 116.351 1.58316C116.147 1.26324 111.13 1.18078 111.13 1.49739C111.13 1.60168 112.849 5.54559 114.95 10.2614C117.051 14.9772 118.836 19.034 118.917 19.2765C119.121 19.884 118.58 19.2432 112.397 11.5598C109.47 7.92191 106.395 4.12704 105.564 3.12651L104.053 1.30756H99.9853C97.7481 1.30756 95.9204 1.38186 95.9237 1.47292Z" fill="#299A50"/><path d="M12.5959 0.549904C16.7762 0.549904 20.5164 3.02516 22.2216 6.8204C23.8647 10.6543 23.1624 15.0879 20.3325 18.1666C24.9305 20.1024 27.5545 25.0396 26.567 29.9222C25.5769 34.8176 21.2865 38.3929 16.2812 38.3929H0V0.549904H12.5959ZM59.9725 38.3929H55.5173L52.6571 31.0222H37.586L34.7258 38.3929H30.2703L45.1765 0L59.9725 38.3929ZM131.792 0.549904V38.3929H127.612V0.549904H131.792ZM185.383 4.78528H175.922V38.3929H171.687V4.78528H162.281V0.549904H185.383V4.78528ZM216.347 38.3929H211.891L209.031 31.0222H193.96L191.1 38.3929H186.644L201.55 0L216.347 38.3929ZM281.678 4.78528H263.362V17.3812H279.038V21.5617H263.362V34.1576H281.678V38.3929H259.182V0.549904H281.678V4.78528ZM66.9014 6.2705C74.1619 -1.10006 85.9329 -1.37516 93.4135 5.72038L90.5531 8.74571C84.7226 3.2453 75.5369 3.46516 69.9265 9.18559C64.3161 14.906 64.3712 24.0917 69.9816 29.8122C75.592 35.4776 84.7776 35.6426 90.5531 30.1422L93.4684 33.1673C85.9878 40.2629 74.217 40.098 67.0114 32.7275C59.7509 25.4119 59.6959 13.6411 66.9014 6.2705ZM224.456 6.2705C231.717 -1.10006 243.488 -1.37516 250.968 5.72038L248.108 8.74571C242.333 3.35531 233.312 3.46513 227.701 8.96554C222.036 14.521 221.816 23.5416 227.151 29.3721C232.432 35.2025 241.453 35.8077 247.503 30.6923V21.5617H238.042V17.3812H251.683V32.5623L251.023 33.1673C243.543 40.2629 231.772 40.0979 224.511 32.7275C217.306 25.4119 217.251 13.6411 224.456 6.2705ZM149.515 0.605024C153.31 0.605059 156.83 2.75017 158.48 6.21538L154.74 8.08557C153.75 6.05044 151.715 4.78544 149.515 4.8404H147.699C144.894 4.84043 142.529 6.82044 142.034 9.57057C141.484 12.3208 143.079 15.071 145.664 16.0611L153.035 18.8113C156.885 20.2964 159.47 23.9817 159.525 28.162V28.3821C159.47 33.8824 155.015 38.3378 149.515 38.3378H147.473C142.729 38.2826 138.666 34.7979 137.854 30.0873L141.979 29.3721C142.474 32.1223 144.894 34.1575 147.699 34.1576H149.515C152.705 34.1575 155.29 31.5723 155.29 28.3821V28.162C155.29 25.7419 153.805 23.5967 151.55 22.7166L144.179 19.9664C139.669 18.2613 137.029 13.5859 137.854 8.85552C138.734 4.07022 142.859 0.605049 147.699 0.605024H149.515ZM4.18026 34.1576H16.2812C19.7464 34.1576 22.5517 31.3523 22.5517 27.8871C22.5517 24.4218 19.7464 21.5617 16.2812 21.5617H4.18026V34.1576ZM39.2361 26.8419H51.0618L45.1765 11.6059L39.2361 26.8419ZM195.61 26.8419H207.436L201.55 11.6059L195.61 26.8419ZM4.18026 17.3812H12.5959C16.0612 17.3812 18.8664 14.521 18.8664 11.0558C18.8664 7.59052 16.0612 4.78528 12.5959 4.78528H4.18026V17.3812Z" fill="white"/><path d="M48.0615 55.1847C49.3635 53.8015 50.9782 53.1099 52.9056 53.1099C55.1394 53.1099 56.869 53.7631 58.0944 55.0695L57.4626 55.7803C56.9903 55.2552 56.3457 54.8197 55.5287 54.4739C54.7246 54.1281 53.8502 53.9552 52.9056 53.9552C51.2335 53.9552 49.823 54.57 48.6742 55.7995C47.5381 57.0163 46.9701 58.4956 46.9701 60.2374C46.9701 61.9921 47.519 63.4202 48.6167 64.5217C49.7145 65.6103 51.0803 66.1547 52.7141 66.1547C54.1821 66.1547 55.4394 65.6296 56.4861 64.5793C57.5455 63.5163 58.1199 62.165 58.2093 60.5256H53.1162V59.7379H60.6409V60.5256H59.09C59.0007 62.4468 58.3497 64.0094 57.1371 65.2133C55.9244 66.4044 54.4501 67 52.7141 67C50.825 67 49.2486 66.3724 47.9849 65.1172C46.7212 63.8621 46.0894 62.2355 46.0894 60.2374C46.0894 58.2522 46.7467 56.568 48.0615 55.1847Z" fill="white"/><path d="M104.075 67V53.1099H109.97C111.302 53.1099 112.397 53.4737 113.254 54.2012C114.111 54.9156 114.539 55.8548 114.539 57.0189C114.539 58.0508 114.197 58.9305 113.511 59.6581C112.825 60.3724 111.935 60.8156 110.84 60.9876L114.658 67H113.649L109.891 61.0471L104.985 61.0669V67H104.075ZM109.851 60.293C110.946 60.293 111.843 60.002 112.542 59.42C113.254 58.8247 113.61 58.0508 113.61 57.0983C113.61 56.1591 113.26 55.405 112.561 54.8362C111.862 54.2674 110.959 53.983 109.851 53.983H104.985V60.293H109.851Z" fill="white"/><path d="M160.028 54.8801C161.319 53.5529 162.949 52.8894 164.917 52.8894C166.899 52.8894 168.535 53.5529 169.826 54.8801C171.117 56.2072 171.762 57.8987 171.762 59.9544C171.762 62.0102 171.117 63.7017 169.826 65.0288C168.535 66.3429 166.899 67 164.917 67C162.949 67 161.319 66.3429 160.028 65.0288C158.738 63.7017 158.092 62.0102 158.092 59.9544C158.092 57.8987 158.738 56.2072 160.028 54.8801ZM160.674 64.3847C161.782 65.5557 163.196 66.1412 164.917 66.1412C166.638 66.1412 168.059 65.5623 169.181 64.4043C170.302 63.2333 170.862 61.75 170.862 59.9544C170.862 58.1459 170.302 56.6626 169.181 55.5046C168.059 54.3336 166.638 53.7481 164.917 53.7481C163.209 53.7481 161.795 54.3336 160.674 55.5046C159.552 56.6626 158.992 58.1459 158.992 59.9544C158.992 61.75 159.552 63.2267 160.674 64.3847Z" fill="white"/><path d="M215.196 53.1007H216.159L220.03 64.3012H220.148L224.529 52.8894H224.805L229.186 64.3012H229.324L233.195 53.1007H234.157L229.402 66.7795H229.147L224.746 55.4253H224.608L220.187 66.7795H219.951L215.196 53.1007Z" fill="white"/></svg>
+    </div>
+
+    <div class="ds-sub-title">Versão sobre Fundo Claro</div>
+    <div class="ds-component-preview" style="justify-content: center; padding: 64px 48px; background: #F5F5F5; border: var(--border-subtle);">
+      <svg xmlns="http://www.w3.org/2000/svg" width="380" height="90" viewBox="0 0 282 67" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M95.9237 1.47292C95.927 1.56398 96.7952 2.69018 97.8528 3.97601C98.9105 5.26184 101.115 7.97879 102.752 10.0136C104.389 12.0486 106.941 15.207 108.423 17.0323C110.679 19.8123 111.073 20.4058 110.848 20.6898C110.458 21.1817 104.55 28.0256 99.9156 33.3536C97.7166 35.8816 95.9175 38.0238 95.9175 38.1142C95.9175 38.2044 97.7666 38.2935 100.027 38.3118L104.136 38.3451L104.822 37.6175C105.2 37.2173 107.389 34.7129 109.688 32.0519C117.198 23.3598 118.727 21.6185 118.791 21.6822C118.826 21.7168 118.246 23.0253 117.504 24.5898C116.761 26.1541 115.458 28.9225 114.609 30.7414C113.759 32.5604 112.625 34.921 112.09 35.9875C111.554 37.0537 111.175 38.0212 111.247 38.1371C111.318 38.2531 112.46 38.3479 113.784 38.3479C116.039 38.3479 116.211 38.3166 116.509 37.8518C116.684 37.5791 118.535 33.7567 120.624 29.3579C122.713 24.9591 124.456 21.394 124.497 21.4355C124.538 21.4767 123.841 25.2246 122.947 29.7638C122.053 34.3032 121.366 38.0915 121.42 38.1826C121.566 38.4264 124.311 38.3839 124.465 38.1354C124.693 37.7654 127.884 21.2963 127.883 20.4892C127.883 20.0648 127.339 16.7906 126.676 13.2134C126.012 9.63613 125.251 5.494 124.984 4.00842L124.5 1.30756H122.886C121.999 1.30756 121.272 1.39333 121.272 1.49806C121.272 1.60256 121.376 2.22277 121.502 2.87604C122.639 8.74253 124.572 19.4677 124.505 19.5347C124.433 19.6073 121.446 13.0158 117.645 4.39426C117.03 2.99973 116.448 1.73485 116.351 1.58316C116.147 1.26324 111.13 1.18078 111.13 1.49739C111.13 1.60168 112.849 5.54559 114.95 10.2614C117.051 14.9772 118.836 19.034 118.917 19.2765C119.121 19.884 118.58 19.2432 112.397 11.5598C109.47 7.92191 106.395 4.12704 105.564 3.12651L104.053 1.30756H99.9853C97.7481 1.30756 95.9204 1.38186 95.9237 1.47292Z" fill="#299A50"/><path d="M12.5959 0.549904C16.7762 0.549904 20.5164 3.02516 22.2216 6.8204C23.8647 10.6543 23.1624 15.0879 20.3325 18.1666C24.9305 20.1024 27.5545 25.0396 26.567 29.9222C25.5769 34.8176 21.2865 38.3929 16.2812 38.3929H0V0.549904H12.5959ZM59.9725 38.3929H55.5173L52.6571 31.0222H37.586L34.7258 38.3929H30.2703L45.1765 0L59.9725 38.3929ZM131.792 0.549904V38.3929H127.612V0.549904H131.792ZM185.383 4.78528H175.922V38.3929H171.687V4.78528H162.281V0.549904H185.383V4.78528ZM216.347 38.3929H211.891L209.031 31.0222H193.96L191.1 38.3929H186.644L201.55 0L216.347 38.3929ZM281.678 4.78528H263.362V17.3812H279.038V21.5617H263.362V34.1576H281.678V38.3929H259.182V0.549904H281.678V4.78528ZM66.9014 6.2705C74.1619 -1.10006 85.9329 -1.37516 93.4135 5.72038L90.5531 8.74571C84.7226 3.2453 75.5369 3.46516 69.9265 9.18559C64.3161 14.906 64.3712 24.0917 69.9816 29.8122C75.592 35.4776 84.7776 35.6426 90.5531 30.1422L93.4684 33.1673C85.9878 40.2629 74.217 40.098 67.0114 32.7275C59.7509 25.4119 59.6959 13.6411 66.9014 6.2705ZM224.456 6.2705C231.717 -1.10006 243.488 -1.37516 250.968 5.72038L248.108 8.74571C242.333 3.35531 233.312 3.46513 227.701 8.96554C222.036 14.521 221.816 23.5416 227.151 29.3721C232.432 35.2025 241.453 35.8077 247.503 30.6923V21.5617H238.042V17.3812H251.683V32.5623L251.023 33.1673C243.543 40.2629 231.772 40.0979 224.511 32.7275C217.306 25.4119 217.251 13.6411 224.456 6.2705ZM149.515 0.605024C153.31 0.605059 156.83 2.75017 158.48 6.21538L154.74 8.08557C153.75 6.05044 151.715 4.78544 149.515 4.8404H147.699C144.894 4.84043 142.529 6.82044 142.034 9.57057C141.484 12.3208 143.079 15.071 145.664 16.0611L153.035 18.8113C156.885 20.2964 159.47 23.9817 159.525 28.162V28.3821C159.47 33.8824 155.015 38.3378 149.515 38.3378H147.473C142.729 38.2826 138.666 34.7979 137.854 30.0873L141.979 29.3721C142.474 32.1223 144.894 34.1575 147.699 34.1576H149.515C152.705 34.1575 155.29 31.5723 155.29 28.3821V28.162C155.29 25.7419 153.805 23.5967 151.55 22.7166L144.179 19.9664C139.669 18.2613 137.029 13.5859 137.854 8.85552C138.734 4.07022 142.859 0.605049 147.699 0.605024H149.515ZM4.18026 34.1576H16.2812C19.7464 34.1576 22.5517 31.3523 22.5517 27.8871C22.5517 24.4218 19.7464 21.5617 16.2812 21.5617H4.18026V34.1576ZM39.2361 26.8419H51.0618L45.1765 11.6059L39.2361 26.8419ZM195.61 26.8419H207.436L201.55 11.6059L195.61 26.8419ZM4.18026 17.3812H12.5959C16.0612 17.3812 18.8664 14.521 18.8664 11.0558C18.8664 7.59052 16.0612 4.78528 12.5959 4.78528H4.18026V17.3812Z" fill="#0A0A0A"/><path d="M48.0615 55.1847C49.3635 53.8015 50.9782 53.1099 52.9056 53.1099C55.1394 53.1099 56.869 53.7631 58.0944 55.0695L57.4626 55.7803C56.9903 55.2552 56.3457 54.8197 55.5287 54.4739C54.7246 54.1281 53.8502 53.9552 52.9056 53.9552C51.2335 53.9552 49.823 54.57 48.6742 55.7995C47.5381 57.0163 46.9701 58.4956 46.9701 60.2374C46.9701 61.9921 47.519 63.4202 48.6167 64.5217C49.7145 65.6103 51.0803 66.1547 52.7141 66.1547C54.1821 66.1547 55.4394 65.6296 56.4861 64.5793C57.5455 63.5163 58.1199 62.165 58.2093 60.5256H53.1162V59.7379H60.6409V60.5256H59.09C59.0007 62.4468 58.3497 64.0094 57.1371 65.2133C55.9244 66.4044 54.4501 67 52.7141 67C50.825 67 49.2486 66.3724 47.9849 65.1172C46.7212 63.8621 46.0894 62.2355 46.0894 60.2374C46.0894 58.2522 46.7467 56.568 48.0615 55.1847Z" fill="#0A0A0A"/><path d="M104.075 67V53.1099H109.97C111.302 53.1099 112.397 53.4737 113.254 54.2012C114.111 54.9156 114.539 55.8548 114.539 57.0189C114.539 58.0508 114.197 58.9305 113.511 59.6581C112.825 60.3724 111.935 60.8156 110.84 60.9876L114.658 67H113.649L109.891 61.0471L104.985 61.0669V67H104.075ZM109.851 60.293C110.946 60.293 111.843 60.002 112.542 59.42C113.254 58.8247 113.61 58.0508 113.61 57.0983C113.61 56.1591 113.26 55.405 112.561 54.8362C111.862 54.2674 110.959 53.983 109.851 53.983H104.985V60.293H109.851Z" fill="#0A0A0A"/><path d="M160.028 54.8801C161.319 53.5529 162.949 52.8894 164.917 52.8894C166.899 52.8894 168.535 53.5529 169.826 54.8801C171.117 56.2072 171.762 57.8987 171.762 59.9544C171.762 62.0102 171.117 63.7017 169.826 65.0288C168.535 66.3429 166.899 67 164.917 67C162.949 67 161.319 66.3429 160.028 65.0288C158.738 63.7017 158.092 62.0102 158.092 59.9544C158.092 57.8987 158.738 56.2072 160.028 54.8801ZM160.674 64.3847C161.782 65.5557 163.196 66.1412 164.917 66.1412C166.638 66.1412 168.059 65.5623 169.181 64.4043C170.302 63.2333 170.862 61.75 170.862 59.9544C170.862 58.1459 170.302 56.6626 169.181 55.5046C168.059 54.3336 166.638 53.7481 164.917 53.7481C163.209 53.7481 161.795 54.3336 160.674 55.5046C159.552 56.6626 158.992 58.1459 158.992 59.9544C158.992 61.75 159.552 63.2267 160.674 64.3847Z" fill="#0A0A0A"/><path d="M215.196 53.1007H216.159L220.03 64.3012H220.148L224.529 52.8894H224.805L229.186 64.3012H229.324L233.195 53.1007H234.157L229.402 66.7795H229.147L224.746 55.4253H224.608L220.187 66.7795H219.951L215.196 53.1007Z" fill="#0A0A0A"/></svg>
+    </div>
+
+    <div class="ds-sub-title">Versão sobre Verde</div>
+    <div class="ds-component-preview" style="justify-content: center; padding: 64px 48px; background: #299A50; border: none;">
+      <svg xmlns="http://www.w3.org/2000/svg" width="380" height="90" viewBox="0 0 282 67" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M95.9237 1.47292C95.927 1.56398 96.7952 2.69018 97.8528 3.97601C98.9105 5.26184 101.115 7.97879 102.752 10.0136C104.389 12.0486 106.941 15.207 108.423 17.0323C110.679 19.8123 111.073 20.4058 110.848 20.6898C110.458 21.1817 104.55 28.0256 99.9156 33.3536C97.7166 35.8816 95.9175 38.0238 95.9175 38.1142C95.9175 38.2044 97.7666 38.2935 100.027 38.3118L104.136 38.3451L104.822 37.6175C105.2 37.2173 107.389 34.7129 109.688 32.0519C117.198 23.3598 118.727 21.6185 118.791 21.6822C118.826 21.7168 118.246 23.0253 117.504 24.5898C116.761 26.1541 115.458 28.9225 114.609 30.7414C113.759 32.5604 112.625 34.921 112.09 35.9875C111.554 37.0537 111.175 38.0212 111.247 38.1371C111.318 38.2531 112.46 38.3479 113.784 38.3479C116.039 38.3479 116.211 38.3166 116.509 37.8518C116.684 37.5791 118.535 33.7567 120.624 29.3579C122.713 24.9591 124.456 21.394 124.497 21.4355C124.538 21.4767 123.841 25.2246 122.947 29.7638C122.053 34.3032 121.366 38.0915 121.42 38.1826C121.566 38.4264 124.311 38.3839 124.465 38.1354C124.693 37.7654 127.884 21.2963 127.883 20.4892C127.883 20.0648 127.339 16.7906 126.676 13.2134C126.012 9.63613 125.251 5.494 124.984 4.00842L124.5 1.30756H122.886C121.999 1.30756 121.272 1.39333 121.272 1.49806C121.272 1.60256 121.376 2.22277 121.502 2.87604C122.639 8.74253 124.572 19.4677 124.505 19.5347C124.433 19.6073 121.446 13.0158 117.645 4.39426C117.03 2.99973 116.448 1.73485 116.351 1.58316C116.147 1.26324 111.13 1.18078 111.13 1.49739C111.13 1.60168 112.849 5.54559 114.95 10.2614C117.051 14.9772 118.836 19.034 118.917 19.2765C119.121 19.884 118.58 19.2432 112.397 11.5598C109.47 7.92191 106.395 4.12704 105.564 3.12651L104.053 1.30756H99.9853C97.7481 1.30756 95.9204 1.38186 95.9237 1.47292Z" fill="#0A0A0A"/><path d="M12.5959 0.549904C16.7762 0.549904 20.5164 3.02516 22.2216 6.8204C23.8647 10.6543 23.1624 15.0879 20.3325 18.1666C24.9305 20.1024 27.5545 25.0396 26.567 29.9222C25.5769 34.8176 21.2865 38.3929 16.2812 38.3929H0V0.549904H12.5959ZM59.9725 38.3929H55.5173L52.6571 31.0222H37.586L34.7258 38.3929H30.2703L45.1765 0L59.9725 38.3929ZM131.792 0.549904V38.3929H127.612V0.549904H131.792ZM185.383 4.78528H175.922V38.3929H171.687V4.78528H162.281V0.549904H185.383V4.78528ZM216.347 38.3929H211.891L209.031 31.0222H193.96L191.1 38.3929H186.644L201.55 0L216.347 38.3929ZM281.678 4.78528H263.362V17.3812H279.038V21.5617H263.362V34.1576H281.678V38.3929H259.182V0.549904H281.678V4.78528ZM66.9014 6.2705C74.1619 -1.10006 85.9329 -1.37516 93.4135 5.72038L90.5531 8.74571C84.7226 3.2453 75.5369 3.46516 69.9265 9.18559C64.3161 14.906 64.3712 24.0917 69.9816 29.8122C75.592 35.4776 84.7776 35.6426 90.5531 30.1422L93.4684 33.1673C85.9878 40.2629 74.217 40.098 67.0114 32.7275C59.7509 25.4119 59.6959 13.6411 66.9014 6.2705ZM224.456 6.2705C231.717 -1.10006 243.488 -1.37516 250.968 5.72038L248.108 8.74571C242.333 3.35531 233.312 3.46513 227.701 8.96554C222.036 14.521 221.816 23.5416 227.151 29.3721C232.432 35.2025 241.453 35.8077 247.503 30.6923V21.5617H238.042V17.3812H251.683V32.5623L251.023 33.1673C243.543 40.2629 231.772 40.0979 224.511 32.7275C217.306 25.4119 217.251 13.6411 224.456 6.2705ZM149.515 0.605024C153.31 0.605059 156.83 2.75017 158.48 6.21538L154.74 8.08557C153.75 6.05044 151.715 4.78544 149.515 4.8404H147.699C144.894 4.84043 142.529 6.82044 142.034 9.57057C141.484 12.3208 143.079 15.071 145.664 16.0611L153.035 18.8113C156.885 20.2964 159.47 23.9817 159.525 28.162V28.3821C159.47 33.8824 155.015 38.3378 149.515 38.3378H147.473C142.729 38.2826 138.666 34.7979 137.854 30.0873L141.979 29.3721C142.474 32.1223 144.894 34.1575 147.699 34.1576H149.515C152.705 34.1575 155.29 31.5723 155.29 28.3821V28.162C155.29 25.7419 153.805 23.5967 151.55 22.7166L144.179 19.9664C139.669 18.2613 137.029 13.5859 137.854 8.85552C138.734 4.07022 142.859 0.605049 147.699 0.605024H149.515ZM4.18026 34.1576H16.2812C19.7464 34.1576 22.5517 31.3523 22.5517 27.8871C22.5517 24.4218 19.7464 21.5617 16.2812 21.5617H4.18026V34.1576ZM39.2361 26.8419H51.0618L45.1765 11.6059L39.2361 26.8419ZM195.61 26.8419H207.436L201.55 11.6059L195.61 26.8419ZM4.18026 17.3812H12.5959C16.0612 17.3812 18.8664 14.521 18.8664 11.0558C18.8664 7.59052 16.0612 4.78528 12.5959 4.78528H4.18026V17.3812Z" fill="white"/><path d="M48.0615 55.1847C49.3635 53.8015 50.9782 53.1099 52.9056 53.1099C55.1394 53.1099 56.869 53.7631 58.0944 55.0695L57.4626 55.7803C56.9903 55.2552 56.3457 54.8197 55.5287 54.4739C54.7246 54.1281 53.8502 53.9552 52.9056 53.9552C51.2335 53.9552 49.823 54.57 48.6742 55.7995C47.5381 57.0163 46.9701 58.4956 46.9701 60.2374C46.9701 61.9921 47.519 63.4202 48.6167 64.5217C49.7145 65.6103 51.0803 66.1547 52.7141 66.1547C54.1821 66.1547 55.4394 65.6296 56.4861 64.5793C57.5455 63.5163 58.1199 62.165 58.2093 60.5256H53.1162V59.7379H60.6409V60.5256H59.09C59.0007 62.4468 58.3497 64.0094 57.1371 65.2133C55.9244 66.4044 54.4501 67 52.7141 67C50.825 67 49.2486 66.3724 47.9849 65.1172C46.7212 63.8621 46.0894 62.2355 46.0894 60.2374C46.0894 58.2522 46.7467 56.568 48.0615 55.1847Z" fill="white"/><path d="M104.075 67V53.1099H109.97C111.302 53.1099 112.397 53.4737 113.254 54.2012C114.111 54.9156 114.539 55.8548 114.539 57.0189C114.539 58.0508 114.197 58.9305 113.511 59.6581C112.825 60.3724 111.935 60.8156 110.84 60.9876L114.658 67H113.649L109.891 61.0471L104.985 61.0669V67H104.075ZM109.851 60.293C110.946 60.293 111.843 60.002 112.542 59.42C113.254 58.8247 113.61 58.0508 113.61 57.0983C113.61 56.1591 113.26 55.405 112.561 54.8362C111.862 54.2674 110.959 53.983 109.851 53.983H104.985V60.293H109.851Z" fill="white"/><path d="M160.028 54.8801C161.319 53.5529 162.949 52.8894 164.917 52.8894C166.899 52.8894 168.535 53.5529 169.826 54.8801C171.117 56.2072 171.762 57.8987 171.762 59.9544C171.762 62.0102 171.117 63.7017 169.826 65.0288C168.535 66.3429 166.899 67 164.917 67C162.949 67 161.319 66.3429 160.028 65.0288C158.738 63.7017 158.092 62.0102 158.092 59.9544C158.092 57.8987 158.738 56.2072 160.028 54.8801ZM160.674 64.3847C161.782 65.5557 163.196 66.1412 164.917 66.1412C166.638 66.1412 168.059 65.5623 169.181 64.4043C170.302 63.2333 170.862 61.75 170.862 59.9544C170.862 58.1459 170.302 56.6626 169.181 55.5046C168.059 54.3336 166.638 53.7481 164.917 53.7481C163.209 53.7481 161.795 54.3336 160.674 55.5046C159.552 56.6626 158.992 58.1459 158.992 59.9544C158.992 61.75 159.552 63.2267 160.674 64.3847Z" fill="white"/><path d="M215.196 53.1007H216.159L220.03 64.3012H220.148L224.529 52.8894H224.805L229.186 64.3012H229.324L233.195 53.1007H234.157L229.402 66.7795H229.147L224.746 55.4253H224.608L220.187 66.7795H219.951L215.196 53.1007Z" fill="white"/></svg>
+    </div>
+
+    <hr class="ds-divider">
+
+    <div class="ds-sub-title">Área de Proteção & Tamanho Mínimo</div>
+    <div class="ds-prose">
+      <strong>Área de proteção:</strong> O espaço livre ao redor do logotipo deve ser equivalente à altura da letra "B" do wordmark em todas as direções. Nenhum elemento gráfico ou texto deve invadir essa área.<br><br>
+      <strong>Tamanho mínimo:</strong> Para digital, a largura mínima do logotipo é de <em>120px</em>. Para impressão, o mínimo é <em>30mm</em> de largura.<br><br>
+      <strong>Cor do ícone:</strong> O ícone dinâmico (seta/marca) deve sempre ser renderizado em <em>verde (#299A50)</em> na versão escura e em <em>#0A0A0A</em> na versão sobre fundo verde.
+    </div>
+
+    <div class="ds-sub-title">Usos Incorretos</div>
+    <div class="ds-card-grid">
+      <div class="ds-card" style="text-align: center;">
+        <div class="ds-card-icon" style="color: #E53E3E; border-color: #E53E3E;">✕</div>
+        <div class="ds-card-title">Não distorcer</div>
+        <div class="ds-card-text">Nunca esticar, comprimir ou alterar as proporções do logotipo.</div>
+      </div>
+      <div class="ds-card" style="text-align: center;">
+        <div class="ds-card-icon" style="color: #E53E3E; border-color: #E53E3E;">✕</div>
+        <div class="ds-card-title">Não alterar cores</div>
+        <div class="ds-card-text">Usar somente as combinações de cores aprovadas neste design system.</div>
+      </div>
+      <div class="ds-card" style="text-align: center;">
+        <div class="ds-card-icon" style="color: #E53E3E; border-color: #E53E3E;">✕</div>
+        <div class="ds-card-title">Não adicionar efeitos</div>
+        <div class="ds-card-text">Não aplicar sombras, gradientes, contornos ou brilhos ao logotipo.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       01 — CORES
+       ============================================================ -->
+  <section class="ds-section" id="cores">
+    <div class="ds-section-label">01 · Fundação</div>
+    <h2 class="ds-section-title">Paleta de <span class="green">Cores</span></h2>
+    <p class="ds-section-desc">
+      A identidade visual da Backstage Grow é construída sobre uma base escura e sólida, transmitindo profissionalismo e sofisticação do mercado de eventos. O verde vibrante funciona como assinatura energética e chama atenção para CTAs e destaques.
+    </p>
+
+    <div class="ds-sub-title">Cores Primárias</div>
+    <div class="ds-color-grid">
+      <div class="ds-color-card">
+        <div class="ds-color-swatch" style="background: #0A0A0A;"></div>
+        <div class="ds-color-info">
+          <div class="ds-color-name">Territory</div>
+          <div class="ds-color-var">--brand-territory</div>
+          <div class="ds-color-hex">#0A0A0A</div>
+          <div class="ds-color-role">Fundo principal — base de toda a interface</div>
+        </div>
+      </div>
+      <div class="ds-color-card">
+        <div class="ds-color-swatch" style="background: #299A50;"></div>
+        <div class="ds-color-info">
+          <div class="ds-color-name">Green (Accent)</div>
+          <div class="ds-color-var">--brand-green</div>
+          <div class="ds-color-hex">#299A50</div>
+          <div class="ds-color-role">Cor primária — CTAs, destaques, ícones, links</div>
+        </div>
+      </div>
+      <div class="ds-color-card">
+        <div class="ds-color-swatch" style="background: #F5F5F5;"></div>
+        <div class="ds-color-info">
+          <div class="ds-color-name">Offwhite</div>
+          <div class="ds-color-var">--brand-offwhite</div>
+          <div class="ds-color-hex">#F5F5F5</div>
+          <div class="ds-color-role">Texto principal sobre fundos escuros</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ds-sub-title">Superfícies</div>
+    <div class="ds-color-grid">
+      <div class="ds-color-card">
+        <div class="ds-color-swatch" style="background: #111111;"></div>
+        <div class="ds-color-info">
+          <div class="ds-color-name">Surface 01</div>
+          <div class="ds-color-var">--brand-surface-01</div>
+          <div class="ds-color-hex">#111111</div>
+          <div class="ds-color-role">Cards, painéis, blocos de código</div>
+        </div>
+      </div>
+      <div class="ds-color-card">
+        <div class="ds-color-swatch" style="background: #1A1A1A;"></div>
+        <div class="ds-color-info">
+          <div class="ds-color-name">Surface 02</div>
+          <div class="ds-color-var">--brand-surface-02</div>
+          <div class="ds-color-hex">#1A1A1A</div>
+          <div class="ds-color-role">Inputs, elementos elevados, overlays</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ds-sub-title">Verde — Variações</div>
+    <div class="ds-color-grid">
+      <div class="ds-color-card">
+        <div class="ds-color-swatch" style="background: <;"></div>
+        <div class="ds-color-info">
+          <div class="ds-color-name">Green Deep</div>
+          <div class="ds-color-var">--brand-green-deep</div>
+          <div class="ds-color-hex"><</div>
+          <div class="ds-color-role">Botões :active, estados pressionados</div>
+        </div>
+      </div>
+      <div class="ds-color-card">
+        <div class="ds-color-swatch" style="background: #3DB86A;"></div>
+        <div class="ds-color-info">
+          <div class="ds-color-name">Green Light</div>
+          <div class="ds-color-var">--brand-green-light</div>
+          <div class="ds-color-hex">#3DB86A</div>
+          <div class="ds-color-role">Hover states, ênfases secundárias</div>
+        </div>
+      </div>
+      <div class="ds-color-card">
+        <div class="ds-color-swatch" style="background: #39FF14;"></div>
+        <div class="ds-color-info">
+          <div class="ds-color-name">Green Neon</div>
+          <div class="ds-color-var">--brand-green-neon</div>
+          <div class="ds-color-hex">#39FF14</div>
+          <div class="ds-color-role">Efeitos glow, destaques especiais</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ds-sub-title">Neutros</div>
+    <div class="ds-color-grid">
+      <div class="ds-color-card">
+        <div class="ds-color-swatch" style="background: #9E9E9E;"></div>
+        <div class="ds-color-info">
+          <div class="ds-color-name">Muted</div>
+          <div class="ds-color-var">--brand-muted</div>
+          <div class="ds-color-hex">#9E9E9E</div>
+          <div class="ds-color-role">Texto secundário, descrições, placeholders</div>
+        </div>
+      </div>
+      <div class="ds-color-card">
+        <div class="ds-color-swatch" style="background: #616161;"></div>
+        <div class="ds-color-info">
+          <div class="ds-color-name">Muted Deep</div>
+          <div class="ds-color-var">--brand-muted-deep</div>
+          <div class="ds-color-hex">#616161</div>
+          <div class="ds-color-role">Bordas, divisores, textos auxiliares</div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="ds-divider">
+
+    <div class="ds-sub-title">Tokens CSS</div>
+    <div class="ds-code-block">
+<span class="comment">/* — BRAND COLORS — */</span>
+<span class="prop">--brand-territory</span>:    <span class="value">#0A0A0A</span>;
+<span class="prop">--brand-surface-01</span>:   <span class="value">#111111</span>;
+<span class="prop">--brand-surface-02</span>:   <span class="value">#1A1A1A</span>;
+<span class="prop">--brand-green</span>:        <span class="value">#00C853</span>;
+<span class="prop">--brand-green-deep</span>:   <span class="value"><</span>;
+<span class="prop">--brand-green-light</span>:  <span class="value">#4ADE80</span>;
+<span class="prop">--brand-green-neon</span>:   <span class="value">#39FF14</span>;
+<span class="prop">--brand-offwhite</span>:     <span class="value">#F5F5F5</span>;
+<span class="prop">--brand-muted</span>:        <span class="value">#9E9E9E</span>;
+<span class="prop">--brand-muted-deep</span>:   <span class="value">#616161</span>;
+
+<span class="comment">/* — OPACITY VARIANTS — */</span>
+<span class="prop">--brand-green-10</span>:     <span class="value">rgba(0,200,83,0.10)</span>;
+<span class="prop">--brand-green-20</span>:     <span class="value">rgba(0,200,83,0.20)</span>;
+<span class="prop">--brand-green-40</span>:     <span class="value">rgba(0,200,83,0.40)</span>;
+    </div>
+  </section>
+
+  <!-- ============================================================
+       02 — TIPOGRAFIA
+       ============================================================ -->
+  <section class="ds-section" id="tipografia">
+    <div class="ds-section-label">02 · Tipografia</div>
+    <h2 class="ds-section-title">Escala <span class="green">Tipográfica</span></h2>
+    <p class="ds-section-desc">
+      A tipografia da Backstage Grow combina a força do <strong>Montserrat</strong> em pesos pesados para headlines que impactam, com a limpeza do <strong>Inter</strong> para corpo de texto legível e profissional. Toda tipografia de display é em CAIXA ALTA.
+    </p>
+
+    <div class="ds-sub-title">Display — Montserrat Black</div>
+    <div class="ds-type-specimen">
+      <div class="ds-type-label">H1 · Display</div>
+      <div style="font-family: var(--font-display); font-weight: 900; font-size: var(--font-h1); line-height: var(--lh-display); text-transform: uppercase; letter-spacing: -0.02em;">
+        Transformamos<br>fornecedores <span style="color: var(--brand-green);">de eventos</span>
+      </div>
+      <div class="ds-type-meta">Montserrat Black (900) · clamp(3rem, 5vw, 4.5rem) · Line-height: 1.05 · Tracking: -0.02em · UPPERCASE</div>
+    </div>
+
+    <div class="ds-type-specimen">
+      <div class="ds-type-label">H2 · Section Title</div>
+      <div style="font-family: var(--font-display); font-weight: 900; font-size: var(--font-h2); line-height: var(--lh-display); text-transform: uppercase; letter-spacing: -0.02em;">
+        Nossas <span style="color: var(--brand-green);">Soluções</span>
+      </div>
+      <div class="ds-type-meta">Montserrat Black (900) · clamp(2rem, 3.5vw, 3rem) · Line-height: 1.05 · UPPERCASE</div>
+    </div>
+
+    <div class="ds-type-specimen">
+      <div class="ds-type-label">H3 · Sub-Section</div>
+      <div style="font-family: var(--font-display); font-weight: 800; font-size: var(--font-h3); line-height: var(--lh-tight); text-transform: uppercase; letter-spacing: -0.01em;">
+        Branding <span style="color: var(--brand-green);">Estratégico</span>
+      </div>
+      <div class="ds-type-meta">Montserrat ExtraBold (800) · clamp(1.5rem, 2.5vw, 2rem) · Line-height: 1.2</div>
+    </div>
+
+    <hr class="ds-divider">
+
+    <div class="ds-sub-title">Body — Inter</div>
+    <div class="ds-type-specimen">
+      <div class="ds-type-label">Body Large · 18px</div>
+      <div style="font-family: var(--font-body); font-size: var(--font-body-lg); line-height: var(--lh-body); color: var(--brand-offwhite-80); max-width: 640px;">
+        Oferecemos uma solução completa de marketing especializado para que você acelere suas vendas e alcance seu público-alvo de forma eficaz.
+      </div>
+      <div class="ds-type-meta">Inter Regular (400) · 18px · Line-height: 1.65</div>
+    </div>
+
+    <div class="ds-type-specimen">
+      <div class="ds-type-label">Body Medium · 16px</div>
+      <div style="font-family: var(--font-body); font-size: var(--font-body-md); line-height: var(--lh-body); color: var(--brand-offwhite-80); max-width: 640px;">
+        Estratégias para capturar a atenção do seu cliente ideal através de conteúdo relevante e campanhas direcionadas especificamente para seu mercado.
+      </div>
+      <div class="ds-type-meta">Inter Regular (400) · 16px · Line-height: 1.65</div>
+    </div>
+
+    <div class="ds-type-specimen">
+      <div class="ds-type-label">Label · Uppercase</div>
+      <div style="font-family: var(--font-body); font-weight: 600; font-size: var(--font-label); text-transform: uppercase; letter-spacing: var(--ls-label); color: var(--brand-green);">
+        Feito por quem vive e atua no mercado
+      </div>
+      <div class="ds-type-meta">Inter SemiBold (600) · 12px · Letter-spacing: 0.12em · UPPERCASE</div>
+    </div>
+
+    <div class="ds-type-specimen">
+      <div class="ds-type-label">Button</div>
+      <div style="font-family: var(--font-body); font-weight: 600; font-size: var(--font-button); text-transform: uppercase; letter-spacing: var(--ls-label);">
+        Quero Lotar Minha Agenda
+      </div>
+      <div class="ds-type-meta">Inter SemiBold (600) · 14px · Letter-spacing: 0.12em · UPPERCASE</div>
+    </div>
+
+    <hr class="ds-divider">
+
+    <div class="ds-sub-title">Regras Tipográficas</div>
+    <div class="ds-prose">
+      <strong>1.</strong> Headlines sempre em <em>CAIXA ALTA</em> com Montserrat Black ou ExtraBold.<br><br>
+      <strong>2.</strong> A palavra-chave do headline deve ser destacada em <em>verde (#299A50)</em>.<br><br>
+      <strong>3.</strong> Corpo de texto em Inter Regular ou Medium, nunca em caixa alta.<br><br>
+      <strong>4.</strong> Labels e micro-texto em <em>UPPERCASE</em> com letter-spacing expandido (0.12em).<br><br>
+      <strong>5.</strong> Manter largura máxima de ~720px para blocos de texto corpo.<br><br>
+      <strong>6.</strong> Proporção mínima de contraste: 4.5:1 para textos, 3:1 para elementos grandes.
+    </div>
+  </section>
+
+  <!-- ============================================================
+       03 — ESPAÇAMENTO
+       ============================================================ -->
+  <section class="ds-section" id="espacamento">
+    <div class="ds-section-label">03 · Espaçamento</div>
+    <h2 class="ds-section-title">Escala de <span class="green">Espaçamento</span></h2>
+    <p class="ds-section-desc">
+      Sistema de 8pt como base. Espaçamentos generosos reforçam a sensação de premium e respiro visual, essencial para a comunicação B2B do setor de eventos.
+    </p>
+
+    <div class="ds-space-row">
+      <div class="ds-space-label">--space-4 · 4px</div>
+      <div class="ds-space-bar" style="width: 4px;"></div>
+      <div class="ds-space-use">Micro-gaps, ícones inline</div>
+    </div>
+    <div class="ds-space-row">
+      <div class="ds-space-label">--space-8 · 8px</div>
+      <div class="ds-space-bar" style="width: 8px;"></div>
+      <div class="ds-space-use">Padding interno mínimo</div>
+    </div>
+    <div class="ds-space-row">
+      <div class="ds-space-label">--space-12 · 12px</div>
+      <div class="ds-space-bar" style="width: 12px;"></div>
+      <div class="ds-space-use">Label → input gap</div>
+    </div>
+    <div class="ds-space-row">
+      <div class="ds-space-label">--space-16 · 16px</div>
+      <div class="ds-space-bar" style="width: 16px;"></div>
+      <div class="ds-space-use">Padding cards, gap grids</div>
+    </div>
+    <div class="ds-space-row">
+      <div class="ds-space-label">--space-24 · 24px</div>
+      <div class="ds-space-bar" style="width: 24px;"></div>
+      <div class="ds-space-use">Gutters, nav gaps</div>
+    </div>
+    <div class="ds-space-row">
+      <div class="ds-space-label">--space-32 · 32px</div>
+      <div class="ds-space-bar" style="width: 32px;"></div>
+      <div class="ds-space-use">Padding lateral, card padding</div>
+    </div>
+    <div class="ds-space-row">
+      <div class="ds-space-label">--space-48 · 48px</div>
+      <div class="ds-space-bar" style="width: 48px;"></div>
+      <div class="ds-space-use">Section bottom, proof blocks</div>
+    </div>
+    <div class="ds-space-row">
+      <div class="ds-space-label">--space-64 · 64px</div>
+      <div class="ds-space-bar" style="width: 64px;"></div>
+      <div class="ds-space-use">Divisores entre blocos</div>
+    </div>
+    <div class="ds-space-row">
+      <div class="ds-space-label">--space-96 · 96px</div>
+      <div class="ds-space-bar" style="width: 96px;"></div>
+      <div class="ds-space-use">Padding vertical de seções</div>
+    </div>
+    <div class="ds-space-row">
+      <div class="ds-space-label">--space-128 · 128px</div>
+      <div class="ds-space-bar" style="width: 128px;"></div>
+      <div class="ds-space-use">Hero top padding</div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       04 — GRID
+       ============================================================ -->
+  <section class="ds-section" id="grid">
+    <div class="ds-section-label">04 · Layout</div>
+    <h2 class="ds-section-title">Sistema de <span class="green">Grid</span></h2>
+    <p class="ds-section-desc">
+      Grid de 12 colunas com largura máxima de 1200px e gutter de 24px. Container sempre centralizado com padding lateral de 32px.
+    </p>
+
+    <div class="ds-grid-demo">
+      <div class="ds-grid-col">1</div>
+      <div class="ds-grid-col">2</div>
+      <div class="ds-grid-col">3</div>
+      <div class="ds-grid-col">4</div>
+      <div class="ds-grid-col">5</div>
+      <div class="ds-grid-col">6</div>
+      <div class="ds-grid-col">7</div>
+      <div class="ds-grid-col">8</div>
+      <div class="ds-grid-col">9</div>
+      <div class="ds-grid-col">10</div>
+      <div class="ds-grid-col">11</div>
+      <div class="ds-grid-col">12</div>
+    </div>
+
+    <div class="ds-code-block">
+<span class="comment">/* Grid Tokens */</span>
+<span class="prop">--grid-max-width</span>: <span class="value">1200px</span>;
+<span class="prop">--grid-columns</span>:   <span class="value">12</span>;
+<span class="prop">--grid-gutter</span>:    <span class="value">24px</span>;
+
+<span class="comment">/* Breakpoints */</span>
+<span class="prop">Mobile</span>:  <span class="value">&lt; 768px</span>  → Stack, 1 col
+<span class="prop">Tablet</span>:  <span class="value">768–1024px</span> → 2 cols
+<span class="prop">Desktop</span>: <span class="value">&gt; 1024px</span> → Full grid
+    </div>
+
+    <div class="ds-sub-title">Border Radius</div>
+    <div class="ds-component-preview">
+      <div style="width: 80px; height: 80px; background: var(--brand-surface-02); border: var(--border-subtle); border-radius: 0; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; font-family: monospace; color: var(--brand-muted);">0px</div>
+      <div style="width: 80px; height: 80px; background: var(--brand-surface-02); border: var(--border-subtle); border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; font-family: monospace; color: var(--brand-muted);">4px</div>
+      <div style="width: 80px; height: 80px; background: var(--brand-surface-02); border: var(--border-subtle); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; font-family: monospace; color: var(--brand-muted);">8px</div>
+      <div style="width: 80px; height: 80px; background: var(--brand-surface-02); border: var(--border-subtle); border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; font-family: monospace; color: var(--brand-muted);">16px</div>
+      <div style="width: 80px; height: 80px; background: var(--brand-surface-02); border: var(--border-subtle); border-radius: 24px; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; font-family: monospace; color: var(--brand-muted);">24px</div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       05 — COMPONENTES
+       ============================================================ -->
+  <section class="ds-section" id="componentes">
+    <div class="ds-section-label">05 · Componentes</div>
+    <h2 class="ds-section-title">Biblioteca de <span class="green">Componentes</span></h2>
+    <p class="ds-section-desc">
+      Componentes reutilizáveis que formam a base de toda a comunicação digital da Backstage Grow — do site ao material de captação.
+    </p>
+
+    <!-- BUTTONS -->
+    <div class="ds-sub-title">Botões</div>
+    <div class="ds-component-preview">
+      <button class="ds-btn ds-btn-primary">Quero Lotar Minha Agenda</button>
+      <button class="ds-btn ds-btn-secondary">Saiba Mais</button>
+      <button class="ds-btn ds-btn-ghost">Ver Cases</button>
+      <button class="ds-btn ds-btn-primary disabled">Desabilitado</button>
+    </div>
+    <div class="ds-code-block">
+<span class="comment">/* Estados: Default → Hover → Active → Disabled */</span>
+<span class="prop">.ds-btn-primary</span>   → bg: <span class="value">#00C853</span>, color: <span class="value">#0A0A0A</span>
+<span class="prop">.ds-btn-secondary</span> → bg: <span class="value">#1A1A1A</span>, border: <span class="value">muted-deep</span>
+<span class="prop">.ds-btn-ghost</span>     → bg: <span class="value">transparent</span>, border: <span class="value">#00C853</span>
+    </div>
+
+    <hr class="ds-divider">
+
+    <!-- HEADER -->
+    <div class="ds-sub-title">Header / Navegação</div>
+    <div class="ds-header-preview">
+      <div class="ds-header-logo"><svg xmlns="http://www.w3.org/2000/svg" width="140" height="33" viewBox="0 0 282 67" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M95.9237 1.47292C95.927 1.56398 96.7952 2.69018 97.8528 3.97601C98.9105 5.26184 101.115 7.97879 102.752 10.0136C104.389 12.0486 106.941 15.207 108.423 17.0323C110.679 19.8123 111.073 20.4058 110.848 20.6898C110.458 21.1817 104.55 28.0256 99.9156 33.3536C97.7166 35.8816 95.9175 38.0238 95.9175 38.1142C95.9175 38.2044 97.7666 38.2935 100.027 38.3118L104.136 38.3451L104.822 37.6175C105.2 37.2173 107.389 34.7129 109.688 32.0519C117.198 23.3598 118.727 21.6185 118.791 21.6822C118.826 21.7168 118.246 23.0253 117.504 24.5898C116.761 26.1541 115.458 28.9225 114.609 30.7414C113.759 32.5604 112.625 34.921 112.09 35.9875C111.554 37.0537 111.175 38.0212 111.247 38.1371C111.318 38.2531 112.46 38.3479 113.784 38.3479C116.039 38.3479 116.211 38.3166 116.509 37.8518C116.684 37.5791 118.535 33.7567 120.624 29.3579C122.713 24.9591 124.456 21.394 124.497 21.4355C124.538 21.4767 123.841 25.2246 122.947 29.7638C122.053 34.3032 121.366 38.0915 121.42 38.1826C121.566 38.4264 124.311 38.3839 124.465 38.1354C124.693 37.7654 127.884 21.2963 127.883 20.4892C127.883 20.0648 127.339 16.7906 126.676 13.2134C126.012 9.63613 125.251 5.494 124.984 4.00842L124.5 1.30756H122.886C121.999 1.30756 121.272 1.39333 121.272 1.49806C121.272 1.60256 121.376 2.22277 121.502 2.87604C122.639 8.74253 124.572 19.4677 124.505 19.5347C124.433 19.6073 121.446 13.0158 117.645 4.39426C117.03 2.99973 116.448 1.73485 116.351 1.58316C116.147 1.26324 111.13 1.18078 111.13 1.49739C111.13 1.60168 112.849 5.54559 114.95 10.2614C117.051 14.9772 118.836 19.034 118.917 19.2765C119.121 19.884 118.58 19.2432 112.397 11.5598C109.47 7.92191 106.395 4.12704 105.564 3.12651L104.053 1.30756H99.9853C97.7481 1.30756 95.9204 1.38186 95.9237 1.47292Z" fill="#299A50"/><path d="M12.5959 0.549904C16.7762 0.549904 20.5164 3.02516 22.2216 6.8204C23.8647 10.6543 23.1624 15.0879 20.3325 18.1666C24.9305 20.1024 27.5545 25.0396 26.567 29.9222C25.5769 34.8176 21.2865 38.3929 16.2812 38.3929H0V0.549904H12.5959ZM59.9725 38.3929H55.5173L52.6571 31.0222H37.586L34.7258 38.3929H30.2703L45.1765 0L59.9725 38.3929ZM131.792 0.549904V38.3929H127.612V0.549904H131.792ZM185.383 4.78528H175.922V38.3929H171.687V4.78528H162.281V0.549904H185.383V4.78528ZM216.347 38.3929H211.891L209.031 31.0222H193.96L191.1 38.3929H186.644L201.55 0L216.347 38.3929ZM281.678 4.78528H263.362V17.3812H279.038V21.5617H263.362V34.1576H281.678V38.3929H259.182V0.549904H281.678V4.78528ZM66.9014 6.2705C74.1619-1.10006 85.9329-1.37516 93.4135 5.72038L90.5531 8.74571C84.7226 3.2453 75.5369 3.46516 69.9265 9.18559C64.3161 14.906 64.3712 24.0917 69.9816 29.8122C75.592 35.4776 84.7776 35.6426 90.5531 30.1422L93.4684 33.1673C85.9878 40.2629 74.217 40.098 67.0114 32.7275C59.7509 25.4119 59.6959 13.6411 66.9014 6.2705ZM224.456 6.2705C231.717-1.10006 243.488-1.37516 250.968 5.72038L248.108 8.74571C242.333 3.35531 233.312 3.46513 227.701 8.96554C222.036 14.521 221.816 23.5416 227.151 29.3721C232.432 35.2025 241.453 35.8077 247.503 30.6923V21.5617H238.042V17.3812H251.683V32.5623L251.023 33.1673C243.543 40.2629 231.772 40.0979 224.511 32.7275C217.306 25.4119 217.251 13.6411 224.456 6.2705ZM149.515 0.605024C153.31 0.605059 156.83 2.75017 158.48 6.21538L154.74 8.08557C153.75 6.05044 151.715 4.78544 149.515 4.8404H147.699C144.894 4.84043 142.529 6.82044 142.034 9.57057C141.484 12.3208 143.079 15.071 145.664 16.0611L153.035 18.8113C156.885 20.2964 159.47 23.9817 159.525 28.162V28.3821C159.47 33.8824 155.015 38.3378 149.515 38.3378H147.473C142.729 38.2826 138.666 34.7979 137.854 30.0873L141.979 29.3721C142.474 32.1223 144.894 34.1575 147.699 34.1576H149.515C152.705 34.1575 155.29 31.5723 155.29 28.3821V28.162C155.29 25.7419 153.805 23.5967 151.55 22.7166L144.179 19.9664C139.669 18.2613 137.029 13.5859 137.854 8.85552C138.734 4.07022 142.859 0.605049 147.699 0.605024H149.515ZM4.18026 34.1576H16.2812C19.7464 34.1576 22.5517 31.3523 22.5517 27.8871C22.5517 24.4218 19.7464 21.5617 16.2812 21.5617H4.18026V34.1576ZM39.2361 26.8419H51.0618L45.1765 11.6059L39.2361 26.8419ZM195.61 26.8419H207.436L201.55 11.6059L195.61 26.8419ZM4.18026 17.3812H12.5959C16.0612 17.3812 18.8664 14.521 18.8664 11.0558C18.8664 7.59052 16.0612 4.78528 12.5959 4.78528H4.18026V17.3812Z" fill="white"/><path d="M48.0615 55.1847C49.3635 53.8015 50.9782 53.1099 52.9056 53.1099C55.1394 53.1099 56.869 53.7631 58.0944 55.0695L57.4626 55.7803C56.9903 55.2552 56.3457 54.8197 55.5287 54.4739C54.7246 54.1281 53.8502 53.9552 52.9056 53.9552C51.2335 53.9552 49.823 54.57 48.6742 55.7995C47.5381 57.0163 46.9701 58.4956 46.9701 60.2374C46.9701 61.9921 47.519 63.4202 48.6167 64.5217C49.7145 65.6103 51.0803 66.1547 52.7141 66.1547C54.1821 66.1547 55.4394 65.6296 56.4861 64.5793C57.5455 63.5163 58.1199 62.165 58.2093 60.5256H53.1162V59.7379H60.6409V60.5256H59.09C59.0007 62.4468 58.3497 64.0094 57.1371 65.2133C55.9244 66.4044 54.4501 67 52.7141 67C50.825 67 49.2486 66.3724 47.9849 65.1172C46.7212 63.8621 46.0894 62.2355 46.0894 60.2374C46.0894 58.2522 46.7467 56.568 48.0615 55.1847Z" fill="white"/><path d="M104.075 67V53.1099H109.97C111.302 53.1099 112.397 53.4737 113.254 54.2012C114.111 54.9156 114.539 55.8548 114.539 57.0189C114.539 58.0508 114.197 58.9305 113.511 59.6581C112.825 60.3724 111.935 60.8156 110.84 60.9876L114.658 67H113.649L109.891 61.0471L104.985 61.0669V67H104.075ZM109.851 60.293C110.946 60.293 111.843 60.002 112.542 59.42C113.254 58.8247 113.61 58.0508 113.61 57.0983C113.61 56.1591 113.26 55.405 112.561 54.8362C111.862 54.2674 110.959 53.983 109.851 53.983H104.985V60.293H109.851Z" fill="white"/><path d="M160.028 54.8801C161.319 53.5529 162.949 52.8894 164.917 52.8894C166.899 52.8894 168.535 53.5529 169.826 54.8801C171.117 56.2072 171.762 57.8987 171.762 59.9544C171.762 62.0102 171.117 63.7017 169.826 65.0288C168.535 66.3429 166.899 67 164.917 67C162.949 67 161.319 66.3429 160.028 65.0288C158.738 63.7017 158.092 62.0102 158.092 59.9544C158.092 57.8987 158.738 56.2072 160.028 54.8801ZM160.674 64.3847C161.782 65.5557 163.196 66.1412 164.917 66.1412C166.638 66.1412 168.059 65.5623 169.181 64.4043C170.302 63.2333 170.862 61.75 170.862 59.9544C170.862 58.1459 170.302 56.6626 169.181 55.5046C168.059 54.3336 166.638 53.7481 164.917 53.7481C163.209 53.7481 161.795 54.3336 160.674 55.5046C159.552 56.6626 158.992 58.1459 158.992 59.9544C158.992 61.75 159.552 63.2267 160.674 64.3847Z" fill="white"/><path d="M215.196 53.1007H216.159L220.03 64.3012H220.148L224.529 52.8894H224.805L229.186 64.3012H229.324L233.195 53.1007H234.157L229.402 66.7795H229.147L224.746 55.4253H224.608L220.187 66.7795H219.951L215.196 53.1007Z" fill="white"/></svg></div>
+      <div class="ds-header-links">
+        <a href="#" class="ds-header-link">Início</a>
+        <a href="#" class="ds-header-link">Resultados</a>
+        <a href="#" class="ds-header-link">Soluções</a>
+        <a href="#" class="ds-header-link">Metodologia</a>
+        <a href="#" class="ds-header-cta">Falar com Especialista</a>
+      </div>
+    </div>
+
+    <hr class="ds-divider">
+
+    <!-- HERO COMPONENT -->
+    <div class="ds-sub-title">Hero Section</div>
+    <div class="ds-hero-component">
+      <div style="font-family: var(--font-body); font-weight: 600; font-size: var(--font-label); text-transform: uppercase; letter-spacing: var(--ls-label); color: var(--brand-green); margin-bottom: var(--space-16); display: flex; align-items: center; gap: 8px;">
+        <span style="width: 20px; height: 2px; background: var(--brand-green); display: inline-block;"></span>
+        Feito por quem vive no mercado
+      </div>
+      <h1>Transformamos <span class="green">Fornecedores de Eventos</span> em Máquina de Vendas</h1>
+      <p>Estratégias comprovadas de marketing e crescimento para o mercado de eventos corporativos.</p>
+      <button class="ds-btn ds-btn-primary" style="position: relative; z-index: 1;">Clique Aqui e Lote Sua Agenda</button>
+    </div>
+
+    <hr class="ds-divider">
+
+    <!-- CARDS -->
+    <div class="ds-sub-title">Cards de Serviço</div>
+    <div class="ds-card-grid">
+      <div class="ds-card">
+        <div class="ds-card-icon">◎</div>
+        <div class="ds-card-title">Branding Estratégico</div>
+        <div class="ds-card-text">Posicionamento único que diferencia sua empresa no mercado de eventos corporativos.</div>
+      </div>
+      <div class="ds-card">
+        <div class="ds-card-icon">⚡</div>
+        <div class="ds-card-title">Tráfego Pago</div>
+        <div class="ds-card-text">Campanhas otimizadas que atraem decisores e geram leads qualificados para seus eventos.</div>
+      </div>
+      <div class="ds-card">
+        <div class="ds-card-icon">⟳</div>
+        <div class="ds-card-title">Automação de Marketing</div>
+        <div class="ds-card-text">Sistemas inteligentes que nutrem leads e convertem prospects em clientes.</div>
+      </div>
+    </div>
+
+    <hr class="ds-divider">
+
+    <!-- SOCIAL PROOF -->
+    <div class="ds-sub-title">Social Proof / Métricas</div>
+    <div class="ds-social-proof">
+      <div class="ds-proof-stat">
+        <div class="ds-proof-number">+87%</div>
+        <div class="ds-proof-label">Ticket Médio</div>
+      </div>
+      <div class="ds-proof-stat">
+        <div class="ds-proof-number">+137%</div>
+        <div class="ds-proof-label">Ocupação</div>
+      </div>
+      <div class="ds-proof-stat">
+        <div class="ds-proof-number">+250%</div>
+        <div class="ds-proof-label">Contratos</div>
+      </div>
+      <div class="ds-proof-stat">
+        <div class="ds-proof-number">130</div>
+        <div class="ds-proof-label">Participantes</div>
+      </div>
+      <div class="ds-proof-stat">
+        <div class="ds-proof-number">23</div>
+        <div class="ds-proof-label">Patrocinadores</div>
+      </div>
+    </div>
+
+    <hr class="ds-divider">
+
+    <!-- TESTIMONIAL -->
+    <div class="ds-sub-title">Testimonial / Citação</div>
+    <div class="ds-testimonial" style="max-width: 640px;">
+      <div class="ds-testimonial-quote">
+        "Somos uma das poucas consultorias que entende tanto o lado da prestação de serviços quanto o lado da organização de eventos. Essa visão nos permite criar estratégias mais completas e eficazes."
+      </div>
+      <div class="ds-testimonial-author">Backstage Grow</div>
+      <div class="ds-testimonial-role">Consultoria de Crescimento para Eventos</div>
+    </div>
+
+    <hr class="ds-divider">
+
+    <!-- FORMS -->
+    <div class="ds-sub-title">Formulários</div>
+    <div class="ds-component-preview column" style="max-width: 480px;">
+      <div class="ds-form-group">
+        <label class="ds-form-label">Qual seu nome e sobrenome?</label>
+        <input class="ds-input" type="text" placeholder="Ex: João Silva">
+      </div>
+      <div class="ds-form-group">
+        <label class="ds-form-label">Qual seu email corporativo?</label>
+        <input class="ds-input" type="email" placeholder="joao@empresa.com.br">
+      </div>
+      <div class="ds-form-group">
+        <label class="ds-form-label">Campo com Erro</label>
+        <input class="ds-input error" type="text" value="texto inválido">
+        <div class="ds-form-error">Este campo é obrigatório</div>
+      </div>
+      <button class="ds-btn ds-btn-primary" style="align-self: flex-start;">Falar com um Especialista</button>
+    </div>
+
+    <hr class="ds-divider">
+
+    <!-- FAQ -->
+    <div class="ds-sub-title">FAQ / Accordion</div>
+    <div style="max-width: 640px;">
+      <div class="ds-faq-item open">
+        <button class="ds-faq-question" onclick="this.parentElement.classList.toggle('open')">
+          Como funciona a metodologia do Backstage Grow?
+          <span class="ds-faq-toggle">+</span>
+        </button>
+        <div class="ds-faq-answer">
+          Nossa metodologia é baseada em dados e testada com mais de 200 empresas de eventos. Combinamos diagnóstico estratégico, implementação acelerada e otimização contínua.
+        </div>
+      </div>
+      <div class="ds-faq-item">
+        <button class="ds-faq-question" onclick="this.parentElement.classList.toggle('open')">
+          Em quanto tempo vejo resultados?
+          <span class="ds-faq-toggle">+</span>
+        </button>
+        <div class="ds-faq-answer">
+          Os primeiros resultados aparecem entre 30 a 60 dias após o início da implementação. No primeiro mês, focamos no diagnóstico e setup das campanhas.
+        </div>
+      </div>
+      <div class="ds-faq-item">
+        <button class="ds-faq-question" onclick="this.parentElement.classList.toggle('open')">
+          Preciso ser uma grande empresa para contratar?
+          <span class="ds-faq-toggle">+</span>
+        </button>
+        <div class="ds-faq-answer">
+          Não! Atendemos empresas de eventos de todos os portes. Nossa metodologia é adaptável e escalável, permitindo que cada cliente cresça no seu ritmo.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       06 — SOCIAL MEDIA
+       ============================================================ -->
+  <section class="ds-section" id="social">
+    <div class="ds-section-label">06 · Social Media</div>
+    <h2 class="ds-section-title">Templates <span class="green">Redes Sociais</span></h2>
+    <p class="ds-section-desc">
+      Diretrizes para aplicação da identidade visual em posts de Instagram e LinkedIn. Fundo escuro, tipografia bold em caixa alta e destaque verde nos termos-chave.
+    </p>
+
+    <div class="ds-social-grid">
+      <!-- Feed Post -->
+      <div class="ds-social-frame">
+        <div class="ds-social-header">
+          <div class="ds-social-avatar">BG</div>
+          <div class="ds-social-name">backstagegrow</div>
+        </div>
+        <div class="ds-social-body" style="background: linear-gradient(135deg, #0A0A0A 0%, #111111 100%);">
+          <div>
+            <div style="font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--brand-green); margin-bottom: 12px; font-weight: 600;">Dica BKS Grow</div>
+            <h3>Sua empresa<br><span class="green">não cresce</span><br>por preço</h3>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stats Post -->
+      <div class="ds-social-frame">
+        <div class="ds-social-header">
+          <div class="ds-social-avatar">BG</div>
+          <div class="ds-social-name">backstagegrow</div>
+        </div>
+        <div class="ds-social-body" style="background: var(--brand-territory); border: 2px solid var(--brand-green-20); border-top: none;">
+          <div>
+            <div style="font-family: var(--font-display); font-weight: 900; font-size: 2.5rem; color: var(--brand-green); line-height: 1;">+39%</div>
+            <div style="font-size: 0.75rem; color: var(--brand-muted); margin-top: 8px; text-transform: uppercase; letter-spacing: 0.1em;">Faturamento<br>no 1º ano</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CTA Post -->
+      <div class="ds-social-frame">
+        <div class="ds-social-header">
+          <div class="ds-social-avatar">BG</div>
+          <div class="ds-social-name">backstagegrow</div>
+        </div>
+        <div class="ds-social-body" style="background: var(--brand-green);">
+          <div>
+            <h3 style="color: var(--brand-territory);">Lote sua<br>agenda<br>agora</h3>
+            <div style="font-size: 0.65rem; color: var(--brand-territory); margin-top: 12px; opacity: 0.7; text-transform: uppercase; letter-spacing: 0.1em;">Link na bio ↗</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ds-sub-title">Regras para Social Media</div>
+    <div class="ds-prose">
+      <strong>1.</strong> Fundo sempre escuro (#0A0A0A ou #111111) — exceto posts CTA que podem usar fundo verde.<br><br>
+      <strong>2.</strong> Tipografia principal em <em>Montserrat ExtraBold/Black</em>, sempre em CAIXA ALTA.<br><br>
+      <strong>3.</strong> Palavra-chave do post destacada em <em>verde (#299A50)</em>.<br><br>
+      <strong>4.</strong> Labels e micro-texto em Inter SemiBold, uppercase, com tracking expandido.<br><br>
+      <strong>5.</strong> Avatar e nome de perfil: "BG" em verde sobre fundo escuro.<br><br>
+      <strong>6.</strong> Métricas e números em <em>Montserrat Black com cor verde</em>, tamanho hero.<br><br>
+      <strong>7.</strong> Nunca usar mais de 3 cores por post. Manter paleta: preto + verde + branco.
+    </div>
+  </section>
+
+  <!-- ============================================================
+       07 — TOM DE VOZ
+       ============================================================ -->
+  <section class="ds-section">
+    <div class="ds-section-label">07 · Identidade Verbal</div>
+    <h2 class="ds-section-title">Tom de <span class="green">Voz</span></h2>
+    <p class="ds-section-desc">
+      A comunicação da Backstage Grow é direta, confiante e orientada a resultados. Usa linguagem ativa, fala diretamente com o cliente ("SUA empresa", "SEU mercado") e reforça autoridade no setor de eventos.
+    </p>
+
+    <div class="ds-card-grid">
+      <div class="ds-card">
+        <div class="ds-card-icon" style="color: var(--brand-green);">✓</div>
+        <div class="ds-card-title">Fazer</div>
+        <div class="ds-card-text">
+          "Transformamos fornecedores de eventos em máquina de vendas previsível"<br><br>
+          "Feito por quem vive e atua no mercado diariamente há +10 anos"<br><br>
+          "Lote sua agenda" / "Domine seu mercado"
+        </div>
+      </div>
+      <div class="ds-card">
+        <div class="ds-card-icon" style="color: #E53E3E;">✕</div>
+        <div class="ds-card-title">Evitar</div>
+        <div class="ds-card-text">
+          Linguagem genérica e passiva<br><br>
+          "Ajudamos empresas a crescerem" (vago)<br><br>
+          Termos técnicos sem contexto<br><br>
+          Promessas sem dados concretos
+        </div>
+      </div>
+    </div>
+
+    <div class="ds-sub-title">Palavras-Chave da Marca</div>
+    <div class="ds-component-preview">
+      <span style="background: var(--brand-green-10); border: 1px solid var(--brand-green-20); padding: 8px 16px; border-radius: 4px; font-size: 0.8rem; font-weight: 600; color: var(--brand-green);">MÁQUINA DE VENDAS</span>
+      <span style="background: var(--brand-green-10); border: 1px solid var(--brand-green-20); padding: 8px 16px; border-radius: 4px; font-size: 0.8rem; font-weight: 600; color: var(--brand-green);">LOTAR AGENDA</span>
+      <span style="background: var(--brand-green-10); border: 1px solid var(--brand-green-20); padding: 8px 16px; border-radius: 4px; font-size: 0.8rem; font-weight: 600; color: var(--brand-green);">CRESCIMENTO PREVISÍVEL</span>
+      <span style="background: var(--brand-green-10); border: 1px solid var(--brand-green-20); padding: 8px 16px; border-radius: 4px; font-size: 0.8rem; font-weight: 600; color: var(--brand-green);">EVENTOS CORPORATIVOS</span>
+      <span style="background: var(--brand-green-10); border: 1px solid var(--brand-green-20); padding: 8px 16px; border-radius: 4px; font-size: 0.8rem; font-weight: 600; color: var(--brand-green);">METODOLOGIA BKS</span>
+      <span style="background: var(--brand-green-10); border: 1px solid var(--brand-green-20); padding: 8px 16px; border-radius: 4px; font-size: 0.8rem; font-weight: 600; color: var(--brand-green);">FUNIL 4C's</span>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FOOTER
+       ============================================================ -->
+  <footer class="ds-footer">
+    <div style="margin-bottom: 16px;">
+      <svg xmlns="http://www.w3.org/2000/svg" width="120" height="28" viewBox="0 0 282 67" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M95.9237 1.47292C95.927 1.56398 96.7952 2.69018 97.8528 3.97601C98.9105 5.26184 101.115 7.97879 102.752 10.0136C104.389 12.0486 106.941 15.207 108.423 17.0323C110.679 19.8123 111.073 20.4058 110.848 20.6898C110.458 21.1817 104.55 28.0256 99.9156 33.3536C97.7166 35.8816 95.9175 38.0238 95.9175 38.1142C95.9175 38.2044 97.7666 38.2935 100.027 38.3118L104.136 38.3451L104.822 37.6175C105.2 37.2173 107.389 34.7129 109.688 32.0519C117.198 23.3598 118.727 21.6185 118.791 21.6822C118.826 21.7168 118.246 23.0253 117.504 24.5898C116.761 26.1541 115.458 28.9225 114.609 30.7414C113.759 32.5604 112.625 34.921 112.09 35.9875C111.554 37.0537 111.175 38.0212 111.247 38.1371C111.318 38.2531 112.46 38.3479 113.784 38.3479C116.039 38.3479 116.211 38.3166 116.509 37.8518C116.684 37.5791 118.535 33.7567 120.624 29.3579C122.713 24.9591 124.456 21.394 124.497 21.4355C124.538 21.4767 123.841 25.2246 122.947 29.7638C122.053 34.3032 121.366 38.0915 121.42 38.1826C121.566 38.4264 124.311 38.3839 124.465 38.1354C124.693 37.7654 127.884 21.2963 127.883 20.4892C127.883 20.0648 127.339 16.7906 126.676 13.2134C126.012 9.63613 125.251 5.494 124.984 4.00842L124.5 1.30756H122.886C121.999 1.30756 121.272 1.39333 121.272 1.49806C121.272 1.60256 121.376 2.22277 121.502 2.87604C122.639 8.74253 124.572 19.4677 124.505 19.5347C124.433 19.6073 121.446 13.0158 117.645 4.39426C117.03 2.99973 116.448 1.73485 116.351 1.58316C116.147 1.26324 111.13 1.18078 111.13 1.49739C111.13 1.60168 112.849 5.54559 114.95 10.2614C117.051 14.9772 118.836 19.034 118.917 19.2765C119.121 19.884 118.58 19.2432 112.397 11.5598C109.47 7.92191 106.395 4.12704 105.564 3.12651L104.053 1.30756H99.9853C97.7481 1.30756 95.9204 1.38186 95.9237 1.47292Z" fill="#299A50"/><path d="M12.5959 0.549904C16.7762 0.549904 20.5164 3.02516 22.2216 6.8204C23.8647 10.6543 23.1624 15.0879 20.3325 18.1666C24.9305 20.1024 27.5545 25.0396 26.567 29.9222C25.5769 34.8176 21.2865 38.3929 16.2812 38.3929H0V0.549904H12.5959ZM59.9725 38.3929H55.5173L52.6571 31.0222H37.586L34.7258 38.3929H30.2703L45.1765 0L59.9725 38.3929ZM131.792 0.549904V38.3929H127.612V0.549904H131.792ZM185.383 4.78528H175.922V38.3929H171.687V4.78528H162.281V0.549904H185.383V4.78528ZM216.347 38.3929H211.891L209.031 31.0222H193.96L191.1 38.3929H186.644L201.55 0L216.347 38.3929ZM281.678 4.78528H263.362V17.3812H279.038V21.5617H263.362V34.1576H281.678V38.3929H259.182V0.549904H281.678V4.78528ZM66.9014 6.2705C74.1619-1.10006 85.9329-1.37516 93.4135 5.72038L90.5531 8.74571C84.7226 3.2453 75.5369 3.46516 69.9265 9.18559C64.3161 14.906 64.3712 24.0917 69.9816 29.8122C75.592 35.4776 84.7776 35.6426 90.5531 30.1422L93.4684 33.1673C85.9878 40.2629 74.217 40.098 67.0114 32.7275C59.7509 25.4119 59.6959 13.6411 66.9014 6.2705ZM224.456 6.2705C231.717-1.10006 243.488-1.37516 250.968 5.72038L248.108 8.74571C242.333 3.35531 233.312 3.46513 227.701 8.96554C222.036 14.521 221.816 23.5416 227.151 29.3721C232.432 35.2025 241.453 35.8077 247.503 30.6923V21.5617H238.042V17.3812H251.683V32.5623L251.023 33.1673C243.543 40.2629 231.772 40.0979 224.511 32.7275C217.306 25.4119 217.251 13.6411 224.456 6.2705ZM149.515 0.605024C153.31 0.605059 156.83 2.75017 158.48 6.21538L154.74 8.08557C153.75 6.05044 151.715 4.78544 149.515 4.8404H147.699C144.894 4.84043 142.529 6.82044 142.034 9.57057C141.484 12.3208 143.079 15.071 145.664 16.0611L153.035 18.8113C156.885 20.2964 159.47 23.9817 159.525 28.162V28.3821C159.47 33.8824 155.015 38.3378 149.515 38.3378H147.473C142.729 38.2826 138.666 34.7979 137.854 30.0873L141.979 29.3721C142.474 32.1223 144.894 34.1575 147.699 34.1576H149.515C152.705 34.1575 155.29 31.5723 155.29 28.3821V28.162C155.29 25.7419 153.805 23.5967 151.55 22.7166L144.179 19.9664C139.669 18.2613 137.029 13.5859 137.854 8.85552C138.734 4.07022 142.859 0.605049 147.699 0.605024H149.515ZM4.18026 34.1576H16.2812C19.7464 34.1576 22.5517 31.3523 22.5517 27.8871C22.5517 24.4218 19.7464 21.5617 16.2812 21.5617H4.18026V34.1576ZM39.2361 26.8419H51.0618L45.1765 11.6059L39.2361 26.8419ZM195.61 26.8419H207.436L201.55 11.6059L195.61 26.8419ZM4.18026 17.3812H12.5959C16.0612 17.3812 18.8664 14.521 18.8664 11.0558C18.8664 7.59052 16.0612 4.78528 12.5959 4.78528H4.18026V17.3812Z" fill="white"/><path d="M48.0615 55.1847C49.3635 53.8015 50.9782 53.1099 52.9056 53.1099C55.1394 53.1099 56.869 53.7631 58.0944 55.0695L57.4626 55.7803C56.9903 55.2552 56.3457 54.8197 55.5287 54.4739C54.7246 54.1281 53.8502 53.9552 52.9056 53.9552C51.2335 53.9552 49.823 54.57 48.6742 55.7995C47.5381 57.0163 46.9701 58.4956 46.9701 60.2374C46.9701 61.9921 47.519 63.4202 48.6167 64.5217C49.7145 65.6103 51.0803 66.1547 52.7141 66.1547C54.1821 66.1547 55.4394 65.6296 56.4861 64.5793C57.5455 63.5163 58.1199 62.165 58.2093 60.5256H53.1162V59.7379H60.6409V60.5256H59.09C59.0007 62.4468 58.3497 64.0094 57.1371 65.2133C55.9244 66.4044 54.4501 67 52.7141 67C50.825 67 49.2486 66.3724 47.9849 65.1172C46.7212 63.8621 46.0894 62.2355 46.0894 60.2374C46.0894 58.2522 46.7467 56.568 48.0615 55.1847Z" fill="white"/><path d="M104.075 67V53.1099H109.97C111.302 53.1099 112.397 53.4737 113.254 54.2012C114.111 54.9156 114.539 55.8548 114.539 57.0189C114.539 58.0508 114.197 58.9305 113.511 59.6581C112.825 60.3724 111.935 60.8156 110.84 60.9876L114.658 67H113.649L109.891 61.0471L104.985 61.0669V67H104.075ZM109.851 60.293C110.946 60.293 111.843 60.002 112.542 59.42C113.254 58.8247 113.61 58.0508 113.61 57.0983C113.61 56.1591 113.26 55.405 112.561 54.8362C111.862 54.2674 110.959 53.983 109.851 53.983H104.985V60.293H109.851Z" fill="white"/><path d="M160.028 54.8801C161.319 53.5529 162.949 52.8894 164.917 52.8894C166.899 52.8894 168.535 53.5529 169.826 54.8801C171.117 56.2072 171.762 57.8987 171.762 59.9544C171.762 62.0102 171.117 63.7017 169.826 65.0288C168.535 66.3429 166.899 67 164.917 67C162.949 67 161.319 66.3429 160.028 65.0288C158.738 63.7017 158.092 62.0102 158.092 59.9544C158.092 57.8987 158.738 56.2072 160.028 54.8801ZM160.674 64.3847C161.782 65.5557 163.196 66.1412 164.917 66.1412C166.638 66.1412 168.059 65.5623 169.181 64.4043C170.302 63.2333 170.862 61.75 170.862 59.9544C170.862 58.1459 170.302 56.6626 169.181 55.5046C168.059 54.3336 166.638 53.7481 164.917 53.7481C163.209 53.7481 161.795 54.3336 160.674 55.5046C159.552 56.6626 158.992 58.1459 158.992 59.9544C158.992 61.75 159.552 63.2267 160.674 64.3847Z" fill="white"/><path d="M215.196 53.1007H216.159L220.03 64.3012H220.148L224.529 52.8894H224.805L229.186 64.3012H229.324L233.195 53.1007H234.157L229.402 66.7795H229.147L224.746 55.4253H224.608L220.187 66.7795H219.951L215.196 53.1007Z" fill="white"/></svg>
+    </div>
+    <p class="ds-footer-text">Design System v1.0 · Documento confidencial</p>
+  </footer>
+
+</div>
+
+</body>
+</html>

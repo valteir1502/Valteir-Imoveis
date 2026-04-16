@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memorando Oficial — Valteir Imóveis</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,400&display=swap" rel="stylesheet">
+    <style>
+        /* ================================================================
+           DESIGN TOKENS — VALTEIR IMÓVEIS DS v2.0
+           ================================================================ */
+        :root {
+            --brand-territory:    #F9F9F8;
+            --brand-surface-01:   #FFFFFF;
+            --brand-surface-02:   #F0EFEA;
+            --brand-gold:         #C9A84C;
+            --brand-gold-deep:    #9A7F35;
+            --brand-gold-light:   #E5C973;
+            --brand-bronze:       #7A5C2E;
+            --brand-offblack:     #1A1A1A;
+            --brand-muted:        #888888;
+            --brand-muted-deep:   #E0E0E0;
+            --brand-gold-10:      rgba(201,168,76,0.10);
+            --brand-gold-20:      rgba(201,168,76,0.20);
+
+            --font-display: 'Playfair Display', Georgia, serif;
+            --font-body:    'Lato', Arial, sans-serif;
+
+            --space-4:   4px;
+            --space-8:   8px;
+            --space-12:  12px;
+            --space-16:  16px;
+            --space-24:  24px;
+            --space-32:  32px;
+            --space-48:  48px;
+            --space-64:  64px;
+
+            --radius-sm:   4px;
+            --radius-md:   8px;
+            --border-thin: 1px solid var(--brand-muted-deep);
+            --border-gold: 1px solid var(--brand-gold);
+
+            --shadow-gold: 0 0 40px rgba(201,168,76,0.12);
+        }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { -webkit-font-smoothing: antialiased; }
+
+        body {
+            background-color: var(--brand-territory);
+            color: var(--brand-offblack);
+            font-family: var(--font-body);
+            font-size: 1rem;
+            line-height: 1.65;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            padding: var(--space-64) var(--space-24);
+        }
+
+        /* ================================================================
+           MEMO PAGE
+           ================================================================ */
+        .memo-page {
+            width: 100%;
+            max-width: 820px;
+            background: var(--brand-surface-01);
+            border: var(--border-thin);
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-gold);
+            overflow: hidden;
+        }
+
+        /* Linha dourada no topo */
+        .memo-page::before {
+            content: '';
+            display: block;
+            height: 5px;
+            background: linear-gradient(90deg, var(--brand-gold), var(--brand-gold-light), var(--brand-bronze));
+        }
+
+        /* ================================================================
+           HEADER
+           ================================================================ */
+        .memo-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            padding: var(--space-48) var(--space-64);
+            border-bottom: var(--border-thin);
+        }
+
+        .memo-logo img {
+            max-width: 200px;
+            height: auto;
+        }
+
+        .memo-company {
+            text-align: right;
+        }
+
+        .memo-company-name {
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 1rem;
+            color: var(--brand-bronze);
+            display: block;
+            margin-bottom: var(--space-8);
+        }
+
+        .memo-company-detail {
+            font-family: var(--font-body);
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--brand-muted);
+            line-height: 1.8;
+        }
+
+        .memo-company-detail a {
+            color: var(--brand-gold);
+            text-decoration: none;
+        }
+
+        /* ================================================================
+           TÍTULO
+           ================================================================ */
+        .memo-title-block {
+            padding: var(--space-48) var(--space-64) var(--space-32);
+            text-align: center;
+            border-bottom: var(--border-thin);
+        }
+
+        .memo-doc-label {
+            font-family: var(--font-body);
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.18em;
+            color: var(--brand-gold);
+            font-weight: 700;
+            margin-bottom: var(--space-8);
+        }
+
+        .memo-title {
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 3.5rem;
+            color: var(--brand-offblack);
+            line-height: 1;
+            letter-spacing: -0.01em;
+        }
+
+        .memo-title em {
+            color: var(--brand-gold);
+            font-weight: 400;
+        }
+
+        .memo-title-line {
+            width: 48px;
+            height: 2px;
+            background: linear-gradient(90deg, var(--brand-gold), var(--brand-bronze));
+            margin: var(--space-24) auto 0;
+            border-radius: 2px;
+        }
+
+        /* ================================================================
+           CAMPOS META
+           ================================================================ */
+        .memo-meta {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            margin: var(--space-48) var(--space-64);
+            border: var(--border-thin);
+            border-radius: var(--radius-sm);
+            background: var(--brand-surface-02);
+            overflow: hidden;
+        }
+
+        .memo-meta-row { display: contents; }
+
+        .meta-label {
+            padding: var(--space-16) var(--space-24);
+            font-family: var(--font-body);
+            font-size: 0.68rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            font-weight: 700;
+            color: var(--brand-gold);
+            background: var(--brand-gold-10);
+            border-bottom: var(--border-thin);
+            border-right: var(--border-gold);
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+        }
+
+        .meta-value {
+            padding: var(--space-16) var(--space-24);
+            font-family: var(--font-body);
+            font-size: 0.95rem;
+            color: var(--brand-offblack);
+            border-bottom: var(--border-thin);
+            display: flex;
+            align-items: center;
+        }
+
+        .memo-meta-row:last-child .meta-label,
+        .memo-meta-row:last-child .meta-value {
+            border-bottom: none;
+        }
+
+        /* ================================================================
+           CORPO
+           ================================================================ */
+        .memo-body {
+            padding: 0 var(--space-64) var(--space-48);
+            font-family: var(--font-body);
+            font-size: 1.05rem;
+            line-height: 1.85;
+            color: var(--brand-offblack);
+        }
+
+        .memo-body p { margin-bottom: var(--space-24); }
+        .memo-body p:last-child { margin-bottom: 0; }
+
+        /* ================================================================
+           RODAPÉ / ASSINATURA
+           ================================================================ */
+        .memo-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            padding: var(--space-48) var(--space-64);
+            border-top: var(--border-thin);
+            background: var(--brand-surface-02);
+        }
+
+        .memo-signature { text-align: center; }
+
+        .signature-line {
+            width: 220px;
+            height: 1px;
+            background: var(--brand-offblack);
+            margin-bottom: var(--space-12);
+        }
+
+        .signer-name {
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--brand-offblack);
+        }
+
+        .signer-role {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--brand-muted);
+            margin-top: var(--space-4);
+        }
+
+        .signer-creci {
+            font-size: 0.7rem;
+            color: var(--brand-gold);
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            margin-top: var(--space-4);
+        }
+
+        .memo-footer-brand { text-align: right; }
+
+        .footer-logo-text {
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--brand-bronze);
+        }
+
+        .footer-logo-sub {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--brand-muted);
+            margin-top: var(--space-4);
+        }
+
+        .footer-contacts {
+            font-size: 0.7rem;
+            color: var(--brand-muted);
+            margin-top: var(--space-8);
+            line-height: 1.7;
+        }
+
+        .footer-contacts a {
+            color: var(--brand-gold);
+            text-decoration: none;
+        }
+
+        /* ================================================================
+           IMPRESSÃO
+           ================================================================ */
+        @media print {
+            body { background: white; padding: 0; }
+            .memo-page { border: none; box-shadow: none; border-radius: 0; max-width: 100%; }
+            .memo-page::before,
+            .memo-meta,
+            .memo-footer {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="memo-page">
+
+        <!-- HEADER -->
+        <div class="memo-header">
+            <div class="memo-logo">
+                <img
+                    src="file:///c:/Users/User/Desktop/Negocios%20Imobili%C3%A1rios/Valteir%20PROJETOS/Desing%20System/Logotipo%20Valteir%20Oliveira%202.jpg"
+                    alt="Logotipo Valteir Imóveis"
+                >
+            </div>
+            <div class="memo-company">
+                <span class="memo-company-name">Valteir de Oliveira Imóveis<br>Assessoria Imobiliária</span>
+                <div class="memo-company-detail">
+                    CNPJ: 50.185.716/0001-89<br>
+                    CRECI: 214072-F (Pessoa Física)<br>
+                    São Paulo — Brasil<br>
+                    <a href="http://www.valteir.com.br">www.valteir.com.br</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- TÍTULO -->
+        <div class="memo-title-block">
+            <div class="memo-doc-label">Comunicação Oficial</div>
+            <h1 class="memo-title">Memo<em>rando</em></h1>
+            <div class="memo-title-line"></div>
+        </div>
+
+        <!-- CAMPOS META -->
+        <div class="memo-meta">
+            <div class="memo-meta-row">
+                <div class="meta-label">Para</div>
+                <div class="meta-value">[Nome do Destinatário]</div>
+            </div>
+            <div class="memo-meta-row">
+                <div class="meta-label">De</div>
+                <div class="meta-value">Valteir de Oliveira — Consultor Imobiliário</div>
+            </div>
+            <div class="memo-meta-row">
+                <div class="meta-label">Data</div>
+                <div class="meta-value">15 de Abril de 2026</div>
+            </div>
+            <div class="memo-meta-row">
+                <div class="meta-label">Ref.</div>
+                <div class="meta-value">[Assunto: ex. Proposta de Imóvel / Visita Agendada / Proposta Comercial]</div>
+            </div>
+        </div>
+
+        <!-- CORPO -->
+        <div class="memo-body">
+            <p>Prezado(a) [Nome do Cliente],</p>
+
+            <p>
+                Por meio deste memorando, a <strong>Valteir Imóveis — Assessoria Imobiliária</strong> vem apresentar formalmente as informações relativas ao assunto indicado acima, com o compromisso de transparência e excelência que caracterizam nossa atuação no mercado imobiliário desde 2019.
+            </p>
+
+            <p>
+                [Insira aqui o conteúdo principal: proposta de imóvel, detalhes de um empreendimento de alto padrão, condições de negociação, confirmação de visita, laudo de avaliação ou qualquer outra comunicação formal.]
+            </p>
+
+            <p>
+                Nossa equipe estará à disposição para quaisquer esclarecimentos, visitas técnicas ou negociações. Trabalhamos com foco total na identificação do imóvel ideal para o seu perfil e necessidade, garantindo um atendimento consultivo e personalizado.
+            </p>
+
+            <p>Colocamo-nos à inteira disposição.</p>
+
+            <p>Atenciosamente,</p>
+        </div>
+
+        <!-- RODAPÉ -->
+        <div class="memo-footer">
+            <div class="memo-signature">
+                <div class="signature-line"></div>
+                <div class="signer-name">Valteir de Oliveira</div>
+                <div class="signer-role">Consultor &amp; Assessor Imobiliário</div>
+                <div class="signer-creci">CRECI 214072-F</div>
+            </div>
+            <div class="memo-footer-brand">
+                <div class="footer-logo-text">Valteir Imóveis</div>
+                <div class="footer-logo-sub">Assessoria Imobiliária de Alto Padrão</div>
+                <div class="footer-contacts">
+                    (17) 99172-6078<br>
+                    <a href="http://www.valteir.com.br">www.valteir.com.br</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>

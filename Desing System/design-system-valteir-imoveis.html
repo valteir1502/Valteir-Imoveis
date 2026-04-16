@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Design System — Valteir Imóveis v2.0</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,400&display=swap" rel="stylesheet">
+<style>
+/* ================================================================
+   DESIGN TOKENS — VALTEIR IMÓVEIS v2.0
+   ================================================================ */
+:root {
+  /* — BRAND COLORS — */
+  --brand-territory:    #F9F9F8;
+  --brand-surface-01:   #FFFFFF;
+  --brand-surface-02:   #F0EFEA;
+  --brand-gold:         #C9A84C;
+  --brand-gold-deep:    #9A7F35;
+  --brand-gold-light:   #E5C973;
+  --brand-bronze:       #7A5C2E;
+  --brand-offblack:     #1A1A1A;
+  --brand-muted:        #888888;
+  --brand-muted-deep:   #E0E0E0;
+  --brand-gold-10:      rgba(201,168,76,0.10);
+  --brand-gold-20:      rgba(201,168,76,0.20);
+  --brand-gold-40:      rgba(201,168,76,0.40);
+  --brand-territory-95: rgba(249,249,248,0.95);
+
+  /* — TYPOGRAPHY — */
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-body:    'Lato', Arial, sans-serif;
+
+  /* — FONT SIZES — */
+  --font-h1:       clamp(2.5rem, 5vw, 4.5rem);
+  --font-h2:       clamp(2rem, 3.5vw, 3rem);
+  --font-h3:       clamp(1.5rem, 2.5vw, 2rem);
+  --font-body-lg:  1.125rem;
+  --font-body-md:  1rem;
+  --font-body-sm:  0.875rem;
+  --font-caption:  0.75rem;
+  --font-label:    0.7rem;
+
+  /* — LINE HEIGHTS — */
+  --lh-display: 1.1;
+  --lh-body:    1.65;
+  --lh-tight:   1.2;
+
+  /* — LETTER SPACING — */
+  --ls-display: -0.01em;
+  --ls-label:   0.15em;
+  --ls-body:    0.01em;
+
+  /* — SPACING — */
+  --space-4:   4px;
+  --space-8:   8px;
+  --space-12:  12px;
+  --space-16:  16px;
+  --space-24:  24px;
+  --space-32:  32px;
+  --space-48:  48px;
+  --space-64:  64px;
+  --space-96:  96px;
+  --space-128: 128px;
+
+  /* — RADIUS — */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+
+  /* — SHADOWS — */
+  --shadow-subtle: 0 4px 15px rgba(0,0,0,0.06);
+  --shadow-medium: 0 8px 30px rgba(0,0,0,0.10);
+  --shadow-gold:   0 0 40px rgba(201,168,76,0.12);
+
+  /* — BORDERS — */
+  --border-thin: 1px solid var(--brand-muted-deep);
+  --border-gold: 1px solid var(--brand-gold);
+
+  /* — GRID — */
+  --grid-max: 1200px;
+  --grid-gap: 24px;
+
+  /* — TRANSITIONS — */
+  --ease: cubic-bezier(0.25, 0.1, 0.25, 1);
+  --fast: 150ms;
+  --base: 250ms;
+  --slow: 400ms;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+
+body {
+  background: var(--brand-territory);
+  color: var(--brand-offblack);
+  font-family: var(--font-body);
+  font-size: var(--font-body-md);
+  line-height: var(--lh-body);
+}
+
+/* ================================================================
+   NAV
+   ================================================================ */
+.ds-nav {
+  position: fixed; top: 0; left: 0; right: 0;
+  z-index: 100;
+  background: var(--brand-territory-95);
+  backdrop-filter: blur(8px);
+  border-bottom: var(--border-thin);
+  padding: var(--space-16) var(--space-32);
+}
+.ds-nav-inner {
+  max-width: var(--grid-max); margin: 0 auto;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.ds-nav img { height: 40px; width: auto; }
+.ds-nav-links { display: flex; gap: var(--space-24); list-style: none; }
+.ds-nav-links a {
+  color: var(--brand-offblack); text-decoration: none;
+  font-size: var(--font-label); text-transform: uppercase;
+  letter-spacing: var(--ls-label); font-weight: 700;
+  transition: color var(--fast) var(--ease);
+}
+.ds-nav-links a:hover { color: var(--brand-gold); }
+
+/* ================================================================
+   LAYOUT
+   ================================================================ */
+.ds-container {
+  max-width: var(--grid-max); margin: 0 auto;
+  padding: 0 var(--space-32); position: relative; z-index: 1;
+}
+.ds-section { padding: var(--space-96) 0; border-bottom: var(--border-thin); }
+.ds-section:last-child { border-bottom: none; }
+.ds-label {
+  font-size: var(--font-label); text-transform: uppercase;
+  letter-spacing: var(--ls-label); color: var(--brand-gold);
+  font-weight: 700; margin-bottom: var(--space-12);
+}
+.ds-title {
+  font-family: var(--font-display); font-weight: 700;
+  font-size: var(--font-h2); color: var(--brand-offblack);
+  line-height: var(--lh-display); margin-bottom: var(--space-16);
+}
+.ds-title em { color: var(--brand-gold); font-weight: 400; }
+.ds-desc {
+  color: var(--brand-muted); font-size: var(--font-body-lg);
+  max-width: 680px; margin-bottom: var(--space-48);
+}
+.ds-divider { border: none; border-top: var(--border-thin); margin: var(--space-64) 0; }
+.ds-sub {
+  font-family: var(--font-display); font-weight: 700;
+  font-size: 1.4rem; color: var(--brand-offblack);
+  margin-bottom: var(--space-24); padding-bottom: var(--space-8);
+  border-bottom: var(--border-gold); display: inline-block;
+}
+.ds-prose {
+  color: var(--brand-offblack); font-size: var(--font-body-md);
+  line-height: var(--lh-body); max-width: 780px; margin-bottom: var(--space-32);
+}
+
+/* ================================================================
+   HERO
+   ================================================================ */
+.ds-hero {
+  min-height: 100vh; display: flex; flex-direction: column;
+  justify-content: center; padding: var(--space-128) 0 var(--space-96);
+}
+.ds-hero-eyebrow {
+  font-size: var(--font-label); text-transform: uppercase;
+  letter-spacing: var(--ls-label); color: var(--brand-gold);
+  font-weight: 700; margin-bottom: var(--space-24);
+  display: flex; align-items: center; gap: var(--space-8);
+}
+.ds-hero-eyebrow::before {
+  content: ''; width: 24px; height: 2px; background: var(--brand-gold);
+}
+.ds-hero-h1 {
+  font-family: var(--font-display); font-weight: 700;
+  font-size: clamp(3rem, 6vw, 5.5rem); line-height: 1.0;
+  color: var(--brand-offblack); margin-bottom: var(--space-32);
+}
+.ds-hero-h1 em { color: var(--brand-gold); font-weight: 400; font-style: italic; }
+.ds-hero-sub {
+  font-size: var(--font-body-lg); color: var(--brand-muted);
+  max-width: 580px; margin-bottom: var(--space-24);
+}
+.ds-hero-line {
+  width: 60px; height: 3px;
+  background: linear-gradient(90deg, var(--brand-gold), var(--brand-bronze));
+}
+
+/* ================================================================
+   COLORS
+   ================================================================ */
+.color-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: var(--space-16); margin-bottom: var(--space-48);
+}
+.color-card {
+  background: var(--brand-surface-01); border: var(--border-thin);
+  border-radius: var(--radius-sm); overflow: hidden;
+  transition: transform var(--base) var(--ease), box-shadow var(--base) var(--ease);
+}
+.color-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-medium); }
+.color-swatch { height: 100px; }
+.color-info { padding: var(--space-16); }
+.color-name { font-family: var(--font-display); font-weight: 700; font-size: var(--font-body-sm); margin-bottom: 4px; }
+.color-var { font-family: monospace; font-size: 0.72rem; color: var(--brand-gold); margin-bottom: 4px; }
+.color-hex { font-family: monospace; font-size: var(--font-caption); color: var(--brand-muted); }
+.color-role { font-size: var(--font-caption); color: var(--brand-muted); margin-top: var(--space-8); }
+
+/* ================================================================
+   CODE BLOCK
+   ================================================================ */
+.code-block {
+  background: var(--brand-offblack); color: var(--brand-territory);
+  border-radius: var(--radius-sm); padding: var(--space-32);
+  font-family: monospace; font-size: 0.85rem; line-height: 1.8;
+  margin-bottom: var(--space-32); overflow-x: auto;
+}
+.code-block .cm { color: #888; }
+.code-block .prop { color: var(--brand-gold); }
+.code-block .val { color: var(--brand-gold-light); }
+
+/* ================================================================
+   TYPOGRAPHIC SPECIMENS
+   ================================================================ */
+.type-spec {
+  background: var(--brand-surface-01); border: var(--border-thin);
+  border-radius: var(--radius-sm); padding: var(--space-48);
+  margin-bottom: var(--space-24); box-shadow: var(--shadow-subtle);
+}
+.type-label {
+  font-size: var(--font-caption); text-transform: uppercase;
+  letter-spacing: var(--ls-label); color: var(--brand-gold);
+  font-weight: 700; margin-bottom: var(--space-12);
+}
+.type-meta {
+  font-family: monospace; font-size: 0.72rem; color: var(--brand-muted);
+  margin-top: var(--space-16); border-top: var(--border-thin);
+  padding-top: var(--space-12);
+}
+
+/* ================================================================
+   SPACING
+   ================================================================ */
+.space-row { display: flex; align-items: center; gap: var(--space-16); margin-bottom: 12px; }
+.space-bar { height: 12px; background: var(--brand-gold-20); border-left: 3px solid var(--brand-gold); }
+.space-label { font-family: monospace; font-size: 0.82rem; min-width: 160px; }
+.space-use { font-size: var(--font-caption); color: var(--brand-muted); }
+
+/* ================================================================
+   GRID DEMO
+   ================================================================ */
+.grid-demo {
+  display: grid; grid-template-columns: repeat(12, 1fr);
+  gap: var(--space-24); margin-bottom: var(--space-32);
+}
+.grid-col {
+  background: var(--brand-gold-10); border: 1px solid var(--brand-gold-40);
+  height: 64px; border-radius: var(--radius-sm);
+  display: flex; align-items: center; justify-content: center;
+  font-family: monospace; font-size: 0.72rem; color: var(--brand-bronze); font-weight: 700;
+}
+
+/* ================================================================
+   COMPONENT PREVIEWS
+   ================================================================ */
+.preview {
+  background: var(--brand-surface-01); border: var(--border-thin);
+  border-radius: var(--radius-md); padding: var(--space-48);
+  margin-bottom: var(--space-32); display: flex;
+  flex-wrap: wrap; gap: var(--space-24); align-items: center;
+  box-shadow: var(--shadow-subtle);
+}
+.preview.col { flex-direction: column; align-items: stretch; }
+
+/* Buttons */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  font-family: var(--font-body); font-weight: 700;
+  font-size: var(--font-label); text-transform: uppercase;
+  letter-spacing: var(--ls-label); cursor: pointer; border: none;
+  transition: all var(--base) var(--ease);
+  padding: var(--space-16) var(--space-32); border-radius: var(--radius-sm);
+  text-decoration: none;
+}
+.btn-primary { background: var(--brand-gold); color: var(--brand-surface-01); }
+.btn-primary:hover { background: var(--brand-bronze); transform: translateY(-2px); box-shadow: var(--shadow-medium); }
+.btn-secondary { background: var(--brand-offblack); color: var(--brand-surface-01); }
+.btn-secondary:hover { background: var(--brand-gold); }
+.btn-ghost { background: transparent; color: var(--brand-bronze); border: 2px solid var(--brand-gold); }
+.btn-ghost:hover { background: var(--brand-gold-10); }
+.btn-whatsapp { background: #25D366; color: white; }
+.btn-whatsapp:hover { background: #128C7E; transform: translateY(-2px); }
+
+/* Cards de Imóvel */
+.card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--space-24); margin-bottom: var(--space-48); }
+.imovel-card {
+  background: var(--brand-surface-01); border: var(--border-thin);
+  border-radius: var(--radius-sm); overflow: hidden;
+  transition: box-shadow var(--base) var(--ease), transform var(--base) var(--ease);
+}
+.imovel-card:hover { box-shadow: var(--shadow-medium); transform: translateY(-4px); }
+.card-img {
+  height: 220px; background: var(--brand-surface-02);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--brand-muted); font-family: var(--font-display); font-style: italic;
+  position: relative;
+}
+.card-badge {
+  position: absolute; top: var(--space-16); left: var(--space-16);
+  background: var(--brand-gold); color: white;
+  font-size: var(--font-caption); font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.1em;
+  padding: 4px 12px; border-radius: 2px;
+}
+.card-body { padding: var(--space-24); }
+.card-title {
+  font-family: var(--font-display); font-size: var(--font-h3);
+  color: var(--brand-offblack); margin-bottom: var(--space-8);
+  font-weight: 700;
+}
+.card-price {
+  font-family: var(--font-display); font-weight: 700;
+  color: var(--brand-gold); font-size: var(--font-body-lg);
+  margin-bottom: var(--space-16);
+}
+.card-desc {
+  color: var(--brand-muted); font-size: var(--font-body-sm);
+  line-height: 1.6; margin-bottom: var(--space-16);
+}
+.card-specs {
+  display: flex; gap: var(--space-16);
+  border-top: var(--border-thin); padding-top: var(--space-16);
+  font-size: var(--font-caption); text-transform: uppercase;
+  letter-spacing: 0.08em; color: var(--brand-muted);
+}
+
+/* Depoimento */
+.testimonial {
+  background: var(--brand-surface-01); border: var(--border-thin);
+  border-left: 4px solid var(--brand-gold); padding: var(--space-48);
+  max-width: 700px; box-shadow: var(--shadow-subtle);
+}
+.testimonial-quote {
+  font-family: var(--font-display); font-size: var(--font-body-lg);
+  font-style: italic; color: var(--brand-offblack); margin-bottom: var(--space-24);
+}
+.testimonial-author { font-weight: 700; color: var(--brand-bronze); }
+.testimonial-role { font-size: var(--font-caption); color: var(--brand-muted); margin-top: 4px; }
+
+/* Stats */
+.stats-block {
+  display: flex; flex-wrap: wrap; gap: var(--space-48);
+  align-items: center; padding: var(--space-48);
+  background: var(--brand-offblack); border-radius: var(--radius-md);
+  margin-bottom: var(--space-32);
+}
+.stat { text-align: center; }
+.stat-num {
+  font-family: var(--font-display); font-weight: 700;
+  font-size: var(--font-h2); color: var(--brand-gold); line-height: 1;
+}
+.stat-label {
+  font-size: var(--font-caption); text-transform: uppercase;
+  letter-spacing: var(--ls-label); color: var(--brand-muted-deep); margin-top: var(--space-8);
+}
+
+/* Forms */
+.form-group { margin-bottom: var(--space-24); }
+.form-label {
+  display: block; font-size: var(--font-caption);
+  text-transform: uppercase; letter-spacing: var(--ls-label);
+  font-weight: 700; margin-bottom: var(--space-8);
+}
+.input {
+  width: 100%; background: var(--brand-surface-01);
+  border: var(--border-thin); border-radius: var(--radius-sm);
+  padding: var(--space-16); font-family: var(--font-body);
+  font-size: var(--font-body-md); color: var(--brand-offblack);
+  outline: none; transition: border-color var(--fast) var(--ease), box-shadow var(--fast);
+}
+.input::placeholder { color: var(--brand-muted); }
+.input:focus { border-color: var(--brand-gold); box-shadow: 0 0 0 3px var(--brand-gold-20); }
+
+/* Hero Component */
+.hero-comp {
+  background: var(--brand-offblack); border-radius: var(--radius-md);
+  padding: var(--space-96) var(--space-64); position: relative; overflow: hidden;
+  margin-bottom: var(--space-32); box-shadow: var(--shadow-gold);
+}
+.hero-comp::after {
+  content: ''; position: absolute; bottom: 0; right: -5%;
+  width: 50%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(201,168,76,0.1));
+  pointer-events: none;
+}
+.hero-comp h1 {
+  font-family: var(--font-display); font-weight: 700;
+  font-size: clamp(2rem, 4vw, 3.5rem); color: white;
+  margin-bottom: var(--space-24); position: relative; z-index: 1;
+}
+.hero-comp h1 em { color: var(--brand-gold); font-weight: 400; }
+.hero-comp p {
+  color: rgba(255,255,255,0.6); font-size: var(--font-body-lg);
+  max-width: 520px; margin-bottom: var(--space-48); z-index: 1; position: relative;
+}
+
+/* FAQ */
+.faq-item { border-bottom: var(--border-thin); }
+.faq-q {
+  width: 100%; background: transparent; border: none; text-align: left;
+  padding: var(--space-32) 0; color: var(--brand-offblack);
+  font-family: var(--font-display); font-weight: 700;
+  font-size: var(--font-h3); cursor: pointer;
+  display: flex; align-items: center; justify-content: space-between;
+  transition: color var(--fast);
+}
+.faq-q:hover { color: var(--brand-gold); }
+.faq-toggle { font-size: 1.5rem; color: var(--brand-gold); transition: transform var(--base) var(--ease); }
+.faq-a {
+  color: var(--brand-muted); font-size: var(--font-body-md);
+  line-height: var(--lh-body); padding-bottom: var(--space-32); display: none;
+}
+.faq-item.open .faq-a { display: block; }
+.faq-item.open .faq-toggle { transform: rotate(45deg); }
+
+/* Social Mockups */
+.social-grid { display: flex; gap: var(--space-32); flex-wrap: wrap; margin-bottom: var(--space-48); }
+.social-frame {
+  width: 300px; background: var(--brand-surface-01);
+  border: var(--border-thin); border-radius: var(--radius-sm);
+  overflow: hidden; box-shadow: var(--shadow-subtle);
+}
+.social-hdr {
+  padding: var(--space-12) var(--space-16);
+  display: flex; align-items: center; gap: var(--space-12);
+  border-bottom: var(--border-thin);
+}
+.social-av {
+  width: 32px; height: 32px; border-radius: 50%;
+  background: var(--brand-gold); color: white;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-display); font-weight: 700; font-size: 0.7rem;
+}
+.social-name { font-size: var(--font-caption); font-weight: 700; letter-spacing: 0.05em; }
+.social-body {
+  aspect-ratio: 1; display: flex; align-items: center;
+  justify-content: center; padding: var(--space-32); text-align: center;
+}
+
+/* Tom de voz */
+.voice-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--space-24); margin-bottom: var(--space-48); }
+.voice-card {
+  background: var(--brand-surface-01); border: var(--border-thin);
+  border-radius: var(--radius-sm); padding: var(--space-32);
+  border-top: 4px solid var(--brand-gold);
+}
+.voice-audience {
+  font-family: var(--font-display); font-weight: 700;
+  font-size: var(--font-body-lg); color: var(--brand-bronze);
+  margin-bottom: var(--space-16);
+}
+.voice-do { color: #2D8A4E; font-size: var(--font-body-sm); margin-bottom: var(--space-8); }
+.voice-dont { color: #C0392B; font-size: var(--font-body-sm); }
+.voice-tag {
+  display: inline-block; font-size: var(--font-caption);
+  text-transform: uppercase; letter-spacing: 0.1em;
+  font-weight: 700; padding: 2px 10px; border-radius: 2px;
+  margin-bottom: var(--space-8);
+}
+.tag-do { background: rgba(45,138,78,0.1); color: #2D8A4E; }
+.tag-dont { background: rgba(192,57,43,0.1); color: #C0392B; }
+
+/* Footer */
+.ds-footer {
+  padding: var(--space-64) 0; text-align: center;
+  background: var(--brand-offblack); margin-top: var(--space-96);
+}
+.ds-footer-text {
+  font-family: var(--font-display); font-size: var(--font-body-lg);
+  color: var(--brand-gold); margin-bottom: var(--space-8);
+}
+.ds-footer-sub { font-size: var(--font-caption); color: var(--brand-muted); letter-spacing: 0.1em; text-transform: uppercase; }
+
+@media (max-width: 768px) {
+  .ds-nav-links { display: none; }
+  .ds-hero-h1 { font-size: 2.5rem; }
+  .grid-demo { grid-template-columns: repeat(6, 1fr); }
+  .card-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="ds-nav">
+  <div class="ds-nav-inner">
+    <img src="Logotipo Valteir Oliveira 2.jpg" alt="Valteir Imóveis">
+    <ul class="ds-nav-links">
+      <li><a href="#empresa">Empresa</a></li>
+      <li><a href="#cores">Cores</a></li>
+      <li><a href="#tipografia">Tipografia</a></li>
+      <li><a href="#grid">Grid</a></li>
+      <li><a href="#componentes">Componentes</a></li>
+      <li><a href="#voz">Tom de Voz</a></li>
+      <li><a href="#social">Social</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="ds-container">
+
+  <!-- HERO -->
+  <section class="ds-hero">
+    <div class="ds-hero-eyebrow">Design System v2.0 — 2026</div>
+    <h1 class="ds-hero-h1">VALTEIR<br><em>Imóveis</em><br>DESIGN SYSTEM</h1>
+    <p class="ds-hero-sub">
+      Documentação visual oficial da marca Valteir Imóveis — Assessoria Imobiliária de Alto Padrão. Todos os tokens de design, componentes e regras para garantir consistência e luxo em todos os pontos de contato.
+    </p>
+    <div class="ds-hero-line"></div>
+  </section>
+
+  <!-- 00 EMPRESA -->
+  <section class="ds-section" id="empresa">
+    <div class="ds-label">00 · Identidade</div>
+    <h2 class="ds-title">A Marca <em>Valteir Imóveis</em></h2>
+    <p class="ds-desc">O monograma V+O entrelaçados transmite parceria e confiança. O Dourado garante luxo discreto e reforça o posicionamento de alto padrão.</p>
+
+    <div class="ds-sub">Logotipo — Versão Master</div>
+    <div class="preview" style="justify-content: center; background: white; padding: 64px;">
+      <img src="Logotipo Valteir Oliveira 2.jpg" alt="Logo Master" style="max-width: 400px; height: auto;">
+    </div>
+
+    <div class="ds-sub" style="margin-top: 48px;">Dados Oficiais</div>
+    <div class="code-block">
+<span class="cm">/* Dados Empresa */</span>
+<span class="prop">Razão Social: </span><span class="val">VALTEIR DE OLIVEIRA IMOVEIS ASSESSORIA IMOBILIARIA</span>
+<span class="prop">Nome Fantasia: </span><span class="val">Valteir Imóveis</span>
+<span class="prop">CNPJ:         </span><span class="val">50.185.716/0001-89</span>
+<span class="prop">CRECI:        </span><span class="val">214072-F (Pessoa Física – Valteir de Oliveira)</span>
+<span class="prop">Atuação:      </span><span class="val">Desde 2019 • Venda e Construção de Alto Padrão</span>
+
+<span class="cm">/* Contatos */</span>
+<span class="prop">Site:         </span><span class="val">www.valteir.com.br</span>
+<span class="prop">WhatsApp:     </span><span class="val">(17) 99172-6078</span>
+<span class="prop">Ticket:       </span><span class="val">R$ 500.000 a R$ 15.000.000</span>
+    </div>
+
+    <div class="ds-sub">Regras do Logotipo</div>
+    <div class="card-grid">
+      <div class="imovel-card" style="border-top: 4px solid #2D8A4E;"><div class="card-body"><div class="card-title" style="color: #2D8A4E;">✓ Pode</div><div class="card-desc">Usar sobre fundos brancos, offwhite, pretos sólidos e fotografias escuras.</div></div></div>
+      <div class="imovel-card" style="border-top: 4px solid #C0392B;"><div class="card-body"><div class="card-title" style="color: #C0392B;">✕ Não pode</div><div class="card-desc">Distorcer proporções, aplicar sombras, alterar cores, girar ou colocar em fundos coloridos saturados.</div></div></div>
+      <div class="imovel-card" style="border-top: 4px solid var(--brand-gold);"><div class="card-body"><div class="card-title" style="color: var(--brand-bronze);">Tamanho mínimo</div><div class="card-desc">Digital: 120px de largura mínima. Impresso: 30mm de largura mínima.</div></div></div>
+    </div>
+  </section>
+
+  <!-- 01 CORES -->
+  <section class="ds-section" id="cores">
+    <div class="ds-label">01 · Paleta</div>
+    <h2 class="ds-title">Cores da <em>Marca</em></h2>
+    <p class="ds-desc">Extraídas diretamente do logotipo. O Ouro e o Bronze são os únicos tons de destaque. Nunca adicione outras cores de acento ao sistema.</p>
+
+    <div class="ds-sub">Cores Proprietárias</div>
+    <div class="color-grid">
+      <div class="color-card"><div class="color-swatch" style="background: #C9A84C;"></div><div class="color-info"><div class="color-name">Gold Primary</div><div class="color-var">--brand-gold</div><div class="color-hex">#C9A84C</div><div class="color-role">Ouro assinatura. CTAs, destaques, preços.</div></div></div>
+      <div class="color-card"><div class="color-swatch" style="background: #E5C973;"></div><div class="color-info"><div class="color-name">Gold Light</div><div class="color-var">--brand-gold-light</div><div class="color-hex">#E5C973</div><div class="color-role">Hover suave, backgrounds de badge.</div></div></div>
+      <div class="color-card"><div class="color-swatch" style="background: #9A7F35;"></div><div class="color-info"><div class="color-name">Gold Deep</div><div class="color-var">--brand-gold-deep</div><div class="color-hex">#9A7F35</div><div class="color-role">Estado :active de botões primários.</div></div></div>
+      <div class="color-card"><div class="color-swatch" style="background: #7A5C2E;"></div><div class="color-info"><div class="color-name">Bronze</div><div class="color-var">--brand-bronze</div><div class="color-hex">#7A5C2E</div><div class="color-role">Marrom da logo. Títulos secundários, hover de botão primário.</div></div></div>
+    </div>
+
+    <div class="ds-sub">Neutros e Bases</div>
+    <div class="color-grid">
+      <div class="color-card"><div class="color-swatch" style="background: #1A1A1A;"></div><div class="color-info"><div class="color-name">Offblack</div><div class="color-var">--brand-offblack</div><div class="color-hex">#1A1A1A</div><div class="color-role">Texto principal, fundo hero dark, footer.</div></div></div>
+      <div class="color-card"><div class="color-swatch" style="background: #F9F9F8; border: 1px solid #E0E0E0;"></div><div class="color-info"><div class="color-name">Territory</div><div class="color-var">--brand-territory</div><div class="color-hex">#F9F9F8</div><div class="color-role">Background global da página. Levemente quente.</div></div></div>
+      <div class="color-card"><div class="color-swatch" style="background: #FFFFFF; border: 1px solid #E0E0E0;"></div><div class="color-info"><div class="color-name">White</div><div class="color-var">--brand-surface-01</div><div class="color-hex">#FFFFFF</div><div class="color-role">Fundo de cards, documentos e formulários.</div></div></div>
+      <div class="color-card"><div class="color-swatch" style="background: #888888;"></div><div class="color-info"><div class="color-name">Muted</div><div class="color-var">--brand-muted</div><div class="color-hex">#888888</div><div class="color-role">Textos de suporte, meta-dados, subtítulos.</div></div></div>
+    </div>
+  </section>
+
+  <!-- 02 TIPOGRAFIA -->
+  <section class="ds-section" id="tipografia">
+    <div class="ds-label">02 · Tipografia</div>
+    <h2 class="ds-title">Tipografia <em>Elegante</em></h2>
+    <p class="ds-desc"><strong>Playfair Display</strong> para títulos marcantes e valores de imóvel. <strong>Lato</strong> para corpo de texto com alta legibilidade. O Itálico da Playfair reforça sofisticação.</p>
+
+    <div class="ds-sub">Playfair Display — Títulos</div>
+    <div class="type-spec">
+      <div class="type-label">H1 · Headline principal</div>
+      <div style="font-family:'Playfair Display',serif; font-weight:700; font-size: clamp(3rem,5vw,4.5rem); line-height:1.0; color: var(--brand-offblack);">Residências de <em style="color:var(--brand-gold);">Alto Padrão</em></div>
+      <div class="type-meta">Playfair Display Bold 700 / Italic 400 · clamp(3rem, 5vw, 4.5rem) · line-height: 1.0</div>
+    </div>
+    <div class="type-spec">
+      <div class="type-label">Preço — Valor em destaque</div>
+      <div style="font-family:'Playfair Display',serif; font-weight:700; font-size:2.5rem; color: var(--brand-gold);">R$ 4.800.000,00</div>
+      <div class="type-meta">Playfair Display Bold 700 · 2.5rem · brand-gold · Para exibição de preços de imóveis</div>
+    </div>
+
+    <div class="ds-sub">Lato — Corpo de Texto</div>
+    <div class="type-spec">
+      <div class="type-label">Body Large · 1.125rem</div>
+      <div style="font-size:1.125rem; line-height:1.65; color:var(--brand-offblack); max-width:640px; font-family:'Lato',sans-serif;">Encontramos o imóvel ideal para o seu estilo de vida. Com atendimento consultivo personalizado, entendemos a sua necessidade antes de apresentar qualquer proposta.</div>
+      <div class="type-meta">Lato Regular 400 · 1.125rem · line-height: 1.65</div>
+    </div>
+    <div class="type-spec">
+      <div class="type-label">Label — Uppercase tags</div>
+      <div style="font-size:0.7rem; font-weight:700; text-transform:uppercase; letter-spacing:0.15em; color:var(--brand-gold); font-family:'Lato',sans-serif;">Assessoria Imobiliária de Alto Padrão</div>
+      <div class="type-meta">Lato Bold 700 · 0.7rem · UPPERCASE · letter-spacing: 0.15em · uso: badges, tags, labels</div>
+    </div>
+  </section>
+
+  <!-- 03 GRID -->
+  <section class="ds-section" id="grid">
+    <div class="ds-label">03 · Layout</div>
+    <h2 class="ds-title">Sistema de <em>Grid</em></h2>
+    <p class="ds-desc">Grid de 12 colunas. Largura máxima 1200px. Gutter de 24px. O espaçamento generoso reforça a percepção de luxo e qualidade premium.</p>
+    <div class="grid-demo">
+      <div class="grid-col">1</div><div class="grid-col">2</div><div class="grid-col">3</div><div class="grid-col">4</div>
+      <div class="grid-col">5</div><div class="grid-col">6</div><div class="grid-col">7</div><div class="grid-col">8</div>
+      <div class="grid-col">9</div><div class="grid-col">10</div><div class="grid-col">11</div><div class="grid-col">12</div>
+    </div>
+
+    <div class="ds-sub">Espaçamento</div>
+    <div class="space-row"><div class="space-label">--space-8 · 8px</div><div class="space-bar" style="width:8px;"></div><div class="space-use">Micro ajustes e gaps internos</div></div>
+    <div class="space-row"><div class="space-label">--space-16 · 16px</div><div class="space-bar" style="width:16px;"></div><div class="space-use">Padding de botões e inputs</div></div>
+    <div class="space-row"><div class="space-label">--space-24 · 24px</div><div class="space-bar" style="width:24px;"></div><div class="space-use">Gap entre cards</div></div>
+    <div class="space-row"><div class="space-label">--space-48 · 48px</div><div class="space-bar" style="width:48px;"></div><div class="space-use">Padding de bloco interno</div></div>
+    <div class="space-row"><div class="space-label">--space-96 · 96px</div><div class="space-bar" style="width:96px;"></div><div class="space-use">Separação entre seções na página</div></div>
+  </section>
+
+  <!-- 04 COMPONENTES -->
+  <section class="ds-section" id="componentes">
+    <div class="ds-label">04 · UI Kit</div>
+    <h2 class="ds-title">Componentes <em>Prontos</em></h2>
+
+    <div class="ds-sub">Botões</div>
+    <div class="preview">
+      <button class="btn btn-primary">Agendar Visita</button>
+      <button class="btn btn-secondary">Proposta Comercial</button>
+      <button class="btn btn-ghost">Ver Portfólio</button>
+      <a href="https://wa.me/5517991726078" class="btn btn-whatsapp">WhatsApp</a>
+    </div>
+
+    <div class="ds-sub">Cards de Imóvel</div>
+    <div class="card-grid">
+      <div class="imovel-card">
+        <div class="card-img">Fotografia do Imóvel<div class="card-badge">Venda</div></div>
+        <div class="card-body">
+          <div class="card-title">Casa em Condomínio — Alphaville</div>
+          <div class="card-price">R$ 3.200.000,00</div>
+          <div class="card-desc">Residência contemporânea em lote privilegiado com vista para área verde.</div>
+          <div class="card-specs"><span>420 m²</span><span>4 Suítes</span><span>4 Vagas</span></div>
+        </div>
+      </div>
+      <div class="imovel-card">
+        <div class="card-img">Fotografia do Imóvel<div class="card-badge" style="background: var(--brand-bronze);">Novo</div></div>
+        <div class="card-body">
+          <div class="card-title">Empreendimento Premium</div>
+          <div class="card-price">A partir de R$ 1.800.000</div>
+          <div class="card-desc">Lançamento exclusivo em condomínio fechado com área de lazer completa.</div>
+          <div class="card-specs"><span>280 m²</span><span>3 Suítes</span><span>3 Vagas</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ds-sub">Estatísticas</div>
+    <div class="stats-block">
+      <div class="stat"><div class="stat-num">2019</div><div class="stat-label">No mercado desde</div></div>
+      <div class="stat"><div class="stat-num">R$ 15M</div><div class="stat-label">Ticket máximo</div></div>
+      <div class="stat"><div class="stat-num">100%</div><div class="stat-label">Consultoria personalizada</div></div>
+      <div class="stat"><div class="stat-num">CRECI</div><div class="stat-label">214072-F Registrado</div></div>
+    </div>
+
+    <div class="ds-sub">Hero Dark</div>
+    <div class="hero-comp">
+      <h1>Encontre o imóvel ideal<br>para o seu <em>estilo de vida</em></h1>
+      <p>Consultoria exclusiva para investidores, famílias e empresários que buscam o melhor do mercado imobiliário de alto padrão.</p>
+      <a href="https://wa.me/5517991726078" class="btn btn-primary">Falar com Valteir</a>
+    </div>
+
+    <div class="ds-sub">Depoimento</div>
+    <div class="testimonial" style="margin-bottom: var(--space-48);">
+      <div class="testimonial-quote">"O Valteir entendeu exatamente o que buscávamos antes mesmo de apresentar qualquer imóvel. Uma consultoria diferenciada, que respeita o nosso tempo e as nossas necessidades."</div>
+      <div class="testimonial-author">Cliente Valteir Imóveis</div>
+      <div class="testimonial-role">Comprador — Condomínio de Alto Padrão</div>
+    </div>
+
+    <div class="ds-sub">Formulário de Contato</div>
+    <div class="preview col" style="max-width: 520px;">
+      <div class="form-group"><label class="form-label">Nome completo</label><input class="input" placeholder="Seu nome"></div>
+      <div class="form-group"><label class="form-label">WhatsApp</label><input class="input" placeholder="(17) 99172-6078"></div>
+      <div class="form-group"><label class="form-label">Objetivo</label><input class="input" placeholder="Comprar / Investir / Construir"></div>
+      <button class="btn btn-primary">Quero ser atendido por Valteir</button>
+    </div>
+
+    <div class="ds-sub">FAQ</div>
+    <div style="background: var(--brand-surface-01); border: var(--border-thin); padding: var(--space-48); border-radius: var(--radius-sm);">
+      <div class="faq-item open">
+        <button class="faq-q" onclick="this.parentElement.classList.toggle('open')">Como funciona a consultoria?<span class="faq-toggle">+</span></button>
+        <div class="faq-a">Primeiro entendemos seu perfil, sua renda, seu estilo de vida e necessidades específicas para então selecionar imóveis estratégicos para apresentar.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="this.parentElement.classList.toggle('open')">Vocês constroem empreendimentos próprios?<span class="faq-toggle">+</span></button>
+        <div class="faq-a">Sim. Além de intermediar vendas, desenvolvemos empreendimentos de alto padrão em condomínios fechados, garantindo qualidade de ponta a ponta.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 05 TOM DE VOZ -->
+  <section class="ds-section" id="voz">
+    <div class="ds-label">05 · Comunicação</div>
+    <h2 class="ds-title">Tom de <em>Voz</em></h2>
+    <p class="ds-desc">Públicos diferentes exigem abordagens específicas, mas o tom sempre deve transmitir: confiança, exclusividade e competência.</p>
+
+    <div class="voice-grid">
+      <div class="voice-card">
+        <div class="voice-audience">👨‍👩‍👧 Família</div>
+        <div class="voice-tag tag-do">✓ Use</div><div class="voice-do">Segurança, conforto, qualidade de vida, vizinhança tranquila, espaço para crescer juntos.</div>
+        <div class="voice-tag tag-dont" style="margin-top:12px;">✕ Evite</div><div class="voice-dont">Linguagem técnica demais, dados financeiros sem contexto emocional.</div>
+      </div>
+      <div class="voice-card">
+        <div class="voice-audience">💼 Investidor</div>
+        <div class="voice-tag tag-do">✓ Use</div><div class="voice-do">Valorização, rentabilidade, localização estratégica, liquidez, ROI, dados de mercado.</div>
+        <div class="voice-tag tag-dont" style="margin-top:12px;">✕ Evite</div><div class="voice-dont">Discurso emocional em excesso. O investidor quer números e lógica.</div>
+      </div>
+      <div class="voice-card">
+        <div class="voice-audience">🏢 Empresário</div>
+        <div class="voice-tag tag-do">✓ Use</div><div class="voice-do">Exclusividade, status, privacidade, segurança, personalização, raridade.</div>
+        <div class="voice-tag tag-dont" style="margin-top:12px;">✕ Evite</div><div class="voice-dont">Imóveis comuns, preços muito abaixo do ticket premium esperado.</div>
+      </div>
+    </div>
+
+    <div class="ds-sub">Palavras da Marca</div>
+    <div class="preview" style="flex-wrap: wrap; gap: 12px;">
+      <span style="background: var(--brand-gold-10); border: var(--border-gold); padding: 6px 16px; border-radius: 2px; font-size: 0.85rem; font-weight: 700; color: var(--brand-bronze);">Alto Padrão</span>
+      <span style="background: var(--brand-gold-10); border: var(--border-gold); padding: 6px 16px; border-radius: 2px; font-size: 0.85rem; font-weight: 700; color: var(--brand-bronze);">Exclusividade</span>
+      <span style="background: var(--brand-gold-10); border: var(--border-gold); padding: 6px 16px; border-radius: 2px; font-size: 0.85rem; font-weight: 700; color: var(--brand-bronze);">Consultoria</span>
+      <span style="background: var(--brand-gold-10); border: var(--border-gold); padding: 6px 16px; border-radius: 2px; font-size: 0.85rem; font-weight: 700; color: var(--brand-bronze);">Confiança</span>
+      <span style="background: var(--brand-gold-10); border: var(--border-gold); padding: 6px 16px; border-radius: 2px; font-size: 0.85rem; font-weight: 700; color: var(--brand-bronze);">Imóvel Ideal</span>
+      <span style="background: var(--brand-gold-10); border: var(--border-gold); padding: 6px 16px; border-radius: 2px; font-size: 0.85rem; font-weight: 700; color: var(--brand-bronze);">Sofisticação</span>
+      <span style="background: var(--brand-gold-10); border: var(--border-gold); padding: 6px 16px; border-radius: 2px; font-size: 0.85rem; font-weight: 700; color: var(--brand-bronze);">Personalizado</span>
+      <span style="background: var(--brand-gold-10); border: var(--border-gold); padding: 6px 16px; border-radius: 2px; font-size: 0.85rem; font-weight: 700; color: var(--brand-bronze);">Condomínio Fechado</span>
+    </div>
+  </section>
+
+  <!-- 06 SOCIAL -->
+  <section class="ds-section" id="social">
+    <div class="ds-label">06 · Redes Sociais</div>
+    <h2 class="ds-title">Posts para <em>Instagram</em></h2>
+    <p class="ds-desc">Fundos escuros com ouro como cor de destaque. Tipografia Playfair em títulos. Fotografia de alto impacto sempre prevalece sobre texto.</p>
+
+    <div class="social-grid">
+      <div class="social-frame">
+        <div class="social-hdr"><div class="social-av">VI</div><div class="social-name">@valteirimoveis</div></div>
+        <div class="social-body" style="background: var(--brand-offblack);">
+          <div style="text-align: left; width: 100%;">
+            <div style="font-size:0.65rem; text-transform:uppercase; letter-spacing:0.15em; color:var(--brand-gold); font-weight:700; margin-bottom:12px;">Novo Empreendimento</div>
+            <div style="font-family:'Playfair Display',serif; font-size:1.8rem; color:white; line-height:1.1;">O luxo que<br>você <em style="color:var(--brand-gold);">merece</em></div>
+          </div>
+        </div>
+      </div>
+      <div class="social-frame">
+        <div class="social-hdr"><div class="social-av">VI</div><div class="social-name">@valteirimoveis</div></div>
+        <div class="social-body" style="background: white; border: 4px solid var(--brand-gold);">
+          <div style="font-family:'Playfair Display',serif; font-style:italic; font-size:1.4rem; color:var(--brand-bronze); padding: 12px;">"Não vendemos imóveis. Apresentamos o lar certo para cada família."</div>
+        </div>
+      </div>
+      <div class="social-frame">
+        <div class="social-hdr"><div class="social-av">VI</div><div class="social-name">@valteirimoveis</div></div>
+        <div class="social-body" style="background: linear-gradient(135deg, var(--brand-gold), var(--brand-bronze));">
+          <div>
+            <div style="font-family:'Playfair Display',serif; font-weight:900; font-size:3rem; color:white; line-height:1;">R$15M</div>
+            <div style="font-size:0.65rem; text-transform:uppercase; letter-spacing:0.15em; color:rgba(255,255,255,0.8); margin-top:8px;">Ticket Máximo<br>Condomínio Alto Padrão</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer class="ds-footer">
+  <div class="ds-footer-text">Valteir Imóveis — Design System v2.0</div>
+  <div class="ds-footer-sub">CNPJ 50.185.716/0001-89 · CRECI 214072-F · www.valteir.com.br</div>
+</footer>
+
+</body>
+</html>
