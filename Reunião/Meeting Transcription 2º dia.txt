@@ -1,0 +1,375 @@
+# Meeting Transcription
+
+  Meeting started: 15/04/2026, 21:20:03
+  Duration: 99 minutes
+  Participants: Corretor, Valteir de Oliveira
+
+  [View original transcript](https://app.tactiq.io/api/2/u/m/r/DuLO7qRQWTVWJTK6qMo6?o=txt)
+
+    
+
+  
+
+  
+    ## Highlights
+
+    > 13:54 Corretor: Vamos ser bem rapidinho tá a mudança do Pará paradigma, né? O usuário passivo e o usuário ativo que é um usuário ativo, né? Certo do próprio sistema utilizar que cria soluções sobre medida e focado na orquestrar, né? Processo é exatamente isso que eu quero que você entenda como você é dono de uma imobiliária como você é um corretor. Então você vai saber orquestrar desde. Do seu cliente até a parte de atendimento do seu cliente a partir do momento que ele apareceu na sua vida. Você captou ele você levou ele por uma casa mostrou a casa e vendeu. Então a gente vai passar por esses processos que tá e o github que é a parte das imagens que fica todas lá dentro da gente ainda
+> 55:04 Corretor: Exatamente. E aí como você faz para conectar o projeto que tá aí lá no outro pelo github? Porque pelo guithub se você tá lá no seu no seu notebook, imagine lá você
+
+  ## Transcript
+
+  00:00 Corretor: Saiu alguma coisa? você tava falando alguma coisa com
+00:23 Valteir de Oliveira: Eu tava desenrolando uma parada com a minha filha, hoje, eu parecia que a minha filha tem hidrocefalia, né?
+00:31 Corretor: Não.
+00:32 Valteir de Oliveira: Minha filha tem hidrocefalia.
+00:37 Corretor: Cara não sei
+00:43 Valteir de Oliveira: Nosso cérebro ele funciona como uma engrenagem como o motor de um carro. Então, a hidrocefalia é uma produção de líquido que lubrifica o cérebro.
+00:56 Corretor: certo
+00:59 Valteir de Oliveira: A hidrocefalia é quando você tem uma produção excessiva desse líquido. Então existem duas alternativas uma criança extrai esse excesso de líquido, como que está? Isso é uma válvula intracraniana que Drena o excesso ela tem um controle produção. Olha que dá o excesso da produção ela Drena isso aí, ele é um cateter por dentro e bem no peritônio e ele sai junto com a urina e as pessoas que não colocam a válvula tem a ver Falar da criança da cabeça crescida.
+01:43 Corretor: sim
+01:44 Valteir de Oliveira: Então cresce a cabeça porque o líquido fica dentro do crânio aí faz com que a cabeça cresce e você comprime o cérebro. E graças a Deus a gente conseguiu corrigir isso até pela última válvula tudo mas ela teve um isso desde os 45 dias de nascido.
+02:04 Corretor: Entendi, cara, entendi. Olha, mas é você já é um guerreiro, né, velho?
+02:04 Valteir de Oliveira: Só que o ano passado cara, ela sofreu uma um distúrbio uma uma desorientação. E a gente não descobriram descobrir nós fomos descobrir o cateter dela rompeu. Nessa altura do pescoço assim. Aí tinha que fazer um procedimento cirúrgico ter que trocar a válvula aí a válvula funcionou bem grande 15 dias aí teve uma obstrução aí teve que operar de novo então em 60 dias nós fizemos três cirurgias no cérebro.
+02:36 Valteir de Oliveira: E para você colocar o cateter é um ele chama de ventrículo é tipo um caixinha de uva que você tem o médico, ele tem que ir para uma intuição e acertar o ventrículo. Então o ventrículo dela é muito reduzido, então isso dificultou então aí vem um derramezinho aí tem um coágulo aí deu alguma sequelas, entendeu? Então nós somos um processo de recuperação. E ele me ocorre diário, cara que a minha filha assim, você tem uma ideia o meu sonho era ser pai e meu sonho é ser pai de uma menina. E aí Deus presenteou com a minha filha.
+03:23 Valteir de Oliveira: Só que aí veio esses defeitos de fábrica que a gente cara é mano. É um processo, entendeu? Então assim todos os dias eu faço questão de buscar na escola pelo que pega ela meio-dia e vinte todos os dias. Aí leva ela para um cursinho que eu tô colocando mais assim, ela tem que fazer tudo com muita calma, não pode ser muito pressionada, ela não pode estressar porque às vezes ela pode ter uma uma epilepsia, entendeu? Tem todo um controle e hoje era a consulta no neurologista dela então. O dia hoje foi bem bem tenso.
+04:08 Corretor: Porque se Deus te deu essa menina aí e que deu dessa forma é porque você é o cara que é para aguentar essa parada aí, entendeu?
+04:17 Valteir de Oliveira: Mas eu falo para todo mundo todo mundo que eu contei a história dela se incomode muito porque é muito punk assim sabe tem médicos, por exemplo um médico que vai consultar pela primeira vez era aquele óleo histórico dela, ele não acredita que é ela que tá na frente, né?
+04:37 Corretor: 17 anos cara desde os 45 dias de idade que ela tem essa parada em 17 anos e tipo
+04:42 Valteir de Oliveira: Hoje ela tem 17 anos.
+04:52 Corretor: assim, não vou falar que vive normal porque hoje sim, mas antigamente cara escola a galera entender tudo isso foi um processo, né, velho.
+05:03 Valteir de Oliveira: Cara, ela sempre viveu normal até o ano passado quando ela teve essa crise no colégio foi quando o pessoal do colégio. Descobriu o problema dela que é tentando nem sabia. E isso influenciou muito porque ela começou a sofrer um pouco de bullying sabe? Ficou quando?
+05:25 Corretor: Caramba, velho.
+05:27 Valteir de Oliveira: Mas ela cara ela é um anjo menina que não te dá um pingo de trabalho na dela
+05:32 Corretor: Legal legal, ela tá em que série já tá em terceiro.
+05:37 Valteir de Oliveira: de boa obediente esforçada, só que esse último processo dela deixou ela um pouco mais lenta a meta de raciocínio fizemos uma avaliação dela. Agora teve uma redução tudo isso por conta da sequela, entendeu? E aí nós estamos trabalhando trabalhando para melhorar isso nela, porque assim eu falei para minha ex-mulher do meu primeiro casamento. Eu falei cara, a gente tem que trabalhar ela para a gente dar o máximo de liberdade para ela e autonomia porque eu não sei até quando que eu vou estar aqui, né, cara, então depois que eu não tiver aqui ela vai estar sozinha aí. Então, estamos trabalhando cara organizar isso. Tá no terceiro, esse ano é formatura dela, então tá todo empolgada tá toda.
+06:35 Corretor: Cara, vai dar tudo certo, velho. Vai dar tudo certo. Como que vai porque mas que legal cara está me contando isso que eu sempre eu sempre tirei o chapéu para você hoje ter mais ainda, né? Cara? A gente vai entender as pessoas, né? A gente vai tirando chapéu. Enfim, a gente eu só me conecto com pessoas que são especiais cara. E eu hoje eu creio que você foi muito especial é muito especial.
+07:03 Valteir de Oliveira: Amém, amém.
+07:05 Corretor: Vamos que vamos meu querido, vamos que vamos.
+07:11 Valteir de Oliveira: Cara, como que eu faço isso?
+07:12 Corretor: Esse cabra arretado, vamos lá, vamos lá, vamos lá dá uma dá uma conferida se o seu MIT tá fazendo a transcrição. Me mostra seu meet.
+07:28 Valteir de Oliveira: Pera aí, aonde que tá o meu.
+07:35 Corretor: Compartilha tudo cara as telas que tá tá no seu tá no seu navegador.
+07:49 Valteir de Oliveira: Ele tá no lá no favorito não tá?
+07:53 Corretor: Não MIT não MIT não, calma aí. Deixa eu quero olhar o seu MIT a essa tela aqui que eu tô vendo. Eu quero que você coloca na tela do mid. Quero que você olha lá para o rostinho lá.
+08:07 Valteir de Oliveira: É esse aqui não é?
+08:09 Corretor: Não esse aí é o seu antibiótico. O seu omite é omith. Tá vendo? Você já sabe o que é mente agora você não sabe mais que é mito é normal, cara. Depois você fala da sua filha que reduzir o QI na verdade quando a gente começa a aprender as coisas a gente reduz quem aí mesmo, tá vendo? Isso só que compartilha a tela agora compartilha a tela.
+08:40 Corretor: Beleza beleza, estou vendo sua tela. Tá ali tá vendo ali transcrição ao vivo. Do seu lado do seu lado direito do seu lado direito naquela coluna Mais Escura. Tem um pontinho verde, tipo pergunta Taiti mais para baixo mais para baixo um pouquinho mais para baixo aí quase do outro lado. O seu lado esquerdo e explica aí. Show de bola show de bola transcrevendo agora pode ir lá? É antes da gente começar eu quero que você sintetize aí para mim, fala o que que você sentiu da nossa consultoria de ontem, é o primeiro contato que você teve com essa ferramenta se você achou difícil fácil. Se você achou Mágico. Se você achou que poderia fazer mais ou menos, fala aí para mim, abre o jogo.
+09:48 Valteir de Oliveira: Assim esse processo de configuração é bastante complexo, não vou mentir não. para mim assim tudo muito novo tudo bastante complicado, mas Acho que a partir do momento que ela tiver totalmente configurada, eu acho que é igual você montar numa Ferrari, né aprender os botões aprender o que que
+10:09 Corretor: tá
+10:13 Valteir de Oliveira: você tem que fazer dirigir, você já sabe então é só você acelerar e meter bronca é essa expectativa de mim.
+10:21 Corretor: Exatamente exatamente você viu você sentou. Você leu os nossos relatórios de onde que a gente acabou a reunião a gente fez ou não?
+10:31 Valteir de Oliveira: Eu li cara ali eu li junto com você aqui e depois a hora que eu fui para casa, eu fui ouvindo o áudio lá, né?
+10:38 Corretor: Então vamos pegar nossa apresentação de ontem e vamos dar uma lida nela antes da gente começar ela depress, o que que você já começou eu vi aí legal. Eu quero que você pega apresentação, ó, faz o seguinte é clica lá no antigo. Lá onde você tava clica na pasta de reuniões. Isso você viu agora clica em qual que foi? Qual que é clica pode clicar clica? Esse aí é o áudio, beleza? Clica no outro esse aí que que é reunião e clica no outro beleza? Então ele não vai abrir o áudio a gente consegue ouvir. Mas você já ouviu sintetizou não quero a gente não ao vivo. Esse aí é só a reunião e o outro então vamos para o outro.
+11:37 Corretor: Quer dizer, vamos para o outro não vamos lá no tá perdendo a conexão. Não acho que é aqui mesmo. É aqui você tá me ouvindo.
+11:48 Valteir de Oliveira: Ah tá.
+11:49 Corretor: Então beleza e não sei porque perdeu perdi a conexão, mas enfim é perdeu a conexão, aí eu não consigo ver o seu. O seu vídeo na sua tela. Você perdeu a conexão de rede. Tenta aí conectar. Eu vou sair e vou entrar de novo, tá? então Na verdade, cara, deixa eu.
+12:58 Corretor: OK. OK, agora sim voltou. Tô vendo sua tela. Vamos lá na pasta mesmo lá na pasta abrir apresentação lá na pasta lá na pasta mesmo nos seus documentos, tá? Onde você?
+13:10 Corretor: Olá, estou transcrevendo esta chamada com minha extensão Tactiq AI. https://tactiq.io/r/transcribing
+13:11 Corretor: e Isso abre a apresentação para gente na reunião, né? Foi aí na reunião isso. Qual que é a apresentação? Acho que é esse né? Beleza então, vamos lá o arquiteto digital construindo uma operação Imobiliária com inteligência artificial. Então realmente cara, você não arquiteto. Na verdade eu sou um arquiteto digital, né que a gente vai pegar aí construir isso dentro da imobiliária, tá? Vamos passar para o próximo ali.
+13:54 Corretor: Vamos ser bem rapidinho tá a mudança do Pará paradigma, né? O usuário passivo e o usuário ativo que é um usuário ativo, né? Certo do próprio sistema utilizar que cria soluções sobre medida e focado na orquestrar, né? Processo é exatamente isso que eu quero que você entenda como você é dono de uma imobiliária como você é um corretor. Então você vai saber orquestrar desde. Do seu cliente até a parte de atendimento do seu cliente a partir do momento que ele apareceu na sua vida. Você captou ele você levou ele por uma casa mostrou a casa e vendeu. Então a gente vai passar por esses processos que tá e o github que é a parte das imagens que fica todas lá dentro da gente ainda
+15:02 Corretor: não usou essa parte, mas fica tranquila que na próxima aula a gente vai usar próxima tela tá é infraestrutura invisível, né? A memória de operação que é o suco a base que você não tem noção disso e não precisa ter e o e a Segurança contra é cagada, né? Que é o bitrubs ali que realmente ali ele. Funciona por exemplo tirando uma foto agora passou três anos, ó, só que eu quero voltar para o meu passado nesse exato momento. Que que eu faço eu venho aqui entro no Bitcoin pega essa foto do nosso passado e a gente vai continuar no nosso passado por presente e futuro beleza basicamente isso próximo.
+15:52 Corretor: Beleza, é o centro que é a ideia mesmo ali onde a gente vai fazer colocar todos os arquivos aonde o chat que é o nosso cérebro que ajuda a sintetizar todas as nossas ideias desde criação de vídeo criação de cop para vídeo criação de edição de vídeo criação e como que eu vou prospectar? Qual que é o público topo meio e fundo de funil e tudo mais tá? E ali o modo ali é terminar o que é o modo ali para deve mesmo. Provavelmente você vai usar um ou dois comandos ali, tá? Beleza próximo.
+16:30 Corretor: Ali escolhendo as armas né? A gente tem aí o Gênese Flash e o blog você já entendeu? Todas essas pegadas que o Gemini Flash é o 38 ali para você fazer poucas coisas. O Cláudio é aquela Bazuca para você estourar o dinossauro e tá tudo certo a gente chegar e fazer as coisas acontecerem no próximo percurso ali próximo. Tá execução versus estratégia, né? De novo vamos falar daquela daquela pegada Moto Flash as coisas funcionam mais em modo plano quer dizer o modo flash. É aquela coisa mais rápida e o modo planner é uma parada que você para refletir você não seus agentes, né? Aonde você tem que chegar ali no óbvio, né? Vamos mais rápido ali. Vamos para o próximo tá o caso prático design System foi o que a gente construiu ali um design System muito simples, mas já é um bom começo. Bora passar para o próximo.
+17:42 Corretor: Tá a arte de interação também apagadinho aqui, mas eu consegui interação que a gente passou por ontem, né? Stop manual ali aquela parada que você já pega o fio da meada, né? Que foi por causa da internet, mas aí já estão já falou tudo que a gente passou que você sabe cara. Parou. Você já sabe o que que vai fazer não tem não vou apertar esse botão aqui porque eu tô com medo não velho. Você já sabe o que que você faz próximo.
+18:22 Corretor: Vamos lá esse essa prática da Skill. Foi muito top, cara, porque você entendeu? Por exemplo, eu preciso de uma estufa para fazer tráfego. Então você já sabe como que vai funcionar uma Skill de trás ela vai analisar o público, ela vai fazer um planejamento da campanha. Depois ela vai subir campanha ela vai fazer isso vai fazer aquilo então quando a pessoa fala assim, eu preciso de uma Skill cara que Beleza a virada de chave, né? Que ainda tá tudo muito ainda. Você tá indo sabe quando as pessoas ganham Minha Casa Minha Vida, vai lá naquele sorteio da Então você tá indo ainda com aquela expectativa. Ai meu nome vai sair da caixinha com o prefeito vai tirar para eu ganhar uma casa lá na Minha Casa.
+19:17 Corretor: Minha Vida, sei lá, enfim. Eu tô falando isso para ficar bem claro e você sintetizar. O que que a gente está fazendo aqui simplesmente hoje ainda a gente tá lá no ginásio esperando o prefeito ainda falar porque hoje à tarde hoje à noite, quando a gente acabar a gente vai ter o prefeito vai estar vai ter sorteado a nossa casa, beleza? Você já vai estar assim, Tranquilo lá eu tô indo para minha casa, já sei o que fazer onde é tá tudo certo, beleza.
+19:53 Corretor: Cara, falei book, né de construção, então a gente primeiro prepara a Arena a fundação de tudo um projeto e a escala a gente vai chegar na escala. Agora a gente tá nosso a gente vai para o projeto hoje, tá? Bora. Show de bola então só para a gente sintetizar isso e vamos lá para o anti greve aqui agora. Eu já vi que eu já eu já vi que você que você já começou a conversar com
+20:23 Valteir de Oliveira: Quando eu cheguei primeiro aqui e quando você tava desenrolando aí eu fui
+20:29 Corretor: ele, já mandou suas informações e tá tudo certo. correto
+20:43 Valteir de Oliveira: responder as perguntas, eu respondi dois. Tá, beleza.
+20:51 Corretor: Tem mais do que aí?
+20:52 Valteir de Oliveira: Aí ele criou ele atualizou esse memorando.
+20:57 Corretor: certo
+20:58 Valteir de Oliveira: E ele me perguntou aqui, ó, agora que conheço melhor seu negócio posso melhorar muito mais os materiais algumas ideias aí colocou atualizar design System criar outros modelos e criar uma lampage. Aí ele perguntou o que você quer fazer a seguir, eu coloquei atualizar design
+21:15 Corretor: Vamos lá?
+21:22 Valteir de Oliveira: criar os modelos e criar uma lampada. Aí ele Pronto está Pronto. Voltei aqui está o resumo do que está sendo feito atualizar os dados reais novos comprometidos imobiliários.
+21:31 Corretor: tá
+21:37 Valteir de Oliveira: dois documentos proposta comercial a ficha de imóvel carta de apresentação três malotes
+21:45 Corretor: legal Legal, então, vamos ver o primeiro. Qual que é o primeiro que ele fez aí?
+21:56 Valteir de Oliveira: Primeiro que ele fez aqui foi um design.
+21:58 Corretor: Design System. Então vamos voltar lá, qual que é o nome do Design System lá embaixo ali ó, vê lá lá embaixo que ele que ele fez uma tabela para você de tudo que ele fez.
+22:08 Valteir de Oliveira: Tá aqui.
+22:08 Corretor: Mas lá embaixo. Mas lá embaixo um pouquinho mais um pouquinho mais um pouquinho mais embaixo aí aí. Tem aí design System tem?
+22:20 Valteir de Oliveira: design System Walter Imóveis
+22:21 Corretor: Então vamos voltar lá naquela pasta sua lá e vamos abrir ele. Design System, acho que tá aí design.
+22:37 Valteir de Oliveira: Hoje é dia 15 21 e 10 isso aqui.
+22:40 Corretor: Então, beleza, então, bora abrir ele vamos ver se o design System. Pode ir indo vamos ver se é isso mesmo. vai Pode ir passando.
+23:24 Corretor: tá Até um formulário de contato legal. Tom de voz muito importante isso. Cara, ele fez um design insiste muito importante, cara. Muito importante muito importante aí eu sugiro. Eu sugiro que por que a gente está com um logo você tem um logo para ele, cara com fundo branco com tudo, cara. A gente pode falar para ele tirar esse fundo branco png aumentar a qualidade desse louco vai ficar depois de uma quarta e aí beleza? Não vou pegar nisso. Hoje eu vou pegar coisa mais prática vou pegar coisas que você vai falar c******. Que que é isso? Então vamos embora. Qual que é o próximo? Vamos vamos lá ver essa carta de apresentação, cara. Sei lá, é o primeiro aí pode clicar nele.
+24:54 Corretor: tá Aí você fala assim, como que eu vou como que eu vou enviar essa carta de apresentação para as pessoas. Pega aquele arquivo envia no WhatsApp para mim. Porque você não tá entendendo a lógica ainda, tá? Isso agora Pega o seu celular. Abre esse arquivo. Aí clica nesse arquivo.
+25:41 Valteir de Oliveira: No meu celular.
+25:42 Corretor: é Que que apareceu para você?
+26:15 Valteir de Oliveira: Joguei para abrir PDF. apareceu Apareceu a carta. Só que apareceu bem desconfigurado
+26:29 Corretor: Então tá na verdade, era só você no meu social só clicar ele abre em HTML, ele já abre bonitinho, cara, ele já abre como se fosse uma página de internet, mas dá para você falar assim faça em PDF também passa em PDF. Por
+26:48 Valteir de Oliveira: Posso tentar abrir ele aqui em html?
+26:49 Corretor: quê? Então abre então só clicar vai abrir com o Chrome com alguma coisa, mas você já já pegou uma dor do seu cliente. Tá então você pode falar assim para ele colocar o nome do cliente colocar o
+27:06 Valteir de Oliveira: O próximo aqui foi.
+27:11 Corretor: nome do imóvel colocar tudo bonitinho as imagens do imóvel. Imagine isso, imagine isso agora você colocar as imagens falar para ele fazer em HTML, tipo vai abrir como se fosse uma página, tá? Mas faça isso também em PDF para mim. Tá então quer dizer Vai ter todo o seu design System todas as suas cores já o nome. Vamos fazer um então. Beleza, não vamos abrir os outros, vamos ver os outros agora como ficou né? Eu não vi cara. Lê aí para mim vai.
+27:53 Valteir de Oliveira: Top muito top, cara. Apresentação Valter irmão setor imobiliário de alto padrão prezado clientes é com prazer que apresenta Valter Imóveis especializada na venda e construção de imóveis residenciais de alto padrão condomínios fechados atuando no mercado desde 2019. Meu trabalho vai além da intermediação Imobiliária tradicional oferece uma consultoria personalizada estratégia antes de apresentar qualquer imóvel e ter profundamente seu perfil suas necessidades e seu estilo de vida para ser preciso e assertivo na indicação do imóvel ideal nossos principais diferenciais consultoria assertiva, só apresenta Imóveis que realmente fazem sentido para o seu perfil e necessidade alto padrão portfólio exclusivo entre 515 milhões em condomínio de prêmio construção própria além de intermediários envolvendo Empreendimentos com qualidade garantia.
+28:59 Valteir de Oliveira: de ponta a ponta Estou à disposição para uma conversa sem compromisso seja para conhecer um imóvel do nosso portfólio discutir possibilidade de investimento ou conhecer nós Empreendimentos e desenvolvimento.
+29:16 Corretor: Tá clica nesse botão aí.
+29:20 Valteir de Oliveira: Para encontrar o seu imóvel ideal falar no WhatsApp.
+29:25 Corretor: Clica nesse clica nesse botão falar no WhatsApp.
+29:29 Valteir de Oliveira: Muito muita coisa muita coisa.
+29:33 Corretor: Você entende, beleza, vamos voltar isso a gente já viu você beleza, coloca na sua cabeça, o que que dá para fazer com isso dá para fazer muita coisa velho. Dá para você melhorar ali trocar cara, dá para você fazer muita coisa é só você colocar cachola para pensar porque eu tenho preciso mandar uma carta para para fulano de tal que é novo. Quero disparar isso para alguns investidores e tudo mais. Qual que é o próximo arquivo que ele fez?
+30:07 Valteir de Oliveira: venda valor do imóvel
+30:07 Corretor: Então beleza, vamos ver a ficha do imóvel. Legal legal, olha a minha mente o antigo. Como que é o nome desse arquivo?
+30:16 Valteir de Oliveira: Fotografia principal do imóvel com os ambientes sala, cozinha suíte Master área externa nome do empreendimento metragem Total quantidade de suítes vagas metade privativa banheiro e sala descrição. Destaques posições acabamentos sistema de condomínio a trazer aqui informações técnicas consultora anti construção IPTU Condomínio matrícula.
+31:00 Corretor: Ficha do imóvel?
+31:00 Valteir de Oliveira: Ah mano, Preciso achar um designer bom aqui design daqui come muito caro isso
+31:02 Corretor: 425 lá no meu site lá do meu site que você faça a ficha dele para mim, puxa já as imagens a bonitinho aí um ele vai lá vai puxar as imagens já vai fazer a ficha para você, a gente vai fazer isso hoje tá mas vamos passar para o próximo. Melhor do que eu hein? Você já fez uma lã de peixe melhor do que eu cara, Só Precisamos trocar o logo precisamos entender esse louco fazer esse lobo bonito fazer bonito não ele é bonito, mas é fazer ele certo. Precisei para um design ou a gente conversar com o hot grip aí falar para ele fazer um logo decente para a gente faz replicar esse louco na verdade.
+31:59 Corretor: É na verdade, tem como a gente fazer isso aí é só alinhar quem fez esse novo para você? Então beleza, se você não tiver cara, tem que mandar para um design, esse ele vai te cobrar r$ 30 velho. Quantos carros tá te cobrando?
+32:29 Valteir de Oliveira: aí Preciso até fazer uma cotação aqui.
+32:33 Corretor: Viu, mas é tipo passar um design aqui, você manda para ele só para fazer um novo.
+32:39 Valteir de Oliveira: tá
+32:43 Corretor: Cara, deixa eu deixa eu me manda de novo seu louco, eu vou mandar para um brother aqui que eu ajudei fiz um favor para ele ajudar ele eu vou falar para ele refazer seu logo aqui.
+32:56 Valteir de Oliveira: Acho que eu já te mandei, mano.
+32:58 Corretor: Já me manda de novo, já vou mandar agora para ele refazer.
+33:03 Valteir de Oliveira: Cara não sei se é essa aqui, mano.
+33:19 Corretor: Vamos fazer ao vivo e a cores aqui já me manda que eu já vou mandar para ele. Deixa eu ver.
+33:31 Valteir de Oliveira: Não nessa não
+33:35 Corretor: Logo logo vamos abrir.
+33:39 Valteir de Oliveira: Essa aí é uma que eu uso para colocar nos vídeos.
+33:44 Corretor: tá
+33:45 Valteir de Oliveira: Porque nos vídeos eu coloco uma imagem branca que é melhor. Esquece aqui.
+34:00 Corretor: Eu vou mandar aqui para ele deixou baixar isso aqui mandar essa preta baixar. Salvar Beleza, deixa eu pegar esse brother.
+34:44 Valteir de Oliveira: Entrou um vídeo agora aqui. Entrou no vídeo agora aqui, ó.
+34:50 Corretor: Que legal Da onde que é lá da Responde pode responder fica à vontade aí.
+34:56 Valteir de Oliveira: show de bola
+34:58 Corretor: Fala meu brother como você tá? Você tá bem cara, ó, troca de favores, tá? Eu preciso que você faz uma tira o fundo desse logo, deixa deixa ele legal, para que eu possa colocar no site no memorando essas coisas sabe? Nem sei como fala, eu acho que você sabe mais do que eu tô te enviando aí. Faz isso para mim, cara. Vai ser eu vou ficar muito grato vai para um brother meu tá e dar de presente para ele isso aí.
+35:43 Corretor: E cara eu vou assistir aqui se você me enviou tá como o criador do Cloud ou de uso deve ser muito bacana isso aqui eu vou dar uma olhada, cara. Obrigado. Show de bola show de bola aí, já mandei seu link para frente cara. Que bacana. Eu só não gosto desses esses negócio que eles coloca aí que esses ícone né? Não gosto dos ícones ali. Não não embaixo não não esses aí. Tá show de bola. Tá show de bola esses ícones aí ó.
+36:24 Corretor: Eu gosto eu gosto do template. Eu não gosto tipo do vermelhinho com a bola branca, tipo ali esses ícone tem coisas muito mais bonita. Tem para a gente usar um site desse tem um Zico. Tá ó imóveis em destaque cara. Que coisa linda, velho bem bacana, é óbvio, é óbvio que você tá. Do nada você fez uma lã de peixe. Aí vem o que você falando, viu? Aonde eu vou onde eu coloco isso como que eu subi isso no site Cara relaxa que isso é coisa do mundo, beleza? Olha que vale. Olha que bacana velho.
+37:32 Corretor: Show de bola aí, imagina só agora, cara. Eu já fiz uma lã de peixe. Porque Não Eu posso fazer uma lampei de uma de um imóvel, por exemplo, aquele imóvel bonitão o damas lá aquele aquele imóvel de 10 milhões de reais, cara, você passa todas as imagens para ele falar Analisa essas imagens e faça uma mão de page com formulário de contato, cara. E aí é um brinquedo obviamente que você vai falar, mas esse formulário de contato aonde que é o ponto vai vir os links, como que vai vir os links. Mas você pode já conectar esse formulário de contato com o seu WhatsApp a partir do momento que o cara clica lá enviar um já vai para o seu WhatsApp normal. E você atende. E aí você tá rodando uma lã de peixe do de um imóvel que você quer vender esse imóvel, tá você pode fazer um vídeo rolar esse salão de peixe. Enfim muitas coisas para dar certo próximo que que mais tem aí para a gente olhar já acabou.
+38:38 Valteir de Oliveira: Possa começar nós vimos.
+38:41 Corretor: Acho que não.
+38:42 Valteir de Oliveira: Não ó, ele criou. Que proposta comercial, deixa eu ver.
+38:51 Corretor: O louco ainda tá matando a gente mas a gente vai resolver isso, tá?
+39:04 Valteir de Oliveira: o principal valores tá
+39:14 Corretor: Ó. Isso é organização, cara. Como você fecha imóvel. Como você manda isso para o cliente? Você tem uma
+39:19 Valteir de Oliveira: show de bola
+39:23 Corretor: organização para mandar para o cliente ou é tudo no teatro?
+39:28 Valteir de Oliveira: Eu consigo enviar isso aqui para o WhatsApp do cliente.
+39:30 Corretor: Agora por exemplo o cara você vai lá conversa com o cara Mostra o imóvel chega no seu chega no seu no seu escritório. Você já manda uma proposta para o cara bonito. O cara falou louco, olha esse cara aqui, olha esse corretor aqui tá dando atenção, esse corretor é classe. A você entende? Como isso é valioso para você. O WhatsApp você pegar o arquivo e enviar para o cliente, cara.
+40:03 Corretor: Tá e você, pode colocar foto que você quiser, você pode conversar com o tigre. Vou mandar como chama esse arquivo aí.
+40:13 Valteir de Oliveira: Esse aqui é proposta comercial.
+40:14 Corretor: Então Ó tem uma proposta comercial aqui que eu vou fazer de um imóvel me ajuda. Já era cara, já era o que que é esse aí.
+40:24 Valteir de Oliveira: quase namorando
+40:27 Corretor: Também não sei para que que serve tipo como se fosse uma circular para falar alguma coisa assim, não sei para que serve. Não sei mas enfim. Então vamos lá, o que que você imaginou o que dá para a gente fazer vamos vamos fazer o seguinte, vamos fazer uma proposta comercial do imóvel ou não? Vamos começar por cima design System. Ok carta de apresentação que quer essa carta de apresentação volta lá nela. Abre ela para mim. Ah tá.
+41:14 Corretor: Tá beleza. Essa aí a gente vai passar a próxima. Qual que é a próxima?
+41:20 Valteir de Oliveira: Deixa eu escolher um imóvel lá no site.
+41:21 Corretor: Isso Beleza, show de bola, vou pegar a ficha de imóvel agora. Isso Pega o código do imóvel e o link do imóvel.
+41:55 Valteir de Oliveira: O link também cara.
+41:57 Corretor: Só clica no imóvel, clica no imóvel isso esse imóvel. Aí clica nele. Pega esse link lá de cima pega o link lá de cima. Isso vamos lá? Nós estamos falando do quê mesmo?
+42:19 Valteir de Oliveira: Tô falando da ficha de nome.
+42:22 Corretor: Então vamos lá o meu a gente querido escreve do jeito que você quiser aí.
+42:31 Valteir de Oliveira: como
+42:32 Corretor: é Eu quero fazer uma ficha de imóvel. Com esse imóvel aqui cola o link. Isso agora você fala assim crie valor. Crie um valor crie um valor para o cliente. Sobre esse imóvel. Pegue todas as informações desde imagem valores e tudo mais. E preencha na nossa ficha de imóveis. Beleza pau no gato, vamos ver o que que ele vai fazer. Vamos ver que que ele vai fazer em cara que que você tá usando aí Flash, qual tiro de canhão você tá usando ou você tá usando 38.
+43:41 Valteir de Oliveira: Cara, você sabe que eu não eu tô usando o Cláudio, mano.
+43:46 Corretor: Você tá usando o Cláudio, deixa o Cláudio, vamos lá gosto ó, fica vendo o que que ele vai fazer ele vai abrir seu navegador.
+43:55 Valteir de Oliveira: Acho que foi.
+43:57 Corretor: Vamos ver se ele vai conseguir Navegar você vai dar eu. Cara não sei porque tá dando erro meu também tá dando eu acho que é ó, clica lá no azulzinho clica no Bre ali. Abre ali para a gente ver. Abre ali onde está piscando ali ó para a gente ver o que que ele tá fazendo.
+44:30 Valteir de Oliveira: Cara essa casa sensacional.
+44:31 Corretor: Tá indo, mas eu quero ver eu quero ver lá onde tá piscando ali cara no Google Chrome ali embaixo na sua tela. Isso aí fica aí. Beleza fica vendo. Olha que ele a hora que ele ficar assim, é porque você tem que ir lá e tipo clicar no azulzinho, deixa ele deixa ele trabalhar aí ó, ele tá trabalhando. Eu quero comprar essa casa é 10 milhões. Nossa Que casa linda, cara.
+45:29 Corretor: casa linda
+45:30 Valteir de Oliveira: Caso tem seis suítes.
+45:33 Corretor: Você tá louco coisa louca, cara, é linda é linda e isso vai abaixando sempre abaixo porque exato mas pode voltar lá, ele tá trabalhando. Deixa ele trabalhar pode voltar lá. É legal. Às vezes eu gosto de ficar vendo ele trabalhar sabe vou aprendendo muito aqui principalmente em banco de dados. Ele trabalha em banco de dados. daí eu Aprendo muito agora mexendo vendo o valor se ele não conseguir pegar as imagens, você pode dar as imagens para ele tá Ó aqui tá as imagens mas Vamos ver se ele vai conseguir pegar as imagens.
+46:29 Valteir de Oliveira: Extrair todos os dados do imóvel agora vou criar a ficha preenchida com todas as informações reais.
+46:36 Corretor: legal Cara, quanto tempo você? gastaria para fazer isso
+46:49 Valteir de Oliveira: Não com certeza é muito tempo, cara. Isso aqui é sensacional.
+46:54 Corretor: sensacional
+46:54 Valteir de Oliveira: Eu tenho que ir lá eu tenho que fazer foto fazer vídeo, vira aqui editar depois colocar tudo dentro do site p*** que pariu.
+47:09 Corretor: Então calma aí que a gente vai chegar nessa fase, a gente vai chegar nessa fase. Vamos ver o que que ele tá fazendo aí não travou não, né? Ele tá ele tá fazendo a paradinha dele lá, cara. Eu se eu fosse você eu sei que falar em pagar é difícil, mas eu eu pagaria o Google o Gemini lá porque ele é bom cara gemer é bom dá para você usar ele com aquele que fazer vídeo não vai precisar porque você vai começar a usar o corretor 2.0, né? Mas enfim.
+47:49 Valteir de Oliveira: Ele deu uma travadinha.
+47:52 Corretor: Vai vir vai vir Relaxa? Calma aí cara. Não sei se ele deu uma travadinha. Vai lá, deixa eu ver clica ali no laranja ali que tá piscando. Isso fica aí, deixa eu ver. Já não tá mais aí já não, tá? mais
+48:19 Valteir de Oliveira: Ele demora um pouquinho mas
+48:33 Corretor: E tá falando que que ele fez? Vamos lá ver isso aí. bora lá Qual que é a ficha?
+48:45 Valteir de Oliveira: Não veio fotos.
+48:47 Corretor: beleza Fica tranquilo que a gente mais vamos ver aí que que ele falou.
+48:59 Valteir de Oliveira: Para construir 800 área de terreno 900 6 suítes novas seis vagas de garagem três salas. Arquitetura onde o design neoclássico se encontra como modernidade sofisticação máxima padrão foi construída para quem existe melhor e cada detalhe do pisotecta total top, mano, ele jogou todas as informações aqui.
+49:32 Corretor: Legal, agora que que a gente vai falar para ele, você vai você tem essas fotos do dama não tem?
+49:40 Valteir de Oliveira: Mas ele não consegue pegar as fotos que estão lá no site.
+49:40 Corretor: Então vamos lá. Vamos pegar vamos pegar. Isso que a gente vai fazer agora, cara. Pergunta para ele. Pode perguntar você não consegue pegar no código as imagens que está lá no site que faltou as imagens.
+50:24 Valteir de Oliveira: código 432
+50:31 Corretor: Veio até veio até com o código, né? Agora ele já sabe de tudo, você não precisa falar só só falar você não consegue pegar as fotos dos imóveis lá, cara. A gente acabou de fazer. Clica lá no laranjinha ali embaixo ali para você ver tá lá de novo, cara.
+50:57 Valteir de Oliveira: Já tem a página aberta.
+51:11 Corretor: Tá aí, ó, ficou azulzinho, ele tá tentando captar as imagens, cara. Você acredita? É muito louco é muito louco, cara.
+51:31 Valteir de Oliveira: Tomas essas campanhas começa a rodar aqui começar da venda vou trazer você para cá velho. Você vai cuidar dessas p**** aqui para mim. Alugar uma casa dessa aqui para você vou. Você vai trabalhar aqui?
+51:53 Corretor: Bora Bora, amanhã eu sei que que vai acontecer comigo cara ou eu tô eu tô ganhando 30 pau ou eu tô desempregada então. Tenta mexer na página lá ela na página para você ver. Não não Aí lá e tenta mexer clica aí. Você vem que ele vai bloquear ele não consegue mexer aí exato, não consegue tá É isso aí que ele tá mas você consegue ter visto você consegue clicar lá no vermelhinho e servir ele tá mas não esse não é o caso, vamos ver se ele vai conseguir puxar.
+52:42 Corretor: As imagens e tudo pode clicar pode clicar. Não tenha medo não filho, pode
+52:43 Valteir de Oliveira: Baixar esse arquivo aqui lá no meu notebook, mas eu não sei se ele aguenta
+52:48 Corretor: clicar isso. Logo que ele tá fazendo isso é muito importante para você perder o medo para você falar p****, dá para eu fazer isso aqui dá para fazer aquilo ali, a gente está cara na ponta do Ice. Berg pode clicar o azulzinho ali ó. Ele conseguiu pegar cara, parece. Ó você viu? Onde que ele tá? Clica aí? Ele tá no código do site. Ele tá no código do site. Cara, hoje eu vou falar para você, velho, não tem que a gente. Pois vamos aguardar.
+54:09 Corretor: Logo logo acaba o Cláudio também tá porque ele é muito acaba muito rapidinho gratuito, mas Você tem duas telas ou não?
+54:44 Valteir de Oliveira: não.
+54:45 Corretor: Esse é leve tá? Esse é leve ele não é pesado não. É bem leve.
+54:54 Valteir de Oliveira: Vai ser bastante no meu notebook, eu consigo eu tenho que entrar com esse meu. Pelo que?
+55:04 Corretor: Exatamente. E aí como você faz para conectar o projeto que tá aí lá no outro pelo github? Porque pelo guithub se você tá lá no seu no seu notebook, imagine lá você
+55:19 Corretor: precisa acessar seu projeto aonde você vai você vai no Google Drive não vai sempre para você achar as Suas pastas e tudo mais. Então você vai lá no que tá tudo lá você só conectar com você consegue lá você consegue modificar no seu PC vai aparecer aqui, se você modificar aqui vai aparecer lá no seu PC.
+55:41 Valteir de Oliveira: Mas ele ele aparece lá na minha tela do Gmail lá nas opções.
+55:49 Corretor: Me faz a pergunta de novo.
+55:52 Valteir de Oliveira: Ele vai aparecer para mim lá onde na tela do Gmail aparece lá drive fotos.
+56:00 Corretor: Sim no kit Hub vai aparecer um repositório. Qual que é o repositório nosso que a gente a gente fez lá que eu esqueci o nome, mas por exemplo kit Hub espaço projeto meu primeiro projeto, você conecta lá com seu seu notebook vai consegue mexer lá, entendeu? Tudo muito simples muito fácil. Vamos lá eu falo para você tá demorando um pouquinho cara, porque porque ele trabalha. Menos rápido, né gratuito, mas tá em um lindo tá lindo. Ele tá trabalhando, cara.
+56:47 Valteir de Oliveira: Não tem pressa não importante é trabalhar.
+56:50 Corretor: Imagine agora você imagina só como que ele faz o seu tráfego profissional assim ó, ele acessa sua tela começa a falar p****. Esse cara vai subir ele vai subir o criativo velho.
+57:10 Valteir de Oliveira: É isso que eu quero fazer eu tô louco para chegar no sofá.
+57:16 Corretor: Eu acho eu acho relaxa. Relaxa, relaxa.
+57:21 Valteir de Oliveira: Pegar essa cliente que entrou de Lídia, agora, eu vou mandar uma ficha de uma casa para ela desse jeito aqui.
+57:27 Corretor: Legal exatamente, manda para ela, qual o caso que ela quer.
+57:35 Valteir de Oliveira: Ela quer um condomínio aqui chamado Gaivota 2, eu tenho. Eu tenho três casas aqui lá.
+57:42 Corretor: Olha que interessante cara, já vamos fazer já vamos fazer isso aí já vamos fazer. Deixa ele trabalhando, aí, depois a gente vai tentar usar o Flash para ver se é mais rápido.
+57:53 Valteir de Oliveira: Deixa eu até olhar aqui, cara. no Proerd
+57:57 Corretor: Ela pega e já deixa no pente já.
+58:01 Valteir de Oliveira: Essas três casas. Ele consegue também pegar do meu do meu CRM, né?
+58:08 Corretor: Consegue consegue se você deixar aberto, você tem que conectar lá naquele lá naquele naquele que tá piscando ali no laranja, tá? o seu CRM Aí ele consegue até responder seu CRM filho. Por favor, vê o meus clientes que eu já não falo há três anos, manda uma carta de uma carta de reconhecimento para ele, ele vai fazer isso velho.
+58:47 Valteir de Oliveira: Muito louco mano, muito louco.
+58:49 Corretor: Exato ou Quantas pessoas tem na sua base que tá parada. Aí vamos reativar esse vamos quantas empresários estão Ô vamos vamos mandar uma ficha de um lançamento que que se acabou de sair agora ou a gente trabalha filho, eu vou eu vou para academia aqui e você fica aí trabalhando acabou velho. Detalhe tá Dá para você conectar o seu celular e você usar lá da academia. Deixa eu ver aqui. Deixa eu ver se tá tudo bonitinho.
+59:28 Valteir de Oliveira: Aí é melhor dos mundos, cara.
+59:31 Corretor: Volta lá, vamos ver o que tá acontecendo.
+59:36 Valteir de Oliveira: Não tem uma casa que não tá aqui no meu perfil cara. Que bosta.
+59:54 Corretor: Ele deu uma paradinha. Tá tentando fazer quer dizer você vai fazer isso uma vez só uma vez, só depois você vai trocar nome você já deixa algumas fichas prontas, né? Deixa eu ver. Tá fazendo e você pode mandar a mensagem outra mensagem abrir outro chat e trabalhando com um outro. que achou a casa a casa tá no seu tá no tá no
+01:00:39 Valteir de Oliveira: Não tem duas que estão mas a outra não. Tô achando que eu nem lancei essas três aqui, ó. Tem o código cada uma delas.
+01:00:54 Corretor: 2 milhões aí é isso?
+01:00:57 Valteir de Oliveira: é Essa aqui é 485 465 469.
+01:01:05 Corretor: E também aluga essas casas.
+01:01:09 Valteir de Oliveira: Eu particularmente eu não gosto de Mexer colocação não sabe são poucas que eu tenho aqui. bem pouco
+01:01:22 Corretor: Pessoal alto também locação altas.
+01:01:25 Valteir de Oliveira: É eu fechei você ter uma ideia eu fechei uma locação no mês passado aqui o cara paga 17 Pau.
+01:01:33 Corretor: Deve ser desenvolvedor alguma coisa.
+01:01:37 Valteir de Oliveira: Não na verdade assim ele
+01:01:58 Valteir de Oliveira: Ele montou uma fintech de máquina de cartão
+01:02:03 Corretor: certo
+01:02:04 Valteir de Oliveira: Agora ele tá montando umas feiras mobile. a feira dele tava com Aquele Tiago negro os cara punk aí na feira do cara agora em São Paulo é recente.
+01:02:22 Corretor: c****** A casa deve ser maravilhosa, né 17 pontos por mês
+01:02:28 Valteir de Oliveira: Mano uma casa cara, fez uma casa com cinco suítes, cara. O terreno tem 800 metros deve ter uns 500 ml de construção. elevador panorâmico piscina aquecida não bagulho
+01:02:45 Corretor: É isso aí que eu quero para mim, cara. Pode dar um azulzinho ali ó, vai lá no azulzinho sempre quando tiver sozinho você clica aí porque senão a página fica parada, tá? Tá demorando um pouquinho já hoje.
+01:03:03 Valteir de Oliveira: Depois que os shorts da galeria de fotos da página a parte superior.
+01:03:15 Corretor: Ela tá fazendo tudo cara hoje. Hoje eu passei. Pela proposta, né para o pessoal lá do Paulo Vieira, o pessoal do meu pessoal que quer ser meu sócio, né? Que eu quero também ser sócio. Desse pessoal, cara. Por meio os cara tem que dar uma bagatela lá porque para que eu consiga sustentar todo o meu. Meu minha vida, né, cara a minha vida velho.
+01:03:49 Valteir de Oliveira: E aí o que que os cara falou vai responder?
+01:03:52 Corretor: Não respondeu ainda não cara, mas é 77 mil por mês, cara.
+01:04:01 Valteir de Oliveira: Mano, mas assim é que eu penso quando você fala de um projeto, você tá
+01:04:03 Corretor: Isso se fosse para mim tudo isso aí tá tudo certo, né, cara, mas eu tava falando com meu pessoal é o seguinte, né, Valter você sabe que quanto vai vai acontecendo aqui a gente vai conversando eu eu fui o cara que mais trabalhei no corretor 2.0 quando falou aquela azulzinha ali quando você fala 2.0 você entende? Que outra pessoa trabalhou nisso ou não? Cara, ninguém fez uma mídia ninguém fez um Instagram ninguém fez nada, cara e hoje para o investidor falar assim, o investidor me ligou falou que que eu preciso cara? Que que eu preciso para você vir para o projeto? Me fala para a gente tratar isso aí cara, não mandaram que querem salário os meus sócios que eles falaram de 16 mil. Não Não fizeram nada Velho.
+01:05:09 Corretor: E aí eu fico indignado velho, fica indignado falo c******, Ô você tá atrasando o projeto porque o projeto para rodar você precisa receber 16.000.
+01:05:29 Valteir de Oliveira: startando a pessoa precisa comprar ideia e a pessoa não compra ideia mano. A pessoa já tá pensando o quanto que ela vai ganhar já né?
+01:05:37 Corretor: exatamente E aí cara, que que aconteceu? Eu o meu prolabore é 30 pau, velho é 30 mil elabora 30 mil por quê? Cara faz seis meses que eu tô rodando isso velho, faz seis meses que eu tô tirando o dinheiro daqui colocando ali não pega o trampo para ficar trabalhando. E aí o cara quer. Sou um casal 16 para cada um 16 que vai dar 32 mil reais.
+01:06:10 Valteir de Oliveira: A conta não fecha mano.
+01:06:13 Corretor: É um casal lindo, eu falei c******, mas calma aí tem alguma coisa errada o azulzinho ali tem alguma coisa errada velho. A conta não fecha e as pessoas acham que eu tá falando é que eu tô louco. É que eu tô fazendo que eu tô fazendo burburinho no no grupo. É tipo assim, não fecha cara.
+01:06:40 Valteir de Oliveira: Você tá causando discórdia no grupo?
+01:06:42 Corretor: Exato que eu sou não porque que é isso velho? Mas você sabe o que que eu vou fazer eu tava conversando com um brother meu Cara, ele falou assim, esse cara é de fatura, ele fatura é uma média de 700 mil reais por mês dependendo catraca para caminhões tá vendendo catracas para caminhões. Ele falou sabe? O que que você tem que fazer porque esse pessoal tá atrasando o seu lado porque tá atrás literalmente os cara não fizeram p**** nenhuma chegaram na hora aqui chegaram na hora que vai surgir mesmo a possibilidade de você fechar o negócio. Os cara tão pesando do investidor falar tá fechado.
+01:07:29 Valteir de Oliveira: E aí
+01:07:31 Corretor: E cara o meu brother falou chega no ouvido desse investidor falar meu querido negócio é o seguinte. Eu tô com um problema sério para resolver. Eu tô com dois sócios que não fizeram nada. E eu preciso tirar eles da jogada que que a gente faz você quer investir Eu Quero investir eu quero eu quero entrar no negócio e eu não quero ficar mal com ninguém, mas que que a gente faz que que a gente pode fazer fazer um corretor 3.0, sabe porque cara e é o seguinte e eu sou justo, cara. Eu sempre trabalhei no computador 2.0. Eu sou o cara que construiu agora todo mundo só porque eu tô indo para andar de avião os cara quer sentar na janelinha e me deixar no tipo ali no no bagageiro, cara.
+01:08:31 Corretor: É muito louco isso cara. É muito louco. Olha não acabou ainda ele cara gratuito, demora um pouco mais mas Vamos lá? É muito louco isso eu fiquei indignado hoje, cara. Eu fiquei indignado e as pessoas não conseguem as pessoas da minha família as pessoas que estão comigo não conseguem entender a minha dignação cara indignação não consegue entender porque eu deixo de sair eu deixo de fazer qualquer coisa deixa de comer velho para ficar na frente do computador.
+01:09:06 Corretor: E agora veio os meus sócios e atrás desse lado, eu já falei cara. Ó, se esse projeto não passar de amanhã, vocês vão me pagar r$ 6000 para continuar o projeto por mês, se vocês não pagar eu vou gastar o projeto cara e vou fazer eu vou chamar o Evandro que é O Bilionário lá meu querido. Vamos fazer eu e você. Faço um imóvel 2.0 faço qualquer coisa p****, velho, vou carregar as pessoas nas minhas fotos cansado, velho. Tô com 42 anos carregando um jeito na minhas costas.
+01:09:47 Valteir de Oliveira: Também eu também não mano. Tô na tô na Piper.
+01:09:49 Corretor: Não exatamente e sabe quantos anos tem os meus sócios, cara. E eu com 44 anos falando no caixa d'água, você tá me atrasando Cara eu já não tenho tempo para errar. Eu já não tenho tempo para as pessoas negarem aquilo que eu faço. Indignado velho hoje, eu fiquei indignado. E se o Evandro não aceitar a proposta aí você vai ver aí aí acabaram toda a chance com ele mesmo. Eu falo. Fica tranquilo, eu vou engravidar corretor 2.0. Você pode fazer nada, eu também não vou fazer nada porque O investimento que der porque o investimento ali é r$ 1.500 por mês, né? Eles tem 1.500 por mês por 49% do meu negócio. Eu fui i***** também. E é isso, cara, não tinha dinheiro.
+01:10:55 Corretor: f***, mas enfim, caramba tá demorando essa parada, hein? Meu Deus, eu tô acostumado, ele faz tudo muito rápido. Mas ele tá indo ele tá indo. Ah, é verdade, cara. É verdade a internet. Brasil cara Brasil Mas calma aí. você Vê cara, hoje, eu nem jantei, mano.
+01:12:01 Valteir de Oliveira: Tudo que eu chego em casa agora à tarde depois da academia, não posso jantar. Se eu jantar eu
+01:12:07 Corretor: Aí ferrou academia, né, velho?
+01:12:11 Valteir de Oliveira: tenho que comer um Negocinho lá bem de leve.
+01:12:19 Corretor: Cara, realmente aqui a parada é a sua internet, mas não tem importância a gente vai ter que fazer seis seis sessões dessa não tem importância cara. Semana que vem a gente faz mais três. Não tem importância, tá?
+01:12:36 Valteir de Oliveira: Talvez mano, não sei. Talvez sexta-feira vai ter um aniversário do meu sobrinho.
+01:12:45 Corretor: Não a gente faz o final de semana, pô.
+01:12:47 Valteir de Oliveira: Tá de boa aí dá?
+01:12:49 Corretor: Tem feriado?
+01:12:50 Valteir de Oliveira: E tem feriado também, né, mano? dia 21 de Abril, mano terça-feira 200 Km daqui cara
+01:13:16 Corretor: Para mim feriado, cara, o cara que trabalha em casa sabe então. caramba
+01:13:33 Valteir de Oliveira: O meu sogro tá com 80 anos, ele gosta demais, cara, então assim se ele ficar em casa ele passa mal. E assim a gente tá preocupado. Ele dirige ainda sabe mas assim. Você vê meu sonho é melhor que eu cara. 80 anos figuração mano, só que assim os reflexos Já não são os mesmos tá? Ele gosta ele fica p da vida porque a gente não deixa ele sozinho no sítio aí Cabe a mim levar ele, entendeu? Ele tá me rodeando nós vamos para o final de semana aí hoje, ele mandou mensagem agora pouco e aí nós vamos.
+01:14:20 Valteir de Oliveira: Ele falou ó Domingo, eu não vou poder porque eu vou ter campeonato ele joga Bots então um quarto sem Troféu. Foi então tá domingo o senhor não pode vamos ver se nós vamos na segunda e volta na terça e ele já ficou mais animado, porque isso aí cara é o gás nele, entendeu? Às vezes ele tá.
+01:14:40 Corretor: E lá fica alguém cuidando né?
+01:14:45 Valteir de Oliveira: Não é só a gente fica vazio lá.
+01:14:48 Corretor: obrigado
+01:14:49 Valteir de Oliveira: Fica monitorando por câmera aqui. Aí a gente chega lá tá tudo sujo. Tem que limpar aí tem que pintar rastelar arrumar seca e Mano, você chega lá, você trabalha mais do que tudo.
+01:15:04 Corretor: Mas o que eu tô ligado cara, que legal, que legal. Enfim, né? Enfim, mas é bacana, que cidade que fica.
+01:15:15 Valteir de Oliveira: Fica na cidade chamada rubinéia.
+01:15:17 Corretor: o apneia rubineia
+01:15:20 Valteir de Oliveira: Você conhece aquele que tinha um setor?
+01:15:25 Corretor: Corinthiano, né, velho?
+01:15:27 Valteir de Oliveira: Eu sabia que você tinha algum defeito p*** que pariu.
+01:15:31 Corretor: Que que é isso aí?
+01:15:47 Valteir de Oliveira: É tá dizendo pequena, só que fica as margens do rio do Rio Grande, Rio, Paraná, é muito voltada para o turismo de pesca. Ô mano, você não tem as mães de fazer um gato nesse aqui não cara? Você tem meu Gmail? Como é que tá lotado?
+01:16:07 Corretor: Não não tem não, você tem que comprar espaço Gmail, na verdade é gmail foto é um monte de coisa. Vamos ver o antigo, que que ele tá fazendo, cara? Você tem que arrumar essa internet urgente vai acabar.
+01:16:31 Valteir de Oliveira: Amanhã eu vou ver isso.
+01:16:33 Corretor: Que ele tá falando aí?
+01:16:39 Valteir de Oliveira: peça pedindo para executar um
+01:16:44 Corretor: Tipo assim, é exatamente isso aí. Ó, você já tá ó.
+01:16:54 Valteir de Oliveira: Também procure no HTML da paz, né? Qualquer signo que contém CTN ou tragédia ou upload. Me retorne essas linhas completas.
+01:17:09 Corretor: Ele tá indo lá no site caras que era para ter feito isso em 3 minutos.
+01:17:16 Valteir de Oliveira: Se ele fosse no prédio era mais fácil do que pelo site.
+01:17:24 Corretor: Ah com certeza Sabe que você pode fazer? Vai lá no seu prédio, vai lá no seu prédio.
+01:17:35 Valteir de Oliveira: Eu acho que é aqui, ó.
+01:17:39 Corretor: Vamos ajudar ele, vamos lá vai lá no seu prédio entra ali nas integrações ali, eu acho que é nas ações. e
+01:17:51 Valteir de Oliveira: Essas são as que estão ativas.
+01:17:51 Corretor: integrações exato Vai lá no acho que agora não lembro cara. Qual que era você falou, mas eu não tenho isso. Deixa eu ver aqui. Viva Real alguma coisa assim, acho que é Viva Real tá Do que tá falando aí?
+01:18:33 Valteir de Oliveira: Essas Aqui foram enviados para o portal.
+01:18:35 Corretor: Tá beleza, então, a gente tem que ali no link. Ele tem ele gera um link ali, deixa eu ver vai lá em cima lá em cima.
+01:18:42 Valteir de Oliveira: Mas eu acho que é aqui. Quer ver.
+01:18:47 Corretor: Tem onde que ele vai gerar um link ali, cara.
+01:18:54 Valteir de Oliveira: Se eu voltar aqui. aqui na Primeiro nós temos que tentar entender. Qual que é a
+01:19:04 Corretor: Eu pegava ali Esse link é ZAP Imóveis, deixa eu ver ali volta um pouquinho. Ah não, acho que era lá mesmo Viva Real é Viva Real era lá que eu pegava esse link, cara.
+01:19:26 Valteir de Oliveira: aqui também dá
+01:19:35 Corretor: Configurações lá isso mesmo configurações. isso
+01:19:48 Valteir de Oliveira: tempo
+01:19:51 Corretor: Você qual que é isso aí? O zap não vai no Viva Real é no Viva Real. Vai lá no Viva Real. Isso vai ali na integrações e isso Pega lei para mim que tá esse primeiro link que quer.
+01:20:14 Valteir de Oliveira: Essas informações são imprescindíveis para o funcionamento correto da Integração, você deve apontar essas informações dentro do painel da vida real.
+01:20:27 Corretor: Não é o link XML embaixo ali fica Qual que é o link XML não?
+01:20:44 Valteir de Oliveira: Cara eu já vi esse negócio.
+01:20:49 Corretor: Que aí mesmo, cara. Eu acho que tem que então você tem que escrever.
+01:21:22 Corretor: Eu não sei era fácil pegar esse link, cara. Não é não. É configurações. É dados isso aí, clica aí ó esse link lá embaixo. O que que tá escrito aí?
+01:21:59 Valteir de Oliveira: de integração de leads
+01:22:02 Corretor: Então, vai lá pega ele. Copia ele aí. Beleza, abre uma aba ali do da sua seu navegador e cole esse link. Não é esse link vou fechar pega esse outro link aí isso fala lá. exato Cara esse link aí?
+01:22:40 Valteir de Oliveira: Mas esse link não é daqui, né?
+01:22:43 Corretor: Não é de todos os anúncios, tem todos esses aí, beleza? Show de bola esse link pega esse link aí. Manda foto. É isso deixa eu ver. Dá pause. Manda esse link para ele. Fala assim isso aqui te ajuda. Beleza deixa ele pensar cara. Ele vai abrir esse link. Ele já entendeu que é um link XML. Você entendeu, cara?
+01:23:46 Valteir de Oliveira: Ajuda muito. Esse é o fixo ml com todos os seus Imóveis, vou ler agora e filtrar o imóvel com a preta. Que negócio maluco velho maluco.
+01:24:06 Corretor: Você viu aí? Ó que deu? Agora começou o lance da internet.
+01:24:19 Valteir de Oliveira: Que bagulho louco.
+01:24:27 Corretor: Das 9:00 das 9:10 aqui hoje, a gente não fez quase nada, mas cara você precisa arrumar eu preciso arrumar essa internet, cara.
+01:24:37 Valteir de Oliveira: Hoje né para ver se de repente alguém mexeu, né?
+01:24:40 Corretor: A gente voar. Pode ver que tá a mesma coisa, né?
+01:25:13 Corretor: Parece que hoje ela tá um pouquinho melhor, cara. Mas tá ruim demais.
+01:25:22 Valteir de Oliveira: Não.
+01:25:23 Corretor: Tá menos pior. Ou não sei também. Os cara não te responderam nada Velho. Ô louco
+01:26:00 Valteir de Oliveira: é
+01:26:03 Corretor: exatamente você é
+01:26:07 Valteir de Oliveira: E agora?
+01:26:14 Corretor: Beleza, vamos lá pode fazer. Vamos lá, vamos ver o que ele tá fazendo. eu a é esse aí que é o Tem o zero ali, você paga assine o Google aí. tá Dá limites. Não fica tranquilo, você não precisa pagar isso aí agora não tá? Então você paga primeiro mês. Vamos trocar. Vamos colocar o Gemini. Vamos colocar o gene coloca o gênero. Pode colocar qualquer um Coloca aí continue.
+01:27:14 Corretor: Beleza, ok?
+01:27:24 Valteir de Oliveira: Qual que é o apartamento do cara aqui?
+01:27:55 Corretor: E aí que que tá tá fazendo ali legal? Acho que ele já tá ali no na página. Ainda não. Falta já já pegou já já pegou todos os imóveis. Pode clicar novamente. Para Edna.
+01:28:52 Valteir de Oliveira: Eu tenho até um vídeo desse para assistir cara que eles lançaram essa semana.
+01:28:56 Corretor: E que que eles lançaram agora Inteligência Artificial alguma coisa.
+01:28:57 Valteir de Oliveira: é Alguma coisa relacionada a isso sim, mas eu nem vi o vídeo ainda. Tá lá para mim ver. Quero soltar isso aqui mano. Quero fazer isso aqui fluir, cara.
+01:29:21 Corretor: Vai fluir, é só você aguentar aguenta aí que você entendendo a parada velho. Aí você vai já sabe fazer cara. Isso é um pijama depois isso aqui vídeos depois de vídeo é campanha e assim por diante aí você tá completo nego.
+01:29:42 Valteir de Oliveira: Eu já vou fazer amanhã a ficha desses três produtos aqui para mandar para cliente.
+01:29:50 Corretor: Legal legal e você pode conectar ele com a com o seu ó, faz muito tempo, cara. Que que você tem investidor? Você deve ter alguns investidores na sua base, né? Ah lá dá uma Vamos lá ver que ele já fez. Ele já fez já?
+01:30:23 Valteir de Oliveira: Mano Pior que eu tô tão longe, cara.
+01:30:24 Corretor: Show coisa linda, não é coisa linda. Agora é o seguinte, tá meu lindo, faz o seguinte, passa o mouse no meio nas fotinhas aí. Tá legal, você vai falar assim para ele assim, ó, vai falar um pouco. Tira um print vamos lá, volta lá. Volta lá volta lá. Tá ali tá ali na tá no seu isso aí tira um print da faixa aí dessa faixa que tem vários Imóveis.
+01:31:15 Corretor: e isso Olha aí precisa tirar o vídeo certinho, não isso manda pega aí copiar. Manda aí Cola aí fala Eu quero que essas imagens sejam implicáveis. Olha quando o cliente clicar. a imagem de abre agora Agora agora ó, coloca a sua cabeça para funcionar velho, você tem que lamber a boneca essa parada, entendeu? É isso cara. Chega longe. O meu lanche. Tá longe.
+01:32:38 Valteir de Oliveira: Aqui na minha casa.
+01:32:57 Corretor: Ô louco velho, você tá em outra cidade. 21 minutos é uma viagem?
+01:33:21 Valteir de Oliveira: Aí 12.4 km.
+01:33:25 Corretor: A nada para fazer isso caminhando.
+01:33:29 Valteir de Oliveira: É mano, eu faço pedal aqui meu pedal é de 60 km 51.
+01:33:33 Corretor: É mesmo, cara, meu pai, meu pai era ciclista, né? Teve um AVC e fodeu, né? Cara, mas meu pai se quiser. A gente vai terminar esse depois a gente vai já já encerrar aqui para a gravação que a gente tá fazendo. Você vai lá no notebook LM vai fazer aquela parada. Toda hoje foi mais um bate-papo, né? Mas a gente fez ali. Ele tá testando velho, ele tá testando fica vendo.
+01:34:11 Valteir de Oliveira: Tem que tirar aquelas escritas também lá que tá no meio da foto é colocado
+01:34:18 Corretor: Ele tá testando cara. Só fica dando uma olhada, aí fica vendo. Já testou já clicou?
+01:34:35 Valteir de Oliveira: isso tá vendo? Tá escrito piscina livre enfaixado.
+01:34:38 Corretor: E isso isso aí você vai arrumando você vai falando com ele, vai lá você viu que ficou escuro, né? Vai lá no seu vai lá. baixa
+01:35:02 Valteir de Oliveira: Que bagulho louco.
+01:35:09 Corretor: Em HTML que o cliente clica cara muito louco isso. Você pode fazer também em PDF, tá você pode falar para ele para depois salvar em PDF normal. Deixa isso responsivo para celular. E aí cara você vai modificando velho vai modificando você tem três quatro fichas para mandar isso aí. Tá show de bola.
+01:35:39 Valteir de Oliveira: E Legal, seria se ele clicar se fosse direto para o site, né, mano?
+01:35:44 Corretor: Pode colocar também. É essa que são as ideias que você tem que fazer ele cara, mas com essa internet aí tá f***, velho, tá muito devagar essa parada um trampo aqui. Ó, a gente gastou aí uma hora para fazer um trampo cara. Tá louco, já tá acabando já, eu acho. Era para ele ter feito menos três minutos aí. É muito rápido. Pronto ele vai lá, abre lá que ele já tá aberto, né? Só abre aí ali ó ali ó, já tá aberto lá no céu.
+01:36:47 Corretor: clica
+01:36:48 Valteir de Oliveira: Você clica no meio da foto aí sai a letra que tá lá.
+01:36:50 Corretor: clica em clicar Aí você clica no x. Entendeu? Ah sim assim.
+01:37:11 Valteir de Oliveira: Mano, fica perfeita cara, olha.
+01:37:15 Corretor: Eu quero essa casa vai sentar logo essa casa é linda, eu sei.
+01:37:23 Valteir de Oliveira: O Robson como que eu mando agora aqui?
+01:37:27 Corretor: Quando você pega o arquivo lá? E manda para o WhatsApp da pessoa não não não não você pega o arquivo que
+01:37:33 Valteir de Oliveira: Eu pego aqui em cima.
+01:37:37 Corretor: tá dentro da sua pasta, cara.
+01:37:40 Valteir de Oliveira: aqui
+01:37:41 Corretor: Isso manda para mim.
+01:37:46 Valteir de Oliveira: Eu arrasto ele.
+01:37:47 Corretor: Pode ser? beleza Para ver como ficou. Você tá doido ficou?
+01:38:17 Valteir de Oliveira: Uma foto ficou muito nítida cara muito da hora.
+01:38:21 Corretor: Sabe o que que sabe o que que a gente tem que fazer você tem que falar para ele assim, ó precisa deixar responsivo não vão fazer hoje. Tá não vamos fazer hoje, mas é a gente precisa deixar ele responsável para celular, mas ficou o pecado. Ficou muito legal, cara e tem como melhorar muito, mas isso aqui porque no celular ele tá aparecendo meio desconfigurado, tá? E mas a gente fazer colocar responsiva isso aí é legal, então, vamos lá que
+01:38:50 Valteir de Oliveira: perfeito
+01:38:55 Corretor: que a gente vai lá no seu no seu taitique nessa na sua conta, né? O Taiti que você abre a sua o seu navegador ali ó do Google Chrome isso. Google Chrome e isso qualquer qualquer qualquer qualquer aba aí. É esse aí, só que você vai o seguinte vai abrir ele.
+  

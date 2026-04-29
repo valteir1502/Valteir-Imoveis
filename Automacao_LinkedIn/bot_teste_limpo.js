@@ -1,0 +1,1 @@
+const puppeteer = require('puppeteer'); (async () => { const browser = await puppeteer.launch({ headless: true }); console.log('Robô Limpo: Navegador Iniciado com Sucesso!'); await browser.close(); })();
