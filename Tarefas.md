@@ -15,9 +15,10 @@ Este arquivo centraliza o status de todas as tarefas que estamos realizando. Com
 
 ### 1. Sistema e Sincronização
 - [x] Criar arquivo central de controle (`Tarefas.md`)
-- [ ] Criar script de salvamento rápido (`salvar_progresso.bat`)
-- [ ] Criar script de atualização rápida (`puxar_progresso.bat`)
-- [ ] Enviar todas as alterações atuais pendentes para o repositório remoto (GitHub)
+- [x] Criar script de salvamento rápido (`salvar_progresso.bat`)
+- [x] Criar script de atualização rápida (`puxar_progresso.bat`)
+- [x] Enviar todas as alterações atuais pendentes para o repositório remoto (GitHub)
+- [x] Configurar sincronização diária e automática (`configurar_agendamento.ps1`)
 
 ### 2. Criação de Conteúdo e Stories
 - [ ] Ajustar/Melhorar o `gerador-stories.html` para as postagens
