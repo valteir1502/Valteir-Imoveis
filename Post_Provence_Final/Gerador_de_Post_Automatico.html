@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Gerador de Post Alto Padrão - Valteir Imóveis</title>
+    <!-- Carregando biblioteca para converter HTML em Imagem -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #2c3e50;
+            color: white;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            gap: 40px;
+            padding: 20px;
+        }
+        .controls-wrapper {
+            display: flex;
+            flex-direction: column;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding-right: 15px;
+        }
+        /* Scrollbar customizada para os controles */
+        .controls-wrapper::-webkit-scrollbar { width: 8px; }
+        .controls-wrapper::-webkit-scrollbar-thumb { background: #e67e22; border-radius: 4px; }
+
+        .controls {
+            background: #34495e;
+            padding: 20px;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            width: 450px;
+        }
+        .controls label {
+            font-weight: bold;
+            font-size: 13px;
+            color: #f39c12;
+        }
+        input[type="file"], input[type="text"], textarea {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            box-sizing: border-box;
+            border-radius: 4px;
+            border: 1px solid #7f8c8d;
+            background: #ecf0f1;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        textarea {
+            resize: vertical;
+            height: 80px;
+        }
+        input[type="range"] {
+            width: 100%;
+            margin-top: 5px;
+            cursor: pointer;
+        }
+        button {
+            background: #e67e22;
+            color: white;
+            border: none;
+            padding: 15px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        button:hover {
+            background: #d35400;
+        }
+
+        /* O Post em si (Proporção Stories/Reels 9:16 = 540x960) */
+        #post-container {
+            width: 540px; 
+            height: 960px; 
+            background-color: #111;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            flex-shrink: 0;
+        }
+        .img-top, .img-bottom {
+            width: 100%;
+            height: 50%;
+            object-fit: cover;
+            object-position: 50% 50%;
+            position: absolute;
+            left: 0;
+        }
+        .img-top {
+            top: 0;
+        }
+        .img-bottom {
+            bottom: 0;
+        }
+        
+        /* Nova Pílula de Localização */
+        .location-badge {
+            position: absolute;
+            top: 48%; /* Centralizado entre as duas imagens */
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            color: #333;
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-weight: bold;
+            font-size: 18px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            z-index: 20;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .location-icon {
+            color: #8e44ad; /* Roxo parecido com o ícone do print */
+            font-size: 20px;
+        }
+
+        /* Novo Banner Azul Semitransparente de Informações */
+        .info-banner {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 48%; /* Cobre a metade inferior */
+            background: rgba(41, 128, 185, 0.85); /* Azul elegante semi-transparente */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            text-align: center;
+            color: white;
+            z-index: 15;
+            padding: 50px 20px 20px 20px; /* Padding top maior para não tampar a pílula */
+            box-sizing: border-box;
+        }
+        
+        .info-main-text {
+            font-family: 'Impact', 'Arial Black', sans-serif;
+            font-size: 24px;
+            text-transform: uppercase;
+            line-height: 1.2;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.4);
+            margin-bottom: 10px;
+        }
+        
+        .info-price {
+            font-family: 'Impact', 'Arial Black', sans-serif;
+            font-size: 28px;
+            color: #f1c40f; /* Amarelo dourado para destacar o valor */
+            margin-bottom: 5px;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.4);
+        }
+
+        .info-subtext {
+            font-size: 18px;
+            font-weight: 500;
+            margin-bottom: 20px;
+        }
+
+        /* Área do Corretor Movida para o rodapé do banner azul */
+        .broker-area {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background: rgba(0,0,0,0.4); /* Fundo mais sutil */
+            padding: 8px 15px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            margin-top: auto; /* Empurra para o final do banner azul */
+            width: 90%;
+        }
+        .broker-img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            object-position: top center;
+            border: 2px solid white;
+        }
+        .broker-info {
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+            justify-content: center;
+        }
+        .broker-name {
+            font-size: 16px;
+            font-weight: bold;
+            color: white;
+            margin: 0 0 2px 0;
+        }
+        .broker-phone {
+            font-size: 14px;
+            color: #f1c40f;
+            margin: 0;
+            font-weight: bold;
+        }
+
+        .slider-group {
+            background: #2c3e50;
+            padding: 10px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="controls-wrapper">
+        <h1>✨ Post com Banner de Informações</h1>
+        
+        <div class="controls">
+            <!-- FOTOS -->
+            <div>
+                <label>1. Foto de Cima:</label>
+                <input type="file" accept="image/*" onchange="loadFile(event, 'top-img')">
+            </div>
+            <div class="slider-group">
+                <label>⬆️ Enquadramento (Foto Cima):</label>
+                <input type="range" min="0" max="100" value="50" oninput="adjustPosition('top-img', this.value)">
+            </div>
+            
+            <div>
+                <label>2. Foto de Baixo:</label>
+                <input type="file" accept="image/*" onchange="loadFile(event, 'bottom-img')">
+            </div>
+            <div class="slider-group">
+                <label>⬆️ Enquadramento (Foto Baixo):</label>
+                <input type="range" min="0" max="100" value="50" oninput="adjustPosition('bottom-img', this.value)">
+            </div>
+
+            <!-- TEXTOS DO POST -->
+            <div>
+                <label>📍 Pílula de Localização (Condomínio):</label>
+                <input type="text" id="loc-input" value="Condomínio Village Provence" onkeyup="updateText('loc-input', 'location-text')">
+            </div>
+            
+            <div>
+                <label>📝 Texto Principal (Letra Grande):</label>
+                <textarea id="main-text-input" onkeyup="updateHtml('main-text-input', 'info-main-text')">✨ SOFISTICAÇÃO E EXTREMO CONFORTO
+COMPOSTA POR 4 SUÍTES IMPECÁVEIS
+AMPLO ESPAÇO GOURMET COM PISCINA</textarea>
+            </div>
+            
+            <div>
+                <label>💰 Valor do Imóvel:</label>
+                <input type="text" id="price-input" value="R$ 3.700.000,00" onkeyup="updateText('price-input', 'info-price')">
+            </div>
+            
+            <div>
+                <label>📌 Texto Adicional (Permuta, etc):</label>
+                <input type="text" id="subtext-input" value="(aceita imóvel de menor valor como parte de pagamento)" onkeyup="updateText('subtext-input', 'info-subtext')">
+            </div>
+
+            <!-- CORRETOR -->
+            <div>
+                <label>👤 Sua Foto (Rodapé):</label>
+                <input type="file" accept="image/*" onchange="loadFile(event, 'broker-img')">
+            </div>
+            <div>
+                <label>📱 Seu Telefone:</label>
+                <input type="text" id="phone-input" value="(17) 99999-9999" onkeyup="updateText('phone-input', 'broker-phone')">
+            </div>
+            
+            <button onclick="downloadPost()">⬇️ Baixar Imagem 9:16</button>
+        </div>
+    </div>
+
+    <!-- O Post que será gerado em 9:16 -->
+    <div id="post-container">
+        <!-- Imagens de fundo -->
+        <img id="top-img" class="img-top" src="https://via.placeholder.com/540x480?text=Foto+Cima">
+        <img id="bottom-img" class="img-bottom" src="https://via.placeholder.com/540x480?text=Foto+Baixo">
+        
+        <!-- Pílula de Localização -->
+        <div class="location-badge">
+            <span class="location-icon">📍</span>
+            <span id="location-text">Condomínio Village Provence</span>
+        </div>
+
+        <!-- Banner Azul de Informações -->
+        <div class="info-banner">
+            <div id="info-main-text" class="info-main-text">
+                ✨ SOFISTICAÇÃO E EXTREMO CONFORTO<br>
+                COMPOSTA POR 4 SUÍTES IMPECÁVEIS<br>
+                AMPLO ESPAÇO GOURMET COM PISCINA
+            </div>
+            
+            <div class="info-price" id="info-price">R$ 3.700.000,00</div>
+            
+            <div class="info-subtext" id="info-subtext">(aceita imóvel de menor valor como parte de pagamento)</div>
+            
+            <!-- Corretor Rodapé -->
+            <div class="broker-area">
+                <img id="broker-img" class="broker-img" src="https://via.placeholder.com/60x60?text=Foto">
+                <div class="broker-info">
+                    <p class="broker-name">Valteir Imóveis | Especialista Alto Padrão</p>
+                    <p id="broker-phone" class="broker-phone">(17) 99999-9999</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function loadFile(event, elementId) {
+            var reader = new FileReader();
+            reader.onload = function(){
+                var output = document.getElementById(elementId);
+                output.src = reader.result;
+            };
+            if(event.target.files[0]){
+                reader.readAsDataURL(event.target.files[0]);
+            }
+        }
+
+        function updateText(inputId, elementId) {
+            document.getElementById(elementId).innerText = document.getElementById(inputId).value;
+        }
+
+        // Função especial para o textarea preservar as quebras de linha (<br>)
+        function updateHtml(inputId, elementId) {
+            var text = document.getElementById(inputId).value;
+            // Troca as quebras de linha do enter por tags <br>
+            document.getElementById(elementId).innerHTML = text.replace(/\n/g, "<br>");
+        }
+
+        function adjustPosition(elementId, value) {
+            document.getElementById(elementId).style.objectPosition = "50% " + value + "%";
+        }
+
+        function downloadPost() {
+            var container = document.getElementById("post-container");
+            html2canvas(container, {scale: 2}).then(function(canvas) {
+                var link = document.createElement('a');
+                link.download = 'Post_Informativo_Valteir.png';
+                link.href = canvas.toDataURL("image/png");
+                link.click();
+            });
+        }
+    </script>
+</body>
+</html>

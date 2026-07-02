@@ -1,0 +1,3221 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Gerador automático de stories imobiliários de alto padrão. Crie story plates elegantes de 1080x1920 com fotos complementares de forma automatizada para a Valteir Imóveis.">
+  <title>Gerador de Stories Premium — Valteir Imóveis v2.0</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,400&display=swap" rel="stylesheet">
+
+  <style>
+    /* ================================================================
+       DESIGN TOKENS — VALTEIR IMÓVEIS (THEME: DARK LUXURY)
+       ================================================================ */
+    :root {
+      --gold:         #C9A84C;
+      --gold-deep:    #9A7F35;
+      --gold-light:   #E5C973;
+      --bronze:       #7A5C2E;
+      --offblack:     #1A1A1A;
+      --dark-surface: #262626;
+      --dark-card:    #333333;
+      --border-color: #444444;
+      --text-main:    #F9F9F8;
+      --text-muted:   #AAAAAA;
+      
+      --font-display: 'Playfair Display', Georgia, serif;
+      --font-body:    'Lato', Arial, sans-serif;
+      
+      --shadow-subtle: 0 4px 15px rgba(0,0,0,0.3);
+      --shadow-premium: 0 15px 45px rgba(0,0,0,0.6);
+      --shadow-gold:   0 0 30px rgba(201,168,76,0.15);
+      
+      --radius-sm: 4px;
+      --radius-md: 8px;
+      --radius-lg: 16px;
+      
+      --ease: cubic-bezier(0.25, 0.1, 0.25, 1);
+      --fast: 150ms;
+      --base: 250ms;
+      --slow: 400ms;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    body {
+      background-color: var(--offblack);
+      color: var(--text-main);
+      font-family: var(--font-body);
+      font-size: 14px;
+      line-height: 1.5;
+      overflow-x: hidden;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Scrollbar Styling */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: var(--offblack);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: var(--dark-card);
+      border-radius: var(--radius-sm);
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--gold);
+    }
+
+    /* ================================================================
+       UI LAYOUT
+       ================================================================ */
+    header {
+      background-color: rgba(26, 26, 26, 0.95);
+      border-bottom: 1px solid var(--border-color);
+      padding: 16px 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(10px);
+    }
+
+    .header-logo {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .header-logo img {
+      height: 40px;
+      width: auto;
+    }
+    .header-title {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1.4rem;
+      letter-spacing: -0.02em;
+    }
+    .header-title em {
+      color: var(--gold);
+      font-weight: 400;
+      font-style: italic;
+    }
+    
+    .btn-action-group {
+      display: flex;
+      gap: 12px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-family: var(--font-body);
+      font-weight: 700;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      cursor: pointer;
+      border: none;
+      padding: 12px 24px;
+      border-radius: var(--radius-sm);
+      text-decoration: none;
+      transition: all var(--base) var(--ease);
+    }
+    .btn-gold {
+      background: var(--gold);
+      color: var(--offblack);
+    }
+    .btn-gold:hover {
+      background: var(--gold-light);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-gold);
+    }
+    .btn-outline {
+      background: transparent;
+      color: var(--text-main);
+      border: 1px solid var(--border-color);
+    }
+    .btn-outline:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+    .btn-danger {
+      background: #c0392b;
+      color: white;
+    }
+    .btn-danger:hover {
+      background: #e74c3c;
+    }
+
+    /* Main Container Grid */
+    .app-container {
+      display: grid;
+      grid-template-columns: 320px 1fr 350px;
+      height: calc(100vh - 73px);
+      overflow: hidden;
+    }
+
+    @media (max-width: 1200px) {
+      .app-container {
+        grid-template-columns: 300px 1fr;
+      }
+      .editor-sidebar {
+        display: none; /* Can toggle or absolute position later */
+      }
+    }
+
+    /* ================================================================
+       SIDEBAR LEFT: DATA INPUT & GALLERY
+       ================================================================ */
+    .sidebar-left {
+      background-color: rgba(38, 38, 38, 0.5);
+      border-right: 1px solid var(--border-color);
+      padding: 24px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .section-card {
+      background: var(--dark-surface);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 16px;
+      box-shadow: var(--shadow-subtle);
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      margin-bottom: 12px;
+      color: var(--gold-light);
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      padding-bottom: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .form-group {
+      margin-bottom: 16px;
+    }
+    .form-group:last-child {
+      margin-bottom: 0;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+      font-weight: 700;
+    }
+
+    .form-input {
+      width: 100%;
+      background: var(--dark-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      padding: 10px 12px;
+      color: var(--text-main);
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      outline: none;
+      transition: all var(--fast);
+    }
+    .form-input:focus {
+      border-color: var(--gold);
+      box-shadow: 0 0 0 2px rgba(201,168,76,0.2);
+    }
+
+    /* Drag & Drop Area */
+    .upload-zone {
+      border: 2px dashed var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 24px 16px;
+      text-align: center;
+      cursor: pointer;
+      transition: all var(--base) var(--ease);
+      background: rgba(0,0,0,0.1);
+      position: relative;
+    }
+    .upload-zone:hover, .upload-zone.dragover {
+      border-color: var(--gold);
+      background: rgba(201,168,76,0.05);
+    }
+    .upload-zone svg {
+      width: 36px;
+      height: 36px;
+      fill: var(--text-muted);
+      margin-bottom: 8px;
+      transition: fill var(--base);
+    }
+    .upload-zone:hover svg {
+      fill: var(--gold);
+    }
+    .upload-zone p {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+    .upload-zone span {
+      display: block;
+      margin-top: 4px;
+      font-size: 0.7rem;
+      color: rgba(255,255,255,0.3);
+    }
+    .file-inputs-container {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    /* Media Library Thumbnail Grid */
+    .media-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-top: 12px;
+      max-height: 250px;
+      overflow-y: auto;
+      padding-right: 4px;
+    }
+    .media-item {
+      aspect-ratio: 1;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-color);
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+      background: #111;
+      transition: transform var(--fast);
+    }
+    .media-item:hover {
+      transform: scale(1.05);
+      border-color: var(--gold);
+    }
+    .media-item.selected {
+      border: 2px solid var(--gold);
+      box-shadow: 0 0 10px rgba(201,168,76,0.3);
+    }
+    .media-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .media-badge {
+      position: absolute;
+      top: 4px;
+      right: 4px;
+      background: rgba(0,0,0,0.7);
+      padding: 2px 4px;
+      font-size: 0.6rem;
+      border-radius: 2px;
+      font-weight: 700;
+      color: var(--gold-light);
+    }
+    .media-select-dot {
+      position: absolute;
+      bottom: 4px;
+      left: 4px;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--text-muted);
+      border: 1px solid var(--offblack);
+    }
+    .media-item.selected .media-select-dot {
+      background: var(--gold);
+    }
+
+    /* ================================================================
+       CENTER AREA: STORIES PREVIEW
+       ================================================================ */
+    .preview-container {
+      padding: 32px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 32px;
+      background-image: radial-gradient(circle at center, rgba(38,38,38,0.2) 0%, rgba(26,26,26,0.6) 100%);
+    }
+
+    .preview-header {
+      width: 100%;
+      max-width: 900px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .preview-header-info h2 {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+    }
+    .preview-header-info p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    .stories-grid {
+      display: flex;
+      gap: 24px;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      padding: 16px;
+      width: 100%;
+      max-width: 100%;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: thin;
+    }
+
+    /* Story Card Scaled Down Preview (Target: 1080x1920 scaled down)
+       Using a scale factor of 0.25 -> 270x480 */
+    .story-card {
+      width: 270px;
+      height: 480px;
+      background: var(--offblack);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      position: relative;
+      flex-shrink: 0;
+      scroll-snap-align: start;
+      box-shadow: var(--shadow-premium);
+      border: 2px solid var(--border-color);
+      cursor: pointer;
+      transition: all var(--base) var(--ease);
+      user-select: none;
+    }
+    .story-card.active {
+      border-color: var(--gold);
+      box-shadow: var(--shadow-premium), 0 0 25px rgba(201,168,76,0.3);
+      transform: translateY(-8px);
+    }
+
+    .story-image-pane {
+      height: calc(50% - 1px);
+      width: 100%;
+      overflow: hidden;
+      position: relative;
+      background-color: #1a1a1a;
+    }
+    
+    .story-image-pane.pane-top {
+      border-bottom: 2px solid var(--offblack);
+    }
+
+    .story-image-pane img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      position: absolute;
+      top: 0;
+      left: 0;
+      transform-origin: center center;
+      transition: transform 50ms;
+      pointer-events: none;
+    }
+
+    /* Centered Text Overlay */
+    .story-center-card {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 84%;
+      z-index: 10;
+      padding: 16px 12px;
+      border-radius: var(--radius-sm);
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      transition: all var(--base);
+    }
+
+    /* Layout Styles */
+    .style-clean-light {
+      background: transparent !important;
+      box-shadow: none !important;
+      border: none !important;
+      width: 90% !important;
+      padding: 0 !important;
+    }
+    .center-location-pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: #FFFFFF;
+      color: #1A1A1A;
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 0.65rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      margin-bottom: 6px;
+      letter-spacing: 0.02em;
+    }
+    .center-desc-block {
+      color: #FFFFFF;
+      font-family: 'Oswald', sans-serif;
+      font-weight: 600;
+      font-size: 0.84rem;
+      line-height: 0.88;
+      text-align: center;
+      margin-bottom: 3px;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.85), 0 1px 3px rgba(0, 0, 0, 0.95);
+      padding: 0 8px;
+      text-transform: uppercase;
+      letter-spacing: -0.03em;
+    }
+    .center-price-block {
+      color: #FFFFFF;
+      font-family: 'Oswald', sans-serif;
+      font-weight: 700;
+      font-size: 0.92rem;
+      line-height: 0.88;
+      text-align: center;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.85), 0 1px 3px rgba(0, 0, 0, 0.95);
+      text-transform: uppercase;
+      margin-top: 2px;
+      margin-bottom: 3px;
+      letter-spacing: -0.03em;
+    }
+    .center-obs-block {
+      color: #FFFFFF;
+      font-family: 'Oswald', sans-serif;
+      font-weight: 400;
+      font-size: 0.72rem;
+      line-height: 0.88;
+      text-align: center;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.85), 0 1px 3px rgba(0, 0, 0, 0.95);
+      margin-top: 2px;
+      padding: 0 8px;
+      letter-spacing: -0.02em;
+    }
+
+    .style-glass-dark {
+      background: rgba(26, 26, 26, 0.78);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(201, 168, 76, 0.3);
+    }
+    .style-glass-light {
+      background: rgba(249, 249, 248, 0.85);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(122, 92, 46, 0.3);
+    }
+    .style-glass-light * {
+      text-shadow: none !important;
+    }
+    .style-glass-light .center-title, 
+    .style-glass-light .center-features {
+      color: var(--offblack) !important;
+    }
+    .style-glass-light .center-divider {
+      background: var(--bronze) !important;
+    }
+    .style-glass-light .center-price {
+      color: var(--bronze) !important;
+    }
+
+    .style-minimal {
+      background: transparent;
+      box-shadow: none;
+      border: none;
+      width: 90%;
+    }
+    .style-minimal * {
+      text-shadow: 0 4px 10px rgba(0, 0, 0, 0.95), 0 2px 4px rgba(0, 0, 0, 0.95);
+    }
+
+    .style-gold-luxury {
+      background: var(--offblack);
+      border: 2px solid var(--gold);
+      box-shadow: 0 10px 40px rgba(201,168,76,0.25);
+    }
+    .style-gold-luxury .center-title {
+      color: var(--gold-light) !important;
+    }
+
+    /* Text Components inside Center Plate */
+    .center-eyebrow {
+      font-size: 0.6rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--gold);
+      margin-bottom: 6px;
+    }
+    .center-title {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #FFFFFF;
+      line-height: 1.2;
+      margin-bottom: 8px;
+    }
+    .center-divider {
+      width: 40px;
+      height: 1px;
+      background: var(--gold);
+      margin: 8px auto;
+    }
+    .center-features {
+      font-size: 0.62rem;
+      font-weight: 300;
+      color: #E0E0E0;
+      letter-spacing: 0.05em;
+      line-height: 1.4;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+    }
+    .center-price {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--gold);
+    }
+    .center-cta {
+      margin-top: 10px;
+      font-size: 0.5rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: rgba(255,255,255,0.5);
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding-top: 8px;
+    }
+    .style-glass-light .center-cta {
+      color: rgba(0,0,0,0.5) !important;
+      border-top-color: rgba(0,0,0,0.08) !important;
+    }
+
+    /* Drag over image instruction overlay */
+    .drag-instruction {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: rgba(0,0,0,0.6);
+      padding: 4px 8px;
+      font-size: 0.6rem;
+      border-radius: 4px;
+      color: var(--text-muted);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity var(--fast);
+    }
+    .story-card:hover .drag-instruction {
+      opacity: 1;
+    }
+
+    /* Empty state for preview */
+    .empty-state {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      height: 100%;
+      text-align: center;
+      color: var(--text-muted);
+      padding: 64px;
+    }
+    .empty-state svg {
+      width: 64px;
+      height: 64px;
+      fill: var(--border-color);
+    }
+
+    /* Rodapé e Assinatura conforme o Print (Preview) */
+    .story-signature {
+      position: absolute;
+      bottom: 58px;
+      right: 12px;
+      text-align: right;
+      z-index: 12;
+      color: #FFFFFF;
+      text-shadow: 0 1px 4px rgba(0, 0, 0, 0.95);
+      font-family: 'Lato', sans-serif;
+      pointer-events: none;
+      line-height: 1.1;
+    }
+    .story-signature-name {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      font-size: 0.55rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .story-signature-title {
+      font-family: 'Lato', sans-serif;
+      font-size: 0.42rem;
+      font-style: italic;
+      color: rgba(255, 255, 255, 0.9);
+      margin-top: 1px;
+    }
+    .footer-banners-wrap {
+      position: absolute;
+      bottom: 8px;
+      left: 8px;
+      right: 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      z-index: 12;
+      pointer-events: none;
+    }
+    .footer-banner-orange {
+      background-color: #FF9800;
+      color: #FFFFFF;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 0.38rem;
+      text-align: center;
+      text-transform: uppercase;
+      padding: 3px 6px;
+      border-radius: 4px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+      letter-spacing: 0.02em;
+    }
+    .footer-banner-black {
+      background-color: #000000;
+      color: #FFFFFF;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 500;
+      font-size: 0.35rem;
+      text-align: center;
+      padding: 3px 6px;
+      border-radius: 4px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+      letter-spacing: 0.01em;
+    }
+
+    /* Ícone de Pin de Localização Roxo */
+    .location-pin-svg {
+      width: 11px;
+      height: 11px;
+      fill: #9b59b6;
+      margin-right: 5px;
+      vertical-align: middle;
+      display: inline-block;
+    }
+
+    /* ================================================================
+       SIDEBAR RIGHT: EDIT PANEL
+       ================================================================ */
+    .editor-sidebar {
+      background-color: var(--dark-surface);
+      border-left: 1px solid var(--border-color);
+      padding: 24px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .editor-section-title {
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      color: #FFF;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .editor-section-title span {
+      background: var(--gold);
+      color: var(--offblack);
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      font-weight: 700;
+      font-family: var(--font-body);
+    }
+
+    .layout-grid-select {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+    }
+    .layout-opt {
+      border: 1px solid var(--border-color);
+      background: var(--dark-card);
+      border-radius: var(--radius-sm);
+      padding: 10px;
+      text-align: center;
+      cursor: pointer;
+      font-size: 0.75rem;
+      font-weight: 700;
+      transition: all var(--fast);
+    }
+    .layout-opt:hover {
+      border-color: var(--gold);
+    }
+    .layout-opt.selected {
+      background: var(--gold-10);
+      border-color: var(--gold);
+      color: var(--gold-light);
+    }
+
+    .image-selector-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .photo-swap-btn {
+      background: var(--dark-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      padding: 12px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      cursor: pointer;
+      text-align: left;
+      transition: border-color var(--fast);
+    }
+    .photo-swap-btn:hover {
+      border-color: var(--gold);
+    }
+    .photo-swap-btn img {
+      width: 48px;
+      height: 48px;
+      object-fit: cover;
+      border-radius: 2px;
+      background: #111;
+    }
+    .photo-swap-btn-label {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      font-weight: 700;
+      margin-bottom: 2px;
+    }
+    .photo-swap-btn-name {
+      font-size: 0.82rem;
+      color: var(--text-main);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 200px;
+    }
+
+    /* Range controls */
+    .range-control {
+      margin-bottom: 12px;
+    }
+    .range-control-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+    .range-input {
+      width: 100%;
+      -webkit-appearance: none;
+      background: var(--dark-card);
+      height: 6px;
+      border-radius: 3px;
+      outline: none;
+      border: 1px solid var(--border-color);
+    }
+    .range-input::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: var(--gold);
+      cursor: pointer;
+      transition: background var(--fast);
+    }
+    .range-input::-webkit-slider-thumb:hover {
+      background: var(--gold-light);
+    }
+
+    /* Modal for photo swapping */
+    .modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0,0,0,0.85);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity var(--base);
+      backdrop-filter: blur(5px);
+    }
+    .modal.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .modal-content {
+      background: var(--dark-surface);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      width: 90%;
+      max-width: 600px;
+      padding: 24px;
+      box-shadow: var(--shadow-premium);
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      padding-bottom: 12px;
+    }
+    .modal-title {
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      color: var(--gold-light);
+    }
+    .modal-close {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      font-size: 1.5rem;
+      cursor: pointer;
+      transition: color var(--fast);
+    }
+    .modal-close:hover {
+      color: var(--gold);
+    }
+    .modal-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      max-height: 350px;
+      overflow-y: auto;
+      padding-right: 4px;
+    }
+    .modal-grid-item {
+      aspect-ratio: 1;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      cursor: pointer;
+      position: relative;
+      background: #111;
+      transition: all var(--fast);
+    }
+    .modal-grid-item:hover {
+      border-color: var(--gold);
+      transform: scale(1.03);
+    }
+    .modal-grid-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .modal-grid-item-badge {
+      position: absolute;
+      top: 4px;
+      right: 4px;
+      background: rgba(0,0,0,0.8);
+      font-size: 0.55rem;
+      padding: 1px 3px;
+      border-radius: 2px;
+      color: var(--gold);
+    }
+
+    /* Toast Notification */
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: rgba(26,26,26,0.9);
+      border: 1px solid var(--gold);
+      box-shadow: var(--shadow-premium);
+      padding: 12px 24px;
+      border-radius: var(--radius-sm);
+      color: var(--text-main);
+      z-index: 1100;
+      transition: transform var(--base) var(--ease);
+      font-weight: 700;
+      text-transform: uppercase;
+      font-size: 0.8rem;
+      letter-spacing: 0.05em;
+      pointer-events: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .toast.show {
+      transform: translateX(-50%) translateY(0);
+    }
+
+    /* Helper styling */
+    .flex-row {
+      display: flex;
+      gap: 8px;
+    }
+    .flex-1 {
+      flex: 1;
+    }
+    
+    /* Swapping overlays & Drag-and-drop styles */
+    .pane-swap-btn {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      z-index: 15;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: rgba(26, 26, 26, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      color: #FFFFFF;
+      font-size: 1rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: all var(--fast) var(--ease);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    }
+    .story-card:hover .pane-swap-btn {
+      opacity: 1;
+    }
+    .pane-swap-btn:hover {
+      background: var(--gold);
+      color: var(--offblack);
+      border-color: var(--gold);
+      transform: scale(1.1);
+    }
+    .story-image-pane.dragover-pane {
+      box-shadow: inset 0 0 0 3px var(--gold);
+      background-color: rgba(201, 168, 76, 0.25) !important;
+    }
+    .media-item {
+      cursor: grab;
+    }
+    .media-item:active {
+      cursor: grabbing;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="header-logo">
+      <img src="Desing System/Logotipo Valteir Oliveira 2.jpg" alt="Logo Valteir Oliveira" onerror="this.src='https://via.placeholder.com/120x40/1A1A1A/C9A84C?text=Valteir+Imóveis'">
+      <div class="header-title">VALTEIR <em>Imóveis</em> — Stories Creator</div>
+    </div>
+    
+    <div class="btn-action-group">
+      <button class="btn btn-outline" id="btn-load-demo" title="Carrega dados de demonstração com fotos reais">Demonstração</button>
+      <button class="btn btn-gold" id="btn-export-all">Exportar Todos (PNG)</button>
+    </div>
+  </header>
+
+  <!-- APP CONTAINER -->
+  <div class="app-container">
+    
+    <!-- SIDEBAR LEFT: DATA INPUT & GALLERY -->
+    <aside class="sidebar-left">
+      
+      <!-- XML / PROPERTY DATA SECTION -->
+      <section class="section-card">
+        <div class="section-title">Dados do Imóvel</div>
+        
+        <!-- XML file load -->
+        <div class="form-group">
+          <label class="form-label" for="xml-file-picker">Importar imoveis.xml</label>
+          <input type="file" id="xml-file-picker" accept=".xml" style="display:none">
+          <button class="btn btn-outline" style="width:100%; padding: 8px;" onclick="document.getElementById('xml-file-picker').click()">Carregar XML</button>
+        </div>
+
+        <div class="form-group" id="xml-select-group" style="display:none">
+          <label class="form-label" for="property-xml-select">Selecione o Imóvel</label>
+          <select id="property-xml-select" class="form-input"></select>
+        </div>
+
+        <div class="divider" style="margin: 12px 0; border-top: 1px solid rgba(255,255,255,0.05)"></div>
+
+        <!-- Manual Fields -->
+        <div class="form-group">
+          <label class="form-label" for="prop-condo">Condomínio / Bairro</label>
+          <input type="text" id="prop-condo" class="form-input" placeholder="Ex: Quinta do Golfe">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="prop-location">Localização</label>
+          <input type="text" id="prop-location" class="form-input" placeholder="Ex: S. J. do Rio Preto — SP">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="prop-price">Valor do Imóvel</label>
+          <input type="text" id="prop-price" class="form-input" placeholder="Ex: R$ 8.900.000">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="prop-features">Principais Características</label>
+          <input type="text" id="prop-features" class="form-input" placeholder="Ex: 4 Suítes • 6 Vagas • 500m²">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="prop-signature">Assinatura do Corretor</label>
+          <input type="text" id="prop-signature" class="form-input" placeholder="Ex: VALTEIR OLIVEIRA" value="VALTEIR OLIVEIRA">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="prop-signature-sub">Cargo / Subtítulo</label>
+          <input type="text" id="prop-signature-sub" class="form-input" placeholder="Ex: Corretor de Imóveis" value="Corretor de Imóveis">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="prop-banner-orange">Faixa de Destaques (Laranja)</label>
+          <input type="text" id="prop-banner-orange" class="form-input" placeholder="Ex: MINI-CAMPO TERRAÇO (2)...">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="prop-banner-black">Faixa de Negociação (Preta)</label>
+          <input type="text" id="prop-banner-black" class="form-input" placeholder="Ex: edificada lote 972metros!!!...">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="prop-obs">Observação no Bloco Central</label>
+          <input type="text" id="prop-obs" class="form-input" placeholder="Ex: (aceita imóvel menor valor como parte pagamento)">
+        </div>
+      </section>
+
+      <!-- PHOTOS UPLOAD SECTION -->
+      <section class="section-card">
+        <div class="section-title">Carregar Fotos</div>
+        
+        <div class="upload-zone" id="drop-zone">
+          <svg viewBox="0 0 24 24">
+            <path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM14 13v4h-4v-4H7l5-5 5 5h-3z"/>
+          </svg>
+          <p>Arraste a pasta de fotos</p>
+          <span>ou clique abaixo para selecionar</span>
+        </div>
+
+        <div class="file-inputs-container">
+          <input type="file" id="folder-picker" webkitdirectory directory multiple style="display:none">
+          <button class="btn btn-outline" style="padding: 8px; width:100%" onclick="document.getElementById('folder-picker').click()">Selecionar Pasta</button>
+          
+          <input type="file" id="file-picker" multiple accept="image/*" style="display:none">
+          <button class="btn btn-outline" style="padding: 8px; width:100%" onclick="document.getElementById('file-picker').click()">Selecionar Arquivos</button>
+        </div>
+      </section>
+
+      <!-- MEDIA LIBRARY SECTION -->
+      <section class="section-card flex-1" style="display:flex; flex-direction:column; min-height: 200px;">
+        <div class="section-title">
+          <span>Galeria Analisada</span>
+          <span style="font-size: 0.65rem; color: var(--text-muted)" id="gallery-count">0 fotos</span>
+        </div>
+        <p style="font-size:0.75rem; color: var(--text-muted); margin-bottom: 8px;">As melhores fotos foram marcadas automaticamente com base em iluminação, nitidez e resolução.</p>
+        
+        <div class="media-grid" id="gallery-grid">
+          <!-- Dynamically filled with thumbnails -->
+        </div>
+      </section>
+
+    </aside>
+
+    <!-- CENTER AREA: STORIES PREVIEW -->
+    <main class="preview-container">
+      
+      <div class="preview-header">
+        <div class="preview-header-info">
+          <h2>Story Plates Gerados</h2>
+          <p id="stories-subtitle">Carregue fotos para iniciar a geração automatizada de stories.</p>
+        </div>
+      </div>
+
+      <!-- Scrollable container for the stories preview cards -->
+      <div class="stories-grid" id="stories-viewport">
+        
+        <!-- Empty State -->
+        <div class="empty-state" id="empty-state-view">
+          <svg viewBox="0 0 24 24">
+            <path d="M4 4h16v12H4V4zm0 14h16v2H4v-2zM2 2v20h20V2H2zm11 11.5l-2.03-2.71L9 14h8l-3-4-1 1.5z"/>
+          </svg>
+          <h3>Nenhum Story Gerado</h3>
+          <p>Para começar, insira os dados do imóvel e carregue a pasta com fotos.<br>Você também pode clicar no botão <strong>"Demonstração"</strong> no topo para testar instantaneamente.</p>
+        </div>
+
+        <!-- Dynamic Story cards will render here -->
+        
+      </div>
+
+    </main>
+
+    <!-- SIDEBAR RIGHT: EDIT PANEL -->
+    <aside class="editor-sidebar" id="edit-pane" style="opacity: 0.5; pointer-events: none;">
+      
+      <div class="editor-section-title">
+        <span id="active-story-num">1</span>
+        Editar Story Plate
+      </div>
+
+      <!-- Visual Styles Selection -->
+      <section class="section-card">
+        <div class="form-label" style="margin-bottom: 8px;">Estilo Visual</div>
+        <div class="layout-grid-select">
+          <div class="layout-opt selected" data-style="style-clean-light" onclick="setStoryStyle('style-clean-light')">Clean Light (Insta)</div>
+          <div class="layout-opt" data-style="style-glass-dark" onclick="setStoryStyle('style-glass-dark')">Glass Dark</div>
+          <div class="layout-opt" data-style="style-glass-light" onclick="setStoryStyle('style-glass-light')">Glass Light</div>
+          <div class="layout-opt" data-style="style-minimal" onclick="setStoryStyle('style-minimal')">Minimalista</div>
+          <div class="layout-opt" data-style="style-gold-luxury" onclick="setStoryStyle('style-gold-luxury')">Luxury Gold</div>
+        </div>
+      </section>
+
+      <!-- Active Slide Texts -->
+      <section class="section-card">
+        <div class="section-title">Textos do Slide</div>
+        
+        <div class="form-group">
+          <label class="form-label" for="slide-location">Localização (📍 no Clean Light)</label>
+          <input type="text" id="slide-location" class="form-input" oninput="updateSlideText()">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="slide-features">Descrição / Características</label>
+          <textarea id="slide-features" class="form-input" rows="3" style="resize:vertical" oninput="updateSlideText()"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="slide-price">Valor / Destaque</label>
+          <input type="text" id="slide-price" class="form-input" oninput="updateSlideText()">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="slide-eyebrow">Etiqueta (Apenas p/ Estilo Card)</label>
+          <input type="text" id="slide-eyebrow" class="form-input" oninput="updateSlideText()">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="slide-title">Título Principal (Apenas p/ Estilo Card)</label>
+          <input type="text" id="slide-title" class="form-input" oninput="updateSlideText()">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="slide-signature">Assinatura do Corretor</label>
+          <input type="text" id="slide-signature" class="form-input" oninput="updateSlideText()">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="slide-signature-sub">Cargo / Subtítulo</label>
+          <input type="text" id="slide-signature-sub" class="form-input" oninput="updateSlideText()">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="slide-banner-orange">Faixa de Destaques (Laranja)</label>
+          <input type="text" id="slide-banner-orange" class="form-input" oninput="updateSlideText()">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="slide-banner-black">Faixa de Negociação (Preta)</label>
+          <input type="text" id="slide-banner-black" class="form-input" oninput="updateSlideText()">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="slide-obs">Observação no Bloco Central</label>
+          <input type="text" id="slide-obs" class="form-input" oninput="updateSlideText()">
+        </div>
+      </section>
+
+      <!-- Selected Photos Management -->
+      <section class="section-card">
+        <div class="section-title">Fotos Desta Peça</div>
+        
+        <div class="image-selector-wrap">
+          <!-- Top Photo Swap -->
+          <div class="photo-swap-btn" onclick="openPhotoPicker('top')">
+            <img id="edit-img-top-thumb" src="" alt="Top Photo">
+            <div style="flex:1; overflow:hidden;">
+              <div class="photo-swap-btn-label">Foto Superior</div>
+              <div class="photo-swap-btn-name" id="edit-img-top-name">Nenhuma</div>
+            </div>
+            <span style="color:var(--gold);">Trocar</span>
+          </div>
+
+          <!-- Top Position Y adjustment -->
+          <div class="range-control">
+            <div class="range-control-label">
+              <span>Posicionamento Vertical (Superior)</span>
+              <span id="range-top-val">0px</span>
+            </div>
+            <input type="range" id="range-top-pos" class="range-input" min="-300" max="300" value="0" oninput="adjustImagePosition('top')">
+          </div>
+
+          <!-- Top Position X adjustment -->
+          <div class="range-control">
+            <div class="range-control-label">
+              <span>Posicionamento Horizontal (Superior)</span>
+              <span id="range-top-pos-x-val">0px</span>
+            </div>
+            <input type="range" id="range-top-pos-x" class="range-input" min="-300" max="300" value="0" oninput="adjustImagePosition('top')">
+          </div>
+
+          <div class="range-control" style="margin-bottom: 24px;">
+            <div class="range-control-label">
+              <span>Zoom (Superior)</span>
+              <span id="range-top-zoom-val">100%</span>
+            </div>
+            <input type="range" id="range-top-zoom" class="range-input" min="100" max="250" value="100" oninput="adjustImagePosition('top')">
+          </div>
+
+          <!-- Bottom Photo Swap -->
+          <div class="photo-swap-btn" onclick="openPhotoPicker('bottom')">
+            <img id="edit-img-bottom-thumb" src="" alt="Bottom Photo">
+            <div style="flex:1; overflow:hidden;">
+              <div class="photo-swap-btn-label">Foto Inferior</div>
+              <div class="photo-swap-btn-name" id="edit-img-bottom-name">Nenhuma</div>
+            </div>
+            <span style="color:var(--gold);">Trocar</span>
+          </div>
+
+          <!-- Bottom Position Y adjustment -->
+          <div class="range-control">
+            <div class="range-control-label">
+              <span>Posicionamento Vertical (Inferior)</span>
+              <span id="range-bottom-val">0px</span>
+            </div>
+            <input type="range" id="range-bottom-pos" class="range-input" min="-300" max="300" value="0" oninput="adjustImagePosition('bottom')">
+          </div>
+
+          <!-- Bottom Position X adjustment -->
+          <div class="range-control">
+            <div class="range-control-label">
+              <span>Posicionamento Horizontal (Inferior)</span>
+              <span id="range-bottom-pos-x-val">0px</span>
+            </div>
+            <input type="range" id="range-bottom-pos-x" class="range-input" min="-300" max="300" value="0" oninput="adjustImagePosition('bottom')">
+          </div>
+
+          <div class="range-control">
+            <div class="range-control-label">
+              <span>Zoom (Inferior)</span>
+              <span id="range-bottom-zoom-val">100%</span>
+            </div>
+            <input type="range" id="range-bottom-zoom" class="range-input" min="100" max="250" value="100" oninput="adjustImagePosition('bottom')">
+          </div>
+        </div>
+      </section>
+
+      <!-- Export Individual -->
+      <button class="btn btn-gold" id="btn-export-single" style="width: 100%;">Exportar esta Peça</button>
+
+    </aside>
+
+  </div>
+
+  <!-- TOAST NOTIFICATION -->
+  <div class="toast" id="toast-view">
+    <span style="color:var(--gold)">✔</span>
+    <span id="toast-text">Stories gerados com sucesso!</span>
+  </div>
+
+  <!-- PHOTO PICKER MODAL -->
+  <div class="modal" id="photo-picker-modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title">Substituir Imagem</h3>
+        <button class="modal-close" onclick="closePhotoPicker()">&times;</button>
+      </div>
+      <p style="font-size:0.8rem; color:var(--text-muted)">Escolha uma foto da galeria carregada para substituir a imagem no painel selecionado.</p>
+      
+      <div class="modal-grid" id="modal-photo-grid">
+        <!-- Filled dynamically -->
+      </div>
+      
+      <div style="text-align: right; margin-top: 8px;">
+        <button class="btn btn-outline" onclick="closePhotoPicker()">Cancelar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- HIDDEN CANVAS FOR HIGH-RES EXPORT -->
+  <canvas id="export-canvas" width="1080" height="1920" style="display:none"></canvas>
+
+  <!-- ================================================================
+       APPLICATION LOGIC (VANILLA JS)
+       ================================================================ */ -->
+  <script>
+    // State Management
+    let loadedPhotos = [];
+    let generatedStories = [];
+    let activeStoryIndex = -1;
+    let modalTargetPane = 'top'; // 'top' or 'bottom'
+    let propertyXmlData = []; // Store parsed XML listings
+
+    // Constants
+    const STORY_WIDTH = 1080;
+    const STORY_HEIGHT = 1920;
+
+    // XML parsing and dropdown helpers
+    document.getElementById('xml-file-picker').addEventListener('change', handleXmlFile);
+    document.getElementById('property-xml-select').addEventListener('change', handleXmlPropertySelect);
+
+    // File/Folder picker helpers
+    document.getElementById('folder-picker').addEventListener('change', (e) => handleImageFiles(e.target.files));
+    document.getElementById('file-picker').addEventListener('change', (e) => handleImageFiles(e.target.files));
+
+    // Drag and drop zone helpers
+    const dropZone = document.getElementById('drop-zone');
+    dropZone.addEventListener('dragover', (e) => {
+      e.preventDefault();
+      dropZone.classList.add('dragover');
+    });
+    dropZone.addEventListener('dragleave', () => {
+      dropZone.classList.remove('dragover');
+    });
+    dropZone.addEventListener('drop', (e) => {
+      e.preventDefault();
+      dropZone.classList.remove('dragover');
+      
+      // Check if dropped files are directory items or standard files
+      const items = e.dataTransfer.items;
+      if (items && items.length > 0) {
+        // If it's files or folders
+        const files = e.dataTransfer.files;
+        handleImageFiles(files);
+      }
+    });
+
+    // Form inputs change handler for active sync to active story
+    document.getElementById('prop-condo').addEventListener('input', syncPropertyDataToStories);
+    document.getElementById('prop-location').addEventListener('input', syncPropertyDataToStories);
+    document.getElementById('prop-price').addEventListener('input', syncPropertyDataToStories);
+    document.getElementById('prop-features').addEventListener('input', syncPropertyDataToStories);
+    document.getElementById('prop-signature').addEventListener('input', syncPropertyDataToStories);
+    document.getElementById('prop-signature-sub').addEventListener('input', syncPropertyDataToStories);
+    document.getElementById('prop-banner-orange').addEventListener('input', syncPropertyDataToStories);
+    document.getElementById('prop-banner-black').addEventListener('input', syncPropertyDataToStories);
+    document.getElementById('prop-obs').addEventListener('input', syncPropertyDataToStories);
+
+    // Action buttons
+    document.getElementById('btn-load-demo').addEventListener('click', loadDemoData);
+    document.getElementById('btn-export-all').addEventListener('click', exportAllStories);
+    document.getElementById('btn-export-single').addEventListener('click', exportActiveStory);
+
+    // Show Toast message
+    function showToast(message) {
+      const toast = document.getElementById('toast-view');
+      document.getElementById('toast-text').innerText = message;
+      toast.classList.add('show');
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 3000);
+    }
+
+    // Load Demo Data
+    function loadDemoData() {
+      // 1. Set property info
+      document.getElementById('prop-condo').value = 'Condominio Quinta Do Golfe';
+      document.getElementById('prop-location').value = 'Condominio Quinta Do Golfe';
+      document.getElementById('prop-price').value = 'R$ 4.950.000,00';
+      document.getElementById('prop-features').value = '386m² Área • 4 Suítes • Elevador Privativo';
+      document.getElementById('prop-signature').value = 'GUILHERME NEILLY';
+      document.getElementById('prop-signature-sub').value = 'Corretor de Imóveis';
+      document.getElementById('prop-banner-orange').value = '';
+      document.getElementById('prop-banner-black').value = '';
+      document.getElementById('prop-obs').value = '(aceita imóvel de menor valor como parte pagamento)';
+
+      // 2. Clear previous photos
+      loadedPhotos = [];
+      
+      // Real property photo URLs from Valteir XML
+      const demoPhotos = [
+        { name: 'EcoVillage_Fachada.jpg', url: 'https://cdn3.praedium.com.br/1700g8BocjY0sIkrqD1/13418610764230528/exfqae2nwrjoty5njzmmmvh_md.jpg' },
+        { name: 'EcoVillage_Piscina.jpg', url: 'https://cdn3.praedium.com.br/1700g8BocjY0sIkrqD1/13418607649928360/tiwigoo2nwrjoty5mzuzndk4_md.jpg' },
+        { name: 'EcoVillage_Gourmet.jpg', url: 'https://cdn3.praedium.com.br/1700g8BocjY0sIkrqD1/13418608371338627/684ciwm2nwrjoty5ndbmnduy_md.jpg' },
+        { name: 'EcoVillage_Living.jpg', url: 'https://cdn3.praedium.com.br/1700g8BocjY0sIkrqD1/13418608915911120/hc3cqpo2nwrjoty5ndk0m2ex_md.jpg' },
+        { name: 'EcoVillage_Suite.jpg', url: 'https://cdn3.praedium.com.br/1700g8BocjY0sIkrqD1/13418609609775378/zne6iik2nwrjoty5ntq5ndi2_md.jpg' },
+        { name: 'EcoVillage_Banheiro.jpg', url: 'https://cdn3.praedium.com.br/1700g8BocjY0sIkrqD1/13418611243641166/cpes8j02nwrjoty5nmu0mzc0_md.jpg' },
+        { name: 'EcoVillage_Cozinha.jpg', url: 'https://cdn3.praedium.com.br/1700g8BocjY0sIkrqD1/13418611808411310/q4ra5f42nwrjoty5nzc5zgyx_md.jpg' },
+        { name: 'EcoVillage_Closet.jpg', url: 'https://cdn3.praedium.com.br/1700g8BocjY0sIkrqD1/13418615321227427/mfai7ay2nwrjoty5yjayzmvh_md.jpg' }
+      ];
+
+      let loadedCount = 0;
+      showToast("Carregando fotos de demonstração...");
+
+      demoPhotos.forEach(photo => {
+        const img = new Image();
+        img.crossOrigin = 'anonymous'; // Enable CORS download
+        img.src = photo.url;
+        img.onload = () => {
+          // Add to loadedPhotos
+          const p = {
+            name: photo.name,
+            src: photo.url,
+            imageObj: img,
+            width: img.naturalWidth || 1080,
+            height: img.naturalHeight || 720,
+            selected: true,
+            score: 0,
+            // Mock property metadata for demo photos to build nice descriptions
+            suites: '5',
+            garage: '6',
+            area: '750',
+            title: 'Condomínio Golden Park',
+            location: 'Condomínio Golden Park',
+            price: 'R$ 8.900.000,00',
+            analysis: { brightness: 120, contrast: 60 } // Mocked high quality values for stock demo
+          };
+          
+          // Apply automatic score
+          evaluateSingleImage(p);
+          loadedPhotos.push(p);
+
+          loadedCount++;
+          if (loadedCount === demoPhotos.length) {
+            onPhotosReady();
+            showToast("Demonstração carregada!");
+          }
+        };
+        img.onerror = () => {
+          loadedCount++;
+          if (loadedCount === demoPhotos.length) {
+            onPhotosReady();
+            showToast("Demonstração carregada com alguns erros CORS.");
+          }
+        };
+      });
+    }
+
+    // XML parser
+    function handleXmlFile(e) {
+      const file = e.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = function(evt) {
+        try {
+          const parser = new DOMParser();
+          const xmlDoc = parser.parseFromString(evt.target.result, "text/xml");
+          const listings = xmlDoc.getElementsByTagName("Listing");
+          
+          propertyXmlData = [];
+          const selectDropdown = document.getElementById('property-xml-select');
+          selectDropdown.innerHTML = '<option value="">-- Selecione o Imóvel do XML --</option>';
+
+          for (let i = 0; i < listings.length; i++) {
+            const listing = listings[i];
+            
+            // Extract listing details
+            const listingId = listing.getElementsByTagName("ListingID")[0]?.textContent || i;
+            const title = listing.getElementsByTagName("Title")[0]?.textContent || "Sem título";
+            const type = listing.getElementsByTagName("PropertyType")[0]?.textContent || "Imóvel";
+            const desc = listing.getElementsByTagName("Description")[0]?.textContent || "";
+            
+            // Location
+            const neighborhood = listing.getElementsByTagName("Neighborhood")[0]?.textContent || "";
+            const city = listing.getElementsByTagName("City")[0]?.textContent || "";
+            
+            // Pricing (check RentalPrice or SalePrice)
+            let price = "";
+            const salePriceEl = listing.getElementsByTagName("SalePrice")[0];
+            const rentalPriceEl = listing.getElementsByTagName("RentalPrice")[0];
+            if (salePriceEl) {
+              price = "R$ " + parseInt(salePriceEl.textContent).toLocaleString('pt-BR');
+            } else if (rentalPriceEl) {
+              price = "R$ " + parseInt(rentalPriceEl.textContent).toLocaleString('pt-BR') + "/mês";
+            }
+            
+            // Specs
+            const bedrooms = listing.getElementsByTagName("Bedrooms")[0]?.textContent || "0";
+            const suites = listing.getElementsByTagName("Suites")[0]?.textContent || "0";
+            const garage = listing.getElementsByTagName("Garage")[0]?.textContent || "0";
+            const area = listing.getElementsByTagName("LivingArea")[0]?.textContent || "0";
+            
+            // Images
+            const mediaItems = listing.getElementsByTagName("Item");
+            const photos = [];
+            for (let j = 0; j < mediaItems.length; j++) {
+              if (mediaItems[j].getAttribute("medium") === "image") {
+                photos.push(mediaItems[j].textContent);
+              }
+            }
+
+            const item = {
+              id: listingId,
+              title: title,
+              type: type,
+              description: desc,
+              price: price,
+              location: neighborhood ? `${neighborhood}, ${city}` : city,
+              suites: suites || bedrooms || '3',
+              garage: garage || '3',
+              area: area || '240',
+              features: `${area}m² • ${suites > 0 ? suites + ' Suítes' : bedrooms + ' Quartos'} • ${garage} Vagas`,
+              photos: photos
+            };
+
+            propertyXmlData.push(item);
+            
+            const option = document.createElement('option');
+            option.value = listingId;
+            option.textContent = `[ID ${listingId}] ${type.split('/').pop().trim()} em ${neighborhood || city}`;
+            selectDropdown.appendChild(option);
+          }
+
+          document.getElementById('xml-select-group').style.display = 'block';
+          showToast(`${propertyXmlData.length} imóveis importados do XML!`);
+        } catch (err) {
+          console.error(err);
+          showToast("Erro ao processar o arquivo XML.");
+        }
+      };
+      reader.readAsText(file);
+    }
+
+    // XML Property Dropdown select handler
+    function handleXmlPropertySelect(e) {
+      const selectedId = e.target.value;
+      if (!selectedId) return;
+
+      const item = propertyXmlData.find(x => x.id === selectedId);
+      if (!item) return;
+
+      // Update forms
+      document.getElementById('prop-condo').value = item.title;
+      document.getElementById('prop-location').value = item.location;
+      document.getElementById('prop-price').value = item.price || 'Consulte o Valor';
+      document.getElementById('prop-features').value = item.features;
+      
+      // Store current selected XML item on window for access in generator
+      window.currentXmlItem = item;
+
+      // If XML contains image URLs, load them (Warning: CORS might affect canvas exports)
+      if (item.photos && item.photos.length > 0) {
+        showToast(`Carregando ${item.photos.length} fotos do imóvel via XML...`);
+        loadedPhotos = [];
+        let loadedCount = 0;
+        
+        item.photos.forEach((photoUrl, index) => {
+          const img = new Image();
+          img.crossOrigin = 'anonymous';
+          img.src = photoUrl;
+          img.onload = () => {
+            const p = {
+              name: `xml_photo_${index}.jpg`,
+              src: photoUrl,
+              imageObj: img,
+              width: img.naturalWidth || 1080,
+              height: img.naturalHeight || 720,
+              selected: true,
+              score: 0,
+              analysis: { brightness: 120, contrast: 60 }
+            };
+            evaluateSingleImage(p);
+            loadedPhotos.push(p);
+
+            loadedCount++;
+            if (loadedCount === item.photos.length) {
+              onPhotosReady();
+              showToast("Fotos do XML carregadas com sucesso!");
+            }
+          };
+          img.onerror = () => {
+            loadedCount++;
+            if (loadedCount === item.photos.length) {
+              onPhotosReady();
+            }
+          };
+        });
+      } else {
+        syncPropertyDataToStories();
+      }
+    }
+
+    // Sync input field changes to the generated stories
+    function syncPropertyDataToStories() {
+      const condo = document.getElementById('prop-condo').value || 'Imóvel Exclusivo';
+      const location = document.getElementById('prop-location').value || 'São José do Rio Preto — SP';
+      const price = document.getElementById('prop-price').value || 'Consulte o Valor';
+      const features = document.getElementById('prop-features').value || '';
+      const signature = document.getElementById('prop-signature').value || 'VALTEIR OLIVEIRA';
+      const signatureSub = document.getElementById('prop-signature-sub').value || 'Corretor de Imóveis';
+      const bannerOrange = document.getElementById('prop-banner-orange').value || '';
+      const bannerBlack = document.getElementById('prop-banner-black').value || '';
+      const obs = document.getElementById('prop-obs').value || '';
+
+      generatedStories.forEach((story, idx) => {
+        // Sync depending on layout structure or specific slide
+        if (idx === 0) { // Slide 1: Capa
+          story.title = condo;
+          story.price = price.toUpperCase().includes('DISPONÍVEL') ? price : 'DISPONÍVEL POR ' + price;
+        } else if (idx === generatedStories.length - 1) { // Slide Final: CTA
+          story.price = "WhatsApp: (17) 99172-6078";
+        } else {
+          story.price = price.toUpperCase().includes('DISPONÍVEL') ? price : 'DISPONÍVEL POR ' + price;
+        }
+        
+        story.location = location;
+        story.signature = signature;
+        story.signatureSub = signatureSub;
+        story.bannerOrange = bannerOrange;
+        story.bannerBlack = bannerBlack;
+        story.obs = obs;
+        
+        // Regenerate dynamic descriptions if user hasn't customized it manually
+        const mockItem = window.currentXmlItem || {
+          suites: condo.includes('Golden Park') ? '5' : (condo.includes('Village La Montagne') ? '3' : '3'),
+          garage: condo.includes('Golden Park') ? '6' : (condo.includes('Village La Montagne') ? '3' : '3'),
+          area: condo.includes('Golden Park') ? '750' : (condo.includes('Village La Montagne') ? '226' : '240'),
+          title: condo,
+          location: location,
+          price: price
+        };
+        story.features = generateSlideDescription(idx, mockItem);
+        
+        // Redraw preview
+        renderStoryElement(idx);
+      });
+
+      // Update current active inputs in the right sidebar editor
+      if (activeStoryIndex !== -1) {
+        populateEditorPane(activeStoryIndex);
+      }
+    }
+
+    // Load and Process Selected Local Files / Folders
+    function handleImageFiles(files) {
+      if (!files || files.length === 0) return;
+      
+      showToast(`Carregando ${files.length} fotos do diretório local...`);
+      loadedPhotos = [];
+      
+      let processedCount = 0;
+      const targetCount = Array.from(files).filter(file => file.type.startsWith('image/')).length;
+      
+      if (targetCount === 0) {
+        showToast("Nenhuma imagem válida encontrada.");
+        return;
+      }
+
+      Array.from(files).forEach(file => {
+        if (!file.type.startsWith('image/')) return;
+
+        const reader = new FileReader();
+        reader.onload = function(evt) {
+          const img = new Image();
+          img.src = evt.target.result;
+          img.onload = () => {
+            const p = {
+              name: file.name,
+              src: evt.target.result,
+              imageObj: img,
+              width: img.naturalWidth,
+              height: img.naturalHeight,
+              selected: true,
+              score: 0,
+              analysis: { brightness: 120, contrast: 50 }
+            };
+
+            // Run evaluation
+            evaluateSingleImage(p);
+            loadedPhotos.push(p);
+
+            processedCount++;
+            if (processedCount === targetCount) {
+              onPhotosReady();
+              showToast(`Carregamento concluído! ${loadedPhotos.length} fotos prontas.`);
+            }
+          };
+        };
+        reader.readAsDataURL(file);
+      });
+    }
+
+    // Run Visual Evaluation of Photos
+    function evaluateSingleImage(photoItem) {
+      const img = photoItem.imageObj;
+      const canvas = document.createElement('canvas');
+      const ctx = canvas.getContext('2d');
+      
+      // Small resolution for fast pixel evaluation
+      canvas.width = 50;
+      canvas.height = 50;
+      
+      try {
+        ctx.drawImage(img, 0, 0, 50, 50);
+        const imgData = ctx.getImageData(0, 0, 50, 50);
+        const data = imgData.data;
+        
+        let totalLuminance = 0;
+        let rSum = 0, gSum = 0, bSum = 0;
+        let luminanceList = [];
+
+        for (let i = 0; i < data.length; i += 4) {
+          const r = data[i];
+          const g = data[i+1];
+          const b = data[i+2];
+          
+          rSum += r;
+          gSum += g;
+          bSum += b;
+
+          // Standard relative luminance formula
+          const Y = 0.299 * r + 0.587 * g + 0.114 * b;
+          totalLuminance += Y;
+          luminanceList.push(Y);
+        }
+
+        const pixelCount = data.length / 4;
+        const avgBrightness = totalLuminance / pixelCount;
+        const avgR = rSum / pixelCount;
+        const avgG = gSum / pixelCount;
+        const avgB = bSum / pixelCount;
+
+        // Variance (Contrast)
+        let varianceSum = 0;
+        luminanceList.forEach(Y => {
+          varianceSum += Math.pow(Y - avgBrightness, 2);
+        });
+        const stdDev = Math.sqrt(varianceSum / pixelCount);
+
+        // Edge detection / Detail calculation
+        let detailValue = 0;
+        for (let y = 1; y < 49; y++) {
+          for (let x = 1; x < 49; x++) {
+            const idx = (y * 50 + x) * 4;
+            const currentY = 0.299 * data[idx] + 0.587 * data[idx+1] + 0.114 * data[idx+2];
+            
+            // Right pixel
+            const rightIdx = (y * 50 + (x + 1)) * 4;
+            const rightY = 0.299 * data[rightIdx] + 0.587 * data[rightIdx+1] + 0.114 * data[rightIdx+2];
+
+            // Bottom pixel
+            const bottomIdx = ((y + 1) * 50 + x) * 4;
+            const bottomY = 0.299 * data[bottomIdx] + 0.587 * data[bottomIdx+1] + 0.114 * data[bottomIdx+2];
+
+            detailValue += Math.abs(currentY - rightY) + Math.abs(currentY - bottomY);
+          }
+        }
+        const avgDetail = detailValue / (48 * 48);
+
+        // Score formulation (0-100)
+        let score = 50; // Base
+
+        // 1. Resolution score (max +15)
+        const totalPixels = photoItem.width * photoItem.height;
+        if (totalPixels >= 4000000) score += 15; // 4MP+
+        else if (totalPixels >= 2073600) score += 10; // 1080p+
+        else if (totalPixels >= 1000000) score += 5;
+
+        // 2. Brightness evaluation (max +30, HEAVILY prioritize bright, airy, clean light photos)
+        // Optimal range for luxury: 120 - 200
+        if (avgBrightness >= 115 && avgBrightness <= 195) {
+          score += 30;
+        } else if (avgBrightness < 115) {
+          // Penalize dark photos severely
+          const penalty = (115 - avgBrightness) * 0.85;
+          score -= penalty;
+        } else {
+          // Slightly penalize very overexposed photos
+          const penalty = (avgBrightness - 195) * 0.4;
+          score -= penalty;
+        }
+
+        // 3. Lighter colors & Clean tones (max +15)
+        // Reward images with clear colors (saturation / variance in RGB channels) and high overall brightness
+        if (avgBrightness >= 135) score += 10;
+        const colorVariance = Math.max(avgR, avgG, avgB) - Math.min(avgR, avgG, avgB);
+        score += Math.min(colorVariance * 0.4, 10); // Reward vivid colors (like pool blue, sky blue, wooden warm tones)
+
+        // 4. Contrast / Detail score (max +25)
+        score += Math.min(stdDev * 0.4, 15); // Good contrast/tonal variance
+        score += Math.min(avgDetail * 0.3, 10); // Sharpness/details
+
+        // 5. Composition Aspect Ratio (max +10)
+        const aspect = photoItem.width / photoItem.height;
+        if (aspect >= 1.3 && aspect <= 1.8) {
+          score += 10;
+        } else if (aspect > 1.8) {
+          score += 5;
+        }
+
+        // Keep bounds
+        photoItem.score = Math.round(Math.max(10, Math.min(100, score)));
+        photoItem.analysis = {
+          brightness: Math.round(avgBrightness),
+          contrast: Math.round(stdDev),
+          color: { r: Math.round(avgR), g: Math.round(avgG), b: Math.round(avgB) }
+        };
+
+        // Determine category (Warm interior vs Cool exterior/pool)
+        if (avgB > avgR * 1.05 && avgBrightness > 120) {
+          photoItem.category = 'exterior'; // Blue sky, bright pools
+        } else if (avgR > avgB * 1.1) {
+          photoItem.category = 'interior'; // Cozy warm wood/lights
+        } else {
+          photoItem.category = 'neutral';
+        }
+      } catch (err) {
+        // Fallback for CORS or canvas errors
+        photoItem.score = 70;
+        photoItem.category = 'neutral';
+      }
+    }
+
+    // Actions after images are loaded
+    function onPhotosReady() {
+      // 1. Sort by score
+      loadedPhotos.sort((a, b) => b.score - a.score);
+
+      // 2. Select top photos automatically (e.g. up to 16 photos)
+      loadedPhotos.forEach((photo, index) => {
+        photo.selected = index < 16;
+      });
+
+      // 3. Populate Sidebar gallery thumbnails
+      renderGallery();
+
+      // 4. Generate story plates
+      generateStoriesFromSelected();
+    }
+
+    // Render Sidebar Gallery thumbnails
+    function renderGallery() {
+      const grid = document.getElementById('gallery-grid');
+      grid.innerHTML = '';
+      
+      document.getElementById('gallery-count').innerText = `${loadedPhotos.length} fotos`;
+
+      loadedPhotos.forEach((photo, idx) => {
+        const item = document.createElement('div');
+        item.className = `media-item ${photo.selected ? 'selected' : ''}`;
+        item.title = `${photo.name} (Pontuação: ${photo.score}%)`;
+        item.onclick = () => {
+          photo.selected = !photo.selected;
+          item.classList.toggle('selected');
+          generateStoriesFromSelected(); // Re-trigger stories generation dynamically
+        };
+
+        // Enable Drag & Drop source
+        item.draggable = true;
+        item.ondragstart = (e) => {
+          e.dataTransfer.setData('text/plain', idx);
+          e.dataTransfer.effectAllowed = 'copy';
+        };
+
+        const img = document.createElement('img');
+        img.src = photo.src;
+        item.appendChild(img);
+
+        const scoreBadge = document.createElement('div');
+        scoreBadge.className = 'media-badge';
+        scoreBadge.innerText = `${photo.score}%`;
+        item.appendChild(scoreBadge);
+
+        const selectDot = document.createElement('div');
+        selectDot.className = 'media-select-dot';
+        item.appendChild(selectDot);
+
+        grid.appendChild(item);
+      });
+    }
+
+    // Build the Story Plates from selected photos
+    function generateStoriesFromSelected() {
+      const selected = loadedPhotos.filter(x => x.selected);
+      if (selected.length < 2) {
+        document.getElementById('empty-state-view').style.display = 'flex';
+        document.getElementById('stories-viewport').querySelectorAll('.story-card').forEach(el => el.remove());
+        document.getElementById('edit-pane').style.opacity = '0.5';
+        document.getElementById('edit-pane').style.pointerEvents = 'none';
+        return;
+      }
+
+      document.getElementById('empty-state-view').style.display = 'none';
+
+      // Group images into top/bottom pairs
+      // To create complementary pairs, we sort by category if possible, or alternate high/low contrast, or partition the pool.
+      const exteriors = selected.filter(x => x.category === 'exterior');
+      const interiors = selected.filter(x => x.category === 'interior' || x.category === 'neutral');
+      
+      const pairs = [];
+      const usedIndices = new Set();
+
+      // 1. Try to pair exteriors with interiors
+      for (let i = 0; i < exteriors.length && pairs.length < 10; i++) {
+        const ext = exteriors[i];
+        // Find an interior that is not used yet
+        const intMatch = interiors.find(x => !usedIndices.has(x.name));
+        if (intMatch) {
+          pairs.push({ top: ext, bottom: intMatch });
+          usedIndices.add(ext.name);
+          usedIndices.add(intMatch.name);
+        }
+      }
+
+      // 2. Pair remaining unused selected photos
+      const remaining = selected.filter(x => !usedIndices.has(x.name));
+      for (let i = 0; i < remaining.length - 1 && pairs.length < 10; i += 2) {
+        pairs.push({ top: remaining[i], bottom: remaining[i+1] });
+      }
+
+      // If we don't have enough pairs, duplicate or use neutral pairing
+      if (pairs.length < 5 && selected.length >= 2) {
+        while (pairs.length < 5) {
+          // Re-use selected photos with different offsets/combinations
+          const randomTopIdx = Math.floor(Math.random() * selected.length);
+          let randomBotIdx = Math.floor(Math.random() * selected.length);
+          if (randomBotIdx === randomTopIdx) randomBotIdx = (randomBotIdx + 1) % selected.length;
+          
+          pairs.push({
+            top: selected[randomTopIdx],
+            bottom: selected[randomBotIdx]
+          });
+        }
+      }
+
+      // Properties metadata for titles/copywriting variations
+      const condo = document.getElementById('prop-condo').value || 'Exclusividade';
+      const location = document.getElementById('prop-location').value || 'São José do Rio Preto';
+      const price = document.getElementById('prop-price').value || 'Consulte o Valor';
+      const features = document.getElementById('prop-features').value || '';
+
+      // Copywriting Variation Angles
+      const angles = [
+        {
+          eyebrow: "LANÇAMENTO EXCLUSIVO",
+          title: condo,
+          price: price
+        },
+        {
+          eyebrow: "LAZER & BEM-ESTAR",
+          title: "Espaço Gourmet & Lazer",
+          price: "Sua Família no Melhor Lugar"
+        },
+        {
+          eyebrow: "INTEGRAÇÃO PERFEITA",
+          title: "Ambientes Integrados",
+          price: "Design Contemporâneo"
+        },
+        {
+          eyebrow: "PRIVACIDADE & CONFORTO",
+          title: "Suíte Master & Closets",
+          price: "Seu Refúgio Particular"
+        },
+        {
+          eyebrow: "FICHA TÉCNICA",
+          title: condo,
+          price: price
+        },
+        {
+          eyebrow: "AGENDE SUA VISITA",
+          title: "Fale com Valteir",
+          price: "WhatsApp: (17) 99172-6078"
+        },
+        {
+          eyebrow: "ACABAMENTO PREMIUM",
+          title: "Arquitetura e Detalhes",
+          price: "Sofisticação Atemporal"
+        },
+        {
+          eyebrow: "EXCLUSIVIDADE",
+          title: "Seu Estilo de Vida",
+          price: price
+        }
+      ];
+
+      // Form stories state list
+      generatedStories = [];
+      const numStories = Math.min(pairs.length, 8); // Keep between 5 and 10, default 8
+      
+      // Gather active property specs/details
+      const activeItem = window.currentXmlItem || {
+        suites: condo === 'Condomínio Golden Park' ? '5' : '3',
+        garage: condo === 'Condomínio Golden Park' ? '6' : '3',
+        area: condo === 'Condomínio Golden Park' ? '750' : '240',
+        title: condo,
+        location: location,
+        price: price
+      };
+
+      // Ler novos inputs globais da sidebar esquerda
+      const signature = document.getElementById('prop-signature').value || 'VALTEIR OLIVEIRA';
+      const signatureSub = document.getElementById('prop-signature-sub').value || 'Corretor de Imóveis';
+      const bannerOrange = document.getElementById('prop-banner-orange').value || '';
+      const bannerBlack = document.getElementById('prop-banner-black').value || '';
+      const propObs = document.getElementById('prop-obs').value || '';
+
+      for (let i = 0; i < numStories; i++) {
+        const pair = pairs[i];
+        const angle = angles[i] || { eyebrow: "EXCLUSIVIDADE", title: condo, price: price };
+        
+        let slidePrice = angle.price;
+        if (i === 0) {
+          slidePrice = price.toUpperCase().includes('DISPONÍVEL') ? price : 'DISPONÍVEL POR ' + price;
+        } else if (i === numStories - 1) {
+          slidePrice = "WhatsApp: (17) 99172-6078";
+        } else {
+          // Manter o preço no formato padrão para as outras páginas
+          slidePrice = price.toUpperCase().includes('DISPONÍVEL') ? price : 'DISPONÍVEL POR ' + price;
+        }
+        
+        // Generate beautiful description text specifically for each slide to emulate premium visual stories
+        const slideDesc = generateSlideDescription(i, activeItem);
+
+        generatedStories.push({
+          index: i,
+          topPhoto: pair.top,
+          bottomPhoto: pair.bottom,
+          eyebrow: angle.eyebrow,
+          title: angle.title,
+          location: location, // Store location in each story object
+          features: slideDesc, // Store description in features field
+          price: slidePrice,
+          style: 'style-clean-light', // Set the new Instagram Clean style as default for all slides!
+          topPos: { x: 0, y: 0, zoom: 100 },
+          bottomPos: { x: 0, y: 0, zoom: 100 },
+          signature: signature,
+          signatureSub: signatureSub,
+          bannerOrange: bannerOrange,
+          bannerBlack: bannerBlack,
+          obs: propObs
+        });
+      }
+
+      // Render the stories list
+      renderStoriesViewport();
+      
+      // Select first story
+      selectStory(0);
+      
+      document.getElementById('stories-subtitle').innerText = `${generatedStories.length} story plates criados no formato 1080x1920.`;
+    }
+
+    // Helper to generate elegant description copywriting based on property specs
+    function generateSlideDescription(index, item) {
+      const suites = item.suites || '3';
+      const garage = item.garage || '3';
+      const area = item.area || '240';
+      const title = item.title || 'Imóvel de Alto Padrão';
+      
+      switch(index) {
+        case 0:
+          if (title.includes('Golden Park')) {
+            return `✨ SOFISTICAÇÃO, LUXO, QUALIDADES E EXTREMO CONFORTO! MANSÃO CINEMATOGRÁFICA\nALTÍSSIMO PADRÃO CONSTRUTIVO COM IMPECÁVEIS 750MTS CONSTRUÇÃO\nCOMPOSTA CINCO MARAVILHOSAS SUÍTES COMPLETÍSSIMA E ÚNICA\nPISCINA BAR MOLHADO BORDA INFINITA LAREIA REBAIXADA`;
+          }
+          if (title.includes('Village La Montagne')) {
+            return `✨ SOFISTICAÇÃO, QUALIDADE E CONFORTO! OPORTUNIDADE NOVÍSSIMA 3SUÍTES\nEXCELENTE PADRÃO CONSTRUTIVO IMPECÁVEIS 226MTS CONSTRUÇÃO\nCOMPLETÍSSIMA ENERGIA FOTOVOLTAICA PISCINA AQUECIDA`;
+          }
+          if (title.includes('Quinta Do Golfe')) {
+            return `✨ SOFISTICAÇÃO, QUALIDADES E EXTREMO CONFORTO BELÍSSIMA RESIDÊNCIA\n4SUÍTES DISTRIBUÍDA IMPECÁVEIS 386MTS CONSTRUÇÃO COMPLETÍSSIMA\nENERGIA FOTOVOLTAICA AUTOMAÇÃO ELEVADOR COZINHA SEPARADA`;
+          }
+          return `${suites} suítes sendo uma master, closet integrado, área gourmet climatizada, piscina privativa e fino acabamento contemporâneo.`;
+        case 1:
+          return `Área de lazer espetacular com piscina aquecida, deck molhado e integração completa com o espaço gourmet climatizado.`;
+        case 2:
+          return `Living amplo com 3 ambientes, pé-direito duplo de 6 metros, projeto luminotécnico em LED e total integração interna.`;
+        case 3:
+          return `Suíte master com amplo closet, pia com cuba dupla e janelas automatizadas com vista para a piscina.`;
+        case 4:
+          return `${area}m² de área construída, escritório home office planejado, despensa, área de serviço e garagem coberta para ${garage} carros.`;
+        case 5:
+          return `Localização nobre em condomínio fechado com segurança 24h e infraestrutura de lazer completa para a sua família.`;
+        case 6:
+          return `Mobiliado e decorado (porteira fechada), acabamento em mármores importados e marcenaria planejada em todos os ambientes.`;
+        default:
+          return `${suites} suítes amplas, piscina aquecida, varanda gourmet integrada e acabamentos de altíssimo padrão.`;
+      }
+    }
+
+    // Render Preview Cards in Viewport
+    function renderStoriesViewport() {
+      const viewport = document.getElementById('stories-viewport');
+      
+      // Clear old cards (but keep empty state element)
+      viewport.querySelectorAll('.story-card').forEach(el => el.remove());
+
+      generatedStories.forEach((story, idx) => {
+        const card = document.createElement('div');
+        card.className = `story-card ${idx === activeStoryIndex ? 'active' : ''}`;
+        card.id = `story-card-${idx}`;
+        card.onclick = () => selectStory(idx);
+
+        // Top image pane
+        const topPane = document.createElement('div');
+        topPane.className = 'story-image-pane pane-top';
+        const topImg = document.createElement('img');
+        topImg.src = story.topPhoto.src;
+        topImg.id = `preview-img-top-${idx}`;
+        topImg.style.transform = `translate(${story.topPos.x || 0}px, ${story.topPos.y}px) scale(${story.topPos.zoom / 100})`;
+        topPane.appendChild(topImg);
+        
+        const dragOverlayT = document.createElement('div');
+        dragOverlayT.className = 'drag-instruction';
+        dragOverlayT.innerText = 'Arraste para enquadrar a foto';
+        topPane.appendChild(dragOverlayT);
+
+        // Swap button top (Direct click to change photo)
+        const btnSwapTop = document.createElement('button');
+        btnSwapTop.className = 'pane-swap-btn';
+        btnSwapTop.innerHTML = '📷';
+        btnSwapTop.title = 'Trocar Foto Superior';
+        btnSwapTop.onclick = (e) => {
+          e.stopPropagation();
+          selectStory(idx);
+          openPhotoPicker('top');
+        };
+        topPane.appendChild(btnSwapTop);
+
+        // Drag & Drop swap listeners for top pane
+        topPane.ondragover = (e) => {
+          e.preventDefault();
+          topPane.classList.add('dragover-pane');
+        };
+        topPane.ondragleave = () => {
+          topPane.classList.remove('dragover-pane');
+        };
+        topPane.ondrop = (e) => {
+          e.preventDefault();
+          topPane.classList.remove('dragover-pane');
+          const photoIdx = parseInt(e.dataTransfer.getData('text/plain'));
+          if (!isNaN(photoIdx) && loadedPhotos[photoIdx]) {
+            selectStory(idx);
+            story.topPhoto = loadedPhotos[photoIdx];
+            renderStoryElement(idx);
+            populateEditorPane(idx);
+            showToast("Foto superior atualizada!");
+          }
+        };
+
+        card.appendChild(topPane);
+
+        // Bottom image pane
+        const bottomPane = document.createElement('div');
+        bottomPane.className = 'story-image-pane pane-bottom';
+        const bottomImg = document.createElement('img');
+        bottomImg.src = story.bottomPhoto.src;
+        bottomImg.id = `preview-img-bottom-${idx}`;
+        bottomImg.style.transform = `translate(${story.bottomPos.x || 0}px, ${story.bottomPos.y}px) scale(${story.bottomPos.zoom / 100})`;
+        bottomPane.appendChild(bottomImg);
+
+        const dragOverlayB = document.createElement('div');
+        dragOverlayB.className = 'drag-instruction';
+        dragOverlayB.innerText = 'Arraste para enquadrar a foto';
+        bottomPane.appendChild(dragOverlayB);
+
+        // Swap button bottom (Direct click to change photo)
+        const btnSwapBottom = document.createElement('button');
+        btnSwapBottom.className = 'pane-swap-btn';
+        btnSwapBottom.innerHTML = '📷';
+        btnSwapBottom.title = 'Trocar Foto Inferior';
+        btnSwapBottom.onclick = (e) => {
+          e.stopPropagation();
+          selectStory(idx);
+          openPhotoPicker('bottom');
+        };
+        bottomPane.appendChild(btnSwapBottom);
+
+        // Drag & Drop swap listeners for bottom pane
+        bottomPane.ondragover = (e) => {
+          e.preventDefault();
+          bottomPane.classList.add('dragover-pane');
+        };
+        bottomPane.ondragleave = () => {
+          bottomPane.classList.remove('dragover-pane');
+        };
+        bottomPane.ondrop = (e) => {
+          e.preventDefault();
+          bottomPane.classList.remove('dragover-pane');
+          const photoIdx = parseInt(e.dataTransfer.getData('text/plain'));
+          if (!isNaN(photoIdx) && loadedPhotos[photoIdx]) {
+            selectStory(idx);
+            story.bottomPhoto = loadedPhotos[photoIdx];
+            renderStoryElement(idx);
+            populateEditorPane(idx);
+            showToast("Foto inferior atualizada!");
+          }
+        };
+
+        card.appendChild(bottomPane);
+
+        // Center card overlay
+        const centerCard = document.createElement('div');
+        centerCard.className = `story-center-card ${story.style}`;
+        centerCard.id = `preview-center-${idx}`;
+
+        populateCenterCardDOM(centerCard, story, idx);
+
+        card.appendChild(centerCard);
+
+        // Assinatura do Corretor (Preview)
+        const signatureEl = document.createElement('div');
+        signatureEl.className = 'story-signature';
+        signatureEl.id = `preview-sig-${idx}`;
+        
+        const sigName = document.createElement('div');
+        sigName.className = 'story-signature-name';
+        sigName.innerText = story.signature || '';
+        signatureEl.appendChild(sigName);
+        
+        const sigTitle = document.createElement('div');
+        sigTitle.className = 'story-signature-title';
+        sigTitle.innerText = story.signatureSub || '';
+        signatureEl.appendChild(sigTitle);
+        
+        card.appendChild(signatureEl);
+
+        // Faixas de Rodapé (Preview)
+        const bannersWrap = document.createElement('div');
+        bannersWrap.className = 'footer-banners-wrap';
+        bannersWrap.id = `preview-banners-${idx}`;
+
+        const bannerOrange = document.createElement('div');
+        bannerOrange.className = 'footer-banner-orange';
+        bannerOrange.id = `preview-banner-orange-${idx}`;
+        bannerOrange.innerText = story.bannerOrange || '';
+        bannerOrange.style.display = story.bannerOrange ? 'block' : 'none';
+        bannersWrap.appendChild(bannerOrange);
+
+        const bannerBlack = document.createElement('div');
+        bannerBlack.className = 'footer-banner-black';
+        bannerBlack.id = `preview-banner-black-${idx}`;
+        bannerBlack.innerText = story.bannerBlack || '';
+        bannerBlack.style.display = story.bannerBlack ? 'block' : 'none';
+        bannersWrap.appendChild(bannerBlack);
+
+        card.appendChild(bannersWrap);
+
+        // Add drag adjustments on preview card natively
+        setupDragToReposition(card, idx);
+
+        viewport.appendChild(card);
+      });
+    }
+
+    // Populate the center card content depending on style
+    function populateCenterCardDOM(container, story, idx) {
+      container.innerHTML = '';
+      
+      if (story.style === 'style-clean-light') {
+        const pill = document.createElement('div');
+        pill.className = 'center-location-pill';
+        pill.innerHTML = `
+          <svg class="location-pin-svg" viewBox="0 0 24 24">
+            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+          </svg>
+          <span>${story.location || 'São José do Rio Preto'}</span>
+        `;
+        container.appendChild(pill);
+
+        const desc = document.createElement('div');
+        desc.className = 'center-desc-block';
+        desc.innerText = story.features;
+        container.appendChild(desc);
+
+        const price = document.createElement('div');
+        price.className = 'center-price-block';
+        price.innerText = story.price;
+        container.appendChild(price);
+
+        if (story.obs) {
+          const obsDiv = document.createElement('div');
+          obsDiv.className = 'center-obs-block';
+          obsDiv.innerText = story.obs;
+          container.appendChild(obsDiv);
+        }
+      } else {
+        const eyebrow = document.createElement('div');
+        eyebrow.className = 'center-eyebrow';
+        eyebrow.innerText = story.eyebrow;
+        container.appendChild(eyebrow);
+
+        const title = document.createElement('div');
+        title.className = 'center-title';
+        title.innerText = story.title;
+        container.appendChild(title);
+
+        const divider = document.createElement('div');
+        divider.className = 'center-divider';
+        container.appendChild(divider);
+
+        const specs = document.createElement('div');
+        specs.className = 'center-features';
+        specs.innerText = story.features;
+        container.appendChild(specs);
+
+        const price = document.createElement('div');
+        price.className = 'center-price';
+        price.innerText = story.price;
+        container.appendChild(price);
+
+        const cta = document.createElement('div');
+        cta.className = 'center-cta';
+        cta.innerText = 'Clique no Link da Bio';
+        container.appendChild(cta);
+      }
+    }
+
+    // Render single story element updates
+    function renderStoryElement(idx) {
+      const story = generatedStories[idx];
+      if (!story) return;
+
+      const centerCard = document.getElementById(`preview-center-${idx}`);
+      centerCard.className = `story-center-card ${story.style}`;
+      populateCenterCardDOM(centerCard, story, idx);
+
+      const topImg = document.getElementById(`preview-img-top-${idx}`);
+      topImg.src = story.topPhoto.src;
+      topImg.style.transform = `translate(${story.topPos.x || 0}px, ${story.topPos.y}px) scale(${story.topPos.zoom / 100})`;
+
+      const bottomImg = document.getElementById(`preview-img-bottom-${idx}`);
+      bottomImg.src = story.bottomPhoto.src;
+      bottomImg.style.transform = `translate(${story.bottomPos.x || 0}px, ${story.bottomPos.y}px) scale(${story.bottomPos.zoom / 100})`;
+
+      // Atualizar Assinatura no Preview
+      const sigName = document.querySelector(`#preview-sig-${idx} .story-signature-name`);
+      if (sigName) sigName.innerText = story.signature || '';
+      const sigTitle = document.querySelector(`#preview-sig-${idx} .story-signature-title`);
+      if (sigTitle) sigTitle.innerText = story.signatureSub || '';
+
+      // Atualizar Faixas de Rodapé no Preview
+      const bannerOrange = document.getElementById(`preview-banner-orange-${idx}`);
+      if (bannerOrange) {
+        bannerOrange.innerText = story.bannerOrange || '';
+        bannerOrange.style.display = story.bannerOrange ? 'block' : 'none';
+      }
+      const bannerBlack = document.getElementById(`preview-banner-black-${idx}`);
+      if (bannerBlack) {
+        bannerBlack.innerText = story.bannerBlack || '';
+        bannerBlack.style.display = story.bannerBlack ? 'block' : 'none';
+      }
+    }
+
+    // Set active story selection
+    function selectStory(idx) {
+      if (idx < 0 || idx >= generatedStories.length) return;
+
+      // Update old active class
+      if (activeStoryIndex !== -1) {
+        const oldCard = document.getElementById(`story-card-${activeStoryIndex}`);
+        if (oldCard) oldCard.classList.remove('active');
+      }
+
+      activeStoryIndex = idx;
+      
+      const newCard = document.getElementById(`story-card-${idx}`);
+      if (newCard) newCard.classList.add('active');
+
+      // Enable right sidebar editor
+      const editor = document.getElementById('edit-pane');
+      editor.style.opacity = '1';
+      editor.style.pointerEvents = 'auto';
+
+      // Populate right sidebar with active story details
+      populateEditorPane(idx);
+    }
+
+    // Populate Editor Inputs
+    function populateEditorPane(idx) {
+      const story = generatedStories[idx];
+      
+      document.getElementById('active-story-num').innerText = idx + 1;
+      
+      // Select layout opt visual active style
+      document.querySelectorAll('.layout-opt').forEach(opt => {
+        if (opt.getAttribute('data-style') === story.style) {
+          opt.classList.add('selected');
+        } else {
+          opt.classList.remove('selected');
+        }
+      });
+
+      // Populate text inputs
+      document.getElementById('slide-location').value = story.location || '';
+      document.getElementById('slide-eyebrow').value = story.eyebrow || '';
+      document.getElementById('slide-title').value = story.title || '';
+      document.getElementById('slide-features').value = story.features || '';
+      document.getElementById('slide-price').value = story.price || '';
+      document.getElementById('slide-signature').value = story.signature || '';
+      document.getElementById('slide-signature-sub').value = story.signatureSub || '';
+      document.getElementById('slide-banner-orange').value = story.bannerOrange || '';
+      document.getElementById('slide-banner-black').value = story.bannerBlack || '';
+      document.getElementById('slide-obs').value = story.obs || '';
+
+      // Photo swap buttons update
+      document.getElementById('edit-img-top-thumb').src = story.topPhoto.src;
+      document.getElementById('edit-img-top-name').innerText = story.topPhoto.name;
+      
+      document.getElementById('edit-img-bottom-thumb').src = story.bottomPhoto.src;
+      document.getElementById('edit-img-bottom-name').innerText = story.bottomPhoto.name;
+
+      // Sliders positioning
+      document.getElementById('range-top-pos').value = story.topPos.y;
+      document.getElementById('range-top-val').innerText = `${story.topPos.y}px`;
+      
+      document.getElementById('range-top-pos-x').value = story.topPos.x || 0;
+      document.getElementById('range-top-pos-x-val').innerText = `${story.topPos.x || 0}px`;
+
+      document.getElementById('range-top-zoom').value = story.topPos.zoom;
+      document.getElementById('range-top-zoom-val').innerText = `${story.topPos.zoom}%`;
+
+      document.getElementById('range-bottom-pos').value = story.bottomPos.y;
+      document.getElementById('range-bottom-val').innerText = `${story.bottomPos.y}px`;
+
+      document.getElementById('range-bottom-pos-x').value = story.bottomPos.x || 0;
+      document.getElementById('range-bottom-pos-x-val').innerText = `${story.bottomPos.x || 0}px`;
+
+      document.getElementById('range-bottom-zoom').value = story.bottomPos.zoom;
+      document.getElementById('range-bottom-zoom-val').innerText = `${story.bottomPos.zoom}%`;
+    }
+
+    // Update active slide text from editor inputs
+    function updateSlideText() {
+      if (activeStoryIndex === -1) return;
+      const story = generatedStories[activeStoryIndex];
+
+      story.location = document.getElementById('slide-location').value;
+      story.eyebrow = document.getElementById('slide-eyebrow').value;
+      story.title = document.getElementById('slide-title').value;
+      story.features = document.getElementById('slide-features').value;
+      story.price = document.getElementById('slide-price').value;
+      story.signature = document.getElementById('slide-signature').value;
+      story.signatureSub = document.getElementById('slide-signature-sub').value;
+      story.bannerOrange = document.getElementById('slide-banner-orange').value;
+      story.bannerBlack = document.getElementById('slide-banner-black').value;
+      story.obs = document.getElementById('slide-obs').value;
+
+      // Redraw active story preview
+      renderStoryElement(activeStoryIndex);
+    }
+
+    // Set Story Plate Layout style
+    function setStoryStyle(styleClass) {
+      if (activeStoryIndex === -1) return;
+      const story = generatedStories[activeStoryIndex];
+      story.style = styleClass;
+
+      document.querySelectorAll('.layout-opt').forEach(opt => {
+        if (opt.getAttribute('data-style') === styleClass) {
+          opt.classList.add('selected');
+        } else {
+          opt.classList.remove('selected');
+        }
+      });
+
+      renderStoryElement(activeStoryIndex);
+    }
+
+    // Adjust Image Position and Zoom
+    function adjustImagePosition(pane) {
+      if (activeStoryIndex === -1) return;
+      const story = generatedStories[activeStoryIndex];
+
+      if (pane === 'top') {
+        const xVal = parseInt(document.getElementById('range-top-pos-x').value);
+        const yVal = parseInt(document.getElementById('range-top-pos').value);
+        const zVal = parseInt(document.getElementById('range-top-zoom').value);
+        
+        story.topPos.x = xVal;
+        story.topPos.y = yVal;
+        story.topPos.zoom = zVal;
+        
+        document.getElementById('range-top-pos-x-val').innerText = `${xVal}px`;
+        document.getElementById('range-top-val').innerText = `${yVal}px`;
+        document.getElementById('range-top-zoom-val').innerText = `${zVal}%`;
+      } else {
+        const xVal = parseInt(document.getElementById('range-bottom-pos-x').value);
+        const yVal = parseInt(document.getElementById('range-bottom-pos').value);
+        const zVal = parseInt(document.getElementById('range-bottom-zoom').value);
+
+        story.bottomPos.x = xVal;
+        story.bottomPos.y = yVal;
+        story.bottomPos.zoom = zVal;
+
+        document.getElementById('range-bottom-pos-x-val').innerText = `${xVal}px`;
+        document.getElementById('range-bottom-val').innerText = `${yVal}px`;
+        document.getElementById('range-bottom-zoom-val').innerText = `${zVal}%`;
+      }
+
+      renderStoryElement(activeStoryIndex);
+    }
+
+    // Drag-to-reposition feature directly on the preview card
+    function setupDragToReposition(cardElement, idx) {
+      let isDragging = false;
+      let startX = 0;
+      let startY = 0;
+      let initialOffsetX = 0;
+      let initialOffsetY = 0;
+      let activePane = null; // 'top' or 'bottom'
+
+      const panes = cardElement.querySelectorAll('.story-image-pane');
+
+      panes.forEach(pane => {
+        pane.addEventListener('mousedown', (e) => {
+          isDragging = true;
+          activePane = pane.classList.contains('pane-top') ? 'top' : 'bottom';
+          startX = e.clientX;
+          startY = e.clientY;
+          
+          const story = generatedStories[idx];
+          initialOffsetX = activePane === 'top' ? (story.topPos.x || 0) : (story.bottomPos.x || 0);
+          initialOffsetY = activePane === 'top' ? story.topPos.y : story.bottomPos.y;
+          
+          cardElement.style.cursor = 'grabbing';
+          e.preventDefault();
+        });
+      });
+
+      window.addEventListener('mousemove', (e) => {
+        if (!isDragging || activeStoryIndex !== idx) return;
+
+        const deltaX = e.clientX - startX;
+        const deltaY = e.clientY - startY;
+        
+        // Scale adjustment (preview card is scaled down to 25%, so 4x multiplier)
+        const adjustedDeltaX = deltaX * 4;
+        const adjustedDeltaY = deltaY * 4;
+        
+        const newOffsetX = Math.max(-300, Math.min(300, initialOffsetX + adjustedDeltaX));
+        const newOffsetY = Math.max(-300, Math.min(300, initialOffsetY + adjustedDeltaY));
+
+        const story = generatedStories[idx];
+        if (activePane === 'top') {
+          story.topPos.x = Math.round(newOffsetX);
+          story.topPos.y = Math.round(newOffsetY);
+          
+          const rangeX = document.getElementById('range-top-pos-x');
+          if (rangeX) {
+            rangeX.value = story.topPos.x;
+            document.getElementById('range-top-pos-x-val').innerText = `${story.topPos.x}px`;
+          }
+          
+          document.getElementById('range-top-pos').value = story.topPos.y;
+          document.getElementById('range-top-val').innerText = `${story.topPos.y}px`;
+        } else {
+          story.bottomPos.x = Math.round(newOffsetX);
+          story.bottomPos.y = Math.round(newOffsetY);
+          
+          const rangeX = document.getElementById('range-bottom-pos-x');
+          if (rangeX) {
+            rangeX.value = story.bottomPos.x;
+            document.getElementById('range-bottom-pos-x-val').innerText = `${story.bottomPos.x}px`;
+          }
+          
+          document.getElementById('range-bottom-pos').value = story.bottomPos.y;
+          document.getElementById('range-bottom-val').innerText = `${story.bottomPos.y}px`;
+        }
+
+        renderStoryElement(idx);
+      });
+
+      window.addEventListener('mouseup', () => {
+        if (isDragging) {
+          isDragging = false;
+          cardElement.style.cursor = 'pointer';
+        }
+      });
+    }
+
+    // Modal Photo Picker for replacing a photo in a pane
+    function openPhotoPicker(pane) {
+      modalTargetPane = pane;
+      const modal = document.getElementById('photo-picker-modal');
+      const grid = document.getElementById('modal-photo-grid');
+      grid.innerHTML = '';
+
+      loadedPhotos.forEach((photo) => {
+        const item = document.createElement('div');
+        item.className = 'modal-grid-item';
+        item.onclick = () => selectPhotoFromModal(photo);
+
+        const img = document.createElement('img');
+        img.src = photo.src;
+        item.appendChild(img);
+
+        const badge = document.createElement('div');
+        badge.className = 'modal-grid-item-badge';
+        badge.innerText = `${photo.score}%`;
+        item.appendChild(badge);
+
+        grid.appendChild(item);
+      });
+
+      modal.classList.add('open');
+    }
+
+    function closePhotoPicker() {
+      document.getElementById('photo-picker-modal').classList.remove('open');
+    }
+
+    function selectPhotoFromModal(photoItem) {
+      if (activeStoryIndex === -1) return;
+      const story = generatedStories[activeStoryIndex];
+
+      if (modalTargetPane === 'top') {
+        story.topPhoto = photoItem;
+      } else {
+        story.bottomPhoto = photoItem;
+      }
+
+      renderStoryElement(activeStoryIndex);
+      populateEditorPane(activeStoryIndex);
+      closePhotoPicker();
+    }
+
+    // ================================================================
+    // CANVAS RENDERING ENGINE (1080x1920 HIGH-RES EXPORT)
+    // ================================================================
+    function renderStoryToCanvas(story, callback) {
+      const canvas = document.getElementById('export-canvas');
+      const ctx = canvas.getContext('2d');
+
+      // Clear Canvas
+      ctx.clearRect(0, 0, STORY_WIDTH, STORY_HEIGHT);
+
+      // Wait until images and fonts are loaded (using simple sequential loading inside canvas drawer)
+      const topImg = story.topPhoto.imageObj;
+      const bottomImg = story.bottomPhoto.imageObj;
+
+      // Draw Top Image
+      drawPaneImage(ctx, topImg, 0, 0, STORY_WIDTH, STORY_HEIGHT / 2, story.topPos);
+
+      // Draw Bottom Image
+      drawPaneImage(ctx, bottomImg, 0, STORY_HEIGHT / 2, STORY_WIDTH, STORY_HEIGHT / 2, story.bottomPos);
+
+      // Draw Divider Line between panes
+      ctx.fillStyle = '#1A1A1A';
+      ctx.fillRect(0, STORY_HEIGHT / 2 - 4, STORY_WIDTH, 8);
+
+      // Render Central Overlay Block based on Layout Style
+      drawCenterCard(ctx, story);
+
+      // Draw signature & footer banners on Canvas (1080x1920 scale)
+      drawCanvasSignatureAndBanners(ctx, story);
+
+      // Callback
+      setTimeout(() => {
+        callback(canvas.toDataURL('image/png'));
+      }, 50);
+    }
+
+    // Helper: Draw image with crop, zoom and vertical offset
+    function drawPaneImage(ctx, img, dx, dy, dw, dh, pos) {
+      ctx.save();
+      
+      // Create clipping region for the half pane
+      ctx.beginPath();
+      ctx.rect(dx, dy, dw, dh);
+      ctx.clip();
+
+      const imgAspect = img.naturalWidth / img.naturalHeight;
+      const paneAspect = dw / dh;
+
+      let sw, sh, sx, sy;
+
+      // Determine dimensions to cover pane (object-fit: cover logic)
+      if (imgAspect > paneAspect) {
+        sh = img.naturalHeight;
+        sw = sh * paneAspect;
+        sx = (img.naturalWidth - sw) / 2;
+        sy = 0;
+      } else {
+        sw = img.naturalWidth;
+        sh = sw / paneAspect;
+        sx = 0;
+        sy = (img.naturalHeight - sh) / 2;
+      }
+
+      // Apply zoom (reduces source rectangle size to crop in)
+      const zoomFactor = pos.zoom / 100;
+      const zoomedSw = sw / zoomFactor;
+      const zoomedSh = sh / zoomFactor;
+      
+      // Center source shift
+      const zoomSx = sx + (sw - zoomedSw) / 2;
+      const zoomSy = sy + (sh - zoomedSh) / 2;
+
+      // Apply vertical and horizontal positioning offset (translate Y and X in source pixels)
+      // Because pos.y and pos.x are in preview scale, convert back to canvas source pixels
+      const relativeScaleY = zoomedSh / dh;
+      const relativeScaleX = zoomedSw / dw;
+      
+      // We invert the sign so dragging up/left moves image down/right in view
+      const sourceOffsetY = pos.y * relativeScaleY * 4;
+      const sourceOffsetX = (pos.x || 0) * relativeScaleX * 4;
+
+      const finalSy = Math.max(0, Math.min(img.naturalHeight - zoomedSh, zoomSy - sourceOffsetY));
+      const finalSx = Math.max(0, Math.min(img.naturalWidth - zoomedSw, zoomSx - sourceOffsetX));
+
+      ctx.drawImage(img, finalSx, finalSy, zoomedSw, zoomedSh, dx, dy, dw, dh);
+      ctx.restore();
+    }
+
+    // Helper: Draw the Central Text Card on Canvas
+    function drawCenterCard(ctx, story) {
+      const cardWidth = 900;
+      const cardHeight = 440;
+      const cardX = (STORY_WIDTH - cardWidth) / 2;
+      const cardY = (STORY_HEIGHT - cardHeight) / 2;
+
+      ctx.save();
+
+      // Style specifics
+      if (story.style === 'style-clean-light') {
+        // 1. Obter linhas da descrição com fonte Oswald 36px
+        ctx.font = '600 36px Oswald';
+        const descText = (story.features || '').toUpperCase();
+        const descLines = getWrapLines(ctx, descText, 820);
+        
+        // 2. Calcular altura total do conjunto dinamicamente
+        const pillHeight = 56;
+        const gapAfterPill = 12;
+        const descLineHeight = 31;
+        const gapAfterDesc = 2;
+        const priceHeight = 36;
+        const gapAfterPrice = 2;
+        const obsHeight = 25;
+
+        let totalHeight = pillHeight + gapAfterPill + (descLines.length * descLineHeight) + gapAfterDesc + priceHeight;
+        if (story.obs) {
+          totalHeight += gapAfterPrice + obsHeight;
+        }
+
+        const centerY = STORY_HEIGHT / 2;
+        const startY = centerY - totalHeight / 2;
+
+        // 3. Desenhar Pílula de Localização
+        const locationText = (story.location || 'São José do Rio Preto').toUpperCase();
+        ctx.font = 'bold 24px Lato';
+        ctx.textAlign = 'left';
+        ctx.textBaseline = 'middle';
+
+        const textWidth = ctx.measureText(locationText).width;
+        const pinWidth = 24;
+        const gap = 12;
+        const totalPillContentWidth = pinWidth + gap + textWidth;
+        const pillWidth = totalPillContentWidth + 48; // padding lateral
+        const pillX = (STORY_WIDTH - pillWidth) / 2;
+        const pillY = startY;
+
+        // Desenhar fundo da pílula com sombra
+        ctx.fillStyle = '#FFFFFF';
+        ctx.shadowColor = 'rgba(0, 0, 0, 0.15)';
+        ctx.shadowBlur = 15;
+        ctx.shadowOffsetY = 4;
+        fillRoundedRect(ctx, pillX, pillY, pillWidth, pillHeight, 28);
+        ctx.shadowBlur = 0; // reset shadow
+        ctx.shadowOffsetY = 0;
+
+        // Desenhar Pin Roxo
+        const pinX = pillX + 24 + pinWidth / 2;
+        const pinY = pillY + pillHeight / 2 + 11;
+        drawPurplePin(ctx, pinX, pinY, pinWidth);
+
+        // Desenhar texto da pílula
+        ctx.fillStyle = '#1A1A1A';
+        ctx.fillText(locationText, pinX + pinWidth/2 + gap, pillY + pillHeight / 2);
+
+        // 4. Desenhar Descrição (Oswald, branca com sombra marcada para legibilidade)
+        let currentY = pillY + pillHeight + gapAfterPill;
+        ctx.font = '600 36px Oswald';
+        ctx.fillStyle = '#FFFFFF';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'top';
+        ctx.shadowColor = 'rgba(0, 0, 0, 0.9)';
+        ctx.shadowBlur = 12;
+        ctx.shadowOffsetY = 3;
+
+        for (let i = 0; i < descLines.length; i++) {
+          ctx.fillText(descLines[i], STORY_WIDTH / 2, currentY);
+          currentY += descLineHeight;
+        }
+
+        // 5. Desenhar Preço (Oswald Bold, branco com sombra)
+        currentY += gapAfterDesc;
+        ctx.font = '700 42px Oswald';
+        ctx.fillText((story.price || '').toUpperCase(), STORY_WIDTH / 2, currentY);
+        currentY += priceHeight;
+
+        // 6. Desenhar Observação (Oswald Regular, branca com sombra, preservando maiúsculas/minúsculas)
+        if (story.obs) {
+          currentY += gapAfterPrice;
+          ctx.font = '400 29px Oswald';
+          ctx.fillText(story.obs, STORY_WIDTH / 2, currentY);
+        }
+        
+        ctx.shadowBlur = 0; // Reset
+        ctx.shadowOffsetY = 0;
+      } 
+      else {
+        // Card layouts (style-glass-dark, style-glass-light, style-gold-luxury, style-minimal)
+        if (story.style === 'style-glass-dark') {
+          // Draw card background
+          ctx.fillStyle = 'rgba(26, 26, 26, 0.82)';
+          ctx.shadowColor = 'rgba(0, 0, 0, 0.5)';
+          ctx.shadowBlur = 40;
+          ctx.shadowOffsetY = 15;
+          fillRoundedRect(ctx, cardX, cardY, cardWidth, cardHeight, 16);
+          ctx.shadowBlur = 0; // reset shadow
+          ctx.shadowOffsetY = 0;
+
+          // Draw card border
+          ctx.strokeStyle = 'rgba(201, 168, 76, 0.35)';
+          ctx.lineWidth = 4;
+          strokeRoundedRect(ctx, cardX, cardY, cardWidth, cardHeight, 16);
+
+          // Text colors
+          ctx.textColor = '#FFFFFF';
+          ctx.accentColor = '#C9A84C';
+          ctx.dividerColor = '#C9A84C';
+          ctx.supportColor = '#E0E0E0';
+        } 
+        else if (story.style === 'style-glass-light') {
+          ctx.fillStyle = 'rgba(249, 249, 248, 0.92)';
+          ctx.shadowColor = 'rgba(0, 0, 0, 0.3)';
+          ctx.shadowBlur = 40;
+          ctx.shadowOffsetY = 15;
+          fillRoundedRect(ctx, cardX, cardY, cardWidth, cardHeight, 16);
+          ctx.shadowBlur = 0;
+
+          ctx.strokeStyle = 'rgba(122, 92, 46, 0.35)';
+          ctx.lineWidth = 4;
+          strokeRoundedRect(ctx, cardX, cardY, cardWidth, cardHeight, 16);
+
+          ctx.textColor = '#1A1A1A';
+          ctx.accentColor = '#7A5C2E';
+          ctx.dividerColor = '#7A5C2E';
+          ctx.supportColor = '#555555';
+        } 
+        else if (story.style === 'style-minimal') {
+          // Transparent card, strong text dropshadow
+          ctx.textColor = '#FFFFFF';
+          ctx.accentColor = '#C9A84C';
+          ctx.dividerColor = '#C9A84C';
+          ctx.supportColor = '#E5C973';
+          
+          ctx.shadowColor = 'rgba(0, 0, 0, 0.95)';
+          ctx.shadowBlur = 20;
+          ctx.shadowOffsetY = 4;
+        } 
+        else if (story.style === 'style-gold-luxury') {
+          ctx.fillStyle = '#1A1A1A';
+          ctx.shadowColor = 'rgba(201, 168, 76, 0.25)';
+          ctx.shadowBlur = 45;
+          ctx.shadowOffsetY = 10;
+          fillRoundedRect(ctx, cardX, cardY, cardWidth, cardHeight, 16);
+          ctx.shadowBlur = 0;
+
+          ctx.strokeStyle = '#C9A84C';
+          ctx.lineWidth = 6;
+          strokeRoundedRect(ctx, cardX, cardY, cardWidth, cardHeight, 16);
+
+          ctx.textColor = '#FFFFFF';
+          ctx.accentColor = '#E5C973';
+          ctx.dividerColor = '#C9A84C';
+          ctx.supportColor = '#E0E0E0';
+        }
+
+        // Draw Eyebrow Text
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.font = 'bold 26px Lato';
+        ctx.fillStyle = ctx.accentColor;
+        ctx.fillText(story.eyebrow.toUpperCase(), STORY_WIDTH / 2, cardY + 70);
+
+        // Draw Title Text
+        ctx.font = 'bold 50px Playfair Display';
+        ctx.fillStyle = ctx.textColor;
+        ctx.fillText(story.title, STORY_WIDTH / 2, cardY + 145);
+
+        // Draw Divider Line
+        ctx.fillStyle = ctx.dividerColor;
+        ctx.fillRect(STORY_WIDTH / 2 - 80, cardY + 205, 160, 3);
+
+        // Draw Features Text
+        ctx.font = '300 25px Lato';
+        ctx.fillStyle = ctx.supportColor;
+        ctx.fillText(story.features.toUpperCase(), STORY_WIDTH / 2, cardY + 250);
+
+        // Draw Price Text
+        ctx.font = 'bold 55px Playfair Display';
+        ctx.fillStyle = ctx.accentColor || '#C9A84C';
+        ctx.fillText(story.price, STORY_WIDTH / 2, cardY + 320);
+
+        // Draw CTA Footer link inside card
+        ctx.font = 'bold 20px Lato';
+        ctx.fillStyle = story.style === 'style-glass-light' ? 'rgba(0,0,0,0.5)' : 'rgba(255,255,255,0.4)';
+        ctx.fillText('CLIQUE NO LINK PARA SABER MAIS', STORY_WIDTH / 2, cardY + 385);
+      }
+
+      ctx.restore();
+    }
+
+    // Rounded rectangle drawing helpers on Canvas
+    function fillRoundedRect(ctx, x, y, width, height, radius) {
+      ctx.beginPath();
+      ctx.moveTo(x + radius, y);
+      ctx.lineTo(x + width - radius, y);
+      ctx.quadraticCurveTo(x + width, y, x + width, y + radius);
+      ctx.lineTo(x + width, y + height - radius);
+      ctx.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
+      ctx.lineTo(x + radius, y + height);
+      ctx.quadraticCurveTo(x, y + height, x, y + height - radius);
+      ctx.lineTo(x, y + radius);
+      ctx.quadraticCurveTo(x, y, x + radius, y);
+      ctx.closePath();
+      ctx.fill();
+    }
+
+    function strokeRoundedRect(ctx, x, y, width, height, radius) {
+      ctx.beginPath();
+      ctx.moveTo(x + radius, y);
+      ctx.lineTo(x + width - radius, y);
+      ctx.quadraticCurveTo(x + width, y, x + width, y + radius);
+      ctx.lineTo(x + width, y + height - radius);
+      ctx.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
+      ctx.lineTo(x + radius, y + height);
+      ctx.quadraticCurveTo(x, y + height, x, y + height - radius);
+      ctx.lineTo(x, y + radius);
+      ctx.quadraticCurveTo(x, y, x + radius, y);
+      ctx.closePath();
+      ctx.stroke();
+    }
+
+    // Export current active story slide
+    function exportActiveStory() {
+      if (activeStoryIndex === -1) {
+        showToast("Selecione um story para exportar.");
+        return;
+      }
+      
+      const story = generatedStories[activeStoryIndex];
+      showToast("Renderizando PNG...");
+
+      // Wait for font load security
+      document.fonts.ready.then(() => {
+        renderStoryToCanvas(story, (dataUrl) => {
+          const link = document.createElement('a');
+          link.download = `valteir-story-${story.index + 1}-${story.eyebrow.toLowerCase().replace(/ /g, '_')}.png`;
+          link.href = dataUrl;
+          link.click();
+          showToast("Story exportado com sucesso!");
+        });
+      });
+    }
+
+    // Export all generated stories in sequence
+    function exportAllStories() {
+      if (generatedStories.length === 0) {
+        showToast("Nenhum story gerado para exportar.");
+        return;
+      }
+
+      showToast(`Exportando ${generatedStories.length} stories sequencialmente...`);
+
+      document.fonts.ready.then(() => {
+        let currentIdx = 0;
+
+        function exportNext() {
+          if (currentIdx >= generatedStories.length) {
+            showToast("Todos os stories foram exportados!");
+            return;
+          }
+
+          const story = generatedStories[currentIdx];
+          renderStoryToCanvas(story, (dataUrl) => {
+            const link = document.createElement('a');
+            link.download = `valteir-story-${story.index + 1}-${story.eyebrow.toLowerCase().replace(/ /g, '_')}.png`;
+            link.href = dataUrl;
+            link.click();
+
+            currentIdx++;
+            // Small delay to let browser queue downloads safely
+            setTimeout(exportNext, 300);
+          });
+        }
+
+        exportNext();
+      });
+    }
+    // Auxiliar para obter as linhas de texto quebradas sem desenhá-las
+    function getWrapLines(ctx, text, maxWidth) {
+      const words = text.split(' ');
+      let line = '';
+      const lines = [];
+
+      for (let n = 0; n < words.length; n++) {
+        const testLine = line + words[n] + ' ';
+        const metrics = ctx.measureText(testLine);
+        const testWidth = metrics.width;
+        if (testWidth > maxWidth && n > 0) {
+          lines.push(line.trim());
+          line = words[n] + ' ';
+        } else {
+          line = testLine;
+        }
+      }
+      lines.push(line.trim());
+      return lines;
+    }
+
+    // Text wrapping utility on Canvas
+    function wrapText(ctx, text, x, y, maxWidth, lineHeight) {
+      const words = text.split(' ');
+      let line = '';
+      let currentY = y;
+      const lines = [];
+
+      for (let n = 0; n < words.length; n++) {
+        const testLine = line + words[n] + ' ';
+        const metrics = ctx.measureText(testLine);
+        const testWidth = metrics.width;
+        if (testWidth > maxWidth && n > 0) {
+          lines.push(line);
+          line = words[n] + ' ';
+        } else {
+          line = testLine;
+        }
+      }
+      lines.push(line);
+
+      // Adjust starting Y to center the block of lines vertically
+      const totalHeight = lines.length * lineHeight;
+      currentY = y - totalHeight / 2 + lineHeight / 2;
+
+      for (let i = 0; i < lines.length; i++) {
+        ctx.fillText(lines[i].trim(), x, currentY);
+        currentY += lineHeight;
+      }
+      return currentY;
+    }
+
+    // Canvas Auxiliar: Desenhar pin de localização roxo clássico
+    function drawPurplePin(ctx, x, y, size) {
+      ctx.save();
+      ctx.translate(x, y);
+      
+      ctx.beginPath();
+      ctx.fillStyle = '#9b59b6'; // Roxo
+      ctx.moveTo(0, 0);
+      ctx.bezierCurveTo(-size/2, -size/2, -size/2, -size, 0, -size);
+      ctx.bezierCurveTo(size/2, -size, size/2, -size/2, 0, 0);
+      ctx.closePath();
+      ctx.fill();
+      
+      // Furo interno
+      ctx.beginPath();
+      ctx.fillStyle = '#FFFFFF';
+      ctx.arc(0, -size * 0.65, size * 0.18, 0, Math.PI * 2);
+      ctx.fill();
+      
+      ctx.restore();
+    }
+
+    // Canvas Auxiliar: Desenhar assinatura e banners do rodapé
+    function drawCanvasSignatureAndBanners(ctx, story) {
+      ctx.save();
+
+      // 1. Assinatura do Corretor
+      if (story.signature) {
+        ctx.textAlign = 'right';
+        ctx.textBaseline = 'bottom';
+        ctx.fillStyle = '#FFFFFF';
+        ctx.shadowColor = 'rgba(0, 0, 0, 0.95)';
+        ctx.shadowBlur = 16;
+        ctx.shadowOffsetY = 4;
+
+        ctx.font = 'bold 22px Montserrat';
+        const signatureY = STORY_HEIGHT - 130;
+        ctx.fillText(story.signature.toUpperCase(), STORY_WIDTH - 48, signatureY);
+
+        if (story.signatureSub) {
+          ctx.font = 'italic 17px Lato';
+          ctx.fillText(story.signatureSub, STORY_WIDTH - 48, signatureY + 24);
+        }
+        
+        ctx.shadowBlur = 0;
+        ctx.shadowOffsetY = 0;
+      }
+
+      // 2. Faixas do Rodapé
+      const bannerWidth = STORY_WIDTH - 64; // 1016px
+      const bannerX = 32;
+      
+      // Faixa Laranja
+      if (story.bannerOrange) {
+        const orangeHeight = 44;
+        const orangeY = STORY_HEIGHT - 100;
+
+        ctx.fillStyle = '#FF9800';
+        ctx.shadowColor = 'rgba(0,0,0,0.3)';
+        ctx.shadowBlur = 10;
+        ctx.shadowOffsetY = 2;
+        fillRoundedRect(ctx, bannerX, orangeY, bannerWidth, orangeHeight, 8);
+        ctx.shadowBlur = 0;
+
+        ctx.fillStyle = '#FFFFFF';
+        ctx.font = 'bold 16px Montserrat';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText(story.bannerOrange.toUpperCase(), STORY_WIDTH / 2, orangeY + orangeHeight / 2);
+      }
+
+      // Faixa Preta
+      if (story.bannerBlack) {
+        const blackHeight = 44;
+        const blackY = STORY_HEIGHT - 50;
+
+        ctx.fillStyle = '#000000';
+        ctx.shadowColor = 'rgba(0,0,0,0.3)';
+        ctx.shadowBlur = 10;
+        ctx.shadowOffsetY = 2;
+        fillRoundedRect(ctx, bannerX, blackY, bannerWidth, blackHeight, 8);
+        ctx.shadowBlur = 0;
+
+        ctx.fillStyle = '#FFFFFF';
+        ctx.font = '600 15px Montserrat';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText(story.bannerBlack, STORY_WIDTH / 2, blackY + blackHeight / 2);
+      }
+
+      ctx.restore();
+    }
+  </script>
+</body>
+</html>
