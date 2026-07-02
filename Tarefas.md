@@ -22,7 +22,7 @@ Este arquivo centraliza o status de todas as tarefas que estamos realizando. Com
 
 ### 2. Criação de Conteúdo e Stories
 - [ ] Ajustar/Melhorar o `gerador-stories.html` para as postagens
-- [ ] Estruturar o `Gerador_de_Post_Automatico.html` na pasta `Post_Provence_Final`
+- [x] Estruturar o `Gerador_de_Post_Automatico.html` na pasta `Post_Provence_Final`
 - [ ] Validar e formatar as legendas prontas em `Postagens_Prontas_Redes_Sociais.md`
 
 ### 3. Automação LinkedIn & Meta Ads
