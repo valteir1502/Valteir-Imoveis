@@ -26,6 +26,7 @@ Este arquivo centraliza o status de todas as tarefas que estamos realizando. Com
 - [ ] Validar e formatar as legendas prontas em `Postagens_Prontas_Redes_Sociais.md`
 
 ### 3. Automação LinkedIn & Meta Ads
+- [x] Criar playbook modelo de campanha de vendas alto padrão (`Modelo_Campanha_Vendas_Alto_Padrao.md`)
 - [ ] Testar e validar os scripts da pasta `Automacao_LinkedIn/` (tokens, login, etc.)
 - [ ] Configurar/atualizar a estratégia de criativos na campanha do Damha 432 (`Campanha_Meta_Damha_432.md`)
 
