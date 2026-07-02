@@ -2,313 +2,716 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <title>Gerador de Post Alto Padrão - Valteir Imóveis</title>
-    <!-- Carregando biblioteca para converter HTML em Imagem -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerador de Post Alto Padrão — Valteir Imóveis</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+    
+    <!-- HTML2Canvas para exportar imagens -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #2c3e50;
-            color: white;
-            display: flex;
-            flex-direction: row;
-            justify-content: center;
-            gap: 40px;
-            padding: 20px;
-        }
-        .controls-wrapper {
-            display: flex;
-            flex-direction: column;
-            max-height: 90vh;
-            overflow-y: auto;
-            padding-right: 15px;
-        }
-        /* Scrollbar customizada para os controles */
-        .controls-wrapper::-webkit-scrollbar { width: 8px; }
-        .controls-wrapper::-webkit-scrollbar-thumb { background: #e67e22; border-radius: 4px; }
 
-        .controls {
-            background: #34495e;
-            padding: 20px;
-            border-radius: 10px;
+    <style>
+        /* ================================================================
+           DESIGN TOKENS — VALTEIR IMÓVEIS (DARK LUXURY THEME)
+           ================================================================ */
+        :root {
+            --gold:         #C9A84C;
+            --gold-light:   #E5C973;
+            --gold-deep:    #9A7F35;
+            --bronze:       #7A5C2E;
+            --offblack:     #121212;
+            --dark-surface: #1E1E1E;
+            --dark-card:    #262626;
+            --border-color: #383838;
+            --text-main:    #F9F9F8;
+            --text-muted:   #AAAAAA;
+            
+            --font-display: 'Playfair Display', Georgia, serif;
+            --font-body:    'Lato', Arial, sans-serif;
+            
+            --shadow-subtle: 0 4px 15px rgba(0,0,0,0.5);
+            --shadow-premium: 0 20px 50px rgba(0,0,0,0.8);
+            --shadow-gold:   0 0 25px rgba(201,168,76,0.2);
+            
+            --radius-sm: 4px;
+            --radius-md: 8px;
+            --radius-lg: 16px;
+            
+            --ease: cubic-bezier(0.25, 0.1, 0.25, 1);
+            --base: 250ms;
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--offblack);
+            color: var(--text-main);
+            font-family: var(--font-body);
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
-            gap: 12px;
-            width: 450px;
+            overflow-x: hidden;
         }
-        .controls label {
-            font-weight: bold;
-            font-size: 13px;
-            color: #f39c12;
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
         }
-        input[type="file"], input[type="text"], textarea {
+        ::-webkit-scrollbar-track {
+            background: var(--offblack);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--dark-card);
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border-color);
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--gold);
+        }
+
+        /* HEADER */
+        header {
+            background-color: rgba(18, 18, 18, 0.95);
+            border-bottom: 1px solid var(--border-color);
+            padding: 16px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+        }
+        .header-logo {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        .header-logo img {
+            height: 45px;
+            width: auto;
+        }
+        .header-title {
+            font-family: var(--font-display);
+            font-size: 1.3rem;
+            font-weight: 700;
+            letter-spacing: -0.01em;
+        }
+        .header-title em {
+            color: var(--gold);
+            font-style: italic;
+            font-weight: 400;
+        }
+
+        /* CONTAINER PRINCIPAL */
+        .app-container {
+            display: grid;
+            grid-template-columns: 460px 1fr;
+            height: calc(100vh - 78px);
+            overflow: hidden;
+        }
+
+        @media (max-width: 1024px) {
+            .app-container {
+                grid-template-columns: 1fr;
+                height: auto;
+                overflow: visible;
+            }
+            header {
+                padding: 16px 20px;
+            }
+        }
+
+        /* COLUNA DA ESQUERDA: PAINEL DE CONTROLE */
+        .control-sidebar {
+            background-color: rgba(30, 30, 30, 0.5);
+            border-right: 1px solid var(--border-color);
+            padding: 24px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .section-card {
+            background: var(--dark-surface);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 20px;
+            box-shadow: var(--shadow-subtle);
+        }
+        .section-title {
+            font-family: var(--font-display);
+            color: var(--gold);
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .input-group {
+            margin-bottom: 14px;
+        }
+        .input-group:last-child {
+            margin-bottom: 0;
+        }
+        .input-group label {
+            display: block;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-muted);
+            margin-bottom: 6px;
+        }
+
+        /* INPUT STYLES */
+        input[type="text"], textarea, select {
             width: 100%;
-            padding: 8px;
-            margin-top: 5px;
-            box-sizing: border-box;
-            border-radius: 4px;
-            border: 1px solid #7f8c8d;
-            background: #ecf0f1;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--offblack);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-sm);
+            color: var(--text-main);
+            padding: 10px 12px;
+            font-family: var(--font-body);
+            font-size: 0.9rem;
+            transition: all var(--base) var(--ease);
+        }
+        input[type="text"]:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: var(--gold);
+            box-shadow: 0 0 10px rgba(201,168,76,0.15);
         }
         textarea {
             resize: vertical;
-            height: 80px;
-        }
-        input[type="range"] {
-            width: 100%;
-            margin-top: 5px;
-            cursor: pointer;
-        }
-        button {
-            background: #e67e22;
-            color: white;
-            border: none;
-            padding: 15px;
-            font-size: 16px;
-            font-weight: bold;
-            border-radius: 5px;
-            cursor: pointer;
-            margin-top: 10px;
-        }
-        button:hover {
-            background: #d35400;
+            min-height: 80px;
+            line-height: 1.4;
         }
 
-        /* O Post em si (Proporção Stories/Reels 9:16 = 540x960) */
+        /* FILE INPUT */
+        .file-input-wrapper {
+            position: relative;
+            overflow: hidden;
+            display: inline-block;
+            width: 100%;
+        }
+        .btn-file-custom {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: 100%;
+            background: var(--dark-card);
+            border: 1px dashed var(--gold);
+            color: var(--gold-light);
+            padding: 10px;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            transition: all var(--base) var(--ease);
+        }
+        .btn-file-custom:hover {
+            background: rgba(201, 168, 76, 0.08);
+            border-style: solid;
+        }
+        .file-input-wrapper input[type="file"] {
+            position: absolute;
+            left: 0;
+            top: 0;
+            opacity: 0;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+        }
+
+        /* SLIDERS */
+        .slider-group {
+            background: var(--dark-card);
+            padding: 12px 14px;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border-color);
+            margin-top: 8px;
+        }
+        .slider-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 6px;
+        }
+        .slider-header span {
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            text-transform: uppercase;
+        }
+        input[type="range"] {
+            -webkit-appearance: none;
+            width: 100%;
+            height: 4px;
+            border-radius: 2px;
+            background: var(--border-color);
+            outline: none;
+            cursor: pointer;
+        }
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: var(--gold);
+            transition: transform var(--base);
+        }
+        input[type="range"]::-webkit-slider-thumb:hover {
+            transform: scale(1.2);
+            background: var(--gold-light);
+        }
+
+        /* BOTÃO PRINCIPAL */
+        .btn-download {
+            background: linear-gradient(135deg, var(--gold), var(--bronze));
+            color: white;
+            border: none;
+            padding: 16px;
+            font-family: var(--font-body);
+            font-weight: 900;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            width: 100%;
+            box-shadow: var(--shadow-subtle);
+            transition: all var(--base) var(--ease);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        .btn-download:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-gold);
+            background: linear-gradient(135deg, var(--gold-light), var(--gold-deep));
+        }
+
+        /* COLUNA DA DIREITA: PREVIEW */
+        .preview-area {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+            overflow-y: auto;
+            background-image: radial-gradient(circle, #252525 0%, #121212 100%);
+        }
+
+        /* DISPOSITIVO MOCKUP */
+        .mobile-mockup {
+            position: relative;
+            background: #1e1e1e;
+            padding: 12px;
+            border-radius: 40px;
+            border: 4px solid #333;
+            box-shadow: var(--shadow-premium);
+            aspect-ratio: 9/16;
+            width: 100%;
+            max-width: 480px;
+        }
+        .mobile-mockup::before {
+            content: '';
+            position: absolute;
+            top: 25px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 18px;
+            background: #000;
+            border-radius: 10px;
+            z-index: 50;
+        }
+
+        /* POST CANVAS (Proporção Stories 1080x1920, em escala) */
         #post-container {
-            width: 540px; 
-            height: 960px; 
+            width: 100%;
+            height: 100%;
+            aspect-ratio: 9/16;
             background-color: #111;
             position: relative;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            flex-shrink: 0;
+            border-radius: 28px;
         }
-        .img-top, .img-bottom {
+
+        /* Imagens de fundo divididas em 50% de altura */
+        .post-img {
             width: 100%;
             height: 50%;
             object-fit: cover;
             object-position: 50% 50%;
             position: absolute;
             left: 0;
+            transition: filter 0.3s;
         }
         .img-top {
             top: 0;
+            border-bottom: 2px solid var(--gold);
         }
         .img-bottom {
             bottom: 0;
         }
-        
-        /* Nova Pílula de Localização */
+
+        /* PÍLULA DE LOCALIZAÇÃO (NO CENTRO) */
         .location-badge {
             position: absolute;
-            top: 48%; /* Centralizado entre as duas imagens */
+            top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            background: white;
-            color: #333;
-            padding: 8px 20px;
-            border-radius: 30px;
-            font-weight: bold;
-            font-size: 18px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-            z-index: 20;
+            background: #FFFFFF;
+            color: #1A1A1A;
+            padding: 10px 24px;
+            border-radius: 40px;
+            font-weight: 900;
+            font-size: 14px;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+            z-index: 30;
             display: flex;
             align-items: center;
             gap: 8px;
+            border: 2.5px solid var(--gold);
+            white-space: nowrap;
         }
         .location-icon {
-            color: #8e44ad; /* Roxo parecido com o ícone do print */
-            font-size: 20px;
+            font-size: 16px;
+            color: #8E44AD; /* Cor roxa original do marcador */
         }
 
-        /* Novo Banner Azul Semitransparente de Informações */
+        /* BANNER DE INFORMAÇÕES (METADE INFERIOR) */
         .info-banner {
             position: absolute;
             bottom: 0;
             left: 0;
             width: 100%;
-            height: 48%; /* Cobre a metade inferior */
-            background: rgba(41, 128, 185, 0.85); /* Azul elegante semi-transparente */
+            height: 46%; /* Cobre a parte inferior */
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: flex-start;
             text-align: center;
             color: white;
-            z-index: 15;
-            padding: 50px 20px 20px 20px; /* Padding top maior para não tampar a pílula */
+            z-index: 20;
+            padding: 50px 24px 24px 24px;
             box-sizing: border-box;
+            transition: background 0.3s;
         }
-        
+
+        /* TEMAS DO BANNER (GRADIENTES) */
+        .theme-dark-luxury {
+            background: linear-gradient(to bottom, rgba(26, 26, 26, 0.0) 0%, rgba(18, 18, 18, 0.95) 25%, rgba(10, 10, 10, 1) 100%);
+            border-top: 1px solid rgba(201, 168, 76, 0.2);
+        }
+        .theme-provence-blue {
+            background: linear-gradient(to bottom, rgba(41, 128, 185, 0.0) 0%, rgba(20, 75, 115, 0.95) 25%, rgba(11, 47, 75, 1) 100%);
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+        }
+        .theme-gold-imperial {
+            background: linear-gradient(to bottom, rgba(122, 92, 46, 0.0) 0%, rgba(122, 92, 46, 0.95) 25%, rgba(70, 52, 24, 1) 100%);
+            border-top: 1px solid var(--gold-light);
+        }
+
+        /* TEXTOS DO ANÚNCIO NO PREVIEW */
         .info-main-text {
-            font-family: 'Impact', 'Arial Black', sans-serif;
-            font-size: 24px;
+            font-family: var(--font-display);
+            font-size: 20px;
+            font-weight: 700;
             text-transform: uppercase;
-            line-height: 1.2;
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.4);
-            margin-bottom: 10px;
+            letter-spacing: 0.02em;
+            line-height: 1.35;
+            margin-bottom: 12px;
+            color: #FFFFFF;
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.8);
         }
-        
         .info-price {
-            font-family: 'Impact', 'Arial Black', sans-serif;
+            font-family: var(--font-display);
             font-size: 28px;
-            color: #f1c40f; /* Amarelo dourado para destacar o valor */
-            margin-bottom: 5px;
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.4);
+            font-weight: 700;
+            color: var(--gold-light);
+            margin-bottom: 8px;
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.8);
         }
-
         .info-subtext {
-            font-size: 18px;
-            font-weight: 500;
-            margin-bottom: 20px;
+            font-size: 12px;
+            color: #DDDDDD;
+            font-weight: 400;
+            margin-bottom: 16px;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.6);
         }
 
-        /* Área do Corretor Movida para o rodapé do banner azul */
+        /* CORRETOR RODAPÉ */
         .broker-area {
             display: flex;
             align-items: center;
-            gap: 15px;
-            background: rgba(0,0,0,0.4); /* Fundo mais sutil */
-            padding: 8px 15px;
-            border-radius: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            margin-top: auto; /* Empurra para o final do banner azul */
-            width: 90%;
+            gap: 12px;
+            background: rgba(0,0,0,0.5);
+            padding: 8px 16px;
+            border-radius: 40px;
+            border: 1px solid rgba(201, 168, 76, 0.3);
+            margin-top: auto;
+            width: 100%;
+            max-width: 320px;
         }
         .broker-img {
-            width: 60px;
-            height: 60px;
+            width: 44px;
+            height: 44px;
             border-radius: 50%;
             object-fit: cover;
             object-position: top center;
-            border: 2px solid white;
+            border: 1.5px solid var(--gold);
+            background: #222;
         }
         .broker-info {
             display: flex;
             flex-direction: column;
             text-align: left;
-            justify-content: center;
         }
         .broker-name {
-            font-size: 16px;
-            font-weight: bold;
-            color: white;
-            margin: 0 0 2px 0;
+            font-size: 11px;
+            font-weight: 700;
+            color: #FFFFFF;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .broker-title {
+            font-size: 9px;
+            color: var(--text-muted);
+            margin: 1px 0;
         }
         .broker-phone {
-            font-size: 14px;
-            color: #f1c40f;
-            margin: 0;
-            font-weight: bold;
-        }
-
-        .slider-group {
-            background: #2c3e50;
-            padding: 10px;
-            border-radius: 5px;
+            font-size: 12px;
+            color: var(--gold);
+            font-weight: 900;
         }
     </style>
 </head>
 <body>
 
-    <div class="controls-wrapper">
-        <h1>✨ Post com Banner de Informações</h1>
-        
-        <div class="controls">
-            <!-- FOTOS -->
-            <div>
-                <label>1. Foto de Cima:</label>
-                <input type="file" accept="image/*" onchange="loadFile(event, 'top-img')">
-            </div>
-            <div class="slider-group">
-                <label>⬆️ Enquadramento (Foto Cima):</label>
-                <input type="range" min="0" max="100" value="50" oninput="adjustPosition('top-img', this.value)">
-            </div>
-            
-            <div>
-                <label>2. Foto de Baixo:</label>
-                <input type="file" accept="image/*" onchange="loadFile(event, 'bottom-img')">
-            </div>
-            <div class="slider-group">
-                <label>⬆️ Enquadramento (Foto Baixo):</label>
-                <input type="range" min="0" max="100" value="50" oninput="adjustPosition('bottom-img', this.value)">
-            </div>
-
-            <!-- TEXTOS DO POST -->
-            <div>
-                <label>📍 Pílula de Localização (Condomínio):</label>
-                <input type="text" id="loc-input" value="Condomínio Village Provence" onkeyup="updateText('loc-input', 'location-text')">
-            </div>
-            
-            <div>
-                <label>📝 Texto Principal (Letra Grande):</label>
-                <textarea id="main-text-input" onkeyup="updateHtml('main-text-input', 'info-main-text')">✨ SOFISTICAÇÃO E EXTREMO CONFORTO
-COMPOSTA POR 4 SUÍTES IMPECÁVEIS
-AMPLO ESPAÇO GOURMET COM PISCINA</textarea>
-            </div>
-            
-            <div>
-                <label>💰 Valor do Imóvel:</label>
-                <input type="text" id="price-input" value="R$ 3.700.000,00" onkeyup="updateText('price-input', 'info-price')">
-            </div>
-            
-            <div>
-                <label>📌 Texto Adicional (Permuta, etc):</label>
-                <input type="text" id="subtext-input" value="(aceita imóvel de menor valor como parte de pagamento)" onkeyup="updateText('subtext-input', 'info-subtext')">
-            </div>
-
-            <!-- CORRETOR -->
-            <div>
-                <label>👤 Sua Foto (Rodapé):</label>
-                <input type="file" accept="image/*" onchange="loadFile(event, 'broker-img')">
-            </div>
-            <div>
-                <label>📱 Seu Telefone:</label>
-                <input type="text" id="phone-input" value="(17) 99999-9999" onkeyup="updateText('phone-input', 'broker-phone')">
-            </div>
-            
-            <button onclick="downloadPost()">⬇️ Baixar Imagem 9:16</button>
+    <!-- CABEÇALHO -->
+    <header>
+        <div class="header-logo">
+            <img src="file:///c:/Users/User/Desktop/Negocios%20Imobili%C3%A1rios/Valteir%20PROJETOS/Desing%20System/Logotipo%20Valteir%20Oliveira%202.jpg" alt="Valteir Imóveis">
+            <span class="header-title">Gerador de Posts <em>Automatico</em></span>
         </div>
-    </div>
-
-    <!-- O Post que será gerado em 9:16 -->
-    <div id="post-container">
-        <!-- Imagens de fundo -->
-        <img id="top-img" class="img-top" src="https://via.placeholder.com/540x480?text=Foto+Cima">
-        <img id="bottom-img" class="img-bottom" src="https://via.placeholder.com/540x480?text=Foto+Baixo">
-        
-        <!-- Pílula de Localização -->
-        <div class="location-badge">
-            <span class="location-icon">📍</span>
-            <span id="location-text">Condomínio Village Provence</span>
+        <div>
+            <span style="font-size: 0.75rem; color: var(--gold); font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; border: 1px solid var(--gold); padding: 6px 12px; border-radius: 30px;">PROVENCE EDITION</span>
         </div>
+    </header>
 
-        <!-- Banner Azul de Informações -->
-        <div class="info-banner">
-            <div id="info-main-text" class="info-main-text">
-                ✨ SOFISTICAÇÃO E EXTREMO CONFORTO<br>
-                COMPOSTA POR 4 SUÍTES IMPECÁVEIS<br>
-                AMPLO ESPAÇO GOURMET COM PISCINA
-            </div>
+    <!-- CONTAINER DA APLICAÇÃO -->
+    <div class="app-container">
+        
+        <!-- SIDEBAR DE CONTROLE -->
+        <div class="control-sidebar">
             
-            <div class="info-price" id="info-price">R$ 3.700.000,00</div>
-            
-            <div class="info-subtext" id="info-subtext">(aceita imóvel de menor valor como parte de pagamento)</div>
-            
-            <!-- Corretor Rodapé -->
-            <div class="broker-area">
-                <img id="broker-img" class="broker-img" src="https://via.placeholder.com/60x60?text=Foto">
-                <div class="broker-info">
-                    <p class="broker-name">Valteir Imóveis | Especialista Alto Padrão</p>
-                    <p id="broker-phone" class="broker-phone">(17) 99999-9999</p>
+            <!-- SEÇÃO: FOTOS DE FUNDO -->
+            <div class="section-card">
+                <div class="section-title">🖼️ Imagens do Post</div>
+                
+                <!-- FOTO DE CIMA -->
+                <div class="input-group">
+                    <label>1. Foto Superior (Destaque/Fachada):</label>
+                    <div class="file-input-wrapper">
+                        <span class="btn-file-custom">📁 Selecionar Foto</span>
+                        <input type="file" accept="image/*" onchange="loadFile(event, 'top-img')">
+                    </div>
+                    <div class="slider-group">
+                        <div class="slider-header">
+                            <span>⬆️ Enquadramento Vertical</span>
+                        </div>
+                        <input type="range" min="0" max="100" value="50" oninput="adjustPosition('top-img', this.value)">
+                    </div>
+                </div>
+
+                <!-- FOTO DE BAIXO -->
+                <div class="input-group" style="margin-top: 20px;">
+                    <label>2. Foto Inferior (Lazer/Interior):</label>
+                    <div class="file-input-wrapper">
+                        <span class="btn-file-custom">📁 Selecionar Foto</span>
+                        <input type="file" accept="image/*" onchange="loadFile(event, 'bottom-img')">
+                    </div>
+                    <div class="slider-group">
+                        <div class="slider-header">
+                            <span>⬆️ Enquadramento Vertical</span>
+                        </div>
+                        <input type="range" min="0" max="100" value="50" oninput="adjustPosition('bottom-img', this.value)">
+                    </div>
                 </div>
             </div>
+
+            <!-- SEÇÃO: INFORMAÇÕES DO IMÓVEL -->
+            <div class="section-card">
+                <div class="section-title">📝 Conteúdo do Post</div>
+                
+                <div class="input-group">
+                    <label>🎨 Tema do Banner:</label>
+                    <select id="theme-selector" onchange="changeTheme(this.value)">
+                        <option value="theme-dark-luxury">Dark Luxury (Preto/Ouro)</option>
+                        <option value="theme-provence-blue" selected>Provence Blue (Azul Elegante)</option>
+                        <option value="theme-gold-imperial">Imperial Gold (Bronze/Ouro)</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label>📍 Localização (Condomínio):</label>
+                    <input type="text" id="loc-input" value="Condomínio Village Provence" onkeyup="updateText('loc-input', 'location-text')">
+                </div>
+
+                <div class="input-group">
+                    <label>📝 Texto Principal:</label>
+                    <textarea id="main-text-input" onkeyup="updateHtml('main-text-input', 'info-main-text')">✨ SOFISTICAÇÃO E EXTREMO CONFORTO
+COMPOSTA POR 4 SUÍTES IMPECÁVEIS
+AMPLO ESPAÇO GOURMET COM PISCINA</textarea>
+                    <div class="slider-group">
+                        <div class="slider-header">
+                            <span>🔎 Tamanho da Fonte</span>
+                        </div>
+                        <input type="range" min="14" max="28" value="20" oninput="adjustFontSize('info-main-text', this.value)">
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label>💰 Valor de Venda:</label>
+                    <input type="text" id="price-input" value="R$ 3.700.000,00" onkeyup="updateText('price-input', 'info-price')">
+                    <div class="slider-group">
+                        <div class="slider-header">
+                            <span>🔎 Tamanho do Preço</span>
+                        </div>
+                        <input type="range" min="20" max="36" value="28" oninput="adjustFontSize('info-price', this.value)">
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label>📌 Condições/Permuta (Subtexto):</label>
+                    <input type="text" id="subtext-input" value="(aceita imóvel de menor valor como parte de pagamento)" onkeyup="updateText('subtext-input', 'info-subtext')">
+                </div>
+            </div>
+
+            <!-- SEÇÃO: CORRETOR/CONTATO -->
+            <div class="section-card">
+                <div class="section-title">👤 Informações de Contato</div>
+                
+                <div class="input-group">
+                    <label>Sua Foto de Autoridade:</label>
+                    <div class="file-input-wrapper">
+                        <span class="btn-file-custom">📁 Enviar Foto Profissional</span>
+                        <input type="file" accept="image/*" onchange="loadFile(event, 'broker-img')">
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label>Seu Nome / Título:</label>
+                    <input type="text" id="broker-name-input" value="Valteir Imóveis | Especialista Alto Padrão" onkeyup="updateText('broker-name-input', 'broker-name')">
+                </div>
+
+                <div class="input-group">
+                    <label>Seu Telefone:</label>
+                    <input type="text" id="phone-input" value="(17) 99172-6078" onkeyup="updateText('phone-input', 'broker-phone')">
+                </div>
+            </div>
+
+            <!-- BOTÃO DE EXPORTAÇÃO -->
+            <button class="btn-download" onclick="downloadPost()">
+                <span>⬇️ Baixar Imagem 9:16</span>
+            </button>
+            
         </div>
+
+        <!-- DIREITA: PREVIEW -->
+        <div class="preview-area">
+            <div class="mobile-mockup">
+                
+                <div id="post-container">
+                    
+                    <!-- IMAGENS DE FUNDO COM PLACEHOLDERS DE ALTA RESOLUÇÃO -->
+                    <img id="top-img" class="post-img img-top" src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80" alt="Fachada Imóvel">
+                    <img id="bottom-img" class="post-img img-bottom" src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=80" alt="Interior Gourmet">
+                    
+                    <!-- PÍLULA DE LOCALIZAÇÃO -->
+                    <div class="location-badge">
+                        <span class="location-icon">📍</span>
+                        <span id="location-text">Condomínio Village Provence</span>
+                    </div>
+
+                    <!-- BANNER INFORMATIVO (COM TEMA SELECIONADO) -->
+                    <div id="info-banner" class="info-banner theme-provence-blue">
+                        
+                        <div id="info-main-text" class="info-main-text">
+                            ✨ SOFISTICAÇÃO E EXTREMO CONFORTO<br>
+                            COMPOSTA POR 4 SUÍTES IMPECÁVEIS<br>
+                            AMPLO ESPAÇO GOURMET COM PISCINA
+                        </div>
+                        
+                        <div id="info-price" class="info-price">R$ 3.700.000,00</div>
+                        
+                        <div id="info-subtext" class="info-subtext">(aceita imóvel de menor valor como parte de pagamento)</div>
+                        
+                        <!-- CONTATO DO CORRETOR -->
+                        <div class="broker-area">
+                            <img id="broker-img" class="broker-img" src="3_Sua_Foto_Autoridade.jpg" onerror="this.src='https://via.placeholder.com/60x60?text=Foto'" alt="Corretor">
+                            <div class="broker-info">
+                                <p id="broker-name" class="broker-name">Valteir Imóveis | Especialista Alto Padrão</p>
+                                <p class="broker-title">CRECI 214072-F</p>
+                                <p id="broker-phone" class="broker-phone">(17) 99172-6078</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
     </div>
 
+    <!-- SCRIPTS -->
     <script>
+        // Carrega valores salvos no localStorage para agilizar a criação
+        window.addEventListener('load', () => {
+            const savedFields = ['loc-input', 'main-text-input', 'price-input', 'subtext-input', 'phone-input', 'broker-name-input', 'theme-selector'];
+            
+            savedFields.forEach(fieldId => {
+                const savedValue = localStorage.getItem(fieldId);
+                if (savedValue) {
+                    const inputElement = document.getElementById(fieldId);
+                    if (inputElement) {
+                        inputElement.value = savedValue;
+                    }
+                }
+            });
+
+            // Atualiza o preview com base nos valores carregados
+            updateText('loc-input', 'location-text');
+            updateHtml('main-text-input', 'info-main-text');
+            updateText('price-input', 'info-price');
+            updateText('subtext-input', 'info-subtext');
+            updateText('phone-input', 'broker-phone');
+            updateText('broker-name-input', 'broker-name');
+            changeTheme(document.getElementById('theme-selector').value);
+        });
+
+        // Função de upload de imagem local
         function loadFile(event, elementId) {
             var reader = new FileReader();
             reader.onload = function(){
@@ -320,29 +723,77 @@ AMPLO ESPAÇO GOURMET COM PISCINA</textarea>
             }
         }
 
+        // Atualização de textos em tempo real
         function updateText(inputId, elementId) {
-            document.getElementById(elementId).innerText = document.getElementById(inputId).value;
+            const value = document.getElementById(inputId).value;
+            document.getElementById(elementId).innerText = value;
+            localStorage.setItem(inputId, value); // Auto-salvamento
         }
 
-        // Função especial para o textarea preservar as quebras de linha (<br>)
+        // Atualização especial de HTML para quebras de linha (<br>)
         function updateHtml(inputId, elementId) {
-            var text = document.getElementById(inputId).value;
-            // Troca as quebras de linha do enter por tags <br>
-            document.getElementById(elementId).innerHTML = text.replace(/\n/g, "<br>");
+            const value = document.getElementById(inputId).value;
+            document.getElementById(elementId).innerHTML = value.replace(/\n/g, "<br>");
+            localStorage.setItem(inputId, value); // Auto-salvamento
         }
 
+        // Ajuste fino da posição vertical da imagem
         function adjustPosition(elementId, value) {
             document.getElementById(elementId).style.objectPosition = "50% " + value + "%";
         }
 
+        // Ajuste do tamanho da fonte para evitar clipping de texto longo
+        function adjustFontSize(elementId, value) {
+            document.getElementById(elementId).style.fontSize = value + "px";
+        }
+
+        // Alterna entre os temas do banner
+        function changeTheme(themeClass) {
+            const banner = document.getElementById('info-banner');
+            banner.className = 'info-banner ' + themeClass;
+            localStorage.setItem('theme-selector', themeClass);
+        }
+
+        // Exportação do post em alta resolução (3x scale)
         function downloadPost() {
-            var container = document.getElementById("post-container");
-            html2canvas(container, {scale: 2}).then(function(canvas) {
-                var link = document.createElement('a');
-                link.download = 'Post_Informativo_Valteir.png';
-                link.href = canvas.toDataURL("image/png");
-                link.click();
-            });
+            const container = document.getElementById("post-container");
+            const btn = document.querySelector(".btn-download");
+            
+            btn.innerHTML = "<span>⌛ Renderizando...</span>";
+            btn.disabled = true;
+
+            // Opções para html2canvas garantir fidelidade total no download
+            const options = {
+                scale: 3, // Multiplicador de resolução
+                useCORS: true, // Habilita carregar imagens externas se necessário
+                allowTaint: true,
+                backgroundColor: null,
+                logging: false
+            };
+
+            setTimeout(() => {
+                html2canvas(container, options).then(function(canvas) {
+                    var link = document.createElement('a');
+                    
+                    // Gera o nome do arquivo baseado no condomínio
+                    const condName = document.getElementById('location-text').innerText
+                        .toLowerCase()
+                        .replace(/[^a-z0-9]+/g, '_')
+                        .replace(/(^_+|+$)/g, '');
+                    
+                    link.download = `post_${condName}_valteir.png`;
+                    link.href = canvas.toDataURL("image/png");
+                    link.click();
+                    
+                    btn.innerHTML = "<span>⬇️ Baixar Imagem 9:16</span>";
+                    btn.disabled = false;
+                }).catch(err => {
+                    console.error("Erro na renderização:", err);
+                    alert("Ocorreu um erro ao renderizar o post. Tente novamente.");
+                    btn.innerHTML = "<span>⬇️ Baixar Imagem 9:16</span>";
+                    btn.disabled = false;
+                });
+            }, 300);
         }
     </script>
 </body>
