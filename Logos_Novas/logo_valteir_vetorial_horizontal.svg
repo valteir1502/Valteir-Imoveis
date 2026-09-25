@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 500" width="100%" height="100%">
+  <defs>
+    <linearGradient id="goldPureH" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F2D785" />
+      <stop offset="30%" stop-color="#D4AF37" />
+      <stop offset="70%" stop-color="#AA7C11" />
+      <stop offset="100%" stop-color="#E2BA4B" />
+    </linearGradient>
+    <linearGradient id="titaniumPureH" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2C2E38" />
+      <stop offset="50%" stop-color="#14151B" />
+      <stop offset="100%" stop-color="#050608" />
+    </linearGradient>
+  </defs>
+
+  <!-- SÍMBOLO À ESQUERDA -->
+  <g id="simbolo" transform="translate(250, 250) scale(0.85)">
+    <path d="M -90,-180 C -190,-180 -190,180 -90,180 C -40,180 -15,145 -15,145 L -45,120 C -45,120 -60,140 -90,140 C -150,140 -150,-140 -90,-140 C -60,-140 -45,-120 -45,-120 L -15,-145 C -15,-145 -40,-180 -90,-180 Z" fill="url(#goldPureH)" />
+    <path d="M 90,-180 C 190,-180 190,180 90,180 C 40,180 15,145 15,145 L 45,120 C 45,120 60,140 90,140 C 150,140 150,-140 90,-140 C 60,-140 45,-120 45,-120 L 15,-145 C 15,-145 40,-180 90,-180 Z" fill="url(#goldPureH)" />
+    <polygon points="-125,-210 -70,-210 0,165 -35,165" fill="url(#titaniumPureH)" stroke="url(#goldPureH)" stroke-width="4" stroke-linejoin="round" />
+    <polygon points="125,-210 70,-210 0,165 35,165" fill="url(#titaniumPureH)" stroke="url(#goldPureH)" stroke-width="4" stroke-linejoin="round" />
+    <polygon points="-70,-210 -90,-210 0,165 0,165" fill="url(#goldPureH)" opacity="0.85" />
+  </g>
+
+  <!-- TEXTO À DIREITA -->
+  <g id="texto" transform="translate(500, 230)">
+    <text x="0" y="20" font-family="'Cinzel', 'Trajan Pro', 'Georgia', serif" font-size="115" font-weight="700" letter-spacing="14" fill="url(#goldPureH)">VALTEIR</text>
+    <line x1="5" y1="58" x2="680" y2="58" stroke="url(#goldPureH)" stroke-width="2.5" opacity="0.6" />
+    <text x="5" y="110" font-family="'Montserrat', 'Helvetica Neue', sans-serif" font-size="44" font-weight="500" letter-spacing="28" fill="#D4AF37">IMÓVEIS</text>
+  </g>
+</svg>

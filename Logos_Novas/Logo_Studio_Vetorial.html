@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valteir Imóveis — Identidade Visual Vetorial de Puro Luxo (SVG Oficial)</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800;900&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #0a0b0e;
+            --card-bg: #12141a;
+            --gold-primary: #d4af37;
+            --gold-gradient: linear-gradient(135deg, #f9e79f 0%, #d4af37 50%, #aa7c11 100%);
+            --border-gold: rgba(212, 175, 55, 0.35);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: #f5f5f7;
+            font-family: 'Montserrat', sans-serif;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 25px;
+            border-bottom: 1px solid var(--border-gold);
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 6px 20px;
+            border-radius: 30px;
+            background: rgba(212, 175, 55, 0.12);
+            border: 1px solid var(--border-gold);
+            color: var(--gold-primary);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 12px;
+        }
+
+        h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 2.6rem;
+            background: var(--gold-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+
+        p.subtitle {
+            color: #a0a6b5;
+            font-size: 1.05rem;
+            max-width: 750px;
+            margin: 0 auto;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-gold);
+            border-radius: 16px;
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+        }
+
+        .card h2 {
+            font-family: 'Cinzel', serif;
+            color: var(--gold-primary);
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        /* Área de Visualização com Fundo Transparente Real (Xadrez) */
+        .preview-box {
+            width: 100%;
+            height: 280px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 12px;
+            border: 1px dashed var(--border-gold);
+            margin-bottom: 20px;
+            position: relative;
+            background-image: linear-gradient(45deg, #1c1f2b 25%, transparent 25%), 
+                              linear-gradient(-45deg, #1c1f2b 25%, transparent 25%), 
+                              linear-gradient(45deg, transparent 75%, #1c1f2b 75%), 
+                              linear-gradient(-45deg, transparent 75%, #1c1f2b 75%);
+            background-size: 16px 16px;
+            background-position: 0 0, 0 8px, 8px -8px, -8px 0px;
+            background-color: #12141c;
+            padding: 20px;
+        }
+
+        .preview-box.white-bg {
+            background: #ffffff !important;
+        }
+
+        .preview-box.dark-bg {
+            background: #0d0e12 !important;
+        }
+
+        .preview-box svg {
+            max-width: 100%;
+            max-height: 100%;
+            filter: drop-shadow(0 8px 20px rgba(0,0,0,0.5));
+        }
+
+        .toggle-bg-btns {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+
+        .btn-toggle {
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.15);
+            color: #ddd;
+            padding: 4px 12px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .btn-toggle:hover, .btn-toggle.active {
+            background: var(--gold-primary);
+            color: #000;
+            font-weight: 600;
+            border-color: var(--gold-primary);
+        }
+
+        .download-actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .btn-action {
+            background: rgba(212, 175, 55, 0.15);
+            border: 1px solid var(--border-gold);
+            color: var(--gold-primary);
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .btn-action:hover {
+            background: var(--gold-primary);
+            color: #000;
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+        }
+
+        .size-badge {
+            font-size: 0.75rem;
+            color: #888;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <div class="badge">DESIGN VETORIAL PROFISSIONAL & PURO</div>
+        <h1>VALTEIR IMÓVEIS</h1>
+        <p class="subtitle">Identidade Visual Vetorial Matemática (100% Geometria Pura, Sem IA, Sem Ruído, Curvas Perfeitas e Fundo Transparente Real).</p>
+    </header>
+
+    <div class="grid">
+        
+        <!-- CARD 1: ÍCONE / MONOGRAMA 100x100 -->
+        <div class="card">
+            <h2>1. Monograma / Ícone (100 x 100 px)</h2>
+            <div class="toggle-bg-btns">
+                <button class="btn-toggle active" onclick="setBg('box-icon', 'transp')">Transparente</button>
+                <button class="btn-toggle" onclick="setBg('box-icon', 'dark')">Fundo Escuro</button>
+                <button class="btn-toggle" onclick="setBg('box-icon', 'white')">Fundo Branco</button>
+            </div>
+            
+            <div class="preview-box" id="box-icon">
+                <svg id="svg-icon" viewBox="0 0 500 500" width="160" height="160">
+                    <defs>
+                        <linearGradient id="goldPureIcon" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#F2D785" />
+                            <stop offset="30%" stop-color="#D4AF37" />
+                            <stop offset="70%" stop-color="#AA7C11" />
+                            <stop offset="100%" stop-color="#E2BA4B" />
+                        </linearGradient>
+                        <linearGradient id="titaniumPureIcon" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#2C2E38" />
+                            <stop offset="50%" stop-color="#14151B" />
+                            <stop offset="100%" stop-color="#050608" />
+                        </linearGradient>
+                    </defs>
+                    <g transform="translate(250, 250) scale(0.95)">
+                        <path d="M -90,-180 C -190,-180 -190,180 -90,180 C -40,180 -15,145 -15,145 L -45,120 C -45,120 -60,140 -90,140 C -150,140 -150,-140 -90,-140 C -60,-140 -45,-120 -45,-120 L -15,-145 C -15,-145 -40,-180 -90,-180 Z" fill="url(#goldPureIcon)" />
+                        <path d="M 90,-180 C 190,-180 190,180 90,180 C 40,180 15,145 15,145 L 45,120 C 45,120 60,140 90,140 C 150,140 150,-140 90,-140 C 60,-140 45,-120 45,-120 L 15,-145 C 15,-145 40,-180 90,-180 Z" fill="url(#goldPureIcon)" />
+                        <polygon points="-125,-210 -70,-210 0,165 -35,165" fill="url(#titaniumPureIcon)" stroke="url(#goldPureIcon)" stroke-width="4" stroke-linejoin="round" />
+                        <polygon points="125,-210 70,-210 0,165 35,165" fill="url(#titaniumPureIcon)" stroke="url(#goldPureIcon)" stroke-width="4" stroke-linejoin="round" />
+                        <polygon points="-70,-210 -90,-210 0,165 0,165" fill="url(#goldPureIcon)" opacity="0.85" />
+                    </g>
+                </svg>
+            </div>
+
+            <div class="download-actions">
+                <button class="btn-action" onclick="downloadPNG('svg-icon', 100, 100, 'logo_valteir_icone_100x100.png')">Baixar PNG 100x100</button>
+                <button class="btn-action" onclick="downloadPNG('svg-icon', 500, 500, 'logo_valteir_icone_500x500.png')">Baixar PNG 500x500</button>
+            </div>
+            <p class="size-badge">Ideal para: WhatsApp, Instagram Perfil, Favicon</p>
+        </div>
+
+        <!-- CARD 2: MODELO HORIZONTAL COMPLETO -->
+        <div class="card">
+            <h2>2. Logo Horizontal Oficial (Fachada / Site)</h2>
+            <div class="toggle-bg-btns">
+                <button class="btn-toggle active" onclick="setBg('box-h', 'transp')">Transparente</button>
+                <button class="btn-toggle" onclick="setBg('box-h', 'dark')">Fundo Escuro</button>
+                <button class="btn-toggle" onclick="setBg('box-h', 'white')">Fundo Branco</button>
+            </div>
+            
+            <div class="preview-box" id="box-h">
+                <svg id="svg-horizontal" viewBox="0 0 1400 500" width="100%" height="auto">
+                    <defs>
+                        <linearGradient id="goldPureH" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#F2D785" />
+                            <stop offset="30%" stop-color="#D4AF37" />
+                            <stop offset="70%" stop-color="#AA7C11" />
+                            <stop offset="100%" stop-color="#E2BA4B" />
+                        </linearGradient>
+                        <linearGradient id="titaniumPureH" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#2C2E38" />
+                            <stop offset="50%" stop-color="#14151B" />
+                            <stop offset="100%" stop-color="#050608" />
+                        </linearGradient>
+                    </defs>
+                    <g transform="translate(250, 250) scale(0.85)">
+                        <path d="M -90,-180 C -190,-180 -190,180 -90,180 C -40,180 -15,145 -15,145 L -45,120 C -45,120 -60,140 -90,140 C -150,140 -150,-140 -90,-140 C -60,-140 -45,-120 -45,-120 L -15,-145 C -15,-145 -40,-180 -90,-180 Z" fill="url(#goldPureH)" />
+                        <path d="M 90,-180 C 190,-180 190,180 90,180 C 40,180 15,145 15,145 L 45,120 C 45,120 60,140 90,140 C 150,140 150,-140 90,-140 C 60,-140 45,-120 45,-120 L 15,-145 C 15,-145 40,-180 90,-180 Z" fill="url(#goldPureH)" />
+                        <polygon points="-125,-210 -70,-210 0,165 -35,165" fill="url(#titaniumPureH)" stroke="url(#goldPureH)" stroke-width="4" stroke-linejoin="round" />
+                        <polygon points="125,-210 70,-210 0,165 35,165" fill="url(#titaniumPureH)" stroke="url(#goldPureH)" stroke-width="4" stroke-linejoin="round" />
+                        <polygon points="-70,-210 -90,-210 0,165 0,165" fill="url(#goldPureH)" opacity="0.85" />
+                    </g>
+                    <g transform="translate(500, 230)">
+                        <text x="0" y="20" font-family="'Cinzel', 'Trajan Pro', 'Georgia', serif" font-size="115" font-weight="700" letter-spacing="14" fill="url(#goldPureH)">VALTEIR</text>
+                        <line x1="5" y1="58" x2="680" y2="58" stroke="url(#goldPureH)" stroke-width="2.5" opacity="0.6" />
+                        <text x="5" y="110" font-family="'Montserrat', 'Helvetica Neue', sans-serif" font-size="44" font-weight="500" letter-spacing="28" fill="#D4AF37">IMÓVEIS</text>
+                    </g>
+                </svg>
+            </div>
+
+            <div class="download-actions">
+                <button class="btn-action" onclick="downloadPNG('svg-horizontal', 1400, 500, 'logo_valteir_horizontal_hd.png')">Baixar PNG HD</button>
+                <button class="btn-action" onclick="downloadPNG('svg-horizontal', 2800, 1000, 'logo_valteir_horizontal_4K.png')">Baixar PNG 4K</button>
+            </div>
+            <p class="size-badge">Ideal para: Cabeçalho de Site, Placas, Assinatura de E-mail</p>
+        </div>
+
+        <!-- CARD 3: MODELO VERTICAL NOBRE -->
+        <div class="card">
+            <h2>3. Logo Nobre Centralizada (Vertical)</h2>
+            <div class="toggle-bg-btns">
+                <button class="btn-toggle active" onclick="setBg('box-v', 'transp')">Transparente</button>
+                <button class="btn-toggle" onclick="setBg('box-v', 'dark')">Fundo Escuro</button>
+                <button class="btn-toggle" onclick="setBg('box-v', 'white')">Fundo Branco</button>
+            </div>
+            
+            <div class="preview-box" id="box-v">
+                <svg id="svg-vertical" viewBox="0 0 1000 1000" width="200" height="200">
+                    <defs>
+                        <linearGradient id="goldPureV" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#F2D785" />
+                            <stop offset="30%" stop-color="#D4AF37" />
+                            <stop offset="70%" stop-color="#AA7C11" />
+                            <stop offset="100%" stop-color="#E2BA4B" />
+                        </linearGradient>
+                        <linearGradient id="titaniumPureV" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#2C2E38" />
+                            <stop offset="50%" stop-color="#14151B" />
+                            <stop offset="100%" stop-color="#050608" />
+                        </linearGradient>
+                    </defs>
+                    <g transform="translate(500, 360)">
+                        <path d="M -90,-180 C -190,-180 -190,180 -90,180 C -40,180 -15,145 -15,145 L -45,120 C -45,120 -60,140 -90,140 C -150,140 -150,-140 -90,-140 C -60,-140 -45,-120 -45,-120 L -15,-145 C -15,-145 -40,-180 -90,-180 Z" fill="url(#goldPureV)" />
+                        <path d="M 90,-180 C 190,-180 190,180 90,180 C 40,180 15,145 15,145 L 45,120 C 45,120 60,140 90,140 C 150,140 150,-140 90,-140 C 60,-140 45,-120 45,-120 L 15,-145 C 15,-145 40,-180 90,-180 Z" fill="url(#goldPureV)" />
+                        <polygon points="-125,-210 -70,-210 0,165 -35,165" fill="url(#titaniumPureV)" stroke="url(#goldPureV)" stroke-width="4" stroke-linejoin="round" />
+                        <polygon points="125,-210 70,-210 0,165 35,165" fill="url(#titaniumPureV)" stroke="url(#goldPureV)" stroke-width="4" stroke-linejoin="round" />
+                        <polygon points="-70,-210 -90,-210 0,165 0,165" fill="url(#goldPureV)" opacity="0.85" />
+                    </g>
+                    <g transform="translate(500, 710)" text-anchor="middle">
+                        <text x="0" y="0" font-family="'Cinzel', 'Trajan Pro', serif" font-size="88" font-weight="700" letter-spacing="18" fill="url(#goldPureV)">VALTEIR</text>
+                        <line x1="-160" y1="36" x2="160" y2="36" stroke="url(#goldPureV)" stroke-width="2" opacity="0.6" />
+                        <text x="0" y="82" font-family="'Montserrat', sans-serif" font-size="34" font-weight="500" letter-spacing="24" fill="#D4AF37">IMÓVEIS</text>
+                    </g>
+                </svg>
+            </div>
+
+            <div class="download-actions">
+                <button class="btn-action" onclick="downloadPNG('svg-vertical', 1000, 1000, 'logo_valteir_vertical_hd.png')">Baixar PNG 1000x1000</button>
+            </div>
+            <p class="size-badge">Ideal para: Contratos, Posts no Instagram, Capas</p>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    function setBg(boxId, type) {
+        const box = document.getElementById(boxId);
+        const parent = box.previousElementSibling;
+        const btns = parent.querySelectorAll('.btn-toggle');
+        btns.forEach(b => b.classList.remove('active'));
+
+        box.classList.remove('white-bg', 'dark-bg');
+        if (type === 'white') {
+            box.classList.add('white-bg');
+            event.target.classList.add('active');
+        } else if (type === 'dark') {
+            box.classList.add('dark-bg');
+            event.target.classList.add('active');
+        } else {
+            event.target.classList.add('active');
+        }
+    }
+
+    function downloadPNG(svgId, width, height, filename) {
+        const svg = document.getElementById(svgId);
+        const svgData = new XMLSerializer().serializeToString(svg);
+        const canvas = document.createElement("canvas");
+        canvas.width = width;
+        canvas.height = height;
+        const ctx = canvas.getContext("2d");
+        const img = new Image();
+        
+        img.onload = function() {
+            ctx.clearRect(0, 0, width, height);
+            ctx.drawImage(img, 0, 0, width, height);
+            const a = document.createElement("a");
+            a.download = filename;
+            a.href = canvas.toDataURL("image/png");
+            a.click();
+        };
+
+        img.src = "data:image/svg+xml;base64," + btoa(unescape(encodeURIComponent(svgData)));
+    }
+</script>
+
+</body>
+</html>

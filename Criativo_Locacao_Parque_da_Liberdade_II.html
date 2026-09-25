@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Criativo de Locação (Imagem Única) — Condomínio Parque da Liberdade II | Valteir Imóveis</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- html2canvas for instant image download -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+  <style>
+    :root {
+      --gold: #C9A84C;
+      --gold-hover: #b08f37;
+      --gold-light: #F4E8C1;
+      --gold-gradient: linear-gradient(135deg, #F4E8C1 0%, #C9A84C 50%, #9A7F35 100%);
+      --dark-bg: #0D0F12;
+      --dark-card: #161A20;
+      --dark-surface: #202630;
+      --border-color: rgba(201, 168, 76, 0.35);
+      --text-white: #FFFFFF;
+      --text-muted: #9EABBE;
+      --whatsapp-green: #25D366;
+      --radius-sm: 8px;
+      --radius-md: 16px;
+      --radius-lg: 24px;
+      --shadow-lux: 0 20px 50px rgba(0, 0, 0, 0.6);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: var(--dark-bg);
+      color: var(--text-white);
+      min-height: 100vh;
+      padding: 2rem 1rem;
+      background-image: 
+        radial-gradient(circle at 10% 10%, rgba(201, 168, 76, 0.06) 0%, transparent 40%),
+        radial-gradient(circle at 90% 90%, rgba(37, 211, 102, 0.05) 0%, transparent 40%);
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    header {
+      background: var(--dark-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 1.8rem;
+      margin-bottom: 2rem;
+      box-shadow: var(--shadow-lux);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .brand-header {
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+    }
+
+    .brand-header img {
+      height: 55px;
+      object-fit: contain;
+      filter: drop-shadow(0 2px 8px rgba(0,0,0,0.5));
+    }
+
+    .header-title h1 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.6rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      background: linear-gradient(to right, #ffffff, #d1d5db);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .header-title p {
+      color: var(--gold);
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .header-badge {
+      background: rgba(37, 211, 102, 0.15);
+      border: 1px solid rgba(37, 211, 102, 0.4);
+      color: var(--whatsapp-green);
+      padding: 0.5rem 1.2rem;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 0.85rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* Grid Layout */
+    .main-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    @media (min-width: 1024px) {
+      .main-grid {
+        grid-template-columns: 540px 1fr;
+      }
+    }
+
+    /* Tabs for format */
+    .tab-controls {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 1.5rem;
+      background: var(--dark-card);
+      padding: 6px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.08);
+      width: 100%;
+      max-width: 500px;
+    }
+
+    .tab-btn {
+      flex: 1;
+      padding: 12px 16px;
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      font-weight: 700;
+      font-size: 0.85rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .tab-btn.active {
+      background: var(--gold-gradient);
+      color: #0D0F12;
+      box-shadow: 0 4px 15px rgba(201, 168, 76, 0.3);
+    }
+
+    /* Creative Stage Area */
+    .creative-stage {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* CANVAS / POST CONTAINER 1:1 Feed */
+    .post-card-feed {
+      width: 500px;
+      height: 500px;
+      background: #0F1216;
+      border-radius: 16px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 25px 60px rgba(0,0,0,0.85);
+      border: 1px solid var(--border-color);
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* CANVAS / POST CONTAINER 9:16 Story */
+    .post-card-story {
+      width: 360px;
+      height: 640px;
+      background: #0F1216;
+      border-radius: 20px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 25px 60px rgba(0,0,0,0.85);
+      border: 1px solid var(--border-color);
+      display: none;
+      flex-direction: column;
+    }
+
+    /* SINGLE IMAGE HERO BACKGROUND */
+    .post-hero-img-wrapper {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+    }
+
+    .post-hero-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .post-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        180deg, 
+        rgba(0,0,0,0.82) 0%, 
+        rgba(0,0,0,0.2) 30%, 
+        rgba(0,0,0,0.65) 60%, 
+        rgba(8,10,14,0.98) 100%
+      );
+      z-index: 2;
+    }
+
+    /* Post Content Overlay elements */
+    .post-header-overlay {
+      position: absolute;
+      top: 18px;
+      left: 18px;
+      right: 18px;
+      z-index: 10;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .post-logo-img {
+      height: 46px;
+      object-fit: contain;
+      filter: drop-shadow(0 4px 10px rgba(0,0,0,0.8));
+    }
+
+    .price-tag-badge {
+      display: flex;
+      flex-direction: column;
+      background: rgba(13, 15, 18, 0.92);
+      backdrop-filter: blur(12px);
+      border: 1.5px solid var(--gold);
+      padding: 6px 14px;
+      border-radius: 12px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.6), 0 0 15px rgba(201, 168, 76, 0.3);
+      text-align: right;
+    }
+
+    .price-tag-value {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.2rem;
+      font-weight: 900;
+      color: #FFF;
+      line-height: 1;
+    }
+
+    .price-tag-value span {
+      color: var(--gold);
+      font-size: 0.8rem;
+    }
+
+    .price-tag-sub {
+      font-size: 0.6rem;
+      color: var(--gold);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-top: 2px;
+    }
+
+    .badge-locacao-tag {
+      position: absolute;
+      top: 75px;
+      left: 18px;
+      z-index: 10;
+      background: var(--gold-gradient);
+      color: #000;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      font-size: 0.7rem;
+      padding: 4px 12px;
+      border-radius: 20px;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.6);
+    }
+
+    .post-bottom-info {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 10;
+      padding: 18px 20px;
+      background: linear-gradient(0deg, rgba(8,10,14,0.98) 0%, rgba(8,10,14,0.88) 80%, transparent 100%);
+    }
+
+    .property-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: #FFF;
+      line-height: 1.2;
+      margin-bottom: 2px;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+    }
+
+    .property-location {
+      font-size: 0.82rem;
+      color: var(--gold);
+      font-weight: 700;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* Specs Pill Grid - ALL INFOS IN ONE CARD */
+    .specs-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 6px;
+      margin-bottom: 14px;
+    }
+
+    .spec-pill {
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      padding: 6px 10px;
+      border-radius: 8px;
+      font-size: 0.7rem;
+      color: #F1F5F9;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-weight: 600;
+    }
+
+    .spec-pill i {
+      color: var(--gold);
+      font-size: 0.8rem;
+    }
+
+    /* Realtor Contact Bar */
+    .realtor-footer-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid rgba(201, 168, 76, 0.35);
+      padding-top: 10px;
+      margin-top: 4px;
+    }
+
+    .realtor-profile {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .realtor-avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 2px solid var(--gold);
+      object-fit: cover;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+    }
+
+    .realtor-meta h4 {
+      font-size: 0.85rem;
+      font-weight: 800;
+      color: #FFF;
+      line-height: 1.1;
+    }
+
+    .realtor-meta p {
+      font-size: 0.65rem;
+      color: var(--gold);
+      font-weight: 600;
+    }
+
+    .contact-button {
+      background: var(--whatsapp-green);
+      color: #FFF;
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 0.78rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      text-decoration: none;
+      box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
+    }
+
+    /* Action Download Buttons */
+    .action-bar {
+      margin-top: 1.5rem;
+      display: flex;
+      gap: 12px;
+      width: 100%;
+      max-width: 500px;
+    }
+
+    .btn-action {
+      flex: 1;
+      padding: 14px;
+      background: var(--gold-gradient);
+      color: #0D0F12;
+      border: none;
+      border-radius: 12px;
+      font-weight: 800;
+      font-size: 0.92rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: all 0.3s ease;
+      box-shadow: 0 8px 25px rgba(201, 168, 76, 0.3);
+    }
+
+    .btn-action:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 30px rgba(201, 168, 76, 0.4);
+    }
+
+    .btn-secondary-action {
+      background: var(--dark-card);
+      color: #FFF;
+      border: 1px solid var(--border-color);
+      box-shadow: none;
+    }
+
+    .btn-secondary-action:hover {
+      background: var(--dark-surface);
+      border-color: var(--gold);
+    }
+
+    /* Control Panel Right Column */
+    .control-panel {
+      background: var(--dark-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 2rem;
+      box-shadow: var(--shadow-lux);
+    }
+
+    .panel-section-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--gold);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      padding-bottom: 8px;
+    }
+
+    .price-box-banner {
+      background: linear-gradient(135deg, rgba(201, 168, 76, 0.15) 0%, rgba(37, 211, 102, 0.1) 100%);
+      border: 1px solid var(--gold);
+      border-radius: 12px;
+      padding: 1rem;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .price-box-banner .price-amount {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 900;
+      color: #FFF;
+    }
+
+    .price-box-banner .price-info {
+      font-size: 0.8rem;
+      color: var(--gold);
+      font-weight: 700;
+    }
+
+    /* Copywriting Box */
+    .copy-box {
+      background: var(--dark-surface);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 12px;
+      padding: 1.2rem;
+      margin-bottom: 1.5rem;
+      position: relative;
+    }
+
+    .copy-text {
+      font-size: 0.88rem;
+      line-height: 1.6;
+      color: #E2E8F0;
+      white-space: pre-wrap;
+      font-family: inherit;
+    }
+
+    .btn-copy {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: var(--gold);
+      color: #000;
+      border: none;
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-weight: 700;
+      font-size: 0.75rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .btn-copy:hover {
+      background: var(--gold-light);
+    }
+
+    /* Feature Cards List */
+    .feature-list {
+      list-style: none;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin-bottom: 1.5rem;
+    }
+
+    .feature-item {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+      padding: 10px 12px;
+      border-radius: 8px;
+      font-size: 0.82rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .feature-item i {
+      color: var(--gold);
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  
+  <!-- Header -->
+  <header>
+    <div class="brand-header">
+      <img src="./Desing System/Logotipo_Valteir_Oliveira_Sem_Fundo.png" alt="Valteir Imóveis" onerror="this.src='./Desing System/Logotipo Valteir Oliveira 2.jpg'">
+      <div class="header-title">
+        <h1>Criativo de Locação (Imagem Única)</h1>
+        <p>Condomínio Parque da Liberdade II</p>
+      </div>
+    </div>
+    <div class="header-badge">
+      <i class="fab fa-whatsapp">
+      </i> (17) 99172-6078 • CRECI 214072-F
+    </div>
+  </header>
+
+  <!-- Main Grid -->
+  <div class="main-grid">
+    
+    <!-- Left Column: Visual Stage & Canvas Preview -->
+    <div class="creative-stage">
+      
+      <!-- Format Controls -->
+      <div class="tab-controls">
+        <button class="tab-btn active" onclick="switchFormat('feed')">
+          <i class="fas fa-square">
+          </i> Arte Feed Instagram (1:1)
+        </button>
+        <button class="tab-btn" onclick="switchFormat('story')">
+          <i class="fas fa-mobile-alt">
+          </i> Arte Story / Reels (9:16)
+        </button>
+      </div>
+
+      <!-- FEED CARD (1:1) — SINGLE IMAGE WITH ALL INFOS -->
+      <div id="card-feed" class="post-card-feed">
+        <!-- Single Background Hero Image -->
+        <div class="post-hero-img-wrapper">
+          <img class="post-hero-img" src="../Negocios Imobiliários/Condomínio Parque da Liberdade II/Maria Neves/Fotos/WhatsApp Image 2026-06-27 at 15.34.36 (3).jpeg" alt="Fachada Casa Parque da Liberdade II">
+        </div>
+        <div class="post-overlay">
+        </div>
+
+        <!-- Top Header Overlay -->
+        <div class="post-header-overlay">
+          <img class="post-logo-img" src="./Desing System/Logotipo_Valteir_Oliveira_Sem_Fundo.png" alt="Valteir Imóveis" onerror="this.src='./Desing System/Logotipo Valteir Oliveira 2.jpg'">
+          
+          <div class="price-tag-badge">
+            <div class="price-tag-value">R$ 2.600<span>/mês</span></div>
+            <div class="price-tag-sub">CONDOMÍNIO + IPTU INC.</div>
+          </div>
+        </div>
+
+        <span class="badge-locacao-tag">
+          <i class="fas fa-key">
+          </i> OPORTUNIDADE • LOCAÇÃO
+        </span>
+
+        <!-- Bottom Complete Specs & Info Box -->
+        <div class="post-bottom-info">
+          <div class="property-title">Casa 3 Dorms (1 Suíte) c/ Ar &amp; Gourmet</div>
+          <div class="property-location">
+            <i class="fas fa-map-marker-alt">
+            </i> Condomínio Parque da Liberdade II • Rio Preto/SP
+          </div>
+
+          <!-- Specs Pill Grid with ALL Details -->
+          <div class="specs-grid">
+            <div class="spec-pill">
+              <i class="fas fa-bed">
+              </i> 3 Dormitórios (1 Suíte)
+            </div>
+            <div class="spec-pill">
+              <i class="fas fa-snowflake">
+              </i> Ar-Condicionado nos Dorms &amp; Sala
+            </div>
+            <div class="spec-pill">
+              <i class="fas fa-box-archive">
+              </i> Armários em Todos os Quartos
+            </div>
+            <div class="spec-pill">
+              <i class="fas fa-utensils">
+              </i> Espaço Gourmet c/ Churrasqueira
+            </div>
+            <div class="spec-pill">
+              <i class="fas fa-sink">
+              </i> Cozinha Planejada + Lavanderia
+            </div>
+            <div class="spec-pill">
+              <i class="fas fa-swimmer">
+              </i> Lazer Completo + Portaria 24h
+            </div>
+          </div>
+
+          <!-- Realtor Contact Bar -->
+          <div class="realtor-footer-bar">
+            <div class="realtor-profile">
+              <img class="realtor-avatar" src="./Fotos/Segurando paleto.jpg" alt="Valteir de Oliveira" onerror="this.src='./Fotos/Foto segurando a gravata.jpg'">
+              <div class="realtor-meta">
+                <h4>Valteir de Oliveira</h4>
+                <p>CRECI 214072-F | Corretor Imobiliário</p>
+              </div>
+            </div>
+            <div class="contact-button">
+              <i class="fab fa-whatsapp">
+              </i> (17) 99172-6078
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- STORY CARD (9:16) — SINGLE IMAGE WITH ALL INFOS -->
+      <div id="card-story" class="post-card-story">
+        <!-- Single Background Hero Image -->
+        <div class="post-hero-img-wrapper">
+          <img class="post-hero-img" src="../Negocios Imobiliários/Condomínio Parque da Liberdade II/Maria Neves/Fotos/WhatsApp Image 2026-06-27 at 15.34.36 (3).jpeg" alt="Fachada Casa Parque da Liberdade II">
+        </div>
+        <div class="post-overlay">
+        </div>
+
+        <div class="post-header-overlay" style="top: 22px;">
+          <img class="post-logo-img" src="./Desing System/Logotipo_Valteir_Oliveira_Sem_Fundo.png" alt="Valteir Imóveis" onerror="this.src='./Desing System/Logotipo Valteir Oliveira 2.jpg'">
+          
+          <div class="price-tag-badge" style="padding: 6px 12px;">
+            <div class="price-tag-value" style="font-size: 1.1rem;">R$ 2.600<span>/mês</span></div>
+            <div class="price-tag-sub" style="font-size: 0.58rem;">PACOTE COMPLETO</div>
+          </div>
+        </div>
+
+        <span class="badge-locacao-tag" style="top: 75px;">
+          <i class="fas fa-key">
+          </i> LOCAÇÃO
+        </span>
+
+        <div class="post-bottom-info" style="padding: 20px;">
+          <div class="property-title" style="font-size: 1.35rem;">Casa de 3 Dorms c/ Suíte</div>
+          <div class="property-location" style="font-size: 0.85rem; margin-bottom: 12px;">
+            <i class="fas fa-map-marker-alt">
+            </i> Condomínio Parque da Liberdade II
+          </div>
+
+          <div class="specs-grid" style="grid-template-columns: 1fr; gap: 7px; margin-bottom: 16px;">
+            <div class="spec-pill" style="background: rgba(201, 168, 76, 0.2); border-color: var(--gold); font-size: 0.8rem; font-weight: 800;">
+              <i class="fas fa-money-bill-wave">
+              </i> Pacote R$ 2.600,00/mês (c/ Cond. e IPTU)
+            </div>
+            <div class="spec-pill">
+              <i class="fas fa-bed">
+              </i> 3 Dormitórios (1 Suíte) c/ Armários
+            </div>
+            <div class="spec-pill">
+              <i class="fas fa-snowflake">
+              </i> Ar-Condicionado nos Dormitórios e Sala
+            </div>
+            <div class="spec-pill">
+              <i class="fas fa-utensils">
+              </i> Espaço Gourmet Privativo + Churrasqueira
+            </div>
+            <div class="spec-pill">
+              <i class="fas fa-sink">
+              </i> Cozinha Interna Planejada + Lavanderia
+            </div>
+            <div class="spec-pill">
+              <i class="fas fa-shield-alt">
+              </i> Lazer Completo (Piscina, Campo) + Portaria 24h
+            </div>
+          </div>
+
+          <div class="realtor-footer-bar">
+            <div class="realtor-profile">
+              <img class="realtor-avatar" src="./Fotos/Segurando paleto.jpg" alt="Valteir de Oliveira" onerror="this.src='./Fotos/Foto segurando a gravata.jpg'">
+              <div class="realtor-meta">
+                <h4>Valteir de Oliveira</h4>
+                <p>CRECI 214072-F</p>
+              </div>
+            </div>
+            <div class="contact-button">
+              <i class="fab fa-whatsapp">
+              </i> (17) 99172-6078
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Action Download Buttons -->
+      <div class="action-bar">
+        <button class="btn-action" onclick="downloadCreative()">
+          <i class="fas fa-download">
+          </i> Baixar Imagem do Criativo (PNG)
+        </button>
+        <button class="btn-action btn-secondary-action" onclick="window.print()">
+          <i class="fas fa-print">
+          </i> Imprimir / PDF
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Right Column: Controls & Copywriting -->
+    <div class="control-panel">
+      
+      <!-- Value Banner -->
+      <div class="price-box-banner">
+        <div>
+          <div class="price-info">VALOR DE LOCAÇÃO</div>
+          <div class="price-amount">R$ 2.600,00<span style="font-size: 0.9rem; font-weight: 600;">/mês</span></div>
+        </div>
+        <div style="text-align: right; font-size: 0.75rem; color: #FFF; background: rgba(0,0,0,0.4); padding: 6px 12px; border-radius: 8px; border: 1px solid var(--gold);">
+          <i class="fas fa-check-double" style="color: var(--whatsapp-green);"></i> <strong>PACOTE COMPLETO</strong><br>Condomínio + IPTU Inclusos
+        </div>
+      </div>
+
+      <!-- Section: Specs List -->
+      <div class="panel-section-title">
+        <i class="fas fa-list-check">
+        </i> Todas as Informações na Arte
+      </div>
+
+      <ul class="feature-list">
+        <li class="feature-item" style="grid-column: span 2; border-color: var(--gold); background: rgba(201, 168, 76, 0.1);">
+          <i class="fas fa-tag">
+          </i> <strong>R$ 2.600,00/mês</strong> (Pacote c/ Cond. + IPTU)
+        </li>
+        <li class="feature-item">
+          <i class="fas fa-bed">
+          </i> 03 Dormitórios (01 Suíte)
+        </li>
+        <li class="feature-item">
+          <i class="fas fa-cube">
+          </i> Armários em todos os dorms
+        </li>
+        <li class="feature-item">
+          <i class="fas fa-snowflake">
+          </i> Ar condicionado nos dorms
+        </li>
+        <li class="feature-item">
+          <i class="fas fa-snowflake">
+          </i> Sala c/ Ar Condicionado
+        </li>
+        <li class="feature-item">
+          <i class="fas fa-shower">
+          </i> Banheiro Social Completo
+        </li>
+        <li class="feature-item">
+          <i class="fas fa-utensils">
+          </i> Espaço Gourmet Privativo
+        </li>
+        <li class="feature-item">
+          <i class="fas fa-sink">
+          </i> Cozinha Interna Planejada
+        </li>
+        <li class="feature-item">
+          <i class="fas fa-tshirt">
+          </i> Lavanderia Separada
+        </li>
+      </ul>
+
+      <!-- Section: Condominium Amenities -->
+      <div class="panel-section-title">
+        <i class="fas fa-tree">
+        </i> Infraestrutura do Condomínio
+      </div>
+
+      <ul class="feature-list" style="margin-bottom: 2rem;">
+        <li class="feature-item">
+          <i class="fas fa-water">
+          </i> Piscina Adulto e Infantil
+        </li>
+        <li class="feature-item">
+          <i class="fas fa-fire">
+          </i> Quiosque para Churrasco
+        </li>
+        <li class="feature-item">
+          <i class="fas fa-champagne-glasses">
+          </i> Salão de Festas
+        </li>
+        <li class="feature-item">
+          <i class="fas fa-futbol">
+          </i> Campo de Futebol
+        </li>
+        <li class="feature-item">
+          <i class="fas fa-child">
+          </i> Playground
+        </li>
+        <li class="feature-item">
+          <i class="fas fa-shield-halved">
+          </i> Portaria &amp; Ronda 24h
+        </li>
+      </ul>
+
+      <!-- Section: Legenda / Copywriting -->
+      <div class="panel-section-title">
+        <i class="fas fa-bullhorn">
+        </i> Legenda Pronta para Redes Sociais
+      </div>
+
+      <div class="copy-box">
+        <button class="btn-copy" onclick="copyCaption()">
+          <i class="fas fa-copy">
+          </i> Copiar Legenda
+        </button>
+        <div id="copy-content" class="copy-text">🔑 EXCELENTE OPORTUNIDADE DE LOCAÇÃO — CONDOMÍNIO PARQUE DA LIBERDADE II 🏡
+
+💰 VALOR DO PACOTE: R$ 2.600,00 / mês
+(Já inclusos: Aluguel + Condomínio + IPTU)
+
+Procurando conforto, segurança e economia para sua família? Confira essa linda casa totalmente pronta para morar!
+
+✨ Destaques do Imóvel:
+• 🛏️ 03 Dormitórios (sendo 01 Suíte)
+• ❄️ Ar-condicionado em TODOS os dormitórios e na sala
+• 🚪 Armários planejados em todos os quartos
+• 🚿 Banheiro Social moderno
+• <ctrl42> Sala ampla e climatizada
+• 🍖 Espaço Gourmet privativo com churrasqueira
+• 🍳 Cozinha interna planejada e funcional
+• 🧺 Lavanderia reservada
+
+🌳 Lazer Completo &amp; Segurança no Condomínio:
+• 🏊 Piscina adulto e infantil
+• 🍖 Quiosques para churrasco
+• 🎈 Salão de Festas &amp; Playground
+• ⚽ Campo de Futebol gramado
+• 🌲 Muita área verde para caminhadas
+• 👮 Portaria e Segurança 24h
+
+📲 Agende sua visita ou tire suas dúvidas:
+👨‍💼 Valteir de Oliveira — Assessoria Imobiliária
+📜 CRECI: 214072-F
+📞 (17) 99172-6078 (WhatsApp)
+🌐 www.valteir.com.br
+
+#Locacao #ParqueDaLiberdadeII #RioPreto #ImoveisRioPreto #CasaEmCondominio #ValteirImoveis #AluguelRioPreto</div>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+  let currentFormat = 'feed';
+
+  function switchFormat(format) {
+    currentFormat = format;
+    const feedCard = document.getElementById('card-feed');
+    const storyCard = document.getElementById('card-story');
+    const buttons = document.querySelectorAll('.tab-btn');
+
+    buttons.forEach(b => b.classList.remove('active'));
+
+    if (format === 'feed') {
+      feedCard.style.display = 'flex';
+      storyCard.style.display = 'none';
+      buttons[0].classList.add('active');
+    } else {
+      feedCard.style.display = 'none';
+      storyCard.style.display = 'flex';
+      buttons[1].classList.add('active');
+    }
+  }
+
+  function copyCaption() {
+    const copyText = document.getElementById('copy-content').innerText;
+    navigator.clipboard.writeText(copyText).then(() => {
+      const btn = document.querySelector('.btn-copy');
+      btn.innerHTML = '<i class="fas fa-check"></i> Copiado!';
+      setTimeout(() => {
+        btn.innerHTML = '<i class="fas fa-copy"></i> Copiar Legenda';
+      }, 2500);
+    });
+  }
+
+  function downloadCreative() {
+    const targetId = currentFormat === 'feed' ? 'card-feed' : 'card-story';
+    const element = document.getElementById(targetId);
+
+    html2canvas(element, {
+      scale: 2,
+      useCORS: true,
+      allowTaint: true,
+      backgroundColor: null
+    }).then(canvas => {
+      const link = document.createElement('a');
+      link.download = `Arte_Unica_Locacao_Parque_Liberdade_II_${currentFormat}.png`;
+      link.href = canvas.toDataURL('image/png');
+      link.click();
+    });
+  }
+</script>
+
+</body>
+</html>

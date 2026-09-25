@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valteir Imóveis — Apresentação de Identidade Visual & Redesign de Luxo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;900&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #0c0d10;
+            --card-bg: #14161d;
+            --gold-primary: #d4af37;
+            --gold-gradient: linear-gradient(135deg, #f9e79f 0%, #d4af37 50%, #aa7c11 100%);
+            --text-light: #f5f5f7;
+            --text-muted: #9ba1ad;
+            --border-gold: rgba(212, 175, 55, 0.25);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.6;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid var(--border-gold);
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 6px 18px;
+            border-radius: 30px;
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid var(--border-gold);
+            color: var(--gold-primary);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 2.8rem;
+            background: var(--gold-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+
+        p.subtitle {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-gold);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+            transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px rgba(212, 175, 55, 0.15);
+            border-color: rgba(212, 175, 55, 0.6);
+        }
+
+        .card-img-wrapper {
+            width: 100%;
+            position: relative;
+            background: #000;
+            overflow: hidden;
+        }
+
+        .card-img-wrapper img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .card:hover .card-img-wrapper img {
+            transform: scale(1.03);
+        }
+
+        .card-body {
+            padding: 25px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1.4rem;
+            color: var(--gold-primary);
+            margin-bottom: 8px;
+        }
+
+        .card-desc {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+        }
+
+        .tag-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: auto;
+        }
+
+        .tag {
+            font-size: 0.75rem;
+            padding: 4px 10px;
+            border-radius: 6px;
+            background: rgba(255, 255, 255, 0.05);
+            color: #ddd;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .features-section {
+            margin-top: 60px;
+            background: linear-gradient(180deg, rgba(20, 22, 29, 0.8) 0%, rgba(12, 13, 16, 0.95) 100%);
+            border: 1px solid var(--border-gold);
+            border-radius: 20px;
+            padding: 40px;
+        }
+
+        .features-section h2 {
+            font-family: 'Cinzel', serif;
+            color: var(--gold-primary);
+            font-size: 2rem;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .feature-item {
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 12px;
+            border-left: 3px solid var(--gold-primary);
+        }
+
+        .feature-item h3 {
+            color: #fff;
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+        }
+
+        .feature-item p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        footer {
+            margin-top: 60px;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding-top: 25px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <div class="badge">Redesign & Identidade Visual High-End</div>
+        <h1>VALTEIR IMÓVEIS</h1>
+        <p class="subtitle">Evolução da marca com foco em Alto Padrão, Sofisticação, Materiais Nobres e Presença Visual Imponente.</p>
+    </header>
+
+    <!-- SOLUÇÃO DEFINITIVA: DESIGN GRÁFICO VETORIAL PURO (SEM IA / SEM RUÍDO / 100% NÍTIDO) -->
+    <section class="features-section" style="margin-top: 10px; margin-bottom: 40px; border: 2px solid #d4af37; background: #0e1017; box-shadow: 0 0 40px rgba(212, 175, 55, 0.25);">
+        <div style="text-align: center; margin-bottom: 30px;">
+            <div class="badge" style="background: rgba(212,175,55,0.25); font-size: 0.95rem; font-weight: 700; color: #ffd700;">💎 DESIGN GRÁFICO PROFISSIONAL (VETORIAL PURO)</div>
+            <h2 style="font-size: 2.3rem; margin-top: 10px; color: #f5f5f7;">Identidade Visual Vetorial Matemática</h2>
+            <p style="color: #a0a6b5; max-width: 800px; margin: 0 auto; font-size: 1.05rem;">
+                Construção geométrica pura (SVG / PNG de alta definição), com curvas anti-aliased perfeitas, gradientes de ouro real, tipografia nobre com kerning ajustado e <strong>fundo 100% transparente</strong> — sem qualquer artefato ou borrão de IA.
+            </p>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px;">
+            
+            <!-- 1. ÍCONE 100x100 -->
+            <div style="background: rgba(255,255,255,0.02); border: 1px solid var(--border-gold); border-radius: 16px; padding: 25px; text-align: center;">
+                <h3 style="color: var(--gold-primary); font-family: 'Cinzel', serif; margin-bottom: 15px;">Ícone / Monograma (100 x 100 px)</h3>
+                
+                <div style="background-image: linear-gradient(45deg, #1e212d 25%, transparent 25%), linear-gradient(-45deg, #1e212d 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #1e212d 75%), linear-gradient(-45deg, transparent 75%, #1e212d 75%); background-size: 16px 16px; background-color: #11131a; border-radius: 12px; padding: 30px 10px; margin-bottom: 15px; border: 1px dashed rgba(212, 175, 55, 0.5);">
+                    <img src="Logos_Novas/logo_valteir_icone_vetorial_puro_100x100.png" width="100" height="100" style="display: inline-block; filter: drop-shadow(0 4px 10px rgba(0,0,0,0.5));" alt="Ícone Vetorial 100x100">
+                </div>
+
+                <p style="font-size: 0.8rem; color: #aaa;">Perfeito para: WhatsApp, Perfil do Instagram, Favicon do Site</p>
+                <div style="margin-top: 10px;">
+                    <a href="Logos_Novas/logo_valteir_icone_vetorial_puro_100x100.png" download class="badge" style="text-decoration: none; cursor: pointer; display: inline-block;">📥 Baixar PNG 100x100</a>
+                </div>
+            </div>
+
+            <!-- 2. LOGO HORIZONTAL COMPLETA HD -->
+            <div style="background: rgba(255,255,255,0.02); border: 1px solid var(--border-gold); border-radius: 16px; padding: 25px; text-align: center;">
+                <h3 style="color: var(--gold-primary); font-family: 'Cinzel', serif; margin-bottom: 15px;">Logo Horizontal Completa (Alta Definição)</h3>
+                
+                <div style="background-image: linear-gradient(45deg, #1e212d 25%, transparent 25%), linear-gradient(-45deg, #1e212d 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #1e212d 75%), linear-gradient(-45deg, transparent 75%, #1e212d 75%); background-size: 16px 16px; background-color: #11131a; border-radius: 12px; padding: 30px 15px; margin-bottom: 15px; border: 1px dashed rgba(212, 175, 55, 0.5);">
+                    <img src="Logos_Novas/logo_valteir_vetorial_horizontal_puro_HD.png" style="max-width: 100%; height: auto; display: inline-block; filter: drop-shadow(0 8px 18px rgba(0,0,0,0.5));" alt="Logo Horizontal HD">
+                </div>
+
+                <p style="font-size: 0.8rem; color: #aaa;">Perfeito para: Cabeçalho de Site, Placas de Vende-se, Papelaria</p>
+                <div style="margin-top: 10px;">
+                    <a href="Logos_Novas/logo_valteir_vetorial_horizontal_puro_HD.png" download class="badge" style="text-decoration: none; cursor: pointer; display: inline-block;">📥 Baixar PNG HD Transparente</a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Visualizações em Cenários 3D Anteriores -->
+
+        <!-- Vitrine do Modelo Horizontal, Perspectiva e do Selo -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px;">
+            
+            <!-- Modelo Perspectiva Angular Exata da Foto -->
+            <div style="background: rgba(0,0,0,0.4); border: 1px solid var(--border-gold); border-radius: 16px; padding: 20px; text-align: center;">
+                <h3 style="color: var(--gold-primary); font-family: 'Cinzel', serif; margin-bottom: 12px; font-size: 1.2rem;">Perspectiva Angular Exata (3D Vazada)</h3>
+                
+                <div style="background-image: linear-gradient(45deg, #222634 25%, transparent 25%), linear-gradient(-45deg, #222634 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #222634 75%), linear-gradient(-45deg, transparent 75%, #222634 75%); background-size: 16px 16px; background-position: 0 0, 0 8px, 8px -8px, -8px 0px; background-color: #161822; border-radius: 12px; padding: 25px 10px; margin-bottom: 15px; border: 1px dashed rgba(212, 175, 55, 0.4);">
+                    <img src="Logos_Novas/logo_valteir_exata_perspectiva_vazada_transparente.png" style="max-width: 100%; height: auto; display: inline-block; filter: drop-shadow(0 15px 25px rgba(0,0,0,0.7));" alt="Perspectiva Exata Vazada">
+                </div>
+
+                <div style="display: flex; justify-content: center; gap: 15px; align-items: center;">
+                    <div>
+                        <p style="font-size: 0.75rem; color: var(--gold-primary); margin-bottom: 4px; font-weight: 600;">100 x 100 px (Transp.)</p>
+                        <div style="background: #1c1e28; padding: 4px; border-radius: 8px; border: 1px solid #333; display: inline-block;">
+                            <img src="Logos_Novas/logo_valteir_exata_perspectiva_100x100_transparente.png" width="100" height="100" alt="100x100 Transparente">
+                        </div>
+                    </div>
+                    <div>
+                        <p style="font-size: 0.75rem; color: var(--gold-primary); margin-bottom: 4px; font-weight: 600;">100 x 100 px (Dark)</p>
+                        <div style="padding: 4px; border-radius: 8px; border: 1px solid #333; display: inline-block;">
+                            <img src="Logos_Novas/logo_valteir_exata_perspectiva_100x100_dark.jpg" width="100" height="100" alt="100x100 Dark" style="border-radius: 6px;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Letra Caixa Completa Horizontal -->
+            <div style="background: rgba(0,0,0,0.4); border: 1px solid var(--border-gold); border-radius: 16px; padding: 20px; text-align: center;">
+                <h3 style="color: var(--gold-primary); font-family: 'Cinzel', serif; margin-bottom: 12px; font-size: 1.2rem;">Letra Caixa 3D Frontal (Horizontal)</h3>
+                
+                <!-- Display com fundo xadrez para comprovar transparência -->
+                <div style="background-image: linear-gradient(45deg, #222634 25%, transparent 25%), linear-gradient(-45deg, #222634 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #222634 75%), linear-gradient(-45deg, transparent 75%, #222634 75%); background-size: 16px 16px; background-position: 0 0, 0 8px, 8px -8px, -8px 0px; background-color: #161822; border-radius: 12px; padding: 25px 10px; margin-bottom: 15px; border: 1px dashed rgba(212, 175, 55, 0.4);">
+                    <img src="Logos_Novas/logo_valteir_modelo_marmore_letra_caixa_vazado_transparente.png" style="max-width: 100%; height: auto; display: inline-block; filter: drop-shadow(0 15px 25px rgba(0,0,0,0.7));" alt="Letra Caixa Mármore Vazada">
+                </div>
+
+                <div style="display: flex; justify-content: center; gap: 15px; align-items: center;">
+                    <div>
+                        <p style="font-size: 0.75rem; color: var(--gold-primary); margin-bottom: 4px; font-weight: 600;">100 x 100 px (Transp.)</p>
+                        <div style="background: #1c1e28; padding: 4px; border-radius: 8px; border: 1px solid #333; display: inline-block;">
+                            <img src="Logos_Novas/logo_valteir_modelo_marmore_letra_caixa_100x100_transparente.png" width="100" height="100" alt="100x100 Transparente">
+                        </div>
+                    </div>
+                    <div>
+                        <p style="font-size: 0.75rem; color: var(--gold-primary); margin-bottom: 4px; font-weight: 600;">100 x 100 px (Dark)</p>
+                        <div style="padding: 4px; border-radius: 8px; border: 1px solid #333; display: inline-block;">
+                            <img src="Logos_Novas/logo_valteir_modelo_marmore_letra_caixa_100x100_dark.jpg" width="100" height="100" alt="100x100 Dark" style="border-radius: 6px;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Emblema / Selo Circular -->
+            <div style="background: rgba(0,0,0,0.4); border: 1px solid var(--border-gold); border-radius: 16px; padding: 20px; text-align: center;">
+                <h3 style="color: var(--gold-primary); font-family: 'Cinzel', serif; margin-bottom: 12px; font-size: 1.2rem;">Emblema Monograma / Ícone</h3>
+                
+                <div style="background-image: linear-gradient(45deg, #222634 25%, transparent 25%), linear-gradient(-45deg, #222634 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #222634 75%), linear-gradient(-45deg, transparent 75%, #222634 75%); background-size: 16px 16px; background-position: 0 0, 0 8px, 8px -8px, -8px 0px; background-color: #161822; border-radius: 12px; padding: 20px 10px; margin-bottom: 15px; border: 1px dashed rgba(212, 175, 55, 0.4);">
+                    <img src="Logos_Novas/logo_valteir_modelo_marmore_emblema_selo_vazado_transparente.png" style="max-width: 170px; height: auto; display: inline-block; filter: drop-shadow(0 15px 25px rgba(0,0,0,0.7));" alt="Selo Mármore Vazado">
+                </div>
+
+                <div style="display: flex; justify-content: center; gap: 15px; align-items: center;">
+                    <div>
+                        <p style="font-size: 0.75rem; color: var(--gold-primary); margin-bottom: 4px; font-weight: 600;">100 x 100 px (Transp.)</p>
+                        <div style="background: #1c1e28; padding: 4px; border-radius: 8px; border: 1px solid #333; display: inline-block;">
+                            <img src="Logos_Novas/logo_valteir_modelo_marmore_emblema_selo_100x100_transparente.png" width="100" height="100" alt="100x100 Transparente">
+                        </div>
+                    </div>
+                    <div>
+                        <p style="font-size: 0.75rem; color: var(--gold-primary); margin-bottom: 4px; font-weight: 600;">100 x 100 px (Dark)</p>
+                        <div style="padding: 4px; border-radius: 8px; border: 1px solid #333; display: inline-block;">
+                            <img src="Logos_Novas/logo_valteir_modelo_marmore_emblema_selo_100x100_dark.jpg" width="100" height="100" alt="100x100 Dark" style="border-radius: 6px;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Galeria de Conceitos Criados -->
+    <div class="gallery-grid">
+        <!-- Card 1 -->
+        <div class="card">
+            <div class="card-img-wrapper">
+                <img src="Logos_Novas/logo_valteir_luxury_1788026640557.jpg" alt="Logo Valteir Imóveis Alto Luxo">
+            </div>
+            <div class="card-body">
+                <div>
+                    <h2 class="card-title">Conceito 1 — Imperial Gold</h2>
+                    <p class="card-desc">Monograma escultural com 'V' afiado e arcos ovais entrelaçados em ouro champanhe escovado, contrastando com fundo ônix profundo.</p>
+                </div>
+                <div class="tag-list">
+                    <span class="tag">Ouro Champanhe</span>
+                    <span class="tag">Tipografia Serif Nobre</span>
+                    <span class="tag">Contraste Dark</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="card">
+            <div class="card-img-wrapper">
+                <img src="Logos_Novas/logo_valteir_marble_1788026658295.jpg" alt="Logo Valteir Imóveis Mármore Calacatta">
+            </div>
+            <div class="card-body">
+                <div>
+                    <h2 class="card-title">Conceito 2 — Recepção Boutique & Mármore</h2>
+                    <p class="card-desc">Aplicação arquitetônica 3D retroiluminada em parede de mármore Calacatta Gold com veios dourados e metal nobre com halo de LED.</p>
+                </div>
+                <div class="tag-list">
+                    <span class="tag">Fachada / Recepção</span>
+                    <span class="tag">Mármore Nobre</span>
+                    <span class="tag">Backlight Halo</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="card">
+            <div class="card-img-wrapper">
+                <img src="Logos_Novas/logo_valteir_crest_1788026678451.jpg" alt="Logo Valteir Imóveis Brasão Real Estate">
+            </div>
+            <div class="card-body">
+                <div>
+                    <h2 class="card-title">Conceito 3 — Brasão de Prestígio</h2>
+                    <p class="card-desc">Brasão circular premium com acabamento em ouro polido e microtextura de luxo, ideal para selos de qualidade, impressos e redes sociais.</p>
+                </div>
+                <div class="tag-list">
+                    <span class="tag">Selo Circular</span>
+                    <span class="tag">Ouro Polido</span>
+                    <span class="tag">Mídias & Redes Sociais</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Seção Letra Caixa Vazada (Sem Fundo / Transparente) -->
+    <section class="features-section" style="margin-top: 40px; border-color: rgba(212, 175, 55, 0.7); background: linear-gradient(180deg, #181b24 0%, #0d0f14 100%);">
+        <div style="text-align: center; margin-bottom: 25px;">
+            <div class="badge" style="background: rgba(212,175,55,0.2);">Novo: Letra Caixa Vazada (Sem Fundo)</div>
+            <h2>🏆 Letra Caixa 3D — Fundo Transparente & 100x100</h2>
+            <p style="color: var(--text-muted); max-width: 750px; margin: 0 auto;">
+                Elementos metálicos em relevo 3D (ouro champanhe escovado e titânio ônix) totalmente recortados e vazados sem fundo, prontos para sobrepor em qualquer foto, fundo escuro, claro ou material publicitário.
+            </p>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; margin-top: 20px;">
+            
+            <!-- Modelo Vertical -->
+            <div style="background: rgba(0,0,0,0.3); border: 1px solid var(--border-gold); border-radius: 16px; padding: 25px; text-align: center;">
+                <h3 style="color: var(--gold-primary); font-family: 'Cinzel', serif; margin-bottom: 15px;">Formato Vertical (Emblema + Nome)</h3>
+                
+                <div style="background-image: linear-gradient(45deg, #1f222e 25%, transparent 25%), linear-gradient(-45deg, #1f222e 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #1f222e 75%), linear-gradient(-45deg, transparent 75%, #1f222e 75%); background-size: 20px 20px; background-position: 0 0, 0 10px, 10px -10px, -10px 0px; background-color: #14161f; border-radius: 12px; padding: 30px 10px; margin-bottom: 15px; border: 1px dashed var(--border-gold);">
+                    <img src="Logos_Novas/logo_valteir_letracaixa_vertical_vazado_transparente.png" style="max-width: 200px; height: auto; display: inline-block; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.6));" alt="Letra Caixa Vertical Vazada">
+                </div>
+
+                <div style="display: flex; justify-content: center; gap: 20px; align-items: center; margin-top: 15px;">
+                    <div>
+                        <p style="font-size: 0.75rem; color: var(--gold-primary); margin-bottom: 5px;">Transparente (100x100)</p>
+                        <div style="background: #1c1e28; padding: 5px; border-radius: 8px; border: 1px solid #333; display: inline-block;">
+                            <img src="Logos_Novas/logo_valteir_letracaixa_vertical_100x100_transparente.png" width="100" height="100" alt="100x100">
+                        </div>
+                    </div>
+                    <div>
+                        <p style="font-size: 0.75rem; color: var(--gold-primary); margin-bottom: 5px;">Dark Mode (100x100)</p>
+                        <div style="padding: 5px; border-radius: 8px; border: 1px solid #333; display: inline-block;">
+                            <img src="Logos_Novas/logo_valteir_letracaixa_vertical_100x100_dark.jpg" width="100" height="100" alt="100x100 Dark" style="border-radius: 4px;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modelo Horizontal -->
+            <div style="background: rgba(0,0,0,0.3); border: 1px solid var(--border-gold); border-radius: 16px; padding: 25px; text-align: center;">
+                <h3 style="color: var(--gold-primary); font-family: 'Cinzel', serif; margin-bottom: 15px;">Formato Horizontal (Fachada / Banner)</h3>
+                
+                <div style="background-image: linear-gradient(45deg, #1f222e 25%, transparent 25%), linear-gradient(-45deg, #1f222e 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #1f222e 75%), linear-gradient(-45deg, transparent 75%, #1f222e 75%); background-size: 20px 20px; background-position: 0 0, 0 10px, 10px -10px, -10px 0px; background-color: #14161f; border-radius: 12px; padding: 30px 10px; margin-bottom: 15px; border: 1px dashed var(--border-gold);">
+                    <img src="Logos_Novas/logo_valteir_letracaixa_horizontal_vazado_transparente.png" style="max-width: 250px; height: auto; display: inline-block; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.6));" alt="Letra Caixa Horizontal Vazada">
+                </div>
+
+                <div style="display: flex; justify-content: center; gap: 20px; align-items: center; margin-top: 15px;">
+                    <div>
+                        <p style="font-size: 0.75rem; color: var(--gold-primary); margin-bottom: 5px;">Transparente (100x100)</p>
+                        <div style="background: #1c1e28; padding: 5px; border-radius: 8px; border: 1px solid #333; display: inline-block;">
+                            <img src="Logos_Novas/logo_valteir_letracaixa_horizontal_100x100_transparente.png" width="100" height="100" alt="100x100">
+                        </div>
+                    </div>
+                    <div>
+                        <p style="font-size: 0.75rem; color: var(--gold-primary); margin-bottom: 5px;">Dark Mode (100x100)</p>
+                        <div style="padding: 5px; border-radius: 8px; border: 1px solid #333; display: inline-block;">
+                            <img src="Logos_Novas/logo_valteir_letracaixa_horizontal_100x100_dark.jpg" width="100" height="100" alt="100x100 Dark" style="border-radius: 4px;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="features-section">
+        <h2>Pilares do Novo Design</h2>
+        <div class="features-grid">
+            <div class="feature-item">
+                <h3>💎 DNA Original Preservado</h3>
+                <p>Mantivemos a fusão do arco oval com o "V", elemento icônico da sua fachada atual, refinando as proporções para a proporção áurea.</p>
+            </div>
+            <div class="feature-item">
+                <h3>🏛️ Tipografia de Alto Padrão</h3>
+                <p>Letras com kerning espaçado, estética de alta joalheria e mercado imobiliário internacional de luxo.</p>
+            </div>
+            <div class="feature-item">
+                <h3>✨ Versatilidade Total</h3>
+                <p>Pronto para fachadas 3D retroiluminadas, placas de venda, criativos no Instagram/Facebook, papelaria e contratos.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2026 Valteir Imóveis — Todos os direitos reservados. Arquivos salvos em seu projeto local.</p>
+    </footer>
+</div>
+
+</body>
+</html>

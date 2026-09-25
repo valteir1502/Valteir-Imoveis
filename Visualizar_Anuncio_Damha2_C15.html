@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simulador de Anúncio Meta Ads — Condomínio Damha II (C15)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-dark: #0f172a;
+      --bg-card: rgba(30, 41, 59, 0.7);
+      --border-color: rgba(255, 255, 255, 0.1);
+      --accent-gold: #eab308;
+      --accent-gold-gradient: linear-gradient(135deg, #fef08a 0%, #eab308 50%, #ca8a04 100%);
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --meta-blue: #1877f2;
+      --meta-gradient: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045);
+      --whatsapp-green: #22c55e;
+      --radius: 16px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      min-height: 100vh;
+      background-image: 
+        radial-gradient(circle at 15% 20%, rgba(234, 179, 8, 0.08) 0%, transparent 40%),
+        radial-gradient(circle at 85% 80%, rgba(24, 119, 242, 0.08) 0%, transparent 40%);
+      padding: 2rem 1rem;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 2.5rem;
+      padding: 1.5rem;
+      background: var(--bg-card);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    .badge-gold {
+      display: inline-block;
+      padding: 0.35rem 1rem;
+      background: var(--accent-gold-gradient);
+      color: #0f172a;
+      font-weight: 700;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      border-radius: 50px;
+      margin-bottom: 0.75rem;
+    }
+
+    h1 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 2.2rem;
+      font-weight: 700;
+      background: linear-gradient(to right, #ffffff, #cbd5e1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 0.5rem;
+    }
+
+    p.subtitle {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+    }
+
+    .grid-layout {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    @media (min-width: 1024px) {
+      .grid-layout {
+        grid-template-columns: 440px 1fr;
+      }
+    }
+
+    /* Meta Ad Phone Preview Card */
+    .phone-simulator-wrapper {
+      position: sticky;
+      top: 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .phone-frame {
+      width: 100%;
+      max-width: 400px;
+      background: #000;
+      border-radius: 40px;
+      padding: 12px;
+      border: 4px solid #334155;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7), 0 0 30px rgba(234, 179, 8, 0.15);
+      overflow: hidden;
+    }
+
+    .phone-screen {
+      background: #121212;
+      border-radius: 30px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .ad-header {
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      background: #1a1a1a;
+    }
+
+    .ad-profile {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--accent-gold-gradient);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #0f172a;
+      font-weight: 800;
+      font-size: 0.9rem;
+    }
+
+    .ad-profile-info strong {
+      display: block;
+      font-size: 0.85rem;
+      color: #fff;
+    }
+
+    .ad-profile-info span {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+    }
+
+    .media-container {
+      width: 100%;
+      position: relative;
+      background: #000;
+      aspect-ratio: 4/5;
+      overflow: hidden;
+    }
+
+    .media-container video,
+    .media-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .carousel-nav {
+      position: absolute;
+      top: 50%;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      padding: 0 10px;
+      transform: translateY(-50%);
+      pointer-events: none;
+    }
+
+    .nav-btn {
+      pointer-events: auto;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: rgba(0, 0, 0, 0.6);
+      color: #fff;
+      border: none;
+      font-weight: bold;
+      cursor: pointer;
+      backdrop-filter: blur(4px);
+    }
+
+    .carousel-dots {
+      position: absolute;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 6px;
+    }
+
+    .dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.4);
+      transition: all 0.3s ease;
+    }
+
+    .dot.active {
+      background: var(--accent-gold);
+      width: 18px;
+      border-radius: 10px;
+    }
+
+    .ad-action-bar {
+      padding: 10px 16px;
+      background: #1a1a1a;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .ad-cta-button {
+      width: 100%;
+      padding: 12px;
+      background: var(--whatsapp-green);
+      color: #fff;
+      font-weight: 700;
+      border: none;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: transform 0.2s ease;
+    }
+
+    .ad-cta-button:hover {
+      transform: scale(1.02);
+    }
+
+    .ad-caption-area {
+      padding: 14px 16px;
+      background: #141414;
+      font-size: 0.82rem;
+      line-height: 1.45;
+      color: #e2e8f0;
+      max-height: 180px;
+      overflow-y: auto;
+    }
+
+    /* Tabs & Content Panels */
+    .dashboard-panel {
+      background: var(--bg-card);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    .tabs {
+      display: flex;
+      gap: 0.75rem;
+      margin-bottom: 1.5rem;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 0.75rem;
+      overflow-x: auto;
+    }
+
+    .tab-btn {
+      padding: 0.6rem 1.2rem;
+      background: transparent;
+      border: 1px solid transparent;
+      color: var(--text-muted);
+      font-weight: 600;
+      font-size: 0.9rem;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      white-space: nowrap;
+    }
+
+    .tab-btn.active {
+      background: rgba(234, 179, 8, 0.15);
+      color: var(--accent-gold);
+      border-color: rgba(234, 179, 8, 0.4);
+    }
+
+    .tab-content {
+      display: none;
+    }
+
+    .tab-content.active {
+      display: block;
+      animation: fadeIn 0.4s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .card-box {
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 1.25rem;
+      margin-bottom: 1rem;
+    }
+
+    .card-box h3 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.1rem;
+      color: var(--accent-gold);
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    ul.feature-list {
+      list-style: none;
+    }
+
+    ul.feature-list li {
+      padding: 0.4rem 0;
+      font-size: 0.9rem;
+      color: #cbd5e1;
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    ul.feature-list li::before {
+      content: "•";
+      color: var(--accent-gold);
+      font-weight: bold;
+    }
+
+    .copy-block {
+      background: #090d16;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 10px;
+      padding: 1rem;
+      font-size: 0.88rem;
+      line-height: 1.5;
+      white-space: pre-wrap;
+      position: relative;
+      margin-top: 0.5rem;
+      color: #e2e8f0;
+    }
+
+    .btn-copy-text {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      padding: 4px 10px;
+      font-size: 0.75rem;
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .btn-copy-text:hover {
+      background: var(--accent-gold);
+      color: #000;
+    }
+
+    .format-switcher {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .format-btn {
+      flex: 1;
+      padding: 8px;
+      font-size: 0.8rem;
+      border: 1px solid var(--border-color);
+      background: rgba(255, 255, 255, 0.05);
+      color: #fff;
+      border-radius: 8px;
+      cursor: pointer;
+      text-align: center;
+    }
+
+    .format-btn.active {
+      background: var(--accent-gold);
+      color: #000;
+      font-weight: 700;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <span class="badge-gold">Valteir Imóveis · Meta Ads Strategy</span>
+      <h1>Condomínio Damha II — São José do Rio Preto</h1>
+      <p class="subtitle">Campanha de Alto Padrão com foco na Região da Represa Municipal (Quadra C 15)</p>
+    </header>
+
+    <div class="grid-layout">
+      
+      <!-- LADO ESQUERDO: SIMULADOR DE CELULAR -->
+      <div class="phone-simulator-wrapper">
+        <div class="format-switcher">
+          <button class="format-btn active" onclick="switchMedia('carousel')">🖼️ Carrossel (Fotos)</button>
+          <button class="format-btn" onclick="switchMedia('video')">🎥 Video Tour (Reels)</button>
+        </div>
+
+        <div class="phone-frame">
+          <div class="phone-screen">
+            <div class="ad-header">
+              <div class="ad-profile">
+                <div class="avatar">VI</div>
+                <div class="ad-profile-info">
+                  <strong>Valteir Imóveis</strong>
+                  <span>Patrocinado · São José do Rio Preto</span>
+                </div>
+              </div>
+              <span style="color: var(--text-muted); font-size: 1.2rem;">•••</span>
+            </div>
+
+            <!-- CONTAINER DE MÍDIA -->
+            <div class="media-container" id="mediaDisplay">
+              <!-- Renderizado via JS -->
+            </div>
+
+            <!-- BOTÃO CTA DE CONVERSÃO -->
+            <div class="ad-action-bar">
+              <button class="ad-cta-button">
+                <span>📲</span> Enviar Mensagem no WhatsApp
+              </button>
+            </div>
+
+            <!-- LEGENDA DINÂMICA -->
+            <div class="ad-caption-area" id="captionPreview">
+              <strong>Valteir Imóveis</strong> Viver no Damha II é estar no coração da região mais nobre de Rio Preto. A Represa Municipal é o cartão-postal mais admirado...
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- LADO DIREITO: DADOS E CONFIGURAÇÕES DA CAMPANHA -->
+      <div class="dashboard-panel">
+        <div class="tabs">
+          <button class="tab-btn active" onclick="openTab('tab-publicos')">🎯 Públicos & Geotargeting</button>
+          <button class="tab-btn" onclick="openTab('tab-copies')">📝 Legendas & Copies</button>
+          <button class="tab-btn" onclick="openTab('tab-midias')">📸 Mídias Utilizadas</button>
+          <button class="tab-btn" onclick="openTab('tab-funil')">💬 Funil de WhatsApp</button>
+        </div>
+
+        <!-- TAB 1: PÚBLICOS -->
+        <div id="tab-publicos" class="tab-content active">
+          <div class="card-box">
+            <h3>📍 Foco Estratégico: Região da Represa Municipal</h3>
+            <p style="font-size: 0.9rem; color: #cbd5e1; margin-bottom: 0.75rem;">
+              A campanha conecta o desejo de viver perto da Represa Municipal com o status de morar no Condomínio Damha II.
+            </p>
+            <ul class="feature-list">
+              <li><strong>Conjunto 1 (Público Frio Rio Preto):</strong> Pessoas de 33 a 65+ anos com interesses em Bens de Luxo, Carros Esportivos, Rolex e Viagens Primeira Classe.</li>
+              <li><strong>Conjunto 2 (Pinos Cirúrgicos):</strong> Pinos de 1 a 2km em Damha I-VI, Quinta do Golfe, Bairro Redentora e Georgina Business Park.</li>
+              <li><strong>Conjunto 3 (Polo Regional):</strong> Empresários e investidores de Catanduva, Votuporanga, Olímpia, Barretos, Fernandópolis e Jales.</li>
+              <li><strong>Conjunto 4 (Remarketing Quente):</strong> Usuários que interagiram com o perfil nos últimos 90 dias ou viram +75% do vídeo.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- TAB 2: COPIES -->
+        <div id="tab-copies" class="tab-content">
+          <div class="card-box">
+            <h3>Opção 1: Foco na Represa Municipal & Damha II (Ativa no preview)</h3>
+            <button class="btn-copy-text" onclick="selectCopy(1)">Aplicar no Preview</button>
+            <div class="copy-block" id="copy-text-1">Viver no Damha II é estar no coração da região mais nobre de Rio Preto. 🏛️🌊
+
+A Represa Municipal é o cartão-postal mais admirado de São José do Rio Preto. E morar no Condomínio Damha II significa ter o privilégio diário de estar ao lado desse oásis de qualidade de vida.
+
+✨ Ambientes sociais perfeitamente integrados
+🍷 Varanda gourmet para momentos inesquecíveis
+🏊 Área de lazer privativa com piscina e paisagismo
+🛌 Suítes amplas com marcenaria planejada sob medida
+
+📍 Localização: Condomínio Damha II — São José do Rio Preto / SP
+📲 Clique em "Enviar Mensagem" para agendar sua visita exclusiva com o corretor Valteir Oliveira (CRECI 214072-F).</div>
+          </div>
+
+          <div class="card-box">
+            <h3>Opção 2: Foco em Família & Estilo de Vida</h3>
+            <button class="btn-copy-text" onclick="selectCopy(2)">Aplicar no Preview</button>
+            <div class="copy-block" id="copy-text-2">O cenário perfeito para construir as melhores memórias da sua família. 💎
+
+Se você valoriza o espaço de uma verdadeira casa de alto padrão, a tranquilidade de um condomínio fechado de elite e a proximidade com os melhores pontos de Rio Preto, esta casa no Damha II foi feita para você.
+
+• Projeto arquitetônico fluido e elegante
+• Espaço gourmet integrado com varanda e piscina
+• Suítes privativas aconchegantes
+• Próximo à Represa Municipal, shoppings e restaurantes
+
+👉 Toque em "Enviar Mensagem" e receba a apresentação completa no WhatsApp.</div>
+          </div>
+        </div>
+
+        <!-- TAB 3: MÍDIAS -->
+        <div id="tab-midias" class="tab-content">
+          <div class="card-box">
+            <h3>📁 Arquivos Espelhados no Projeto</h3>
+            <ul class="feature-list">
+              <li><strong>Vídeo Oficial:</strong> <code>Video/Damha2_C15/Damha II - Marcia.mp4</code></li>
+              <li><strong>Fotografias Anúncio (9 Fotos):</strong> <code>Fotos/Damha2_C15/</code></li>
+              <li><strong>Local de Sincronização:</strong> <code>C:\Users\valte\OneDrive\Área de Trabalho\Projeto - Valteir Imoveis</code></li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- TAB 4: FUNIL WHATSAPP -->
+        <div id="tab-funil" class="tab-content">
+          <div class="card-box">
+            <h3>💬 Fluxo de Conversão Meta Direct ➔ WhatsApp</h3>
+            <p style="font-size: 0.85rem; color: #cbd5e1; margin-bottom: 0.5rem;"><strong>Mensagem Inicial do Cliente:</strong></p>
+            <div class="copy-block">"Olá Valteir! Vi o anúncio da casa no Condomínio Damha II (Região da Represa) e gostaria de receber mais informações e agendar uma visita."</div>
+
+            <p style="font-size: 0.85rem; color: #cbd5e1; margin-top: 1rem; margin-bottom: 0.5rem;"><strong>Script de Resposta Rápida (Valteir):</strong></p>
+            <div class="copy-block">"Olá! Seja muito bem-vindo(a). Sou o Valteir Oliveira (CRECI 214072-F). É um prazer apresentar esta residência incrível no Damha II! Estou enviando as fotos e o tour em vídeo. Qual melhor dia e horário para realizarmos uma visita presencial nesta semana?"</div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    const photos = [
+      'Fotos/Damha2_C15/20260710_160140.jpg',
+      'Fotos/Damha2_C15/20260710_155804.jpg',
+      'Fotos/Damha2_C15/20260710_155814.jpg',
+      'Fotos/Damha2_C15/20260710_155948.jpg',
+      'Fotos/Damha2_C15/20260710_160252.jpg',
+      'Fotos/Damha2_C15/20260710_160206.jpg',
+      'Fotos/Damha2_C15/20260710_160317.jpg',
+      'Fotos/Damha2_C15/20260710_162406.jpg',
+      'Fotos/Damha2_C15/20260710_155900.jpg'
+    ];
+
+    const videoSrc = 'Video/Damha2_C15/Damha II - Marcia.mp4';
+    let currentPhotoIdx = 0;
+    let currentMode = 'carousel';
+
+    function renderMedia() {
+      const container = document.getElementById('mediaDisplay');
+      if (currentMode === 'carousel') {
+        container.innerHTML = `
+          <img src="${photos[currentPhotoIdx]}" alt="Foto Imóvel Damha II">
+          <div class="carousel-nav">
+            <button class="nav-btn" onclick="prevPhoto()">❮</button>
+            <button class="nav-btn" onclick="nextPhoto()">❯</button>
+          </div>
+          <div class="carousel-dots">
+            ${photos.map((_, i) => `<div class="dot ${i === currentPhotoIdx ? 'active' : ''}"></div>`).join('')}
+          </div>
+        `;
+      } else {
+        container.innerHTML = `
+          <video controls autoplay loop muted playsinline style="width:100%; height:100%; object-fit:cover;">
+            <source src="${videoSrc}" type="video/mp4">
+            Seu navegador não suporta a exibição de vídeos.
+          </video>
+        `;
+      }
+    }
+
+    function switchMedia(mode) {
+      currentMode = mode;
+      document.querySelectorAll('.format-btn').forEach(btn => btn.classList.remove('active'));
+      if (mode === 'carousel') {
+        event.target.classList.add('active');
+      } else {
+        event.target.classList.add('active');
+      }
+      renderMedia();
+    }
+
+    function prevPhoto() {
+      currentPhotoIdx = (currentPhotoIdx - 1 + photos.length) % photos.length;
+      renderMedia();
+    }
+
+    function nextPhoto() {
+      currentPhotoIdx = (currentPhotoIdx + 1) % photos.length;
+      renderMedia();
+    }
+
+    function openTab(tabId) {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+      event.target.classList.add('active');
+      document.getElementById(tabId).classList.add('active');
+    }
+
+    function selectCopy(optionNum) {
+      const text = document.getElementById(`copy-text-${optionNum}`).innerText;
+      document.getElementById('captionPreview').innerHTML = `<strong>Valteir Imóveis</strong> ${text.replace(/\n/g, '<br>')}`;
+    }
+
+    // Inicialização
+    renderMedia();
+  </script>
+</body>
+</html>

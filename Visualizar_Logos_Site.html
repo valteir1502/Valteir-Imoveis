@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logos Valteir Imóveis — Prontas para o Site</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0d0f14;
+            --card-bg: #161922;
+            --gold: #d4af37;
+            --border: rgba(212, 175, 55, 0.3);
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            background-color: var(--bg);
+            color: #f0f2f8;
+            font-family: 'Montserrat', sans-serif;
+            padding: 40px 20px;
+        }
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 25px;
+        }
+        h1 {
+            color: var(--gold);
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+        }
+        p.desc {
+            color: #9aa0b0;
+            font-size: 1rem;
+        }
+        .section-title {
+            color: var(--gold);
+            font-size: 1.4rem;
+            margin: 35px 0 20px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+        }
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+        }
+        .card h3 {
+            font-size: 1.1rem;
+            color: #fff;
+            margin-bottom: 6px;
+        }
+        .card .badge {
+            font-size: 0.8rem;
+            color: var(--gold);
+            background: rgba(212, 175, 55, 0.12);
+            padding: 4px 12px;
+            border-radius: 20px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        /* Fundo xadrez transparente */
+        .preview-box {
+            width: 100%;
+            height: 140px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+            border: 1px dashed rgba(255,255,255,0.15);
+            background-color: #1a1d26;
+            background-image: 
+                linear-gradient(45deg, #222634 25%, transparent 25%), 
+                linear-gradient(-45deg, #222634 25%, transparent 25%), 
+                linear-gradient(45deg, transparent 75%, #222634 75%), 
+                linear-gradient(-45deg, transparent 75%, #222634 75%);
+            background-size: 16px 16px;
+            background-position: 0 0, 0 8px, 8px -8px, -8px 0px;
+        }
+        .preview-box.dark {
+            background: #0f1016;
+        }
+        .preview-box.light {
+            background: #f0f2f5;
+        }
+        .preview-box.square {
+            height: 220px;
+        }
+        .preview-box img {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+        }
+        .file-name {
+            font-family: monospace;
+            font-size: 0.85rem;
+            color: #7ce38b;
+            background: rgba(0,0,0,0.4);
+            padding: 6px 10px;
+            border-radius: 6px;
+            margin-bottom: 12px;
+            width: 100%;
+            text-align: center;
+            word-break: break-all;
+        }
+        .rec-tag {
+            background: #2563eb;
+            color: #fff;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            margin-left: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>💎 Logos Oficiais Valteir Imóveis</h1>
+            <p class="desc">Geradas exatamente conforme o seu design original e nos tamanhos exigidos pelo editor do site (com transparência PNG).</p>
+        </header>
+
+        <!-- HORIZONTAL 400x100 -->
+        <h2 class="section-title">📐 Formato 400×100px — Recomendado para Barra de Navegação e Rodapé <span class="rec-tag">IDEAL PRO SITE</span></h2>
+        <div class="grid">
+            <!-- Branca -->
+            <div class="card">
+                <h3>Logo Branca (Original)</h3>
+                <span class="badge">Perfeita para Fundos Escuros</span>
+                <div class="preview-box dark">
+                    <img src="logo_valteir_imoveis_400x100_branca.png" alt="Logo Branca 400x100">
+                </div>
+                <div class="file-name">logo_valteir_imoveis_400x100_branca.png</div>
+            </div>
+
+            <!-- Dourada -->
+            <div class="card">
+                <h3>Logo Dourada (Ouro Nobre)</h3>
+                <span class="badge">Edição Luxo Especial</span>
+                <div class="preview-box dark">
+                    <img src="logo_valteir_imoveis_400x100_dourada.png" alt="Logo Dourada 400x100">
+                </div>
+                <div class="file-name">logo_valteir_imoveis_400x100_dourada.png</div>
+            </div>
+
+            <!-- Preta -->
+            <div class="card">
+                <h3>Logo Preta (Ônix)</h3>
+                <span class="badge">Para Fundos Claros ou Documentos</span>
+                <div class="preview-box light">
+                    <img src="logo_valteir_imoveis_400x100_preta.png" alt="Logo Preta 400x100">
+                </div>
+                <div class="file-name">logo_valteir_imoveis_400x100_preta.png</div>
+            </div>
+        </div>
+
+        <!-- QUADRADA 200x200 -->
+        <h2 class="section-title">⏹️ Formato 200×200px — Símbolo / Monograma e Logo Quadrada</h2>
+        <div class="grid">
+            <!-- Símbolo Branco -->
+            <div class="card">
+                <h3>Símbolo Monograma (Branco)</h3>
+                <span class="badge">Ideal para Favicon, App e Avatar</span>
+                <div class="preview-box square dark">
+                    <img src="logo_valteir_simbolo_200x200_branca.png" alt="Símbolo Branco 200x200">
+                </div>
+                <div class="file-name">logo_valteir_simbolo_200x200_branca.png</div>
+            </div>
+
+            <!-- Símbolo Dourado -->
+            <div class="card">
+                <h3>Símbolo Monograma (Dourado)</h3>
+                <span class="badge">Selo Alto Luxo</span>
+                <div class="preview-box square dark">
+                    <img src="logo_valteir_simbolo_200x200_dourada.png" alt="Símbolo Dourado 200x200">
+                </div>
+                <div class="file-name">logo_valteir_simbolo_200x200_dourada.png</div>
+            </div>
+
+            <!-- Completa 200x200 Branca -->
+            <div class="card">
+                <h3>Logo Completa (Branca)</h3>
+                <span class="badge">Versão Compacta Centralizada</span>
+                <div class="preview-box square dark">
+                    <img src="logo_valteir_completa_200x200_branca.png" alt="Logo Completa Branca 200x200">
+                </div>
+                <div class="file-name">logo_valteir_completa_200x200_branca.png</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
