@@ -191,7 +191,57 @@ def create_contract():
 
     add_p("Parágrafo Primeiro: O presente contrato é celebrado em caráter irretratável e irrevogável, restaurando-se as partes ao status quo ante exclusivamente na hipótese de rescisão motivada nos termos da Cláusula Nona deste instrumento.")
 
-    add_p("Parágrafo Segundo (Posse e Entrega das Chaves): As partes contratantes convencionam que a imissão na posse de ambos os imóveis (tanto da residência no Condomínio Buona Vita quanto do apartamento nº 74 no Edifício Ipê da Mata) ocorrerá de forma simultânea no prazo de até 30 (trinta) dias contados a partir do adimplemento e quitação integral das obrigações financeiras previstas nos itens 1 e 2 desta Cláusula.")
+    add_p("Parágrafo Segundo (Posse e Entrega Simultânea das Chaves): As partes contratantes convencionam que a entrega das chaves e a respectiva imissão na posse de ambos os imóveis (tanto da residência no Condomínio Buona Vita quanto do apartamento nº 74 no Edifício Ipê da Mata) ocorrerão de forma simultânea no prazo de até 60 (sessenta) dias contados a partir da data de assinatura deste contrato, mediante a constatação do adimplemento das obrigações pecuniárias iniciais.")
+
+    p2_3 = add_p()
+    p2_3.paragraph_format.left_indent = Inches(0.2)
+    r = p2_3.add_run("- Parágrafo Terceiro (Do Prazo de 20 Dias Úteis para Venda do Apartamento e Consolidação da Permuta): ")
+    r.bold = True
+    p2_3.add_run("Fica expressamente estabelecido e convencionado entre os contratantes que os ")
+    r = p2_3.add_run("PROMISSÁRIOS COMPRADORES")
+    r.bold = True
+    p2_3.add_run(" terão o prazo improrrogável de até ")
+    r = p2_3.add_run("20 (vinte) dias úteis")
+    r.bold = True
+    p2_3.add_run(", contados rigorosamente a partir da data de assinatura deste contrato, para buscar e concretizar a venda do ")
+    r = p2_3.add_run("Apartamento nº 74 do Condomínio Edifício Ipê da Mata")
+    r.bold = True
+    p2_3.add_run(" perante terceiros adquirentes no mercado imobiliário. Caso a referida venda a terceiros não venha a ser efetivamente concluída e formalizada dentro do mencionado prazo estipulado de 20 (vinte) dias úteis, a dação em pagamento / permuta imobiliária se consolidará de pleno direito e em caráter definitivo, irrevogável e irretratável, passando o referido apartamento a ser de legítima, plena e exclusiva propriedade dos ")
+    r = p2_3.add_run("PROMITENTES VENDEDORES")
+    r.bold = True
+    p2_3.add_run(" pelo valor de avaliação de ")
+    r = p2_3.add_run("R$ 1.610.000,00 (um milhão, seiscentos e dez mil reais)")
+    r.bold = True
+    p2_3.add_run(", mantendo-se inalterados o valor total da transação de ")
+    r = p2_3.add_run("R$ 2.390.000,00 (dois milhões, trezentos e noventa mil reais)")
+    r.bold = True
+    p2_3.add_run(" e a obrigação dos vendedores referente à instalação dos aparelhos de ar-condicionado na residência do Buona Vita prevista na Cláusula Quinta deste instrumento.")
+
+    p2_4 = add_p()
+    p2_4.paragraph_format.left_indent = Inches(0.2)
+    r = p2_4.add_run("- Parágrafo Quarto (Da Venda do Apartamento, Repactuação do Valor para R$ 2.250.000,00 À Vista e Exoneração dos Ares-Condicionados): ")
+    r.bold = True
+    p2_4.add_run("Na hipótese de os ")
+    r = p2_4.add_run("PROMISSÁRIOS COMPRADORES")
+    r.bold = True
+    p2_4.add_run(" concretizarem com êxito a venda do Apartamento nº 74 do Edifício Ipê da Mata a terceiros dentro do aludido prazo de 20 (vinte) dias úteis, as partes estipulam que vigorarão de forma imediata e automática as seguintes condições especiais:\n")
+    p2_4.add_run("a) O valor total da presente negociação da residência unifamiliar no Condomínio Parque Buona Vita será repactuado e passará a ser de ")
+    r = p2_4.add_run("R$ 2.250.000,00 (dois milhões, duzentos e cinquenta mil reais)")
+    r.bold = True
+    p2_4.add_run(";\n")
+    p2_4.add_run("b) A forma de pagamento passará a ser na modalidade integralmente ")
+    r = p2_4.add_run("À VISTA")
+    r.bold = True
+    p2_4.add_run(", computando-se e deduzindo-se o sinal de R$ 200.000,00 (duzentos mil reais) pago no ato da assinatura deste instrumento e quitando-se integralmente o saldo remanescente de ")
+    r = p2_4.add_run("R$ 2.050.000,00 (dois milhões e cinquenta mil reais)")
+    r.bold = True
+    p2_4.add_run(" na data da formalização da escritura/contrato de venda do apartamento a terceiros e correspondente liberação financeira dos recursos;\n")
+    r = p2_4.add_run("c) Exoneração Total dos Vendedores quanto aos Ares-Condicionados: ")
+    r.bold = True
+    p2_4.add_run("Ocorrendo a venda do apartamento a terceiros e a fixação do preço com desconto à vista de R$ 2.250.000,00, ")
+    r = p2_4.add_run("os PROMITENTES VENDEDORES ficarão formal e expressamente exonerados e desobrigados de adquirir, fornecer e instalar quaisquer aparelhos de ar-condicionado")
+    r.bold = True
+    p2_4.add_run(" na residência do Condomínio Parque Buona Vita (ficando desobrigados tanto dos 05 aparelhos individuais quanto do ar-condicionado modelo Cassette do espaço gourmet), sendo a residência entregue sem os referidos aparelhos, permanecendo outrossim inalterada a supressão da lareira conforme acordo comercial prévio.")
 
     # CLÁUSULA TERCEIRA
     add_clause_header("CLÁUSULA TERCEIRA – DAS CERTIDÕES E REGULARIDADE DOCUMENTAL")
@@ -215,39 +265,57 @@ def create_contract():
     add_clause_header("CLÁUSULA QUARTA – DA VISTORIA E DO ESTADO DOS IMÓVEIS")
     add_p("As partes declaram expressamente que realizaram prévia vistoria física em ambos os imóveis (tanto na casa do Condomínio Buona Vita quanto no apartamento nº 74 do Edifício Ipê da Mata), conhecendo perfeitamente suas dimensões, divisões, estado de conservação, instalações elétricas, hidráulicas e acabamentos, aceitando-os nas condições exatas em que se encontram nesta data, ressalvadas as obrigações e benfeitorias especificadas na Cláusula Quinta.")
 
-    # CLÁUSULA QUINTA - NOVA! (ACORDO COMERCIAL, BENFEITORIAS E EQUIPAMENTOS)
+    # CLÁUSULA QUINTA
     add_clause_header("CLÁUSULA QUINTA – DO ACORDO COMERCIAL DE BENFEITORIAS E EQUIPAMENTOS")
-    add_p("Em complemento à negociação do preço e condições dos imóveis, as partes estabelecem expressamente as seguintes obrigações específicas de entrega, permanência e substituição de equipamentos:")
+    add_p("Para composição harmônica dos valores, especificações técnicas e equilíbrio comercial entre os imóveis transacionados, os contratantes ajustam as seguintes condições comerciais quanto às benfeitorias e equipamentos:")
 
     p_eq1 = add_p()
     p_eq1.paragraph_format.left_indent = Inches(0.2)
-    r = p_eq1.add_run("1. Equipamentos no Apartamento Ipê da Mata (Permuta): ")
+    r = p_eq1.add_run("- Parágrafo Primeiro (Equipamentos no Apartamento Ipê da Mata - Permuta): ")
     r.bold = True
-    p_eq1.add_run("Os PROMISSÁRIOS COMPRADORES comprometem-se a manter incorporados e entregar instalados no Apartamento nº 74 do Edifício Ipê da Mata o total de ")
-    r = p_eq1.add_run("05 (cinco) aparelhos de ar-condicionado com tecnologia Inverter")
+    p_eq1.add_run("Na hipótese de consolidação da permuta tratada na Cláusula Segunda deste contrato, fica expressamente convencionado que permanecerão instalados e serão entregues pelos PROMISSÁRIOS COMPRADORES no Apartamento nº 74 do Condomínio Edifício Ipê da Mata o total de ")
+    r = p_eq1.add_run("05 (cinco) aparelhos de ar-condicionado")
     r.bold = True
-    p_eq1.add_run(", completos (unidades evaporadoras, condensadoras, tubulações, fiações e respectivos controles remotos), todos em perfeito estado de funcionamento e conservação;")
+    p_eq1.add_run(" no estado de conservação e perfeito funcionamento em que se encontram, com todas as suas tubulações, fiações, condensadoras, evaporadoras e respectivos controles remotos, os quais são transferidos aos PROMITENTES VENDEDORES sem qualquer custo adicional.")
 
     p_eq2 = add_p()
     p_eq2.paragraph_format.left_indent = Inches(0.2)
-    r = p_eq2.add_run("2. Equipamentos na Residência do Condomínio Buona Vita: ")
+    r = p_eq2.add_run("- Parágrafo Segundo (Instalação dos Aparelhos de Ar-Condicionado na Casa do Buona Vita pelos Vendedores): ")
     r.bold = True
-    p_eq2.add_run("Os PROMITENTES VENDEDORES obrigam-se a entregar a residência do Condomínio Buona Vita também dotada de ")
-    r = p_eq2.add_run("05 (cinco) aparelhos de ar-condicionado com tecnologia Inverter")
+    p_eq2.add_run("Ressalvada a hipótese de venda à vista tratada no Parágrafo Quarto da Cláusula Segunda, os PROMITENTES VENDEDORES assumem a responsabilidade e obrigação de adquirir, fornecer e instalar, por sua conta e ônus exclusivo, na residência do Condomínio Parque Buona Vita, o total de ")
+    r = p_eq2.add_run("05 (cinco) aparelhos de ar-condicionado")
     r.bold = True
-    p_eq2.add_run(", devidamente instalados e em perfeito funcionamento nos dormitórios e ambientes planejados do imóvel;")
+    p_eq2.add_run(", novos e em perfeito estado de funcionamento, rigorosamente nas seguintes potências e especificações técnicas:\n")
+    r = p_eq2.add_run("I. 03 (três) aparelhos de ar-condicionado com capacidade de 12.000 BTUs;\n")
+    r.bold = True
+    r = p_eq2.add_run("II. 01 (um) aparelho de ar-condicionado com capacidade de 18.000 BTUs;\n")
+    r.bold = True
+    r = p_eq2.add_run("III. 01 (um) aparelho de ar-condicionado com capacidade de 24.000 BTUs;\n")
+    r.bold = True
+    r = p_eq2.add_run("IV. ALÉM de 01 (um) aparelho de ar-condicionado modelo Cassette com capacidade de 60.000 BTUs, ")
+    r.bold = True
+    p_eq2.add_run("a ser devidamente instalado, embutido no teto e testado no ambiente do Espaço Gourmet.")
 
     p_eq3 = add_p()
     p_eq3.paragraph_format.left_indent = Inches(0.2)
-    r = p_eq3.add_run("3. Substituição da Lareira por Ar-Condicionado Cassete no Gourmet: ")
+    r = p_eq3.add_run("- Parágrafo Terceiro (Supressão da Lareira e Substituição pelo Ar-Condicionado Cassette de 60.000 BTUs): ")
     r.bold = True
-    p_eq3.add_run("As partes acordam expressamente a alteração do projeto inicial da residência do Condomínio Buona Vita no que tange à área de lazer: ")
-    r = p_eq3.add_run("a lareira que originalmente seria instalada no ambiente externo (fire place) foi cancelada e substituída")
+    p_eq3.add_run("Fica expressamente salientado e acordado que na residência do Condomínio Parque Buona Vita ")
+    r = p_eq3.add_run("NÃO será instalada a lareira")
     r.bold = True
-    p_eq3.add_run(", ficando os PROMITENTES VENDEDORES formalmente obrigados a fornecer e instalar, por sua conta e ônus exclusivo, ")
-    r = p_eq3.add_run("01 (um) aparelho de ar-condicionado modelo Cassete embutido no teto do espaço gourmet")
+    p_eq3.add_run(" que constava originalmente do projeto da área de lazer (fire place), por ter sido objeto de expresso e livre acordo comercial entre as partes, tendo sido a referida lareira substituída em definitivo pelo fornecimento e instalação do aparelho de ")
+    r = p_eq3.add_run("ar-condicionado modelo Cassette de 60.000 BTUs no Espaço Gourmet")
     r.bold = True
-    p_eq3.add_run(", entregue em pleno funcionamento, testado e com acabamento concluído na data da entrega das chaves e imissão de posse.")
+    p_eq3.add_run(" a cargo exclusivo dos PROMITENTES VENDEDORES, dando os contratantes mútua, plena e irrevogável quitação quanto a este item.")
+
+    p_eq4 = add_p()
+    p_eq4.paragraph_format.left_indent = Inches(0.2)
+    r = p_eq4.add_run("- Parágrafo Quarto (Da Desoneração dos Vendedores em Caso de Venda do Apartamento à Vista): ")
+    r.bold = True
+    p_eq4.add_run("Conforme estabelecido no Parágrafo Quarto da Cláusula Segunda, caso os PROMISSÁRIOS COMPRADORES concretizem a venda do apartamento a terceiros dentro do prazo de 20 (vinte) dias úteis e o negócio da residência no Condomínio Buona Vita seja liquidado pelo valor de R$ 2.250.000,00 à vista, as obrigações dos PROMITENTES VENDEDORES estipuladas no Parágrafo Segundo desta Cláusula (instalação dos 05 aparelhos de ar-condicionado e do Cassette de 60.000 BTUs) ")
+    r = p_eq4.add_run("ficarão plena e automaticamente extintas e sem efeito")
+    r.bold = True
+    p_eq4.add_run(", não sendo instalado nenhum aparelho de ar-condicionado pelos vendedores na referida residência, mantendo-se igualmente a supressão da lareira.")
 
     # CLÁUSULA SEXTA
     add_clause_header("CLÁUSULA SEXTA – DA IRRETRATABILIDADE E ADJUDICAÇÃO COMPULSÓRIA")
@@ -256,6 +324,15 @@ def create_contract():
     # CLÁUSULA SÉTIMA
     add_clause_header("CLÁUSULA SÉTIMA – DA ESCRITURAÇÃO E DO REGISTRO")
     add_p("As Escrituras Públicas Definitivas de Compra e Venda e de Dação em Pagamento / Permuta serão outorgadas e lavradas imediatamente após a liberação do crédito referente ao Financiamento Bancário pactuado no item 3 da Cláusula Segunda, correndo as respectivas despesas nos termos estabelecidos na Cláusula Décima Primeira deste contrato.")
+
+    p_p1_c7 = add_p()
+    p_p1_c7.paragraph_format.left_indent = Inches(0.2)
+    r = p_p1_c7.add_run("- Parágrafo Primeiro (Da Procuração Pública do Imóvel em Permuta): ")
+    r.bold = True
+    p_p1_c7.add_run("Especificamente em relação ao imóvel dado em permuta (Apartamento nº 74 do Condomínio Ipê da Mata - Matrícula nº 117.310 do 2º ORI), ")
+    r = p_p1_c7.add_run("decorrido o prazo de 20 (vinte) dias úteis previsto no Parágrafo Terceiro da Cláusula Segunda sem a concretização da venda a terceiros, consolidando-se a permuta")
+    r.bold = True
+    p_p1_c7.add_run(", os PROMISSÁRIOS COMPRADORES obrigam-se formalmente a outorgar em favor dos PROMITENTES VENDEDORES (ou de pessoa física/jurídica por estes expressamente indicada), no prazo improrrogável de até 05 (cinco) dias úteis subsequentes, Instrumento Público de Procuração lavrado em Tabelionato de Notas competente.")
 
     # CLÁUSULA OITAVA
     add_clause_header("CLÁUSULA OITAVA – DA CLÁUSULA PENAL COMPENSATÓRIA")
